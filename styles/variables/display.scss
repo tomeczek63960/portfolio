@@ -1,0 +1,32 @@
+// grid
+$columnCount: 18;
+
+$gridGutterMobile: 0.4rem;
+$gridGutterTabletP: 0.8rem;
+$gridGutterTabletL: 0.8rem;
+$gridGutterDesk: 5rem;
+
+// container padding
+$gridSpacerMobile: 2.5rem;
+$gridSpacerTabletP: 3rem;
+$gridSpacerTabletL: 3rem;
+$gridSpacerDesk: 5rem;
+
+// breakpoints
+$breakpointTabletP: 768px; // portrait
+$breakpointTabletL: 1024px; // landscapee
+$breakpointDesk: 1366px;
+$breakpointDeskHD: 1920px;
+
+// fonts
+$fontFamilyPrimary: 'Arial';
+$fontWeightNormal: normal;
+$fontWeightMedium: 500;
+$fontWeightBold: bold;
+
+// transition
+$transition-base: 0.3s ease-in-out;
+
+$tabletTextWidth: 45.2rem;
+$deskTextWidth: 48.9rem;
+$deskLTextWidth: 71rem;

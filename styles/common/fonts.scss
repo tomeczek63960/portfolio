@@ -1,0 +1,42 @@
+@keyframes bg-animation {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
+*::selection {
+  // background-color: #7928ca;
+  // background-color: $gradientFrom;
+  // background-color: $lightPink;
+  // background-color: $darkPink;
+  background-color: $violet;
+  // background-color: $lightViolet;
+  // background-color: $lightRed;
+  -webkit-text-fill-color: $white;
+}
+
+h1 {
+  // background: linear-gradient(to left, #f81ce5, #15ee11);
+  // background: linear-gradient(0.50turn, #3f87a6, #ebf8e1, #f69d3c);
+  // background-image: linear-gradient(90deg, #FF4D4D, #F9CB28);
+  background-size: 400%;
+  background-image: linear-gradient(to left, #3f87a6, #ebf8e1, #f69d3c);
+  width: fit-content;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-left: var(--padding);
+  padding-right: var(--padding);
+  position: relative;
+  z-index: 1;
+  padding: 10px;
+  animation: bg-animation 5s infinite alternate;
+  // jakaś animacja na tekst (np. zmiana gradientu od lewej wczytywanie zmieny koloru na inny i przechodzi na prawą i zmienia się tak gradient)
+  color: orange;
+  z-index: 1;
+}
+p {
+  color: $white;
+}

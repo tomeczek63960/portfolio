@@ -1,0 +1,128 @@
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  max-width: 47.8rem;
+  height: 100%;
+  padding-left: $gridSpacerMobile;
+  padding-right: $gridSpacerMobile;
+
+  @include tabletP {
+    padding-left: $gridSpacerTabletP;
+    padding-right: $gridSpacerTabletP;
+    max-width: 76.8rem;
+  }
+
+  @include tabletL {
+    padding-left: $gridSpacerTabletL;
+    padding-right: $gridSpacerTabletL;
+    max-width: 102.4rem;
+  }
+
+  @include desk {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 99.8rem;
+  }
+
+  @include deskHD {
+    max-width: 139rem;
+  }
+}
+
+.container-narrow {
+  @include desk {
+    max-width: 101.2rem;
+    margin: 0 auto;
+  }
+}
+
+.cols {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$gridGutterMobile/2;
+  margin-right: -$gridGutterMobile/2;
+  height: 100%;
+  flex: 1;
+
+  @include tabletP {
+    margin-left: -$gridGutterTabletP/2;
+    margin-right: -$gridGutterTabletP/2;
+  }
+
+  @include tabletL {
+    margin-left: -$gridGutterTabletL/2;
+    margin-right: -$gridGutterTabletL/2;
+  }
+
+  @include desk {
+    margin-left: -$gridGutterDesk/2;
+    margin-right: -$gridGutterDesk/2;
+  }
+}
+
+@mixin col-mobile {
+  @for $i from 1 through $columnCount {
+    &-m--#{$i} {
+      flex: 0 0 decimalround(percentage((1/$columnCount) * $i), 4);
+      max-width: decimalround(percentage((1/$columnCount) * $i), 4);
+    }
+  }
+}
+
+@mixin col-tabletP {
+  @for $i from 1 through $columnCount {
+    &-tp--#{$i} {
+      flex: 0 0 decimalround(percentage((1/$columnCount) * $i), 4);
+      max-width: decimalround(percentage((1/$columnCount) * $i), 4);
+    }
+  }
+}
+
+@mixin col-tabletL {
+  @for $i from 1 through $columnCount {
+    &-tl--#{$i} {
+      flex: 0 0 decimalround(percentage((1/$columnCount) * $i), 4);
+      max-width: decimalround(percentage((1/$columnCount) * $i), 4);
+    }
+  }
+}
+
+@mixin col-desk {
+  @for $i from 1 through $columnCount {
+    &-d--#{$i} {
+      flex: 0 0 decimalround(percentage((1/$columnCount) * $i), 4);
+      max-width: decimalround(percentage((1/$columnCount) * $i), 4);
+    }
+  }
+}
+
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  padding-left: $gridGutterMobile/2;
+  padding-right: $gridGutterMobile/2;
+  @include col-mobile;
+
+  @include tabletP {
+    padding-left: -$gridGutterTabletP/2;
+    padding-right: -$gridGutterTabletP/2;
+
+    @include col-tabletP;
+  }
+
+  @include tabletL {
+    padding-left: $gridGutterTabletL/2;
+    padding-right: $gridGutterTabletL/2;
+
+    @include col-tabletL;
+  }
+
+  @include desk {
+    padding-left: $gridGutterDesk/2;
+    padding-right: $gridGutterDesk/2;
+
+    @include col-desk;
+  }
+}

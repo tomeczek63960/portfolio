@@ -1,0 +1,272 @@
+:root {
+  --contact-rotation: 0;
+}
+html {
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  font-size: 62.5%;
+  font-style: normal;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  position: relative;
+  &::before {
+    content: "";
+    width: 50px;
+    height: 50px;    
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: $black;
+    border-radius: 50%;
+    animation: loadPage 4s forwards;
+    // animation-iteration-count: 2;
+  }
+  &::after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    background: gray;
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+    animation: loadPageContent 0.3s 1s forwards;
+    opacity: 0;
+  }
+}
+
+// inherited from <html>
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+@keyframes loadPage {
+  // 10% {
+  0% {
+    height: 50px;
+    width: 50px;
+  }
+  // 30% {
+  5% {
+    height: 50px;
+    width: 40px;
+  }
+  // 50% {
+  10% {
+    height: 30px;
+    width: 57px;
+    transform: translate(-50%, 240px);
+  }
+  // 75% { 
+  15% { 
+    height: 50px;
+    width: 57px;
+  }
+  // 100% {
+  20% {
+    transform: translate(-50%, 0);
+    width: 50px;
+    height: 50px;
+  }
+  25% {
+    height: 50px;
+    width: 40px;
+  }
+  // 50% {
+  30% {
+    height: 30px;
+    width: 57px;
+    transform: translate(-50%, 240px);
+  }
+  // 75% { 
+  35% { 
+    height: 50px;
+    width: 57px;
+  }
+  // 100% {
+  40% {
+    transform: translate(-50%, 0);
+    width: 50px;
+    height: 50px;
+  }
+  41% {
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    transform: translate(-50%, 0) scale(100);
+  }
+}
+@keyframes loadPageContent {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes loadHeight {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+body {
+  margin: 0;
+  text-size-adjust: 100%; // iOS on orientation change
+  color: $black;
+  font-family: $fontFamilyPrimary;
+  font-weight: $fontWeightMedium;
+  font-size: 1.6rem;
+  line-height: 2.3rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  backface-visibility: hidden;
+  overflow-x: hidden;
+  color: $white;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  opacity: 0;
+  animation: loadPageContent 0.3s 3s ease-in-out forwards;
+  &::before {
+    content: '';
+    width: 50%;
+    height: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: $white;
+    animation: loadHeight 0.4s 3.3s forwards;
+  }
+}
+
+a,
+label,
+.button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font-family: $fontFamilyPrimary;
+}
+
+img, picture {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+picture {
+  source, img {
+    object-fit: cover;
+    height: 100%;
+  }
+}
+
+// placeholders
+input,
+textarea,
+select {
+  &::-webkit-input-placeholder {
+    color: $black;
+  }
+
+  &::-moz-placeholder {
+    opacity: 1;
+    color: $black;
+  }
+
+  &:-ms-input-placeholder {
+    color: $black;
+  }
+}
+
+strong {
+  font-weight: $fontWeightBold;
+}
+
+
+html {
+  --content: "Ship.";
+  --padding: 0.05em;
+  --start-color: #FF4D4D;
+  --end-color: #F9CB28;
+  min-height: 400vh;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  // background: #f1f1f1;
+  // background: $yellow;
+  background-image: linear-gradient(to bottom, $violet, #1de034);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  // background: #888;
+  // border-radius: 5px;
+  // background: linear-gradient(0deg, $green, $violet);
+  background-color: rgba(0, 0, 0, 0.6);
+  // background: linear-gradient(to bottom, blue, purple, #FF4D4D, #F9CB28);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  // 
+}
+
+@keyframes imageAnimation {
+  0% {
+    filter: grayscale(1);
+  }
+  10% {
+    filter: grayscale(0.9);
+  }
+  20% {
+    filter: grayscale(0.8);
+  }
+  30% {
+    filter: grayscale(0.7);
+  }
+  40% {
+    filter: grayscale(0.6);
+  }
+  50% {
+    filter: grayscale(0.5);
+  }
+  60% {
+    filter: grayscale(0.4);
+  }
+  70% {
+    filter: grayscale(0.3);
+  }
+  80% {
+    filter: grayscale(0.2);
+  }
+  90% {
+    filter: grayscale(0.1);
+  }
+  100% {
+    filter: grayscale(0);
+  }
+}
+
+img {
+  // animation: imageAnimation 4s infinite alternate;
+  // filter: grayscale(1);
+}
