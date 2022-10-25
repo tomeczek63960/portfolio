@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components'
-import colors from 'components/globalStyled/variables';
+import colors from 'src/ui/globalStyled/variables';
 
 const InputGroup = styled.div`
   position: relative;

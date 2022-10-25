@@ -1,30 +1,16 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components'
-import FormComponent from 'components/FormComponent/FormComponent';
+import React from 'react';
+import Layout from 'src/layout/Layout';
+import Contact from 'src/views/Contact';
+import type { NextPage } from 'next'
 
-const Btn = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
-  margin: 0 1em;
-  padding: 0.25em 1em;
-  transition: 0.3s linear;
-  cursor: pointer;
-  &:hover {
-    color: white;
-    background: palevioletred;
-  }
-`
-
-function Contact() {
+const ContactPage: NextPage = () => {
   return (
-    <div>
-        <h1>Contact page</h1>
-          <FormComponent />
-          <Btn>HERE cLIck</Btn>
-    </div>
+    <Layout
+      background="orange"
+    >
+      <Contact />
+    </Layout>
   );
 }
 
-export default Contact;
+export default ContactPage;

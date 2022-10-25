@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components'
-import colors from 'components/globalStyled/variables';
+import colors from 'src/ui/globalStyled/variables';
 import FormGroup from './FormGroup';
 import Input from './Input';
 
@@ -39,6 +39,8 @@ const StyledFormButton = styled.button`
     }
 `;
 
+
+// style dla inputów (tylko dolny margines z labelem po kliknięciu podnosi się nad górę inputa) - i od lewa do prawa wczytywanie borderu
 // mousemove na formie i zaleznie od połozenia myszki dodawać połozenie gradientu
 // animacja po najechaniu na inputa, radient wczytuje się z dwuch stron (z 0 do 100% szerokości czy jakoś tak) i znika tak samo
 function FormComponent() {

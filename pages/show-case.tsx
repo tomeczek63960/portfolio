@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react';
+import type { NextPage } from 'next'
+import Layout from 'src/layout/Layout';
+import React from 'react';
+import ShowCase from "src/views/ShowCase";
 
-function Contact() {
+const ShowCasePage: NextPage = () => {
   return (
-    <div>
-        <h1>Strona na której będą najbardziej zaawansowane anikacje pokazującę zlepki ze wszystkich projektó (coś na zasadzie wideo tylko ze animowane przez js</h1>
-    </div>
+    <Layout
+      background="red"
+    >
+      <ShowCase />
+    </Layout>
   );
 }
 
-export default Contact;
+export default ShowCasePage;
