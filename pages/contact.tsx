@@ -7,6 +7,9 @@ const ContactPage: NextPage = () => {
   return (
     <Layout
       background="orange"
+      title="Home page"
+      description="Home page"
+      url="here"
     >
       <Contact />
     </Layout>

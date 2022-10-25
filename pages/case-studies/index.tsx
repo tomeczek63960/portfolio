@@ -5,7 +5,11 @@ import CaseStudies from 'src/views/CaseStudies';
 
 const CaseStudiesPage: NextPage = () => {
   return (
-    <Layout>
+    <Layout
+      title="Home page"
+      description="Home page"
+      url="here"
+    >
       <CaseStudies />
     </Layout>
   );

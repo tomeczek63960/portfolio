@@ -7,6 +7,9 @@ const ShowCasePage: NextPage = () => {
   return (
     <Layout
       background="red"
+      title="Home page"
+      description="Home page"
+      url="here"
     >
       <ShowCase />
     </Layout>

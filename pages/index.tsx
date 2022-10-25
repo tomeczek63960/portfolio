@@ -6,6 +6,9 @@ const HomePage: NextPage = () => {
   return (
     <Layout
       background="blue"
+      title="Home page"
+      description="Home page"
+      url="here"
     >
       <Home />
     </Layout>
