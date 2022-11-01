@@ -1,6 +1,5 @@
 import '../styles/index.scss';
 import type { AppProps } from 'next/app'
-import Link from 'next/link'
 // import PageTransition from 'components/PageTransition';
 import React, { useMemo } from 'react';
 import { useRouter } from "next/router";
@@ -14,6 +13,7 @@ import {
 
 import pl from "src/lang/pl.json";
 import en from "src/lang/en.json";
+import Header from 'src/ui/Header';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { locale } = useRouter();
@@ -35,19 +35,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <TransitionProvider>
         <TransitionLayout>
-        <div className="page">
-          <Link href="/" >Home</Link>
-          <br/>
-          <Link href="/contact" >Kontakt</Link>
-          <br/>
-          <Link href="/case-studies" >Case studies</Link>
-          <br/>
-          <Link href="/case-studies/1" >Case study</Link>
-          <br/>
-          <Link href="/show-case" >Show case</Link>
-          <br/>
+          <Header />
           <Component {...pageProps} />
-        </div>
         </TransitionLayout>
       </TransitionProvider>
     </QueryClientProvider>
