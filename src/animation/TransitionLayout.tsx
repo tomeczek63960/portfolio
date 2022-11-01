@@ -85,7 +85,8 @@ export default function TransitionLayout({ children }: {children: any}) {
     timeline.add(
       gsap.to(el.current, {
         duration: 1,
-        opacity: 0
+        opacity: 0,
+        pointerEvents: 'none'
       }),
       0
     )
@@ -146,7 +147,8 @@ export default function TransitionLayout({ children }: {children: any}) {
       opacity: 0
     });
     enterTl.set(el.current, {
-      opacity: 0
+      opacity: 0,
+      pointerEvents: 'none'
     });
     
     enterTl.to(centerCircle.current, {
@@ -175,10 +177,13 @@ export default function TransitionLayout({ children }: {children: any}) {
       opacity: 1
     });
     enterTl.to(centerCircle.current, {
-      duration: 1,
+      duration: 0.3,
       opacity: 0
     });
 
+    enterTl.set(el.current, {
+      pointerEvents: 'all'
+    });
     enterTl.set(leftTransition.current, {
       y: '100%'
     });
@@ -204,7 +209,6 @@ export default function TransitionLayout({ children }: {children: any}) {
       <span ref={ leftCircle } className="circle-left">T</span>
       <span ref={ rightCircle } className="circle-right">K</span>
     </CenterCircle>
-    {/* in out animation and ref={el} opacity 0 during page change */}
     <div ref={el}>
       { displayChildren }
     </div>

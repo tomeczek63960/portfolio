@@ -6,8 +6,11 @@
   height: 100%;
   padding-left: $gridSpacerMobile;
   padding-right: $gridSpacerMobile;
-
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
   @include tabletP {
+    flex-direction: row;
     padding-left: $gridSpacerTabletP;
     padding-right: $gridSpacerTabletP;
     max-width: 76.8rem;
@@ -27,6 +30,22 @@
 
   @include deskHD {
     max-width: 139rem;
+  }
+  &__left {
+    width: 100%;
+    @include tabletP {
+      width: 50%;
+    }
+    // padding: 20px;
+  }
+  &__right {
+    order: -1;
+    width: 100%;
+    @include tabletP {
+      order: 1;
+      width: 50%;
+    }
+    // padding: 20px;
   }
 }
 

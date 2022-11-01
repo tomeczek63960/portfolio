@@ -13,7 +13,6 @@ import {
 
 import pl from "src/lang/pl.json";
 import en from "src/lang/en.json";
-import Header from 'src/ui/Header';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { locale } = useRouter();
@@ -35,7 +34,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <TransitionProvider>
         <TransitionLayout>
-          <Header />
           <Component {...pageProps} />
         </TransitionLayout>
       </TransitionProvider>

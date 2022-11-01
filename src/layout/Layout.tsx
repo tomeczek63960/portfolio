@@ -2,12 +2,13 @@ import { useEffect, useContext } from "react"
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect"
 import { TransitionContext } from "src/context/TransitionContext"
 import Head from "./Head"
+import Header from 'src/ui/Header';
+import styled from 'styled-components'
 
 import { FormattedMessage, useIntl } from "react-intl";
 
 const Layout = (props: any) => {
   const { setBackground }: { setBackground?: Function } = useContext(TransitionContext);
-  // const intl = useIntl();
   useEffect(() => {
     setBackground && setBackground(props.background || "transparent");
   }, [props.background]);
@@ -15,10 +16,17 @@ const Layout = (props: any) => {
   return (
     <>
       <Head { ...props } />
-      <h1> <FormattedMessage id="page.home.description" /> </h1>
-      <main>
-        { props.children }
-      </main>
+      <div className="container">
+        <div className="container__left">
+          <h1> <FormattedMessage id="page.home.description" /> </h1>
+          <main>
+            { props.children }
+          </main>
+        </div>
+        <div className="container__right">
+          <Header />
+        </div>
+      </div>
     </>
   )
 }
