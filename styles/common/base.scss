@@ -9,8 +9,9 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   position: relative;
+  background: black;
   &::before {
-    content: "";
+    // content: "";
     width: 50px;
     height: 50px;    
     position: fixed;
@@ -19,11 +20,10 @@ html {
     transform: translateX(-50%);
     background: $black;
     border-radius: 50%;
-    animation: loadPage 7s forwards;
-    // animation-iteration-count: 2;
+    // animation: loadPage 7s forwards;
   }
   &::after {
-    content: "TK";
+    // content: "TK";
     width: 50px;
     height: 50px;
     display: flex;
@@ -36,7 +36,7 @@ html {
     border-radius: 50%;
     transform: translateX(-50%);
     z-index: 1;
-    animation: loadPageContentAnim 4s 3.7s forwards;
+    // animation: loadPageContentAnim 4s 3.7s forwards;
     opacity: 0;
     color: white;
     font-size: 25px;
@@ -145,6 +145,7 @@ html {
 }
 body {
   margin: 0;
+  padding-top: 80px;
   text-size-adjust: 100%; // iOS on orientation change
   color: $black;
   font-family: $fontFamilyPrimary;
@@ -163,17 +164,17 @@ body {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
-  opacity: 0;
-  animation: loadPageContent 0.3s 7.5s ease-in-out forwards;
+  // opacity: 0;
+  // animation: loadPageContent 0.3s 7.5s ease-in-out forwards;
   &::before {
-    content: "";
+    // content: "";
     width: 50%;
     height: 0;
     position: fixed;
     top: 0;
     right: 0;
     background-color: $white;
-    animation: loadHeight 1s 8.5s forwards;
+    // animation: loadHeight 1s 8.5s forwards;
     z-index: -1;
     opacity: 0;
     pointer-events: none;
@@ -237,32 +238,6 @@ html {
   --start-color: #FF4D4D;
   --end-color: #F9CB28;
   min-height: 400vh;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  // background: #f1f1f1;
-  // background: $yellow;
-  background-image: linear-gradient(to bottom, $violet, #1de034);
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  // background: #888;
-  // border-radius: 5px;
-  // background: linear-gradient(0deg, $green, $violet);
-  background-color: rgba(0, 0, 0, 0.6);
-  // background: linear-gradient(to bottom, blue, purple, #FF4D4D, #F9CB28);
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  // 
 }
 
 @keyframes imageAnimation {

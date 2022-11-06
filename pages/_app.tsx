@@ -32,11 +32,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return <IntlProvider locale={shortLocale} messages={curentMessage}>
     <QueryClientProvider client={queryClient}>
-      <TransitionProvider>
-        <TransitionLayout>
+      {/* <TransitionProvider>
+        <TransitionLayout> */}
           <Component {...pageProps} />
-        </TransitionLayout>
-      </TransitionProvider>
+        {/* </TransitionLayout>
+      </TransitionProvider> */}
     </QueryClientProvider>
   </IntlProvider>
 }
