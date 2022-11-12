@@ -1,31 +1,47 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-export const useCircleCarousel = () => {
-  const customCarousel: any = {}
-  const init = function (options: any) {
-    customCarousel.node        = options.node;
-    customCarousel.node.slider = customCarousel;
-    customCarousel.slides      = Array.from(options.slides.children);
-    customCarousel.slidesN     = options.slides.children.length;
-    customCarousel.pagination  = options.pagination;
-    customCarousel.pagTransf   = 'translate( -50%, -50% )';
-    customCarousel.dots        = Array.from(options.pagination.children);
-    customCarousel.dotsN       = customCarousel.dots.length;
-    customCarousel.step        = -360/customCarousel.dotsN;
-    customCarousel.angle       = 0;
-    customCarousel.activeN     = options.activeN || 0;
-    customCarousel.prevN       = customCarousel.activeN;
-    customCarousel.speed       = options.speed || 300;
-    customCarousel.autoplay    = options.autoplay || false;
-    customCarousel.autoplayId  = null;
+interface carouselOptions {
+  node: any,
+  pagination: any,
+  slides: any,
+  speed: any,
+  autoplay: any,
+  activeN?: any
+}
 
-    setSlide(customCarousel.activeN);
-    arrangeDots();
-    customCarousel.pagination.style.transitionDuration = customCarousel.speed +'ms';
-    if (customCarousel.autoplay) startAutoplay();
-
-    addListeners();
+export const useCircleCarousel = (): [boolean, Function] => {
+  const [customCarousel, setCustomCarousel] = useState<any>(false);
+  const isInited = useRef<boolean>(false);
+  const init = async (options: carouselOptions) => {
+    setCustomCarousel({
+      node        : options.node,
+      slides      : Array.from(options.slides.children),
+      slidesN     : options.slides.children.length,
+      pagination  : options.pagination,
+      pagTransf   : 'translate( -50%, -50% )',
+      dots        : Array.from(options.pagination.children),
+      dotsN       : options.pagination.children.length,
+      step        : -360/options.pagination.children.length,
+      angle       : 0,
+      activeN     : options.activeN || 0,
+      prevN       : options.activeN || 0,
+      speed       : options.speed || 300,
+      autoplay    : options.autoplay || false,
+      autoplayId  : null,
+    });
   }
+  useEffect(() => {
+    if (!isInited.current) {
+      if (customCarousel) {
+        isInited.current = true;
+        setSlide(customCarousel.activeN);
+        arrangeDots();
+        customCarousel.pagination.style.transitionDuration = customCarousel.speed +'ms';
+        if (customCarousel.autoplay) startAutoplay();
+        addListeners();
+      }
+    }
+  }, [customCarousel]);
 
   const addListeners = function () {
     customCarousel.dots.forEach((dot: any, index: any) => {
@@ -36,7 +52,7 @@ export const useCircleCarousel = () => {
 
     if (customCarousel.autoplay) {
       customCarousel.node.addEventListener( 'mouseenter', stopAutoplay);
-      customCarousel.node.addEventListener( 'mouseleave', startAutoplay());
+      customCarousel.node.addEventListener( 'mouseleave', startAutoplay);
     }
   };
 
@@ -92,5 +108,5 @@ export const useCircleCarousel = () => {
     });
   };
 
-  return [true, init];
+  return [customCarousel, init];
 }

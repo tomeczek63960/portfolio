@@ -208,9 +208,7 @@ function Header() {
     window.addEventListener('scroll', handleScroll);
   }, []);
   useEffect(() => {
-    console.log('change locle', locale)
     return () => {
-      console.log(isNavOpen.current)
       setTimeout(() => {
         tl.current.pause()
         tl.current.seek(0);

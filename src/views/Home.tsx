@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import Button from 'src/ui/Button'
 import Skills from 'src/ui/Skills'
+import WorkExperience from 'src/ui/WorkExperience'
 
 const Home: NextPage = () => {
   return (
@@ -39,13 +40,14 @@ const Home: NextPage = () => {
       <Image src="/tk.jpeg" width="100%" height="100%" />
       <Button />
       <h1>home page</h1>
+      <h1>Sekcja przywitania (zdjęcie)</h1>
       <h1>Stack technologiczny</h1>
-      <h2>Ikonki wszystkich skillów react/next/vue/nuxt/angular/js/Typescript/html/css/scss/adobexd/figma/node.js/express.js/strapi/contentfull/redux/</h2>
       <Skills />
       <br/>
       <h1>Doświadczenie zawodowe</h1>
+      <WorkExperience />
       <br/>
-      <h1>Sekcja do pobrania cv</h1>
+      <h1>Sekcja do pobrania cv / lub to na oddzielną stronę wrzucić</h1>
     </>
   )
 }
