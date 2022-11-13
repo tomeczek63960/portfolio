@@ -3,20 +3,28 @@ import gsap from "gsap"
 
 const TransitionContext = createContext({})
 
-const TransitionProvider = ({ children, isInitAnimation }: {children: any, isInitAnimation: boolean}) => {
+const TransitionProvider = ({ children }: {children: any}) => {
   const [timeline, setTimeline] = useState(() =>
     gsap.timeline({ paused: true })
-  )
-  useEffect(() => {
-    console.log('here', isInitAnimation)
-  }, [])
+  );
+  const [isInitAnimation, setIsInitAnimation] = useState(true);
+  const [componentsTimeline, setComponentsTimeline] = useState(() => 
+    // ten timeline ma się odpalić w transitionLayout po przejściu strony (oraz w loadingAnimation przy pierwszym wczytaniu)
+    gsap.timeline({ paused: true })
+  );
+  // useEffect(() => {
+  //   console.log('here', isInitAnimation)
+  // }, [])
   
   return (
     <TransitionContext.Provider
       value={{
         timeline,
         setTimeline,
-        isInitAnimation
+        isInitAnimation,
+        setIsInitAnimation,
+        componentsTimeline,
+        setComponentsTimeline
       }}
     >
       {children}

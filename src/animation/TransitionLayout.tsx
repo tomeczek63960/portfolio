@@ -74,6 +74,7 @@ export default function TransitionLayout({ children }: {children: any}) {
   const [displayChildren, setDisplayChildren] = useState(children)
   const { timeline, isInitAnimation } = useContext<any>(TransitionContext)
   const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [flagTrigger, setFlagTrigger] = useState(false);
   const el = useRef<any>()
   const leftTransition = useRef<any>()
   const rightTransition = useRef<any>()
@@ -88,7 +89,6 @@ export default function TransitionLayout({ children }: {children: any}) {
       setDisplayChildren(children)
       return setShouldAnimate(true);
     }
-    console.log(isInitAnimation, 'here mere rere')
     timeline.add(
       gsap.to(el.current, {
         duration: 1,
@@ -111,28 +111,26 @@ export default function TransitionLayout({ children }: {children: any}) {
       }),
       0
     )
-
-    if (children !== displayChildren) {
-      if (timeline.duration() === 0) {
+    if (timeline.duration() === 0) {
+      setDisplayChildren(children)
+    } else {
+      timeline.play().then(() => {
+        timeline.seek(0).pause().clear()
+        gsap.set(leftTransition.current, {
+          y: '0%'
+        });
+        gsap.set(rightTransition.current, {
+          y: '0%'
+        });
         setDisplayChildren(children)
-      } else {
-        timeline.play().then(() => {
-          timeline.seek(0).pause().clear()
-          gsap.set(leftTransition.current, {
-            y: '0%'
-          });
-          gsap.set(rightTransition.current, {
-            y: '0%'
-          });
-          setDisplayChildren(children)
-          flag.current = true
-        })
-      }
+        flag.current = true
+        pageTransition();
+      })
     }
   }, [pathname, locale, children])
-
-  useIsomorphicLayoutEffect(() => {
+  const pageTransition = () => {
     if (!flag.current) return
+    flag.current = false
     const enterTl = gsap.timeline({ paused: false })
 
     enterTl.set(leftTransition.current, {
@@ -197,8 +195,7 @@ export default function TransitionLayout({ children }: {children: any}) {
     enterTl.set(rightCircle.current, {
       scaleY: 0
     });
-    flag.current = false
-  }, [flag.current])
+  }
 
   return <>
     <LeftTransition ref={leftTransition}></LeftTransition>

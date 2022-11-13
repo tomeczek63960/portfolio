@@ -13,6 +13,8 @@ import {
 
 import pl from "src/lang/pl.json";
 import en from "src/lang/en.json";
+import { TransitionProvider } from 'src/context/TransitionContext';
+import TransitionLayout from 'src/animation/TransitionLayout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { locale } = useRouter();
@@ -32,9 +34,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return <IntlProvider locale={shortLocale} messages={curentMessage}>
     <QueryClientProvider client={queryClient}>
-      <LoadingAnimation>
-        <Component {...pageProps} />
-      </LoadingAnimation>
+      <TransitionProvider>
+        <LoadingAnimation>
+          <TransitionLayout>
+            <Component {...pageProps} />
+          </TransitionLayout>
+        </LoadingAnimation>
+      </TransitionProvider>
     </QueryClientProvider>
   </IntlProvider>
 }

@@ -2,7 +2,6 @@ import { gsap } from "gsap";
 import { TransitionContext } from "src/context/TransitionContext";
 import { useState, useContext, useRef, useEffect, useLayoutEffect } from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import { TransitionProvider } from "src/context/TransitionContext";
 import TransitionLayout from "src/animation/TransitionLayout"
 import styled from 'styled-components'
 import { useRouter } from "next/router";
@@ -56,20 +55,19 @@ const Body = styled.div`
   opacity: 0;
   /* animation: loadPageContent 0.3s 7.5s ease-in-out forwards; */
 `
-const BodyBefore = styled.span`
+const BodyBefore = styled.div`
   display: block
-  width: 50%;
-  height: 0;
+  height: 0%;
   position: fixed;
   top: 0;
   right: 0;
   background-color: white;
-  /* animation: loadHeight 1s 8.5s forwards; */
-  z-index: -1;
+  z-index: 10000000;
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
   @media screen and (min-width: 768px) {
+    width: 50%;
     opacity: 1;
     pointer-events: all;
     visibility: visible;
@@ -77,25 +75,17 @@ const BodyBefore = styled.span`
 `;
 
 export default function LoadingAnimation({ children }: {children: any}) {
-  const { pathname, locale } = useRouter()
-  const [isInitAnimation, setInitAnimation] = useState(true);
+  const { setIsInitAnimation } = useContext<any>(TransitionContext)
   const [displayChildren, setDisplayChildren] = useState();
-  // const { timeline, background } = useContext<any>(TransitionContext)
-  // const { setFirstAnimation } = useContext<any>(TransitionContext)
   const el = useRef<any>()
   const flag = useRef<any>(false)
   const timeline = gsap.timeline({ paused: true });
   const htmlBefore = useRef<any>(false)
   const htmlAfter = useRef<any>(false)
+  const bodyBefore = useRef<any>(false)
 
   useIsomorphicLayoutEffect(() => {
     if (flag.current) return;
-    // timeline.add(
-    //   gsap.set(el.current, {
-    //     opacity: 0,
-    //     pointerEvents: 'none'
-    //   })
-    // )
     timeline.add(
       gsap.to(htmlBefore.current, {
         duration: 0.7,
@@ -199,21 +189,16 @@ export default function LoadingAnimation({ children }: {children: any}) {
       if (timeline.duration() === 0) {
           // setDisplayChildren(children)
       } else {
-        setDisplayChildren(children)
         timeline.play().then(() => {
           timeline.pause();
-          setInitAnimation(false);
+          setIsInitAnimation(false);
           // timeline.seek(0).pause().clear()
-          // setDisplayChildren(children)
+          setDisplayChildren(children)
           // tutaj zamiast tego wykonania animacji powinna iść jakaś globalna ze stora na którą tylko damy .play()
-          // timeline.add(
-          //   gsap.to(el.current, {
-          //     duration: 0.4,
-          //     opacity: 1,
-          //     pointerEvents: 'all'
-          //   })
-          // )
-          // timeline.play()
+          gsap.to(bodyBefore.current, {
+            duration: 0.4,
+            height: '100%'
+          })
         })
       }
     }
@@ -224,18 +209,11 @@ export default function LoadingAnimation({ children }: {children: any}) {
     <Html>
       <HtmlBefore ref={ htmlBefore } className="html--before"></HtmlBefore>
       <HtmlAfter ref={ htmlAfter } className="html--after">TK</HtmlAfter>
+      <BodyBefore ref={ bodyBefore } className="body--before"></BodyBefore>
     </Html>
 
-    {/* <Body className="body">
-      <BodyBefore className="body--before"></BodyBefore>
-    </Body> */}
-    <TransitionProvider isInitAnimation={ isInitAnimation }>
-      <TransitionLayout>
-        <div ref={el}>
-          { displayChildren }
-          {/* { flag ? children : displayChildren } */}
-        </div>
-      </TransitionLayout>
-    </TransitionProvider>
+    <div ref={el}>
+      { displayChildren }
+    </div>
   </>
 }

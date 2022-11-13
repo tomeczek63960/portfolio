@@ -26,7 +26,7 @@ const MobileNav = styled.div`
   position: fixed;
   top: 80px;
   left: 0;
-  z-index: 105;
+  z-index: 2;
   height: 0;
   overflow: hidden;
 `
@@ -69,9 +69,12 @@ const HeaderBar = styled.div`
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 100;
+  z-index: 1;
   width: 100%;
   background: black;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 `
 
 function Header() {
