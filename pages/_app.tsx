@@ -4,8 +4,8 @@ import type { AppProps } from 'next/app'
 import React, { useMemo } from 'react';
 import { useRouter } from "next/router";
 import { IntlProvider } from "react-intl";
-import { TransitionProvider } from "src/context/TransitionContext";
-import TransitionLayout from "src/animation/TransitionLayout"
+
+import LoadingAnimation from "src/animation/LoadingAnimation"
 import {
   QueryClient,
   QueryClientProvider,
@@ -32,11 +32,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return <IntlProvider locale={shortLocale} messages={curentMessage}>
     <QueryClientProvider client={queryClient}>
-      {/* <TransitionProvider>
-        <TransitionLayout> */}
-          <Component {...pageProps} />
-        {/* </TransitionLayout>
-      </TransitionProvider> */}
+      <LoadingAnimation>
+        <Component {...pageProps} />
+      </LoadingAnimation>
     </QueryClientProvider>
   </IntlProvider>
 }

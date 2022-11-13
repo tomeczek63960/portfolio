@@ -9,124 +9,14 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   position: relative;
-  background: black;
-  &::before {
-    // content: "";
-    width: 50px;
-    height: 50px;    
-    position: fixed;
-    top: 200px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: $black;
-    border-radius: 50%;
-    // animation: loadPage 7s forwards;
-  }
-  &::after {
-    // content: "TK";
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // background: gray;
-    position: fixed;
-    top: 200px;
-    left: 50%;
-    border-radius: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-    // animation: loadPageContentAnim 4s 3.7s forwards;
-    opacity: 0;
-    color: white;
-    font-size: 25px;
-    font-weight: 700;
-  }
 }
 
-// inherited from <html>
 *,
 *::before,
 *::after {
   box-sizing: inherit;
 }
 
-@keyframes loadPage {
-  // 10% {
-  0% {
-    height: 50px;
-    width: 50px;
-  }
-  // 30% {
-  5% {
-    height: 50px;
-    width: 40px;
-  }
-  // 50% {
-  10% {
-    height: 30px;
-    width: 57px;
-    transform: translate(-50%, 240px);
-  }
-  // 75% { 
-  15% { 
-    height: 50px;
-    width: 57px;
-  }
-  // 100% {
-  20% {
-    transform: translate(-50%, 0);
-    width: 50px;
-    height: 50px;
-  }
-  25% {
-    height: 50px;
-    width: 40px;
-  }
-  // 50% {
-  30% {
-    height: 30px;
-    width: 57px;
-    transform: translate(-50%, 240px);
-  }
-  // 75% { 
-  35% { 
-    height: 50px;
-    width: 57px;
-  }
-  // 100% {
-  40% {
-    transform: translate(-50%, 0);
-    width: 50px;
-    height: 50px;
-  }
-  41% {
-    transform: translate(-50%, 0) scale(1);
-  }
-  50% {
-    transform: translate(-50%, 0) scale(3);
-  }
-  65% {
-    transform: translate(-50%, 0) scale(3);
-  }
-  100% {
-    transform: translate(-50%, 0) scale(100);
-  }
-}
-@keyframes loadPageContentAnim {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  99% {
-    z-index: 1;
-  }
-  100% {
-    z-index: -1;
-  }
-}
 @keyframes loadPageContent {
   0% {
     opacity: 0;
@@ -164,6 +54,7 @@ body {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
+  background: black;
   // opacity: 0;
   // animation: loadPageContent 0.3s 7.5s ease-in-out forwards;
   &::before {
@@ -174,7 +65,7 @@ body {
     top: 0;
     right: 0;
     background-color: $white;
-    // animation: loadHeight 1s 8.5s forwards;
+    animation: loadHeight 1s 8.5s forwards;
     z-index: -1;
     opacity: 0;
     pointer-events: none;

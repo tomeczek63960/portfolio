@@ -49,7 +49,8 @@ const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) => props
     justify-content: center;
     z-index: 10000000;
     transform-origin: bottom;
-    color: white
+    color: white;
+    transform: scaleY(0);
   }
   .circle-right {
     width: 50%;
@@ -64,13 +65,15 @@ const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) => props
     right: 0;
     z-index: 10000000;
     transform-origin: top;
+    transform: scaleY(0);
   }
 `
 
 export default function TransitionLayout({ children }: {children: any}) {
   const { pathname, locale } = useRouter()
   const [displayChildren, setDisplayChildren] = useState(children)
-  const { timeline, background } = useContext<any>(TransitionContext)
+  const { timeline, isInitAnimation } = useContext<any>(TransitionContext)
+  const [shouldAnimate, setShouldAnimate] = useState(false);
   const el = useRef<any>()
   const leftTransition = useRef<any>()
   const rightTransition = useRef<any>()
@@ -80,8 +83,12 @@ export default function TransitionLayout({ children }: {children: any}) {
   const flag = useRef<any>(false)
 
   useIsomorphicLayoutEffect(() => {
-    console.log('OUT _ PAGE ANIMATION')
-
+    if (isInitAnimation) return;
+    if (!shouldAnimate) {
+      setDisplayChildren(children)
+      return setShouldAnimate(true);
+    }
+    console.log(isInitAnimation, 'here mere rere')
     timeline.add(
       gsap.to(el.current, {
         duration: 1,
@@ -94,9 +101,6 @@ export default function TransitionLayout({ children }: {children: any}) {
       gsap.to(leftTransition.current, {
         duration: 1,
         y: '0%'
-        // ...from,
-        // delay: delayOut || 0,
-        // duration: durationOut,
       }),
       0
     )
@@ -104,20 +108,15 @@ export default function TransitionLayout({ children }: {children: any}) {
       gsap.to(rightTransition.current, {
         duration: 1,
         y: '0%'
-        // ...from,
-        // delay: delayOut || 0,
-        // duration: durationOut,
       }),
       0
     )
 
     if (children !== displayChildren) {
       if (timeline.duration() === 0) {
-        // there are no outro animations, so immediately transition
         setDisplayChildren(children)
       } else {
         timeline.play().then(() => {
-          // outro complete so reset to an empty paused timeline
           timeline.seek(0).pause().clear()
           gsap.set(leftTransition.current, {
             y: '0%'
@@ -134,7 +133,6 @@ export default function TransitionLayout({ children }: {children: any}) {
 
   useIsomorphicLayoutEffect(() => {
     if (!flag.current) return
-    console.log('ENTER _ PAGE ANIMATION')
     const enterTl = gsap.timeline({ paused: false })
 
     enterTl.set(leftTransition.current, {

@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Image from 'next/image'
+import { useEffect } from 'react'
 import Button from 'src/ui/Button'
 import Skills from 'src/ui/Skills'
 import WorkExperience from 'src/ui/WorkExperience'

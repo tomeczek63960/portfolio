@@ -29,7 +29,7 @@ const Layout = (props: any) => {
   return (
     <>
       <Head { ...props } />
-      <MobileHeader />
+      {/* <MobileHeader /> */}
       <div className="container">
         <div className="container__left">
           <h1> <FormattedMessage id="page.home.description" /> </h1>
