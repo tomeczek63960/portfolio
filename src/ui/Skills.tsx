@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
+import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
+import { useCircleCarousel } from 'src/hooks/useCircleCarousel';
 import Angular from "../../public/svg/angular.svg"
 import Adobexd from "../../public/svg/adobexd.svg"
 import Contentful from "../../public/svg/contentful.svg"
@@ -22,7 +24,6 @@ import StyledComponents from "../../public/svg/styled-components.svg"
 import Php from "../../public/svg/php.svg"
 import Pimcore from "../../public/svg/pimcore.svg"
 import Shopware from "../../public/svg/shopware.svg"
-import { useCircleCarousel } from 'src/hooks/useCircleCarousel';
 
 const StyledCircleCarousel = styled.div`
   position: relative;
@@ -107,7 +108,6 @@ const StyledSlidesText = styled.div`
   }
 `
 const StyledPagination = styled.div`
-/* to jest pagination */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -118,11 +118,8 @@ const StyledPagination = styled.div`
   border-radius: 50%;
   transition-property: transform;
   transition-timing-function: ease-out;
-  /* // transition-timing-function: cubic-bezier(.5,-.5,.5,1.5); */
   pointer-events: none;
   user-select: none;
-  /* svg ma być wyszarzone */
-
   svg {
     transition: 0.5s ease-in-out;
     filter: grayscale(100%);
@@ -338,7 +335,7 @@ function Skills() {
   const jsTechnicalCarouselPagination = useRef<any>();
   const jsTechnicalCarouselText = useRef<any>();
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!isInited.current){
       setCarousel({
         node: technicalCarousel.current,
