@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 
 interface carouselOptions {
   node: any,
@@ -57,7 +58,17 @@ export const useCircleCarousel = (): [boolean, Function] => {
   };
 
   const setSlide = function (slideN: any) {
+    const tl = gsap.timeline();
     customCarousel.slides[customCarousel.activeN].classList.remove('active');
+    tl.to(customCarousel.slides[customCarousel.activeN].children, {
+      duration: 0.4,
+      opacity: 0,
+      pointerEvents: 'none',
+      y: '-40%',
+      stagger: 0.2
+    });
+
+
     if (customCarousel.dots[customCarousel.activeN]) {
       customCarousel.dots[customCarousel.activeN].classList.remove('active');
     }
@@ -71,6 +82,13 @@ export const useCircleCarousel = (): [boolean, Function] => {
     }
 
     customCarousel.slides[customCarousel.activeN].classList.toggle('active');	
+    tl.to(customCarousel.slides[customCarousel.activeN].children, {
+      duration: 0.4,
+      opacity: 1,
+      y: 0,
+      pointerEvents: 'all',
+      stagger: 0.2
+    });
     if (customCarousel.dots[customCarousel.activeN]) {
       customCarousel.dots[customCarousel.activeN].classList.toggle('active');
     }

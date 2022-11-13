@@ -1,6 +1,5 @@
 import styled from 'styled-components'
-import { gsap } from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { useCircleCarousel } from 'src/hooks/useCircleCarousel';
 import Angular from "../../public/svg/angular.svg"
@@ -57,53 +56,52 @@ const StyledSlidesText = styled.div`
     justify-content: center;
     padding: 40px 45px;
     text-align: center;
-
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 0;
-    opacity: 0;
     background: rgba(red,.3);
     @media screen and (min-width: 1920px) {
       padding: 180px 90px 80px;
     }
-    &.active {
-      z-index: 1;
-      opacity: 1;
+    h5, p {
+      transform: translateY(-40%);
+      opacity: 0;
+      pointer-events: none;
     }
-  }
-  h5 {
-    line-height: 1;
-    font-weight: 700;
-    color: orange;
-    text-align: center;
-    font-size: 14px;
-    @media screen and (min-width: 768px) {
-      font-size: 18px;
-    }
-    @media screen and (min-width: 1024px) {
-      font-size: 24px;
-    }
-  }
-  p {
-    margin-top: 10px;
-    color: #cacaca;
-    font-size: 12px;
-    line-height: 15px;
-    min-height: 60px;
-    max-width: 230px;
-    @media screen and (min-width: 768px) {
+    h5 {
+      line-height: 1;
+      font-weight: 700;
+      color: orange;
+      text-align: center;
       font-size: 14px;
-      line-height: 19px;
-      min-height: 80px;
+      @media screen and (min-width: 768px) {
+        font-size: 18px;
+      }
+      @media screen and (min-width: 1024px) {
+        font-size: 24px;
+      }
     }
-    @media screen and (min-width: 1024px) {
-      margin-top: 30px;
-      font-size: 16px;
-      line-height: 20px;
-      max-width: 270px;
+    p {
+      margin-top: 10px;
+      color: #cacaca;
+      font-size: 12px;
+      line-height: 15px;
+      min-height: 60px;
+      max-width: 230px;
+      @media screen and (min-width: 768px) {
+        font-size: 14px;
+        line-height: 19px;
+        min-height: 80px;
+      }
+      @media screen and (min-width: 1024px) {
+        margin-top: 30px;
+        font-size: 16px;
+        line-height: 20px;
+        max-width: 270px;
+      }
     }
   }
 `
