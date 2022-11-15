@@ -3,13 +3,47 @@ import { useRouter } from "next/router";
 import Link from 'next/link'
 import styled from 'styled-components'
 
-const StyledLink = styled(Link)`
+const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props)`
+  margin: 5px 0;
   color: black;
+  font-family: 'Noto Serif Oriya', serif;
+  font-size: 22px;
+  line-height: 30px;
+  display: ${ props => props.isDisabled ? 'none' : 'block' };
+  font-weight: 700;
+  transition: 0.3s;
+  &:hover {
+    color: #6428b4;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 24px;
+    line-height: 33px;
+  }
+  @media screen and (min-width: 1366px) {
+    margin: 10px 0;
+    font-size: 26px;
+    line-height: 36px;
+  }
+  @media screen and (min-width: 1920px) {
+    margin: 10px 0;
+    font-size: 36px;
+    line-height: 48px;
+  }
 `
 const DesktopNav = styled.div`
+  padding-left: 40px;
+  height: 100%;
   display: none;
   @media screen and (min-width: 768px) {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media screen and (min-width: 1024px) {
+    padding-left: 60px;
+  }
+  @media screen and (min-width: 1366px) {
+    padding-left: 80px;
   }
 `
 
@@ -48,21 +82,26 @@ function Header() {
   return (
     <>
       <DesktopNav>
-        <StyledLink href={ localePaths.home } locale={ locale }>Home</StyledLink>
-        <br/>
-        <StyledLink href={ localePaths.contact } locale={ locale }>Kontakt</StyledLink>
-        <br/>
-        <StyledLink href={ localePaths.caseStudies } locale={ locale }>Case studies</StyledLink>
-        <br/>
-        <StyledLink href={ localePaths.caseStudy } locale={ locale }>Case study</StyledLink>
-        <br/>
-        <StyledLink href={ localePaths.showCase } locale={ locale }>Show case</StyledLink>
-        <br/>
-        {[...locales].sort().map((locale) => (
-              <StyledLink key={locale} href="/" locale={ locale }>
-                { locale }
-              </StyledLink>
-            ))}
+        <Link href={ localePaths.home } locale={ locale }>
+          <StyledLink>Home</StyledLink>
+        </Link>
+        <Link href={ localePaths.contact } locale={ locale }>
+          <StyledLink>Kontakt</StyledLink>
+        </Link>
+        <Link href={ localePaths.caseStudies } locale={ locale }>
+          <StyledLink>Case studies</StyledLink>
+        </Link>
+        <Link href={ localePaths.caseStudy } locale={ locale }>
+          <StyledLink>Case study</StyledLink>
+        </Link>
+        <Link href={ localePaths.showCase } locale={ locale }>
+          <StyledLink>Show case</StyledLink>
+        </Link>
+        {locales.map((localeItem: any) => (
+          <Link key={localeItem} href="/" locale={ localeItem }>
+            <StyledLink isDisabled={localeItem === locale}>{ locale }</StyledLink>
+          </Link>
+        ))}
       </DesktopNav>
     </>
   );

@@ -75,17 +75,23 @@ const BodyBefore = styled.div`
 `;
 
 export default function LoadingAnimation({ children }: {children: any}) {
-  const { setIsInitAnimation } = useContext<any>(TransitionContext)
+  const {pathname, locale} = useRouter();
+  const {setIsInitAnimation} = useContext<any>(TransitionContext)
   const [displayChildren, setDisplayChildren] = useState();
-  const el = useRef<any>()
-  const flag = useRef<any>(false)
-  const timeline = gsap.timeline({ paused: true });
-  const htmlBefore = useRef<any>(false)
-  const htmlAfter = useRef<any>(false)
-  const bodyBefore = useRef<any>(false)
+  const [timeline, setTimeline] = useState<any>();
+  const el = useRef<any>();
+  const flag = useRef<any>(false);
+  const htmlBefore = useRef<any>(false);
+  const htmlAfter = useRef<any>(false);
+  const bodyBefore = useRef<any>(false);
+  
+  useEffect(() => {
+    setTimeline(gsap.timeline({ paused: true }));
+  }, [])
 
   useIsomorphicLayoutEffect(() => {
-    if (flag.current) return;
+    if (!timeline) return;
+    console.log(timeline)
     timeline.add(
       gsap.to(htmlBefore.current, {
         duration: 0.7,
@@ -185,10 +191,20 @@ export default function LoadingAnimation({ children }: {children: any}) {
         opacity: 0
       }), '-=0.7'
     )
-    if (children !== displayChildren) {
-      if (timeline.duration() === 0) {
-          // setDisplayChildren(children)
+
+    if (timeline.duration() === 0 || flag.current) {
+      if (!flag.current) {
+        console.log('pep 1')
+        setDisplayChildren(children)
+      } else if (!timeline.isActive()) {
+        console.log('pep 23')
+        setDisplayChildren(children)
+      }
+    } else {
+      if (timeline.isActive()) {
+        console.log('timeline is active');
       } else {
+        console.log('timeline is not active');
         timeline.play().then(() => {
           timeline.pause();
           setIsInitAnimation(false);
@@ -203,7 +219,7 @@ export default function LoadingAnimation({ children }: {children: any}) {
       }
     }
     flag.current = true;
-  }, [])
+  }, [timeline, locale, pathname])
 
   return <>
     <Html>

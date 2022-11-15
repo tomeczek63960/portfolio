@@ -285,9 +285,7 @@ function Header() {
           <Link href={ localePaths.showCase } locale={ locale }><StyledLink>Show case</StyledLink></Link>
           {locales.map((localeItem: any) => (
               <Link key={localeItem} href="/" locale={ localeItem }>
-                <StyledLink isDisabled={localeItem === locale} >
-                  { localeItem }
-                </StyledLink>
+                <StyledLink isDisabled={localeItem === locale}>{ locale }</StyledLink>
               </Link>
             )
           )}

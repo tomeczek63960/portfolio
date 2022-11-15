@@ -7,6 +7,7 @@ import WorkExperience from 'src/ui/WorkExperience'
 
 const Home: NextPage = () => {
   return (
+    // przy kazdym przejsciu strony robić auto scroll do samej góry
     // dodać sekcję about me 
     // dodać stronę cv z mozliwością pobrania jako pdf
     // do animacji głównej dodać 2 kólki (created with) (passion)
