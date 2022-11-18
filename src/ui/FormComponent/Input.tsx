@@ -1,37 +1,57 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components'
 import colors from 'src/ui/globalStyled/variables';
+import { gsap } from "gsap";
+import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
 
 const InputGroup = styled.div`
   position: relative;
-  width: calc(50% - 15px);
+  margin-top: 30px;
+  &:first-child {
+    margin-top: 0;
+  }
+  &:after {
+    content: '';
+    width: 0;
+    height: 2px;
+    background: #111;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 0.3s;
+    transform-origin: center center;
+  }
+  &:hover:after {
+    width: 100%;
+  }
+`;
+const InputGroupComponent = styled.div`
+  overflow: hidden;
+  position: relative;
+`;
+const StyledLabel = styled.label`
+  position: absolute;
+  bottom: 35%;
+  left: 0;
+  font-size: 18px;
+  line-height: 1;
+  color: #222;
+  transform-origin: 0px 0px;
+  cursor: pointer;
 `;
 
 const StyledInput = styled.input`
-    border: 1px solid #222;
     background: transparent;
     color: ${ colors.$pink };
-    height: 40px;
-    padding: 0 10px;
+    height: 35px;
     font: 15px/24px "Lato", Arial, sans-serif;
     letter-spacing: 1px;
     outline: none !important;
     width: 100%;
     transition: 0.3s ease-in-out;
-    /* border-radius: 1px; */
-    
-    &::placeholder {
-        color: #333;
-        opacity: 0.5;
-        transition: opacity 0.3s ease-in-out;
-        /* background-image: linear-gradient(to left, #FC466B, #f69d3c, #7928ca, #f81ce5, #FC466B ); */
-        /* background-image: linear-gradient(to right, white,orange, blue ); */
-        /* -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent; */
-        /* background-size: 500%; */
-        /* animation: bganimation 2s infinite alternate; */
-    }
-
+    border: none;
+    border-bottom: 2px solid #222;
     &:hover {
       border-color: #333;
     }
@@ -40,106 +60,188 @@ const StyledInput = styled.input`
       opacity: 0.7;
     }
 `;
+const StyledInputBorder = styled.span`
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  height: 2px;
+  width: 0%;
+  background: #7928ca;
+`;
+const StyledInputBorderAfter = styled.span`
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  height: 2px;
+  width: 0%;
+  background: #222;
+`;
 
-const StyledInputFocus = styled.span`
-  &:before,
-  &:after {
-	  content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 0;
-    height: 1px;
-    /* background-color: #3399FF; */
-    transition: 0.2s;
-    transition-delay: 0.2s;
-    overflow: hidden;
-  }
-  &:after {
-    top: auto;
-    bottom: 0;
-    right: auto;
-    left: 0;
-    transition-delay: 0.6s;
-  }
-  i:before,
-  i:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1px;
-    height: 0;
-    /* background-color: #3399FF; */
-    transition: 0.2s;
-    overflow: hidden;
-  }
+const StyledInputErrorBorder = styled.span`
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  height: 2px;
+  width: 0%;
+  background: red;
+`;
 
-  &:before {
-    /* góra */
-    background: linear-gradient(to left, #f81ce5, #FC466B);
-    /* border-top-left-radius: 5px;
-    border-top-right-radius: 5px; */
-  }
-  &:after {
-    background: linear-gradient(to right, #f69d3c, #7928ca);
-    /* border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; */
-    /* dół */
-  } 
+const StyledInputErrorBorderAfter = styled.span`
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  height: 2px;
+  width: 0%;
+  background: #222;
+`;
+const StyledInputSuccessBorder = styled.span`
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  height: 2px;
+  width: 0%;
+  background: green;
+`;
 
-  & i:before {
-    /* lewa strona (pierwsza część) */
-    background: linear-gradient(to bottom, #FC466B, #f69d3c);
-    /* border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px; */
-  }
-  & i:after {
-    /* prawa strona (trzecia część po dolnej) */
-    background: linear-gradient(to top, #7928ca, #f81ce5);
-    /* border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px; */
-  }
-
-
-  & i:after {
-    left: auto;
-    right: 0;
-    top: auto;
-    bottom: 0;
-    transition-delay: 0.4s;
-  }
-  
-  input:focus ~ &:before,
-  input:focus ~ &:after {
-    width: 100%;
-    transition: 0.1s;
-    transition-delay: 0.2s;
-  }
-  
-  input:focus ~ &:after {
-    transition-delay: 0.05s;
-  }
-  
-  input:focus ~ & i:before,
-  input:focus ~ & i:after {
-    height: 100%;
-    transition: 0.05s;
-  }
-  
-  input:focus ~ & i:after {
-    transition-delay: 0.15s;
-  }
+const StyledInputSuccessBorderAfter = styled.span`
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  height: 2px;
+  width: 0%;
+  background: #222;
 `;
 
 function Input({ type, placeholder }: { type: string, placeholder: string }) {
-  
+  const input = useRef<any>(null);
+  const inputBorder = useRef<any>(null);
+  const inputBorderAfter = useRef<any>(null);
+  const labelRef = useRef<any>(null);
+  const inputError = useRef<any>(null);
+  const inputErrorAfter = useRef<any>(null);
+  const inputSuccess = useRef<any>(null);
+  const inputSuccessAfter = useRef<any>(null);
+  const tl = useRef<any>(null);
+  const tlLabel = useRef<any>(null);
+  const tlError = useRef<any>(null);
+  const tlSuccess = useRef<any>(null);
+  const isInputDirty = useRef(false);
+
+  useIsomorphicLayoutEffect(() => {
+    tl.current = gsap.timeline({ paused: true });
+    tlError.current = gsap.timeline({ paused: true });
+    tlLabel.current = gsap.timeline({ paused: true });
+    tlSuccess.current = gsap.timeline({ paused: true });
+
+    tl.current.to(inputBorder.current, {
+      duration: 0.5,
+      width: '100%'
+    });
+    tl.current.to(inputBorderAfter.current, {
+      duration: 0.5,
+      width: '100%'
+    }, '-=0.3');
+    tl.current.to(inputBorderAfter.current, {
+      duration: 0.4,
+      x: '100%'
+    });
+
+    tlError.current.to(inputError.current, {
+      duration: 0.5,
+      width: '100%'
+    });
+    tlError.current.to(inputErrorAfter.current, {
+      duration: 0.5,
+      width: '100%'
+    }, '-=0.3');
+    tlError.current.to(inputErrorAfter.current, {
+      duration: 0.4,
+      x: '100%'
+    });
+
+    tlSuccess.current.to(inputSuccess.current, {
+      duration: 0.5,
+      width: '100%'
+    });
+    tlSuccess.current.to(inputSuccessAfter.current, {
+      duration: 0.5,
+      width: '100%'
+    }, '-=0.3');
+    tlSuccess.current.to(inputSuccessAfter.current, {
+      duration: 0.4,
+      x: '100%'
+    });
+
+    tlLabel.current.to(labelRef.current, {
+      duration: 0.2,
+      ease: "M0,0 C0.4,0 0.2,1 1,1",
+      color: "#fff",
+      scale: 0.75,
+      yPercent: -120
+    });
+  }, []);
+
+  const focusRef = () => {
+    if (isInputDirty.current) return;
+    tl.current.play();
+    tlLabel.current.play();
+  }
+  const blurRef = (e: any) => {
+    if (isInputDirty.current) return;
+    tl.current.reverse();
+    if (!e.target.value) {
+      tlLabel.current.reverse();
+    }
+  }
+  const onChange = (e: any) => {
+    if (!e.target.value) {
+      tlSuccess.current.reverse().then(() => {
+        tlError.current.play().then(() => {
+          if (!isInputDirty.current) {
+            isInputDirty.current = true;
+            tl.current.seek(0).pause().clear();
+          }
+        });
+      });
+    } else {
+      tlError.current.reverse().then(() => {
+        tlSuccess.current.play().then(() => {
+          if (!isInputDirty.current) {
+            isInputDirty.current = true;
+            tl.current.seek(0).pause().clear();
+          }
+        });
+      });
+    }
+  }
+
   return (
     <InputGroup>
-      <StyledInput type={ type } placeholder={ placeholder } />
-      <StyledInputFocus>
-        <i></i>
-      </StyledInputFocus>
+      <StyledLabel htmlFor={placeholder} ref={labelRef}>{placeholder}</StyledLabel>
+      <InputGroupComponent>
+        <StyledInput id={placeholder} onInput={onChange} onFocus={focusRef} onBlur={blurRef} ref={input} type={type} />
+        <StyledInputBorder ref={inputBorder}>
+          <StyledInputBorderAfter ref={inputBorderAfter} />
+        </StyledInputBorder>
+        <StyledInputErrorBorder ref={inputError}>
+          <StyledInputErrorBorderAfter ref={inputErrorAfter} />
+        </StyledInputErrorBorder>
+        <StyledInputSuccessBorder ref={inputSuccess}>
+          <StyledInputSuccessBorderAfter ref={inputSuccessAfter} />
+        </StyledInputSuccessBorder>
+      </InputGroupComponent>
     </InputGroup>
   );
 }
