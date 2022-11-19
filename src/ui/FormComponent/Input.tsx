@@ -52,13 +52,6 @@ const StyledInput = styled.input`
     transition: 0.3s ease-in-out;
     border: none;
     border-bottom: 2px solid #222;
-    &:hover {
-      border-color: #333;
-    }
-    &:focus::placeholder {
-      /* background: linear-gradient(to right, #f69d3c, #7928ca); */
-      opacity: 0.7;
-    }
 `;
 const StyledInputBorder = styled.span`
   display: block;
@@ -89,7 +82,7 @@ const StyledInputErrorBorder = styled.span`
   z-index: 10;
   height: 2px;
   width: 0%;
-  background: red;
+  background: #dd1818;
 `;
 
 const StyledInputErrorBorderAfter = styled.span`
@@ -110,7 +103,7 @@ const StyledInputSuccessBorder = styled.span`
   z-index: 10;
   height: 2px;
   width: 0%;
-  background: green;
+  background: #15ee11;
 `;
 
 const StyledInputSuccessBorderAfter = styled.span`
@@ -124,7 +117,8 @@ const StyledInputSuccessBorderAfter = styled.span`
   background: #222;
 `;
 
-function Input({ type, placeholder }: { type: string, placeholder: string }) {
+function Input({ type, placeholder, validation, isFormDirty }: { type: string, placeholder: string, validation: Function, isFormDirty: boolean }) {
+  const [inputValue, setInputValue] = useState<string>('');
   const input = useRef<any>(null);
   const inputBorder = useRef<any>(null);
   const inputBorderAfter = useRef<any>(null);
@@ -158,6 +152,9 @@ function Input({ type, placeholder }: { type: string, placeholder: string }) {
       x: '100%'
     });
 
+    tlError.current.call(() => {
+      input.current.classList.add('error');
+    });
     tlError.current.to(inputError.current, {
       duration: 0.5,
       width: '100%'
@@ -171,6 +168,9 @@ function Input({ type, placeholder }: { type: string, placeholder: string }) {
       x: '100%'
     });
 
+    tlSuccess.current.call(() => {
+      input.current.classList.remove('error');
+    });
     tlSuccess.current.to(inputSuccess.current, {
       duration: 0.5,
       width: '100%'
@@ -192,21 +192,32 @@ function Input({ type, placeholder }: { type: string, placeholder: string }) {
       yPercent: -120
     });
   }, []);
+  useIsomorphicLayoutEffect(() => {
+    if (isFormDirty) {
+      onChange();
+    }
+  }, [isFormDirty]);
 
   const focusRef = () => {
+    tlLabel.current.play();
     if (isInputDirty.current) return;
     tl.current.play();
-    tlLabel.current.play();
   }
   const blurRef = (e: any) => {
-    if (isInputDirty.current) return;
-    tl.current.reverse();
     if (!e.target.value) {
       tlLabel.current.reverse();
     }
+    if (isInputDirty.current) return;
+    tl.current.reverse();
   }
-  const onChange = (e: any) => {
-    if (!e.target.value) {
+  const onChange = (e?: React.FormEvent<HTMLInputElement>) => {
+    let value = inputValue;
+    if (e) {
+      setInputValue(e.currentTarget.value);
+      value = e.currentTarget.value;
+    }
+    const result = validation(value);
+    if (!result.valid) {
       tlSuccess.current.reverse().then(() => {
         tlError.current.play().then(() => {
           if (!isInputDirty.current) {
@@ -231,7 +242,15 @@ function Input({ type, placeholder }: { type: string, placeholder: string }) {
     <InputGroup>
       <StyledLabel htmlFor={placeholder} ref={labelRef}>{placeholder}</StyledLabel>
       <InputGroupComponent>
-        <StyledInput id={placeholder} onInput={onChange} onFocus={focusRef} onBlur={blurRef} ref={input} type={type} />
+        <StyledInput
+          id={placeholder}
+          onInput={onChange}
+          onFocus={focusRef}
+          onBlur={blurRef}
+          ref={input}
+          type={type}
+          value={inputValue}
+        />
         <StyledInputBorder ref={inputBorder}>
           <StyledInputBorderAfter ref={inputBorderAfter} />
         </StyledInputBorder>

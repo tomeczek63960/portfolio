@@ -204,7 +204,6 @@ export default function LoadingAnimation({ children }: {children: any}) {
       if (timeline.isActive()) {
         console.log('timeline is active');
       } else {
-        console.log('timeline is not active');
         timeline.play().then(() => {
           timeline.pause();
           setIsInitAnimation(false);

@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import Input from './Input';
+import ButtonComponent from 'src/ui/Button';
+import { nameValidation, emailValidation, surnameValidation, phoneValidation } from 'src/helpers/validations';
 
 const StyledForm = styled.form.attrs((props: {rotation: string, ref: HTMLFormElement}) => props)`
     margin-top: 100px;
@@ -14,26 +16,28 @@ const StyledForm = styled.form.attrs((props: {rotation: string, ref: HTMLFormEle
         margin-bottom: 20px;
     }
 `;
-const StyledFormButton = styled.button`
 
-`;
-
-
-// style dla inputów (tylko dolny margines z labelem po kliknięciu podnosi się nad górę inputa) - i od lewa do prawa wczytywanie borderu
-// mousemove na formie i zaleznie od połozenia myszki dodawać połozenie gradientu
-// animacja po najechaniu na inputa, radient wczytuje się z dwuch stron (z 0 do 100% szerokości czy jakoś tak) i znika tak samo
 function FormComponent() {
-    const [rotation, setRotation] = useState(0);
-    const formRef = useRef<HTMLFormElement>();
-    
+  const formRef = useRef<HTMLFormElement>();
+  const [isFormDirty, setFormDirty] = useState(false);
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+    setFormDirty(true);
+    setTimeout(() => {
+      const errorInput = formRef.current?.querySelector<HTMLInputElement>('input.error');
+      if (errorInput) {
+        errorInput.focus();
+      }
+    }, 500);
+  }
   return (
-    <StyledForm rotation={`${rotation}rad`} ref={formRef}>
+    <StyledForm ref={formRef} onSubmit={onSubmit} >
         <h1>Contact form</h1>
-        <Input type="text" placeholder='Imię' />
-        <Input type="text" placeholder='Nazwisko' />
-        <Input type="text" placeholder='E-mail' />
-        <Input type="text" placeholder='Numer Telefonu' />
-        <StyledFormButton>Submit form</StyledFormButton>
+        <Input isFormDirty={isFormDirty} type="text" placeholder='Imię' validation={nameValidation} />
+        <Input isFormDirty={isFormDirty} type="text" placeholder='Nazwisko' validation={surnameValidation} />
+        <Input isFormDirty={isFormDirty} type="text" placeholder='E-mail' validation={emailValidation} />
+        <Input isFormDirty={isFormDirty} type="text" placeholder='Numer Telefonu' validation={phoneValidation} />
+        <ButtonComponent>Submit form</ButtonComponent>
     </StyledForm>
   );
 }

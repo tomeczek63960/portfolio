@@ -1,50 +1,104 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components'
+import { gsap } from "gsap";
+import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
+import colors from 'src/ui/globalStyled/variables';
 
 const StyledButton = styled.button.attrs((props: {ref: HTMLButtonElement}) => props)`
-    position: relative;
-    /* background: #7983ff; */
-    border: 2px solid #7983ff;
-    padding: 0.5rem 1rem;
-    font-size: 1.2rem;
-    color: white;
-    cursor: pointer;
-    outline: none;
-    overflow: hidden;
-    &:before {
-        --size: 0;
-        content: '';
-        position: absolute;
-        left: var(--x);
-        top: var(--y);
-        width: var(--size);
-        height: var(--size);
-        background: radial-gradient(circle closest-side, pink, transparent);
-        transform: translate(-50%, -50%);
-        transition: width 0.2s ease, height 0.2s ease;
-    }
-    span {
-        position: relative;
-    }
-    &:hover:before {
-        --size: 200px;
-    }
+  margin-top: 40px;
+  background: transparent;
+  color: #555;
+  height: 40px;
+  font: 16px/30px "Lato", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  outline: none !important;
+  width: 100%;
+  /* transition: 0.3s ease-in-out; */
+  border: none;
+  text-transform: uppercase;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  &::after {
+    content: "";
+    height: 2px;
+    width: 100%;
+    background: #222;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 `
+const StyledButtonBorder = styled.span`
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  height: 2px;
+  width: 0%;
+  background: #7928ca;
+`;
+const StyledButtonBorderAfter = styled.span`
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  height: 2px;
+  width: 0%;
+  background: #222;
+`;
 
-function Button() {
-    const btnRef = useRef<HTMLButtonElement>();
-    useEffect(() => {
-        btnRef.current?.addEventListener('mousemove', (e: any) => {
-            let rect = e.target.getBoundingClientRect();
-            let x = e.clientX - rect.left;
-            let y = e.clientY - rect.top;
-            btnRef.current?.style.setProperty('--x', x + 'px');
-            btnRef.current?.style.setProperty('--y', y + 'px');
-        });
-    }, []);
+function ButtonComponent({ children }: { children: string }) {
+  const btnRef = useRef<HTMLButtonElement>();
+  const buttonBorder = useRef<any>(null);
+  const buttonBorderAfter = useRef<any>(null);
+  const tl = useRef<any>(null);
+
+  useIsomorphicLayoutEffect(() => {
+    tl.current = gsap.timeline({ paused: true });
+    tl.current.to(buttonBorder.current, {
+      duration: 0.5,
+      width: '100%'
+    }, 'start');
+    tl.current.to(buttonBorderAfter.current, {
+      duration: 0.5,
+      width: '100%'
+    }, '-=0.3');
+    tl.current.to(buttonBorderAfter.current, {
+      duration: 0.4,
+      x: '100%'
+    });
+    tl.current.to(btnRef.current, {
+      duration: 0.5,
+      color: '#7928ca'
+    }, 'start');
+  }, []);
+
+  const onHover = () => {
+    tl.current.play();
+  }
+  const onBlur = () => {
+    tl.current.reverse();
+  }
+
   return (
-    <StyledButton ref={btnRef}><span>Hover me</span></StyledButton>
+    <StyledButton
+      onTouchStart={onHover}
+      onTouchEnd={onBlur}
+      onMouseOver={onHover}
+      onMouseLeave={onBlur}
+      ref={btnRef}
+    >
+      { children }
+      <StyledButtonBorder ref={buttonBorder} />
+      <StyledButtonBorderAfter ref={buttonBorderAfter} />
+    </StyledButton>
   );
 }
 
-export default Button;
+export default ButtonComponent;
