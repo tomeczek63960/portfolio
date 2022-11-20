@@ -15,6 +15,7 @@ const Html = styled.div`
   height: 100vh;
   z-index: -1;
   background: white;
+  /* background: black; */
   font-family: Times;
 `;
 const HtmlBefore = styled.span`
@@ -56,7 +57,7 @@ const Body = styled.div`
   /* animation: loadPageContent 0.3s 7.5s ease-in-out forwards; */
 `
 const BodyBefore = styled.div`
-  display: block
+  display: block;
   height: 0%;
   position: fixed;
   top: 0;
@@ -91,7 +92,6 @@ export default function LoadingAnimation({ children }: {children: any}) {
 
   useIsomorphicLayoutEffect(() => {
     if (!timeline) return;
-    console.log(timeline)
     timeline.add(
       gsap.to(htmlBefore.current, {
         duration: 0.7,
@@ -191,7 +191,7 @@ export default function LoadingAnimation({ children }: {children: any}) {
         opacity: 0
       }), '-=0.7'
     )
-
+    // return setDisplayChildren(children)
     if (timeline.duration() === 0 || flag.current) {
       if (!flag.current) {
         console.log('pep 1')

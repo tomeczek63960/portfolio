@@ -58,7 +58,6 @@ function Header() {
           home: "/",
           contact: "/kontakt",
           caseStudies: "/case-studies",
-          caseStudy: "/case-studies/1",
           showCase: "/show"
         };
       case "en":
@@ -66,7 +65,6 @@ function Header() {
           home: "/",
           contact: "/contact",
           caseStudies: "/case-studies",
-          caseStudy: "/case-studies/1",
           showCase: "/show-case"
         };
       default:
@@ -74,7 +72,6 @@ function Header() {
           home: "/",
           contact: "/contact",
           caseStudies: "/case-studies",
-          caseStudy: "/case-study/1",
           showCase: "/show-case"
         };
     }
@@ -90,9 +87,6 @@ function Header() {
         </Link>
         <Link href={ localePaths.caseStudies } locale={ locale }>
           <StyledLink>Case studies</StyledLink>
-        </Link>
-        <Link href={ localePaths.caseStudy } locale={ locale }>
-          <StyledLink>Case study</StyledLink>
         </Link>
         <Link href={ localePaths.showCase } locale={ locale }>
           <StyledLink>Show case</StyledLink>
