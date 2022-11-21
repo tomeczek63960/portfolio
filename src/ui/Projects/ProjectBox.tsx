@@ -1,0 +1,222 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { gsap } from "gsap";
+import styled from 'styled-components'
+import ArrowLeft from "../../../public/svg/arrow-left.svg"
+import World from "../../../public/svg/world.svg"
+import Github from "../../../public/svg/github.svg"
+
+const ProjectBox = styled.div`
+  width: 100%;
+  max-width: 600px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: white;
+  z-index: 100;
+  overflow-y: scroll;
+  transform: translateX(100%);
+`;
+const ProjectBoxShadow = styled.div`
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+`;
+const ProjectBoxClose = styled.div`
+  padding: 20px;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  svg {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  h4 {
+    color: black;
+  }
+`;
+const ProjectBoxContent = styled.div`
+  padding: 20px;
+  color: black;
+  .project-box__text {
+    margin-top: 30px;
+  }
+  p {
+    color: #545454;
+    font-size: 14px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  img {
+    margin: 10px 0 40px;
+  }
+`;
+const ProjectBoxReference = styled.div`
+  margin-top: 30px;
+  h5 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  a {
+    word-break: break-all;
+    color: #0b0c15;
+    font-weight: 600;
+    font-size: 11px;
+    @media screen and (min-width: 768px) {
+      font-size: 13px;
+      font-weight: 700;
+    }
+  }
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+`;
+const ProjectBoxLink = styled.a`
+  margin-top: auto;
+  display: block;
+  width: 100%;
+  padding: 25px;
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+`;
+const ProjectBoxTechnologies = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -5px;
+  span {
+    display: block;
+    padding: 5px 10px;
+    background: lightgray;
+    color: black;
+    margin: 5px;
+    font-weight: 700;
+    font-size: 12px;
+  }
+`;
+const ProjectBoxCategories = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px -5px 0;
+  span {
+    display: block;
+    padding: 5px 10px;
+    background: lightgray;
+    color: black;
+    margin: 5px;
+    font-weight: 700;
+    font-size: 12px;
+    &.danger {
+      color: white;
+      background: #dd1818;
+    }
+    &.success {
+      color: white;
+      background: #15ee11;
+    }
+    &.warning {
+      color: white;
+      background: #f37335;
+    }
+  }
+`;
+
+const ProjectBoxComponent = ({activeProject, onCloseFunction, isActiveProjectBox}: {activeProject: any, onCloseFunction: Function, isActiveProjectBox: boolean}) => {
+  const projectBox = useRef<any>(null);
+  const projectBoxShadow = useRef<any>(null);
+  const timeline = useRef<any>();
+
+  useEffect(() => {
+    if (timeline.current) return;
+    timeline.current = gsap.timeline({ paused: true });
+    timeline.current.add(
+      gsap.to(projectBox.current, {
+        duration: 0.3,
+        x: 0
+      })
+    );
+    timeline.current.add(
+      gsap.to(projectBoxShadow.current, {
+        duration: 0.3,
+        opacity: 1,
+        visibility: 'visible'
+      }), '-=0.3'
+    );
+  }, []);
+
+  useEffect(() => {
+    if (isActiveProjectBox) {
+      timeline.current.play();
+    } else {
+      timeline.current.reverse();
+    }
+  }, [isActiveProjectBox]);
+
+  return (
+    <>
+      <ProjectBoxShadow ref={projectBoxShadow} onClick={() => onCloseFunction(false)}/>
+      <ProjectBox ref={projectBox}>
+        <ProjectBoxClose>
+          <ArrowLeft onClick={() => onCloseFunction(false)} />
+          <h4>Close project</h4>
+        </ProjectBoxClose>
+        <ProjectBoxContent>
+          <h3>{activeProject.Title}</h3>
+          <p>{activeProject.ShortDescription}</p>
+
+          <ProjectBoxCategories>
+            { 
+              activeProject.project_categories?.map((category: any) => 
+                <span key={category.id} className={category.Theme}>
+                  {category.Title}
+                </span>
+              )
+            }
+          </ProjectBoxCategories>
+
+          <img src={`http://localhost:1337${activeProject?.Image?.url}`} />
+          <div className="project-box__text">
+            <h4>About project</h4>
+            <p>{activeProject.Description}</p>
+          </div>
+          <div className="project-box__text">
+            <h4>Technologies</h4>
+            <ProjectBoxTechnologies>
+              { 
+                activeProject.project_technologies?.map((technology: any) => <span key={technology.id}>{technology.Title}</span>)
+              }
+            </ProjectBoxTechnologies>
+          </div>
+          <ProjectBoxReference>
+            <h5><World /> Website</h5>
+            <a href={activeProject.WebsiteUrl} target="_blank">{activeProject.WebsiteUrl}</a>
+          </ProjectBoxReference>
+          <ProjectBoxReference>
+            <h5><Github /> Github</h5>
+            <a href={activeProject.GithubUrl} target="_blank">{activeProject.GithubUrl}</a>
+          </ProjectBoxReference>
+        </ProjectBoxContent>
+        <ProjectBoxLink href={activeProject.WebsiteUrl} target="_blank">
+          Open Project
+        </ProjectBoxLink>
+      </ProjectBox>
+    </>
+  );
+}
+
+export default ProjectBoxComponent;

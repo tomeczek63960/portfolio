@@ -2,7 +2,7 @@ import { gsap } from "gsap";
 import { TransitionContext } from "src/context/TransitionContext";
 import { useState, useContext, useRef, useEffect, useLayoutEffect } from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import TransitionLayout from "src/animation/TransitionLayout"
+// import TransitionLayout from "src/animation/TransitionLayout"
 import styled from 'styled-components'
 import { useRouter } from "next/router";
 
@@ -48,14 +48,6 @@ const HtmlAfter = styled.span`
   font-size: 25px;
   font-weight: 700;
 `;
-
-const Body = styled.div`
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-  opacity: 0;
-  /* animation: loadPageContent 0.3s 7.5s ease-in-out forwards; */
-`
 const BodyBefore = styled.div`
   display: block;
   height: 0%;

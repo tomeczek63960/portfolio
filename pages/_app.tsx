@@ -4,8 +4,11 @@ import type { AppProps } from 'next/app'
 import React, { useMemo } from 'react';
 import { useRouter } from "next/router";
 import { IntlProvider } from "react-intl";
-
+import { TextPlugin } from "gsap/dist/TextPlugin";
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import LoadingAnimation from "src/animation/LoadingAnimation"
+import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
+import { gsap } from 'gsap';
 import {
   QueryClient,
   QueryClientProvider,
@@ -31,6 +34,13 @@ function MyApp({ Component, pageProps }: AppProps) {
             return en;
     }
   }, [locale]);
+
+  useIsomorphicLayoutEffect(() => {
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(TextPlugin);
+    }
+  })
 
   return <IntlProvider locale={shortLocale} messages={curentMessage}>
     <QueryClientProvider client={queryClient}>

@@ -31,19 +31,12 @@ const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props)`
   }
 `
 const DesktopNav = styled.div`
-  padding-left: 40px;
   height: 100%;
   display: none;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-  @media screen and (min-width: 1024px) {
-    padding-left: 60px;
-  }
-  @media screen and (min-width: 1366px) {
-    padding-left: 80px;
   }
 `
 

@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { gsap } from 'gsap';
-import { TextPlugin } from "gsap/dist/TextPlugin";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import styled from 'styled-components'
 import HandleText from 'src/helpers/handleText'
@@ -134,10 +133,6 @@ const WorkExperience = () => {
   ]
 
   useIsomorphicLayoutEffect(() => {
-    if (typeof window !== "undefined") {
-      gsap.registerPlugin(ScrollTrigger);
-      gsap.registerPlugin(TextPlugin);
-    }
     let tl: any;
     if (!isSplitted.current) {
       isSplitted.current = true;
