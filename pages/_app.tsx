@@ -36,6 +36,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [locale]);
 
   useIsomorphicLayoutEffect(() => {
+    const html = document.querySelector('html');
+    if (navigator.userAgent.indexOf('Mac OS X') == -1) {
+      html?.classList.add('body-padding');
+    } else {
+      html?.classList.add('body-padding-thin');
+    }
     if (typeof window !== "undefined") {
       gsap.registerPlugin(ScrollTrigger);
       gsap.registerPlugin(TextPlugin);

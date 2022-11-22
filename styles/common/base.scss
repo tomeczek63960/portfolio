@@ -11,6 +11,19 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   position: relative;
+  &.no-scroll {
+    overflow: hidden;
+    &.body-padding {
+      @media screen and (hover) {
+        padding-right: calc(17px - (100vw - 100%));
+      }
+      &-thin {
+        @media screen and (hover) {
+          padding-right: calc(15px - (100vw - 100%));
+        }
+      }
+    }
+  }
 }
 
 *,

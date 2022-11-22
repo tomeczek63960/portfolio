@@ -169,10 +169,8 @@ const ProjectBoxComponent = (
     const bluerdElements = projectBox.current;
     const html = document.querySelector('html');
     if (isActiveProjectBox) {
+      html?.classList.add('no-scroll');
       timeline.current.play().then(() => {
-        if (html) {
-          html.style.overflow = 'hidden';
-        }
         gsap.to(bluerdElements, {
           duration: 0.3,
           filter: "blur(0px)",
@@ -180,11 +178,9 @@ const ProjectBoxComponent = (
         });
       });
     } else {
+      html?.classList.remove('no-scroll');
       timeline.current.reverse().then(() => {
         projectBox.current.scrollTop = 0;
-        if (html) {
-          html.style.overflow = 'auto';
-        }
         gsap.set(bluerdElements, {
           filter: "blur(2px)",
         });
