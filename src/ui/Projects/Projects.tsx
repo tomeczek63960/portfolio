@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { gsap } from "gsap";
 import styled from 'styled-components'
 import {
   useQuery,
@@ -24,7 +25,6 @@ const ProjectsComponent = () => {
   const { data, status } = useQuery(["projects"], fetchProjects);
   const [activeProject, setActiveProject] = useState<any>({});
   const [isActiveProjectBox, setActiveProjectBox] = useState(false);
-
   const openProjectDetails = (project: object) => {
     setActiveProject(project);
     setActiveProjectBox(true);

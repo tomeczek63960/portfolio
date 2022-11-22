@@ -3,23 +3,18 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import styled from 'styled-components'
 import HandleText from 'src/helpers/handleText'
+import CustomImage from 'src/ui/Image/CustomImage';
 
 const Project = styled.div`
   cursor: pointer;
   width: 100%;
   max-width: 100%;
-  height: auto;
   max-height: 300px;
   position: relative;
   flex-shrink: 0;
   border: 1px solid transparent;
   border-radius: 5px;
   overflow: hidden;
-  img {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    transition: 0.3s ease-in-out;
-  }
 `
 const ProjectHover = styled.div`
   padding: 20px 15px;
@@ -65,8 +60,6 @@ const ProjectHover = styled.div`
   p {
     font-size: 12px;
     color: #d5d5d5;
-    /* transform: translateY(40%);
-    opacity: 0; */
     @media screen and (min-width: 1024px) {
       transform: translateY(0);
       opacity: 1;
@@ -202,7 +195,7 @@ const ProjectComponent = ({project, onClickFunction}: {project: any, onClickFunc
       onTouchEnd={projectBlurAction}
       ref={projectRef}
     >
-      <img src={`http://localhost:1337${project.Image.url}`} />
+      <CustomImage url={project.Image.url} />
       <ProjectHover ref={projectHover}>
         <h4 ref={projectHoverHeading}>
           { project.Title }

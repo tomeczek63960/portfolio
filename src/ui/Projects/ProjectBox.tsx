@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import ArrowLeft from "../../../public/svg/arrow-left.svg"
 import World from "../../../public/svg/world.svg"
 import Github from "../../../public/svg/github.svg"
+import CustomImage from 'src/ui/Image/CustomImage';
 
 const ProjectBox = styled.div`
   width: 100%;
@@ -16,6 +17,9 @@ const ProjectBox = styled.div`
   z-index: 100;
   overflow-y: scroll;
   transform: translateX(100%);
+  .blured {
+    filter: blur(2px);
+  }
 `;
 const ProjectBoxShadow = styled.div`
     width: 100vw;
@@ -136,7 +140,9 @@ const ProjectBoxCategories = styled.div`
   }
 `;
 
-const ProjectBoxComponent = ({activeProject, onCloseFunction, isActiveProjectBox}: {activeProject: any, onCloseFunction: Function, isActiveProjectBox: boolean}) => {
+const ProjectBoxComponent = (
+    {activeProject, onCloseFunction, isActiveProjectBox}: 
+      {activeProject: any, onCloseFunction: Function, isActiveProjectBox: boolean}) => {
   const projectBox = useRef<any>(null);
   const projectBoxShadow = useRef<any>(null);
   const timeline = useRef<any>();
@@ -160,20 +166,38 @@ const ProjectBoxComponent = ({activeProject, onCloseFunction, isActiveProjectBox
   }, []);
 
   useEffect(() => {
+    const bluerdElements = projectBox.current;
+    const html = document.querySelector('html');
     if (isActiveProjectBox) {
-      timeline.current.play();
+      timeline.current.play().then(() => {
+        if (html) {
+          html.style.overflow = 'hidden';
+        }
+        gsap.to(bluerdElements, {
+          duration: 0.3,
+          filter: "blur(0px)",
+          delay: 0.2
+        });
+      });
     } else {
-      timeline.current.reverse();
+      timeline.current.reverse().then(() => {
+        projectBox.current.scrollTop = 0;
+        if (html) {
+          html.style.overflow = 'auto';
+        }
+        gsap.set(bluerdElements, {
+          filter: "blur(2px)",
+        });
+      });
     }
   }, [isActiveProjectBox]);
 
   return (
     <>
       <ProjectBoxShadow ref={projectBoxShadow} onClick={() => onCloseFunction(false)}/>
-      <ProjectBox ref={projectBox}>
+      <ProjectBox className='blured' ref={projectBox}>
         <ProjectBoxClose>
           <ArrowLeft onClick={() => onCloseFunction(false)} />
-          <h4>Close project</h4>
         </ProjectBoxClose>
         <ProjectBoxContent>
           <h3>{activeProject.Title}</h3>
@@ -189,7 +213,7 @@ const ProjectBoxComponent = ({activeProject, onCloseFunction, isActiveProjectBox
             }
           </ProjectBoxCategories>
 
-          <img src={`http://localhost:1337${activeProject?.Image?.url}`} />
+          {activeProject?.Image ? <CustomImage url={activeProject?.Image?.url} /> : ''}
           <div className="project-box__text">
             <h4>About project</h4>
             <p>{activeProject.Description}</p>

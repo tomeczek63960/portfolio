@@ -1,3 +1,6 @@
+const withImages = require('next-images')
+module.exports = withImages()
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -22,7 +25,18 @@ const nextConfig = {
         locale: false
       }
     ]
-  }
+  },
+  images: {
+    domains: ['localhost'],
+    // remotePatterns: [
+    //   {
+    //     protocol: 'http',
+    //     hostname: 'localhost',
+    //     port: '',
+    //     pathname: '/**',
+    //   },
+    // ],
+  },
 };
 
 module.exports = nextConfig
