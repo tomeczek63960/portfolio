@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect"
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import styled from 'styled-components'
@@ -76,7 +77,7 @@ const ProjectComponent = ({project, onClickFunction}: {project: any, onClickFunc
   const projectHoverText = useRef<any>();
   const projectRef = useRef<any>();
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (timeline.current || mobileTl.current) return;
     const heading = new HandleText(projectHoverHeading.current, {
       type:"chars, words",

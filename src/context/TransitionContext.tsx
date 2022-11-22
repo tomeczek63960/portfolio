@@ -12,9 +12,6 @@ const TransitionProvider = ({ children }: {children: any}) => {
     // ten timeline ma się odpalić w transitionLayout po przejściu strony (oraz w loadingAnimation przy pierwszym wczytaniu)
     gsap.timeline({ paused: true })
   );
-  // useEffect(() => {
-  //   console.log('here', isInitAnimation)
-  // }, [])
   
   return (
     <TransitionContext.Provider

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect"
 import { gsap } from "gsap";
 import styled from 'styled-components'
 import ArrowLeft from "../../../public/svg/arrow-left.svg"
@@ -147,7 +148,7 @@ const ProjectBoxComponent = (
   const projectBoxShadow = useRef<any>(null);
   const timeline = useRef<any>();
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (timeline.current) return;
     timeline.current = gsap.timeline({ paused: true });
     timeline.current.add(
@@ -165,7 +166,7 @@ const ProjectBoxComponent = (
     );
   }, []);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const bluerdElements = projectBox.current;
     const html = document.querySelector('html');
     if (isActiveProjectBox) {

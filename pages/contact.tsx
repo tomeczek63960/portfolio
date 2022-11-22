@@ -6,7 +6,6 @@ import type { NextPage } from 'next'
 const ContactPage: NextPage = () => {
   return (
     <Layout
-      background="orange"
       title="Home page"
       description="Home page"
       url="here"

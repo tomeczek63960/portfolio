@@ -183,13 +183,16 @@ export default function LoadingAnimation({ children }: {children: any}) {
         opacity: 0
       }), '-=0.7'
     )
+    // gsap.to(bodyBefore.current, {
+    //   duration: 0.4,
+    //   height: '100%'
+    // })
     // return setDisplayChildren(children)
     if (timeline.duration() === 0 || flag.current) {
       if (!flag.current) {
         console.log('pep 1')
         setDisplayChildren(children)
       } else if (!timeline.isActive()) {
-        console.log('pep 23')
         setDisplayChildren(children)
       }
     } else {

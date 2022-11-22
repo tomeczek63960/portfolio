@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 
 interface carouselOptions {
   node: any,
@@ -31,7 +32,7 @@ export const useCircleCarousel = (): [boolean, Function] => {
       autoplayId  : null,
     });
   }
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!isInited.current) {
       if (customCarousel) {
         isInited.current = true;

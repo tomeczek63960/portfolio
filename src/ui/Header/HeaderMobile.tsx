@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef } from 'react';
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect"
 import { useRouter } from "next/router";
 import Link from 'next/link'
@@ -210,7 +210,7 @@ function Header() {
     handleScroll();
     window.addEventListener('scroll', handleScroll);
   }, []);
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     return () => {
       setTimeout(() => {
         tl.current.pause()
