@@ -5,6 +5,9 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { gsap } from "gsap";
 import Logo from 'src/ui/Logo';
+import Linkedin from '../../../public/svg/linkedin.svg';
+import Github from '../../../public/svg/github.svg';
+import SocialMedia from 'src/ui/SocialMedia';
 
 const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props)`
   margin-top: 20px;
@@ -12,6 +15,7 @@ const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props)`
   font-size: 18px;
   line-height: 1;
   display: block;
+  width: fit-content;
   font-family: Arial, Helvetica, sans-serif;
   transform: translateX(-50px);
   opacity: 0;
@@ -32,6 +36,8 @@ const MobileNav = styled.div`
 `
 const MobileNavContainer = styled.div`
   padding: 50px 25px;
+  display: flex;
+  flex-direction: column;
 `
 const StyledBars = styled.button`
   width: 40px;
@@ -77,7 +83,7 @@ const HeaderBar = styled.div`
   }
 `
 
-function Header() {
+const Header = () => {
   const { pathname, locale, locales=[] } = useRouter();
   const [ shortLocale ] = locale ? locale.split("-") : ["en"];
   const isNavOpen = useRef(false);
@@ -93,6 +99,7 @@ function Header() {
   const bars = useRef<any>();
   const animateDots = useRef(true);
   const mobileNavContainer = useRef<any>();
+  const socialMediaRef = useRef<any>();
 
   const handleScroll = () => {
     currentScrollPos.current = window?.pageYOffset
@@ -197,7 +204,7 @@ function Header() {
       height: 'calc(100vh - 80px)',
       ease: "power2.out"
     }, 'rotate-dots')
-    tl.current.to(mobileNavContainer.current.children, {
+    tl.current.to([...socialMediaRef.current.children, ...mobileNavContainer.current.children], {
       duration: 0.3,
       delay: 0.2,
       x: 0,
@@ -275,6 +282,7 @@ function Header() {
 
       <MobileNav ref={ mobileNav }>
         <MobileNavContainer ref={ mobileNavContainer }>
+          <SocialMedia theme='white' ref={socialMediaRef} />
           <Link href={ localePaths.home } locale={ locale }><StyledLink>Home</StyledLink></Link>
           <Link href={ localePaths.contact } locale={ locale }><StyledLink>Kontakt</StyledLink></Link>
           <Link href={ localePaths.caseStudies } locale={ locale }><StyledLink>Case studies</StyledLink></Link>

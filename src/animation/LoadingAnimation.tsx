@@ -183,10 +183,6 @@ export default function LoadingAnimation({ children }: {children: any}) {
         opacity: 0
       }), '-=0.7'
     )
-    // gsap.to(bodyBefore.current, {
-    //   duration: 0.4,
-    //   height: '100%'
-    // })
     // return setDisplayChildren(children)
     if (timeline.duration() === 0 || flag.current) {
       if (!flag.current) {

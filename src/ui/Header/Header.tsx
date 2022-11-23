@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 import { useRouter } from "next/router";
 import Link from 'next/link'
 import styled from 'styled-components'
+import Linkedin from '../../../public/svg/linkedin.svg';
+import Github from '../../../public/svg/github.svg';
 
 const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props)`
   margin: 5px 0;
@@ -39,6 +41,27 @@ const DesktopNav = styled.div`
     justify-content: center;
   }
 `
+const DesktopNavSocialMeida = styled.div`
+  margin-bottom: 20px;
+  display: flex;
+  a {
+    display: block;
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
+    svg {
+      width: 30px;
+      height: 30px;
+      path {
+        transition: 0.3s;
+      }
+    }
+    &:hover svg path {
+      fill: #6428b4;
+    }
+  }
+`;
 
 function Header() {
   const { locale, locales=[] } = useRouter();
@@ -72,6 +95,10 @@ function Header() {
   return (
     <>
       <DesktopNav>
+        <DesktopNavSocialMeida>
+          <a href="https://github.com/tomeczek63960" target="_blank"><Linkedin /></a>
+          <a href="https://github.com/tomeczek63960" target="_blank"><Github /></a>
+        </DesktopNavSocialMeida>
         <Link href={ localePaths.home } locale={ locale }>
           <StyledLink>Home</StyledLink>
         </Link>
