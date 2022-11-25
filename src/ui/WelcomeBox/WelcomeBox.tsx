@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { useEffect } from 'react'
-import styled from 'styled-components'
+import { useEffect, useState } from 'react'
+import styled, { css } from 'styled-components'
 
 const WelcomeBox = styled.section`
   /* display: flex; */
@@ -43,6 +43,8 @@ const WelcomeBoxImage = styled.div`
 `;
 const WelcomeBoxConversation = styled.div`
   padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
 `;
 const WelcomeBoxMessage = styled.div`
   font-size: 12px;
@@ -68,7 +70,7 @@ const WelcomeBoxMessageImage = styled.div`
     height: 100%;
   }
 `;
-const WelcomeBoxMessageText = styled.div.attrs((props: {position: string}) => props)`
+const WelcomeBoxMessageText = styled.div.attrs((props: {position?: string, writingAnimation?: boolean}) => props)`
   margin-top: 10px;
   padding: 10px 13px;
   background: rgb(234, 240, 246);
@@ -81,11 +83,67 @@ const WelcomeBoxMessageText = styled.div.attrs((props: {position: string}) => pr
   ${
     ({ position }) => position === 'right' ? "border-top-left-radius: 4px;" : "border-top-right-radius: 4px;"
   };
-`;
 
+  @keyframes writingAnimation {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(1.3);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  ${
+    ({ writingAnimation }) => writingAnimation && css`
+      /* display: none; */
+      span {
+        width: 6px;
+        height: 6px;
+        background: #000;
+        border-radius: 50%;
+        display: inline-block;
+        &:first-child {
+          animation: 2s writingAnimation infinite;
+        }
+        &:nth-child(2) {
+          animation: 2s writingAnimation 0.3s infinite;
+        }
+        &:nth-child(3) {
+          animation: 2s writingAnimation 0.5s infinite;
+        }
+        & + span {
+          margin-left: 5px;
+        }
+      }
+    `
+  }
+`;
+const WelcomeBoxOptions = styled.div`
+  margin-top: 80px;
+  h4 {
+    color: black;
+  }
+  button {
+    background: #eaeaea;
+    color: black;
+    padding: 5px;
+    cursor: pointer;
+  }
+`;
+const WelcomeBoxOptionsList = styled.div`
+  display: flex;
+  gap: 20px;
+`;
 const WelcomeBoxComponent = () => {
-  const messages = [
+  const [activeMessages, setActiveMessages] = useState<any>([
     {
+      id: 1,
       admin: {
         image: '/tk.jpeg',
         messages: [
@@ -94,7 +152,20 @@ const WelcomeBoxComponent = () => {
         ]
       },
     },
+  ]);
+  const [messages, setMessages] = useState<any>([
+    // {
+    //   admin: {
+    //     image: '/tk.jpeg',
+    //     messages: [
+    //       'Cześć <br/> Miło jest Ciebie tu widzieć',
+    //       'Co chciałbyś się o mnie dowiedzieć?'
+    //     ]
+    //   },
+    // },
     {
+      id: 2,
+      toggler: 'Doświadczenie',
       user: {
         image: '/user.png',
         messages: [
@@ -112,6 +183,8 @@ const WelcomeBoxComponent = () => {
       }
     },
     {
+      id: 3,
+      toggler: 'Kontakt',
       user: {
         image: '/user.png',
         messages: [
@@ -131,8 +204,50 @@ const WelcomeBoxComponent = () => {
           // "here link do strony kontaktu"
         ]
       }
-    }
-  ];
+    },
+    {
+      id: 4,
+      toggler: 'Czy jestem otwarty na oferty',
+      user: {
+        image: '/user.png',
+        messages: [
+          'Czy jesteś otwarty na oferty pracy?'
+        ]
+      },
+      admin: {
+        image: '/tk.jpeg',
+        messages: [
+          'Tak',
+          'Jestem otwarty na oferty pracy w której będę mógł rozwijać swoje umiejętności oraz zdobywać ⛰',
+          'Najbardziej zainteresowany jestem technologiami React/Gatsby/Next jednak rozważę też propozycje w vue/Nuxt'
+        ]
+      }
+    },
+  ])
+  let isFirst = true;
+  const headInfo = {
+    image: '/tk.jpeg',
+    name: 'Tomasz Kardel',
+    position: 'Front-end Developer'
+  }
+  const writeMessage = (message: any) => {
+    console.log(message);
+    setActiveMessages((prev: any) => ([
+      ...prev,
+      message
+    ] ));
+    const newMessagesArray = messages.filter((msg) => msg.id !== message.id);
+    console.log(newMessagesArray)
+    setMessages(newMessagesArray);
+  }
+  useEffect(() => {
+    if (!isFirst) return;
+    isFirst = false;
+    // setActiveMessages((prev: any) => ([
+    //   ...prev,
+    //   ...messages
+    // ] ))
+  }, []);
   return (
     <>
       {/* 
@@ -147,101 +262,64 @@ const WelcomeBoxComponent = () => {
       <WelcomeBox>
         <WelcomeBoxHead>
           <WelcomeBoxImage>
-            <Image src="/tk.jpeg" width="100%" height="100%" />
+            <Image src={headInfo.image} width="100%" height="100%" />
           </WelcomeBoxImage>
           <WelcomeBoxHeadInfo>
-            <WelcomeBoxHeadHeading>Tomasz Kardel</WelcomeBoxHeadHeading>
-            <WelcomeBoxHeadParagraph>Front-end Developer</WelcomeBoxHeadParagraph>
+            <WelcomeBoxHeadHeading>{headInfo.name}</WelcomeBoxHeadHeading>
+            <WelcomeBoxHeadParagraph>{headInfo.position}</WelcomeBoxHeadParagraph>
           </WelcomeBoxHeadInfo>
         </WelcomeBoxHead>
 
         <WelcomeBoxConversation>
+          {
+            activeMessages.map((message: any) => <>
+              { message.user ? <WelcomeBoxMessage>
+                  { message.user.messages.map((msg: any) =>
+                    <WelcomeBoxMessageText position="right" dangerouslySetInnerHTML={{ __html: msg }}></WelcomeBoxMessageText>
+                  )}
+                  <WelcomeBoxMessageImage>
+                    <Image src={message.user.image} width="100%" height="100%" />
+                  </WelcomeBoxMessageImage>
+                </WelcomeBoxMessage> : ""
+              }
+              { message.admin && <WelcomeBoxMessage>
+                  <WelcomeBoxMessageImage>
+                    <Image src={message.admin.image} width="100%" height="100%" />
+                  </WelcomeBoxMessageImage>
+                  <div>
+                    { message.admin.messages.map((msg: any) =>
+                      <WelcomeBoxMessageText dangerouslySetInnerHTML={{ __html: msg }}></WelcomeBoxMessageText>
+                    )}
+                  </div>
+                </WelcomeBoxMessage> 
+              }
+              </>
+            )
+          }
+
           <WelcomeBoxMessage>
             <WelcomeBoxMessageImage>
-              <Image src="/tk.jpeg" width="100%" height="100%" />
+              {/* <Image src={message.admin.image} width="100%" height="100%" /> */}
             </WelcomeBoxMessageImage>
             <div>
-              <WelcomeBoxMessageText>
-                Cześć <br/>
-                Miło jest Ciebie tu widzieć
-              </WelcomeBoxMessageText>
-              <WelcomeBoxMessageText>
-                Co chciałbyś się o mnie dowiedzieć?
-              </WelcomeBoxMessageText>
-              {/* Kim jestem */}
-              {/*
-                Nazywam się tomasz kardel i aktualnie mieszkam w Białymstoku
-                Mam 23 lata z czego 4 były wypełnione programowaniem
-                Posiadam 2 lata komercyjnego doświadczenia
-              */}
-            </div>
-          </WelcomeBoxMessage>
-          {/* Tutaj opcje do wyboru dla uzytkownika */}
-          <WelcomeBoxMessage>
-            <WelcomeBoxMessageText position="right">
-              Cześć <br/>
-              Mógłbyś powiedzieć coś o swoim doświadczeniu jako programista?
-            </WelcomeBoxMessageText>
-            <WelcomeBoxMessageImage>
-              <Image src="/user.png" width="100%" height="100%" />
-            </WelcomeBoxMessageImage>
-          </WelcomeBoxMessage>
-          <WelcomeBoxMessage>
-            <WelcomeBoxMessageImage>
-              <Image src="/tk.jpeg" width="100%" height="100%" />
-            </WelcomeBoxMessageImage>
-            <div>
-              <WelcomeBoxMessageText>
-                Jasne
-              </WelcomeBoxMessageText>
-              <WelcomeBoxMessageText>
-                Naukę programowania rozpocząłem w okresie kwietnia/maja 2019 roku.<br/> 
-                Od tamtej pory nieustannie powiększam swoją wiedzę na temat programowania.
-              </WelcomeBoxMessageText>
-              <WelcomeBoxMessageText>
-                W ciągu tego czasu udało mi się zdobyć 2 lata komercyjnego doświadczenia<br/>
-                Na stronie case study możesz znaleźć projekty które stworzyłem przed zdobyciem komercyjnego doświadczenia (oznaczone jako legacy code) oraz te które wykonałem specjalnie do tego portfolio (oznaczone jako new code)
-              </WelcomeBoxMessageText>
-              <WelcomeBoxMessageText>
-                Dostęp do repozytorium tych projektów umożliwia łatwe porównanie oraz wyciągnięcie wniosków na temat mojego progresu
+              <WelcomeBoxMessageText writingAnimation={true}>
+                <span></span>
+                <span></span>
+                <span></span>
               </WelcomeBoxMessageText>
             </div>
-          </WelcomeBoxMessage>
-          <WelcomeBoxMessage>
-            <WelcomeBoxMessageText position="right">
-              Jak się można z Tobą skontaktować?
-            </WelcomeBoxMessageText>
-            <WelcomeBoxMessageImage>
-              <Image src="/user.png" width="100%" height="100%" />
-            </WelcomeBoxMessageImage>
-          </WelcomeBoxMessage>
-          <WelcomeBoxMessage>
-            <WelcomeBoxMessageImage>
-              <Image src="/tk.jpeg" width="100%" height="100%" />
-            </WelcomeBoxMessageImage>
-            <div>
-              <WelcomeBoxMessageText>
-                To bardzo proste
-              </WelcomeBoxMessageText>
-              <WelcomeBoxMessageText>
-                Jezeli jesteś rekruterem i szukasz talentów
-              </WelcomeBoxMessageText>
-              <WelcomeBoxMessageText>
-                Jezeli spodobały Ci się moje projekty
-              </WelcomeBoxMessageText>
-              <WelcomeBoxMessageText>
-                lub chcesz się tylko przywitać
-              </WelcomeBoxMessageText>
-              <WelcomeBoxMessageText>
-                zapraszam na mój profil na Linkedin z chęcią odpowiem na wszystkie pytania :)
-                {/* tutaj link do LI */}
-              </WelcomeBoxMessageText>
-              <WelcomeBoxMessageText>
-                jezeli z jakichś powodów nie mozesz skontaktować się ze mną za pomocą linkedin mozesz zostawić wiadomość używając formularza kontaktowego 
-                {/* "here link do strony kontaktu" */}
-              </WelcomeBoxMessageText>
-            </div>
-          </WelcomeBoxMessage>
+          </WelcomeBoxMessage> 
+
+          { messages.length && <WelcomeBoxOptions>
+              <h4>Wybierz co Ciebie interesuje</h4>
+              <WelcomeBoxOptionsList>
+                { 
+                  messages.map((message) => <button key={message.toggler} onClick={() => writeMessage(message)}>{ message.toggler }</button>)
+                }
+              </WelcomeBoxOptionsList>
+            </WelcomeBoxOptions>
+          }
+
         </WelcomeBoxConversation>
       </WelcomeBox>
     </>
