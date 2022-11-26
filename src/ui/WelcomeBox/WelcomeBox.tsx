@@ -47,25 +47,29 @@ const WelcomeBoxConversation = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const WelcomeBoxMessage = styled.div`
+const WelcomeBoxMessage = styled.div.attrs((props: {position?: string, writingAnimation?: boolean}) => props)`
   font-size: 12px;
   color: #cacaca;
   display: flex;
   gap: 10px;
   padding-right: 60px;
-  &:nth-child(2n) {
-    padding-right: 0;
-    padding-left: 60px;
-    justify-content: flex-end;
-    /* text-align: right; */
+  ${
+    ({ position }) => position === 'right' && css`
+      padding-right: 0;
+      padding-left: 60px;
+      justify-content: flex-end;
+    `
   }
 `;
-const WelcomeBoxMessageImage = styled.div`
+const WelcomeBoxMessageImage = styled.div.attrs((props: {type: string}) => props)`
   width: 30px;
   height: 30px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
+  ${
+    ({ type }) => type === 'user' ? "order: 1;" : "order: -1;"
+  };
   img {
     width: 100%;
     height: 100%;
@@ -147,86 +151,149 @@ const WelcomeBoxComponent = () => {
   const [activeMessages, setActiveMessages] = useState<any>([
     {
       id: 1,
-      admin: {
-        image: '/tk.jpeg',
-        messages: [
-          'Cześć <br/> Miło jest Ciebie tu widzieć',
-          'Co chciałbyś się o mnie dowiedzieć?'
-        ]
-      },
+      type: 'admin',
+      image: '/tk.jpeg',
+      messages: [
+        {
+          message: 'Cześć <br/> Miło jest Ciebie tu widzieć',
+          visible: true
+        },
+        {
+          message: 'Co chciałbyś się o mnie dowiedzieć?',
+          visible: true
+        },
+      ]
     },
   ]);
   const [messages, setMessages] = useState<any>([
-    // {
-    //   admin: {
-    //     image: '/tk.jpeg',
-    //     messages: [
-    //       'Cześć <br/> Miło jest Ciebie tu widzieć',
-    //       'Co chciałbyś się o mnie dowiedzieć?'
-    //     ]
-    //   },
-    // },
+    {
+      id: 222,
+      toggler: 'Doświadczenie'
+    },
+    {
+      id: 333,
+      toggler: 'Kontakt'
+    },
+    {
+      id: 444,
+      toggler: 'Czy jestem otwarty na oferty'
+    },
+  ]);
+  const [newMessages, setNewMessages] = useState<any>([
     {
       id: 2,
       toggler: 'Doświadczenie',
-      user: {
-        image: '/user.png',
-        messages: [
-          'Cześć <br/> Mógłbyś powiedzieć coś o swoim doświadczeniu jako programista?'
-        ]
-      },
-      admin: {
-        image: '/tk.jpeg',
-        messages: [
-          'Jasne',
-          'Naukę programowania rozpocząłem w okresie kwietnia/maja 2019 roku.<br/> Od tamtej pory nieustannie powiększam swoją wiedzę na temat programowania.',
-          'W ciągu tego czasu udało mi się zdobyć 2 lata komercyjnego doświadczenia<br/>  Na stronie case study możesz znaleźć projekty które stworzyłem przed zdobyciem komercyjnego doświadczenia (oznaczone jako legacy code) oraz te które wykonałem specjalnie do tego portfolio (oznaczone jako new code)',
-          'Dostęp do repozytorium tych projektów umożliwia łatwe porównanie oraz wyciągnięcie wniosków na temat mojego progresu'
-        ]
-      }
+      type: 'user',
+      image: '/user.png',
+      messages: [
+        {
+          message: 'Cześć <br/> Mógłbyś powiedzieć coś o swoim doświadczeniu jako programista?',
+          visible: false
+        }
+      ]
     },
     {
       id: 3,
-      toggler: 'Kontakt',
-      user: {
-        image: '/user.png',
-        messages: [
-          'Jak się można z Tobą skontaktować?'
-        ]
-      },
-      admin: {
-        image: '/tk.jpeg',
-        messages: [
-          'To bardzo proste',
-          'Jezeli jesteś rekruterem i szukasz talentów',
-          'Jezeli spodobały Ci się moje projekty',
-          'lub chcesz się tylko przywitać',
-          'zapraszam na mój profil na Linkedin z chęcią odpowiem na wszystkie pytania :)',
-          // {/* tutaj link do LI */}
-          'jezeli z jakichś powodów nie mozesz skontaktować się ze mną za pomocą linkedin mozesz zostawić wiadomość używając formularza kontaktowego',
-          // "here link do strony kontaktu"
-        ]
-      }
+      toggler: 'Doświadczenie',
+      type: 'admin',
+      image: '/tk.jpeg',
+      messages: [
+        {
+          message: 'Jasne',
+          visible: false
+        },
+        {
+          message: 'Naukę programowania rozpocząłem w okresie kwietnia/maja 2019 roku.<br/> Od tamtej pory nieustannie powiększam swoją wiedzę na temat programowania.',
+          visible: false
+        },
+        {
+          message: 'W ciągu tego czasu udało mi się zdobyć 2 lata komercyjnego doświadczenia<br/>  Na stronie case study możesz znaleźć projekty które stworzyłem przed zdobyciem komercyjnego doświadczenia (oznaczone jako legacy code) oraz te które wykonałem specjalnie do tego portfolio (oznaczone jako new code)',
+          visible: false
+        },
+        {
+          message: 'Dostęp do repozytorium tych projektów umożliwia łatwe porównanie oraz wyciągnięcie wniosków na temat mojego progresu',
+          visible: false
+        }
+      ]
     },
     {
       id: 4,
-      toggler: 'Czy jestem otwarty na oferty',
-      user: {
-        image: '/user.png',
-        messages: [
-          'Czy jesteś otwarty na oferty pracy?'
-        ]
-      },
-      admin: {
-        image: '/tk.jpeg',
-        messages: [
-          'Tak',
-          'Jestem otwarty na oferty pracy w której będę mógł rozwijać swoje umiejętności oraz zdobywać ⛰',
-          'Najbardziej zainteresowany jestem technologiami React/Gatsby/Next jednak rozważę też propozycje w vue/Nuxt'
-        ]
-      }
+      toggler: 'Kontakt',
+      type: 'user',
+      image: '/user.png',
+      messages: [
+        {
+          message: 'Jak się można z Tobą skontaktować?',
+          visible: false
+        }
+      ]
     },
-  ])
+    {
+      id: 5,
+      toggler: 'Kontakt',
+      type: 'admin',
+      image: '/tk.jpeg',
+      messages: [
+        {
+          message: 'To bardzo proste',
+          visible: false
+        },
+        {
+          message: 'Jezeli jesteś rekruterem i szukasz talentów',
+          visible: false
+        },
+        {
+          message: 'Jezeli spodobały Ci się moje projekty',
+          visible: false
+        },
+        {
+          message: 'lub chcesz się tylko przywitać',
+          visible: false
+        },
+        {
+          message: 'zapraszam na mój profil na Linkedin z chęcią odpowiem na wszystkie pytania :)',
+          visible: false
+        },
+        {
+          message: 'jezeli z jakichś powodów nie mozesz skontaktować się ze mną za pomocą linkedin mozesz zostawić wiadomość używając formularza kontaktowego',
+          visible: false
+        },
+      ]
+    },
+    {
+      id: 6,
+      toggler: 'Czy jestem otwarty na oferty',
+      type: 'user',
+      image: '/user.png',
+      messages: [
+        {
+          message: 'Czy jesteś otwarty na oferty pracy?',
+          visible: false
+        },
+      ]
+    },
+    {
+      id: 7,
+      toggler: 'Czy jestem otwarty na oferty',
+      type: 'admin',
+      image: '/tk.jpeg',
+      messages: [
+        {
+          message: 'Tak',
+          visible: false
+        },
+        {
+          message: 'Jestem otwarty na oferty pracy w której będę mógł rozwijać swoje umiejętności oraz zdobywać ⛰',
+          visible: false
+        },
+        {
+          message: 'Najbardziej zainteresowany jestem technologiami React/Gatsby/Next jednak rozważę też propozycje w vue/Nuxt',
+          visible: false
+        }
+      ]
+    },
+  ]);
+  const [messagesQueue, setMessagesQueue] = useState<any>([]);
   const writeAnimationElement = useRef<any>();
   const writingAnimationTl = useRef<any>();
   let isFirst = true;
@@ -236,19 +303,32 @@ const WelcomeBoxComponent = () => {
     position: 'Front-end Developer'
   }
   const writeMessage = (message: any) => {
-    console.log(message);
+    // console.log(message);
+    const togglerMessages = newMessages.filter((msg: any) => msg.toggler === message.toggler);
+    console.log(togglerMessages);
 
-    writingAnimationTl.current.play().then(() => {
-      writingAnimationTl.current.seek(0).pause()
-      setActiveMessages((prev: any) => ([
+    // writingAnimationTl.current.play().then(() => {
+    //   writingAnimationTl.current.seek(0).pause();
+      setMessagesQueue((prev: any) => ([
         ...prev,
-        message
-      ] ));
-      const newMessagesArray = messages.filter((msg) => msg.id !== message.id);
-      console.log(newMessagesArray)
-      setMessages(newMessagesArray);
-    })
+        ...togglerMessages
+      ]));
+    // });
   }
+  useEffect(() => {
+    if (messagesQueue.length) {
+      writingAnimationTl.current?.play().then(() => {
+        writingAnimationTl.current.seek(0).pause();
+        const firstEll = messagesQueue.shift()
+        setActiveMessages((prev: any) => ([
+          ...prev,
+          firstEll
+        ]));
+      });
+    }
+    // tutaj update i nowo update tl na queue
+    console.log(messagesQueue, activeMessages, 'he')
+  }, [messagesQueue, activeMessages]);
   useEffect(() => {
     if (!isFirst) return;
     isFirst = false;
@@ -268,10 +348,7 @@ const WelcomeBoxComponent = () => {
         delay: 2.5
       })
     );
-    // setActiveMessages((prev: any) => ([
-    //   ...prev,
-    //   ...messages
-    // ] ))
+    
   }, []);
   return (
     <>
@@ -293,26 +370,16 @@ const WelcomeBoxComponent = () => {
         <WelcomeBoxConversation>
           {
             activeMessages.map((message: any) => <>
-              { message.user ? <WelcomeBoxMessage>
-                  { message.user.messages.map((msg: any) =>
-                    <WelcomeBoxMessageText position="right" dangerouslySetInnerHTML={{ __html: msg }}></WelcomeBoxMessageText>
+              <WelcomeBoxMessage position={message.type === 'user' ? 'right' : 'left'}>
+                <div>
+                  { message.messages.map((msg: any) =>
+                    <WelcomeBoxMessageText position={message.type === 'user' ? 'right' : 'left'} dangerouslySetInnerHTML={{ __html: msg.message }}></WelcomeBoxMessageText>
                   )}
-                  <WelcomeBoxMessageImage>
-                    <Image src={message.user.image} width="100%" height="100%" />
-                  </WelcomeBoxMessageImage>
-                </WelcomeBoxMessage> : ""
-              }
-              { message.admin && <WelcomeBoxMessage>
-                  <WelcomeBoxMessageImage>
-                    <Image src={message.admin.image} width="100%" height="100%" />
-                  </WelcomeBoxMessageImage>
-                  <div>
-                    { message.admin.messages.map((msg: any) =>
-                      <WelcomeBoxMessageText dangerouslySetInnerHTML={{ __html: msg }}></WelcomeBoxMessageText>
-                    )}
-                  </div>
-                </WelcomeBoxMessage> 
-              }
+                </div>
+                <WelcomeBoxMessageImage type={message.type}>
+                  <Image src={message.image} width="100%" height="100%" />
+                </WelcomeBoxMessageImage>
+              </WelcomeBoxMessage>
               </>
             )
           }
