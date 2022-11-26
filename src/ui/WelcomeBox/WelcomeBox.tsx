@@ -1,6 +1,7 @@
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
+import { gsap } from "gsap";
 
 const WelcomeBox = styled.section`
   /* display: flex; */
@@ -102,6 +103,8 @@ const WelcomeBoxMessageText = styled.div.attrs((props: {position?: string, writi
   ${
     ({ writingAnimation }) => writingAnimation && css`
       /* display: none; */
+      transform: scale(0);
+      opacity: 0;
       span {
         width: 6px;
         height: 6px;
@@ -109,13 +112,13 @@ const WelcomeBoxMessageText = styled.div.attrs((props: {position?: string, writi
         border-radius: 50%;
         display: inline-block;
         &:first-child {
-          animation: 2s writingAnimation infinite;
+          animation: 1s writingAnimation infinite;
         }
         &:nth-child(2) {
-          animation: 2s writingAnimation 0.3s infinite;
+          animation: 1s writingAnimation 0.3s infinite;
         }
         &:nth-child(3) {
-          animation: 2s writingAnimation 0.5s infinite;
+          animation: 1s writingAnimation 0.5s infinite;
         }
         & + span {
           margin-left: 5px;
@@ -224,6 +227,8 @@ const WelcomeBoxComponent = () => {
       }
     },
   ])
+  const writeAnimationElement = useRef<any>();
+  const writingAnimationTl = useRef<any>();
   let isFirst = true;
   const headInfo = {
     image: '/tk.jpeg',
@@ -232,17 +237,37 @@ const WelcomeBoxComponent = () => {
   }
   const writeMessage = (message: any) => {
     console.log(message);
-    setActiveMessages((prev: any) => ([
-      ...prev,
-      message
-    ] ));
-    const newMessagesArray = messages.filter((msg) => msg.id !== message.id);
-    console.log(newMessagesArray)
-    setMessages(newMessagesArray);
+
+    writingAnimationTl.current.play().then(() => {
+      writingAnimationTl.current.seek(0).pause()
+      setActiveMessages((prev: any) => ([
+        ...prev,
+        message
+      ] ));
+      const newMessagesArray = messages.filter((msg) => msg.id !== message.id);
+      console.log(newMessagesArray)
+      setMessages(newMessagesArray);
+    })
   }
   useEffect(() => {
     if (!isFirst) return;
     isFirst = false;
+    writingAnimationTl.current = gsap.timeline({ paused: true });
+    writingAnimationTl.current.add(
+      gsap.to(writeAnimationElement.current, {
+        duration: 0.3,
+        scale: 1,
+        opacity: 1
+      })
+    );
+    writingAnimationTl.current.add(
+      gsap.to(writeAnimationElement.current, {
+        duration: 0.3,
+        scale: 0,
+        opacity: 0,
+        delay: 2.5
+      })
+    );
     // setActiveMessages((prev: any) => ([
     //   ...prev,
     //   ...messages
@@ -251,12 +276,7 @@ const WelcomeBoxComponent = () => {
   return (
     <>
       {/* 
-        Welcome info to zdjęcie 50% border-radius 
-        odwzorowanie messengera, po wczytaniu strony pojawia się chmurka obok zdjęcia z przywitaniem
-        oraz zachęcająca do kliknięcia
-        po kliknięciu otwiera się popup z informacjami o mnie (kim jestem, itp.)
         przy kliknięciu opcji wysłania odemnie wiadomości puszczać dźwięk wiadomości z Linkedina
-
         po wybraniu opcji przez uzytkownika animacja 3 kropek pisania i dopiero po chwili pokazanie faktyczej wiadomosci
       */}
       <WelcomeBox>
@@ -302,7 +322,7 @@ const WelcomeBoxComponent = () => {
               {/* <Image src={message.admin.image} width="100%" height="100%" /> */}
             </WelcomeBoxMessageImage>
             <div>
-              <WelcomeBoxMessageText writingAnimation={true}>
+              <WelcomeBoxMessageText ref={writeAnimationElement} writingAnimation={true}>
                 <span></span>
                 <span></span>
                 <span></span>
