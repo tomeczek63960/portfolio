@@ -46,25 +46,37 @@ const WelcomeBoxConversation = styled.div`
   flex-direction: column;
 `;
 const WelcomeBoxMessage = styled.div.attrs((props: {position?: string, writingAnimation?: boolean}) => props)`
-  font-size: 12px;
+  font-size: 11px;
   color: #cacaca;
   display: flex;
   gap: 10px;
-  padding-right: 60px;
+  padding-right: 15px;
+  @media screen and (min-width: 768px) {
+    padding-right: 60px;
+    font-size: 12px;
+  }
   ${
     ({ position }) => position === 'right' && css`
-      padding-right: 0;
-      padding-left: 60px;
       justify-content: flex-end;
+      padding-right: 0;
+      padding-left: 15px;
+      @media screen and (min-width: 768px) {
+        padding-left: 60px;
+        padding-right: 0;
+      }
     `
   }
 `;
 const WelcomeBoxMessageImage = styled.div.attrs((props: {type: string}) => props)`
+  margin-top: 15px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
+  @media screen and (min-width: 768px) {
+    margin-top: 0;
+  }
   ${
     ({ type }) => type === 'user' ? "order: 1;" : "order: -1;"
   };
@@ -75,13 +87,16 @@ const WelcomeBoxMessageImage = styled.div.attrs((props: {type: string}) => props
 `;
 const WelcomeBoxMessageText = styled.div.attrs((props: {position?: string, writingAnimation?: boolean, visible?: boolean}) => props)`
   margin-top: 10px;
-  padding: 10px 13px;
+  padding: 8px 11px;
   background: rgb(234, 240, 246);
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
   color: #000;
   line-height: 1.4;
   width: fit-content;
+  @media screen and (min-width: 768px) {
+    padding: 10px 13px;
+  }
   ${
     ({ position }) => position === 'right' ? "border-top-left-radius: 4px;" : "border-top-right-radius: 4px;"
   };
@@ -125,19 +140,40 @@ const WelcomeBoxOptions = styled.div`
   margin-top: 80px;
   h4 {
     color: black;
+    font-family: Arial;
   }
   button {
-    background: #eaeaea;
-    color: black;
-    padding: 5px;
+    text-align: left;
     cursor: pointer;
+    background-color: black;
+    color: #fff;
+    line-height: 1.4;
+    width: fit-content;
+    padding: 8px 11px;
+    font-size: 11px;
+    font-weight: 600;
+    transition: 0.3s;
+    @media screen and (min-width: 768px) {
+      padding: 10px 13px;
+      font-size: 12px;
+    }
+    &[disabled] {
+      pointer-events: none;
+      color: #000;
+      /* background-color: #23074d; */
+      background-color: #eaf0f6;
+      text-decoration: line-through;
+    }
   }
 `;
 const WelcomeBoxOptionsList = styled.div`
+  margin-top: 10px;
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 const WelcomeBoxComponent = () => {
+  // zamiast dodawać wysokość do tego elementu zmienić to na jakiś scroll lub coś co nie będzie dawało przeskoku
   const [activeMessages, setActiveMessages] = useState<any>([
     {
       id: 1,
@@ -286,22 +322,26 @@ const WelcomeBoxComponent = () => {
   const writeAnimationElement = useRef<any>();
   const writingAnimationTl = useRef<any>();
   const welcomeBoxConversation = useRef<any>();
+  const welcomeBoxOptions = useRef<any>();
   let isFirst = true;
   const headInfo = {
     image: '/tk.jpeg',
     name: 'Tomasz Kardel',
     position: 'Front-end Developer'
   }
-  const writeMessage = (message: any) => {
+  const writeMessage = (event: React.MouseEvent<HTMLElement>, message: any) => {
     const togglerMessages = newMessages.filter((msg: any) => msg.toggler === message.toggler);
-
+    const target = event.target as HTMLInputElement;
+    target.setAttribute('disabled', 'true');
     setMessagesQueue((prev: any) => ([
       ...prev,
       ...togglerMessages
     ]));
   }
   useEffect(() => {
+    welcomeBoxOptions.current.style.pointerEvents = 'all';
     if (messagesQueue.length) {
+      welcomeBoxOptions.current.style.pointerEvents = 'none';
       if (messagesQueue[0].type === 'admin') {
         writeAnimationWelcomeBox.current.style.justifyContent = 'flex-start';
         writeAnimationElement.current.style.borderTopLeftRadius = '0';
@@ -401,9 +441,9 @@ const WelcomeBoxComponent = () => {
 
           { messages.length && <WelcomeBoxOptions>
               <h4>Wybierz co Ciebie interesuje</h4>
-              <WelcomeBoxOptionsList>
+              <WelcomeBoxOptionsList ref={welcomeBoxOptions}>
                 { 
-                  messages.map((message) => <button key={message.toggler} onClick={() => writeMessage(message)}>{ message.toggler }</button>)
+                  messages.map((message) => <button key={message.toggler} onClick={(e) => writeMessage(e, message)}>{ message.toggler }</button>)
                 }
               </WelcomeBoxOptionsList>
             </WelcomeBoxOptions>
