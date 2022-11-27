@@ -44,6 +44,9 @@ const WelcomeBoxConversation = styled.div`
   padding: 20px 10px;
   display: flex;
   flex-direction: column;
+  height: 350px;
+  overflow: auto;
+  scroll-behavior: smooth;
 `;
 const WelcomeBoxMessage = styled.div.attrs((props: {position?: string, writingAnimation?: boolean}) => props)`
   font-size: 11px;
@@ -137,7 +140,8 @@ const WelcomeBoxMessageText = styled.div.attrs((props: {position?: string, writi
   }
 `;
 const WelcomeBoxOptions = styled.div`
-  margin-top: 80px;
+  margin-top: 0px;
+  padding: 20px 10px;
   h4 {
     color: black;
     font-family: Arial;
@@ -153,6 +157,7 @@ const WelcomeBoxOptions = styled.div`
     font-size: 11px;
     font-weight: 600;
     transition: 0.3s;
+    border: 2px solid black;
     @media screen and (min-width: 768px) {
       padding: 10px 13px;
       font-size: 12px;
@@ -164,6 +169,10 @@ const WelcomeBoxOptions = styled.div`
       background-color: #eaf0f6;
       text-decoration: line-through;
     }
+    &:hover {
+      color: black;
+      background-color: white;
+    }
   }
 `;
 const WelcomeBoxOptionsList = styled.div`
@@ -173,7 +182,6 @@ const WelcomeBoxOptionsList = styled.div`
   gap: 10px;
 `;
 const WelcomeBoxComponent = () => {
-  // zamiast dodawać wysokość do tego elementu zmienić to na jakiś scroll lub coś co nie będzie dawało przeskoku
   const [activeMessages, setActiveMessages] = useState<any>([
     {
       id: 1,
@@ -331,12 +339,18 @@ const WelcomeBoxComponent = () => {
   }
   const writeMessage = (event: React.MouseEvent<HTMLElement>, message: any) => {
     const togglerMessages = newMessages.filter((msg: any) => msg.toggler === message.toggler);
-    const target = event.target as HTMLInputElement;
-    target.setAttribute('disabled', 'true');
-    setMessagesQueue((prev: any) => ([
-      ...prev,
-      ...togglerMessages
-    ]));
+    // const target = event.target as HTMLInputElement;
+    // target.setAttribute('disabled', 'true');
+    const isInConversation = welcomeBoxConversation.current.querySelector(`[data-scroll-to="${message.toggler}"]`)
+    if (!isInConversation) {
+      setMessagesQueue((prev: any) => ([
+        ...prev,
+        ...togglerMessages
+      ]));
+    } else {
+      welcomeBoxConversation.current.scrollTo(0, isInConversation.offsetTop - welcomeBoxConversation.current.offsetTop);
+    }
+
   }
   useEffect(() => {
     welcomeBoxOptions.current.style.pointerEvents = 'all';
@@ -363,9 +377,13 @@ const WelcomeBoxComponent = () => {
           ...prev,
           firstEll
         ]));
+
       });
     }
   }, [messagesQueue, activeMessages]);
+  useEffect(() => {
+    welcomeBoxConversation.current.scrollTo(0, welcomeBoxConversation.current.scrollHeight);
+  }, [activeMessages])
 
   useEffect(() => {
     if (!isFirst) return;
@@ -412,8 +430,8 @@ const WelcomeBoxComponent = () => {
 
         <WelcomeBoxConversation ref={welcomeBoxConversation}>
           {
-            activeMessages.map((message: any) => <>
-              <WelcomeBoxMessage position={message.type === 'user' ? 'right' : 'left'}>
+            activeMessages.map((message: any) => 
+              <WelcomeBoxMessage position={message.type === 'user' ? 'right' : 'left'} data-scroll-to={message.toggler}>
                 <div>
                   <WelcomeBoxMessageText
                       position={message.type === 'user' ? 'right' : 'left'}
@@ -424,7 +442,6 @@ const WelcomeBoxComponent = () => {
                   {message.image && <Image src={message.image} width="100%" height="100%" />}
                 </WelcomeBoxMessageImage>
               </WelcomeBoxMessage>
-              </>
             )
           }
 
@@ -439,17 +456,16 @@ const WelcomeBoxComponent = () => {
             </div>
           </WelcomeBoxMessage> 
 
-          { messages.length && <WelcomeBoxOptions>
-              <h4>Wybierz co Ciebie interesuje</h4>
-              <WelcomeBoxOptionsList ref={welcomeBoxOptions}>
-                { 
-                  messages.map((message) => <button key={message.toggler} onClick={(e) => writeMessage(e, message)}>{ message.toggler }</button>)
-                }
-              </WelcomeBoxOptionsList>
-            </WelcomeBoxOptions>
-          }
-
         </WelcomeBoxConversation>
+          { messages.length && <WelcomeBoxOptions>
+            <h4>Wybierz co Ciebie interesuje</h4>
+            <WelcomeBoxOptionsList ref={welcomeBoxOptions}>
+              { 
+                messages.map((message) => <button key={message.toggler} onClick={(e) => writeMessage(e, message)}>{ message.toggler }</button>)
+              }
+            </WelcomeBoxOptionsList>
+          </WelcomeBoxOptions>
+          }
       </WelcomeBox>
     </>
   )

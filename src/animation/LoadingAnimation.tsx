@@ -2,7 +2,6 @@ import { gsap } from "gsap";
 import { TransitionContext } from "src/context/TransitionContext";
 import { useState, useContext, useRef, useEffect, useLayoutEffect } from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-// import TransitionLayout from "src/animation/TransitionLayout"
 import styled from 'styled-components'
 import { useRouter } from "next/router";
 
@@ -15,7 +14,7 @@ const Html = styled.div`
   height: 100vh;
   z-index: -1;
   background: white;
-  background: black;
+  /* background: black; */
   font-family: Times;
 `;
 const HtmlBefore = styled.span`
@@ -28,7 +27,6 @@ const HtmlBefore = styled.span`
   background: black;
   border-radius: 50%;
   display: block;
-  /* animation: loadPage 28s forwards; */
 `;
 const HtmlAfter = styled.span`
   width: 50px;
@@ -42,7 +40,6 @@ const HtmlAfter = styled.span`
   border-radius: 50%;
   transform: translateX(-50%);
   z-index: 1;
-  /* animation: loadPageContentAnim 4s 3.7s forwards; */
   opacity: 0;
   color: white;
   font-size: 25px;
@@ -183,7 +180,7 @@ export default function LoadingAnimation({ children }: {children: any}) {
         opacity: 0
       }), '-=0.7'
     )
-    return setDisplayChildren(children)
+    // return setDisplayChildren(children)
     if (timeline.duration() === 0 || flag.current) {
       if (!flag.current) {
         console.log('pep 1')
