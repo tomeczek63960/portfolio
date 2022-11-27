@@ -15,7 +15,7 @@ const Html = styled.div`
   height: 100vh;
   z-index: -1;
   background: white;
-  /* background: black; */
+  background: black;
   font-family: Times;
 `;
 const HtmlBefore = styled.span`
@@ -183,7 +183,7 @@ export default function LoadingAnimation({ children }: {children: any}) {
         opacity: 0
       }), '-=0.7'
     )
-    // return setDisplayChildren(children)
+    return setDisplayChildren(children)
     if (timeline.duration() === 0 || flag.current) {
       if (!flag.current) {
         console.log('pep 1')
