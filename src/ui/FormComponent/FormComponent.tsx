@@ -32,7 +32,6 @@ function FormComponent() {
   }
   return (
     <StyledForm ref={formRef} onSubmit={onSubmit} >
-        <h1>Contact form</h1>
         <Input isFormDirty={isFormDirty} type="text" placeholder='Imię' validation={nameValidation} />
         <Input isFormDirty={isFormDirty} type="text" placeholder='Nazwisko' validation={surnameValidation} />
         <Input isFormDirty={isFormDirty} type="text" placeholder='E-mail' validation={emailValidation} />

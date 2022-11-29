@@ -18,12 +18,15 @@ const LeftTransition = styled.div.attrs((props: {ref: HTMLButtonElement}) => pro
 const RightTransition = styled.div.attrs((props: {ref: HTMLButtonElement}) => props)`
   width: 50%;
   height: 100vh;
-  background: black;
+  background: white;
   position: fixed;
   right: 0;
   top: 0;
   z-index: 10000;
   transform: translateY(-100%);
+  @media screen and (min-width: 768px) {
+    background: black;
+  }
 `
 const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) => props)`
   width: 100px;
@@ -99,8 +102,12 @@ const HtmlText = styled.h4.attrs((props: {theme: string}) => props)`
   line-height: 1;
   font-family: Roboto;
   background-color: transparent;
-  mix-blend-mode: ${({ theme }) => theme === 'light' ? 'darken' : 'screen'};
-  color: ${({ theme }) => theme === 'light' ? 'black' : 'white'};
+  mix-blend-mode: darken;
+  color: black;
+  @media screen and (min-width: 768px) {
+    mix-blend-mode: ${({ theme }) => theme === 'light' ? 'darken' : 'screen'};
+    color: ${({ theme }) => theme === 'light' ? 'black' : 'white'};
+  }
   transition: none;
   & + h4 {
     transform: translateY(-100%);

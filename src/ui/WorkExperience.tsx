@@ -124,7 +124,7 @@ const WorkExperience = () => {
     },
     {
       time: '2020',
-      content: 'Rozpoczęcie pierwszej pracy jako fronted dev w Bluepaprica / Tandemite up to "Now"'
+      content: 'Październik 2020 był miesiącem w którym podjąłem się pierwszej pracy jako frontend dev (która trwa aż do teraz)'
     },
     {
       time: 'Future',

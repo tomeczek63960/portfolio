@@ -10,7 +10,7 @@ const Layout = (props: any) => {
       <HeaderMobile />
       <div className="container">
         <div className="container__left">
-          <h1> <FormattedMessage id="page.home.description" /> </h1>
+          {/* <h1> <FormattedMessage id="page.home.description" /> </h1> */}
           <main>
             { props.children }
           </main>

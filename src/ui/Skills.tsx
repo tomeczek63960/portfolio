@@ -358,6 +358,9 @@ function Skills() {
 
   return (
     <>
+      <p>Poniżej przedstawiam swój stack technologiczny, jednak warto mieć na uwadze że nic co posiada dokumentację nie jest mi straszne 😱</p>
+      <p>Szybko się uczę oraz jestem otwarty na nowe doświadczenia 🐣</p>
+
       <h2>Umiejętności czysto jsowe</h2>
       <StyledCircleCarousel ref={ technicalCarousel } className='circle-carousel' data-speed='800' data-autoplay='4500'>
         <StyledSlidesText ref={ technicalCarouselText } className='slides'>

@@ -417,6 +417,8 @@ const WelcomeBoxComponent = () => {
   }, []);
   return (
     <>
+      <h3>Jezeli chcesz dowiedzieć się coś o mnie</h3>
+      <br />
       <WelcomeBox>
         <WelcomeBoxHead>
           <WelcomeBoxImage>

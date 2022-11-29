@@ -13,6 +13,7 @@ html {
   position: relative;
   &.no-scroll {
     overflow: hidden;
+    height: 100vh;
     &.body-padding {
       @media screen and (hover) {
         padding-right: 17px;
