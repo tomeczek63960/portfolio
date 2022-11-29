@@ -222,7 +222,7 @@ function Skills() {
       icon: Nuxt,
       text: {
         heading: 'Nuxt.js',
-        text: 'Nuxt.js to duże możliwości, zarówno dla statycznych stron jak stron z dynamicznymi danymi'
+        text: 'Nuxt 2 oraz Nuxt 3, options Api oraz Composition Api'
       }
     },
     {

@@ -102,6 +102,7 @@ const Header = () => {
   const socialMediaRef = useRef<any>();
 
   const handleScroll = () => {
+    if (!bars.current) return;
     currentScrollPos.current = window?.pageYOffset
     const headerHeight = `-${ headerBar?.current?.offsetHeight }px`
 

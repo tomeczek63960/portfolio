@@ -2,7 +2,7 @@ import { gsap } from "gsap";
 import { TransitionContext } from "src/context/TransitionContext";
 import { useState, useContext, useRef, useEffect, useLayoutEffect } from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { useRouter } from "next/router";
 
 const LeftTransition = styled.div.attrs((props: {ref: HTMLButtonElement}) => props)`
@@ -68,6 +68,44 @@ const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) => props
     transform: scaleY(0);
   }
 `
+const HtmlTextWrapper = styled.div.attrs((props: {position: string}) => props)`
+  position: fixed;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 1000000000;
+  width: 50%;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  ${({ position }) => position === 'left' ? css`
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    h4 {
+      transform: translateX(50%);
+    }
+  ` : css `
+    display: flex;
+    justify-content: flex-start;
+    left: 50%;
+    h4 {
+      transform: translateX(-50%);
+    }
+  `
+  }
+`;
+const HtmlText = styled.h4.attrs((props: {theme: string}) => props)`
+  font-size: 22px;
+  line-height: 1;
+  font-family: Roboto;
+  background-color: transparent;
+  mix-blend-mode: ${({ theme }) => theme === 'light' ? 'darken' : 'screen'};
+  color: ${({ theme }) => theme === 'light' ? 'black' : 'white'};
+  transition: none;
+  & + h4 {
+    transform: translateY(-100%);
+  }
+`;
 
 export default function TransitionLayout({ children }: {children: any}) {
   const { pathname, locale } = useRouter()
@@ -82,7 +120,8 @@ export default function TransitionLayout({ children }: {children: any}) {
   const leftCircle = useRef<any>()
   const rightCircle = useRef<any>()
   const flag = useRef<any>(false)
-
+  const htmlTextLeftWrapper = useRef<any>();
+  const htmlTextRightWrapper = useRef<any>();
   useIsomorphicLayoutEffect(() => {
     if (isInitAnimation) return;
     if (!shouldAnimate) {
@@ -146,11 +185,20 @@ export default function TransitionLayout({ children }: {children: any}) {
       opacity: 0,
       pointerEvents: 'none'
     });
-    
+
+    enterTl.to(htmlTextLeftWrapper.current, {
+      duration: 1,
+      opacity: 1
+    }, 'circle-show');
+    enterTl.to(htmlTextRightWrapper.current, {
+      duration: 1,
+      opacity: 1
+    }, 'circle-show');
     enterTl.to(centerCircle.current, {
       duration: 1,
       opacity: 1
-    });
+    }, '-=0.5');
+
     enterTl.to(leftCircle.current, {
       duration: 1,
       scaleY: 1
@@ -168,10 +216,18 @@ export default function TransitionLayout({ children }: {children: any}) {
       duration: 1,
       y: '100%'
     }, 'start');
+    enterTl.to(htmlTextLeftWrapper.current, {
+      duration: 0.3,
+      opacity: 0
+    }, 'animation-end');
+    enterTl.to(htmlTextRightWrapper.current, {
+      duration: 0.3,
+      opacity: 0
+    }, 'animation-end');
     enterTl.to(el.current, {
       duration: 1,
       opacity: 1
-    });
+    }, 'animation-end');
     enterTl.to(centerCircle.current, {
       duration: 0.3,
       opacity: 0
@@ -198,6 +254,12 @@ export default function TransitionLayout({ children }: {children: any}) {
   }
 
   return <>
+    <HtmlTextWrapper ref={htmlTextLeftWrapper} position="left">
+      <HtmlText theme="light">Created With Passion</HtmlText>
+    </HtmlTextWrapper>
+    <HtmlTextWrapper ref={htmlTextRightWrapper} position="right">
+      <HtmlText theme="dark">Created With Passion</HtmlText>
+    </HtmlTextWrapper>
     <LeftTransition ref={leftTransition}></LeftTransition>
     <RightTransition ref={rightTransition}></RightTransition>
     <CenterCircle ref={centerCircle}>

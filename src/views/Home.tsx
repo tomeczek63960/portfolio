@@ -6,13 +6,10 @@ import WelcomeBox from 'src/ui/WelcomeBox/WelcomeBox';
 
 const Home: NextPage = () => {
   return (
-    // przy kazdym przejsciu strony robić auto scroll do samej góry
     // dodać stronę cv z mozliwością pobrania jako pdf
-    // do animacji głównej dodać 2 kólki (created with) (passion)
-    // w głównej animacji Inicjały animować przez gsapa jako rysowane literki
+    // w głównej animacji Inicjały animować przez gsapa jako rysowane literki svg
 
-
-    // wszystko rozdzielić na komponenty w folderach (plik tsx ze skryptami oraz oddzielny plik z deklaracjami styli dla komponentu)
+    // wszystko rozdzielić na komponenty w folderach (plik tsx ze skryptami oraz oddzielny plik z deklaracjami styli dla komponentu i testy)
     <>
       <h1>Sekcja przywitania (zdjęcie)</h1>
       <WelcomeBox />
