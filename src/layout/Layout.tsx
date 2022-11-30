@@ -2,6 +2,7 @@ import Head from "./Head"
 import Header from 'src/ui/Header/Header';
 import HeaderMobile from 'src/ui/Header/HeaderMobile';
 import { FormattedMessage, useIntl } from "react-intl";
+import FooterComponent from "src/ui/Footer/Footer";
 
 const Layout = (props: any) => {
   return (
@@ -19,6 +20,7 @@ const Layout = (props: any) => {
           <Header />
         </div>
       </div>
+      <FooterComponent />
     </>
   )
 }

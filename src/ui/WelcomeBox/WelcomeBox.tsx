@@ -44,9 +44,12 @@ const WelcomeBoxConversation = styled.div`
   padding: 20px 10px;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 250px;
   overflow: auto;
   scroll-behavior: smooth;
+  @media screen and (min-width: 1024px) {
+    height: 350px;
+  }
 `;
 const WelcomeBoxMessage = styled.div.attrs((props: {position?: string, writingAnimation?: boolean}) => props)`
   font-size: 11px;
