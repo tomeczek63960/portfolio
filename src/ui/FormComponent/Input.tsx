@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components'
-import colors from 'src/ui/globalStyled/variables';
 import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
+import { colors } from 'src/styled/mixins';
 
 const InputGroup = styled.div`
   position: relative;
@@ -14,7 +14,7 @@ const InputGroup = styled.div`
     content: '';
     width: 0;
     height: 2px;
-    background: #111;
+    background: ${colors.blackPrimary};
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -36,14 +36,13 @@ const StyledLabel = styled.label`
   left: 0;
   font-size: 18px;
   line-height: 1;
-  color: #222;
+  color: ${colors.blackSecondary};
   transform-origin: 0px 0px;
   cursor: pointer;
 `;
-
 const StyledInput = styled.input`
     background: transparent;
-    color: ${ colors.$pink };
+    color: ${ colors.pink };
     height: 35px;
     font: 15px/24px "Lato", Arial, sans-serif;
     letter-spacing: 1px;
@@ -51,7 +50,7 @@ const StyledInput = styled.input`
     width: 100%;
     transition: 0.3s ease-in-out;
     border: none;
-    border-bottom: 2px solid #222;
+    border-bottom: 2px solid ${ colors.blackSecondary };;
 `;
 const StyledInputBorder = styled.span`
   display: block;
@@ -61,7 +60,7 @@ const StyledInputBorder = styled.span`
   z-index: 10;
   height: 2px;
   width: 0%;
-  background: #7928ca;
+  background: ${colors.purple};
 `;
 const StyledInputBorderAfter = styled.span`
   display: block;
@@ -71,9 +70,8 @@ const StyledInputBorderAfter = styled.span`
   z-index: 15;
   height: 2px;
   width: 0%;
-  background: #222;
+  background: ${colors.blackSecondary};
 `;
-
 const StyledInputErrorBorder = styled.span`
   display: block;
   position: absolute;
@@ -82,9 +80,8 @@ const StyledInputErrorBorder = styled.span`
   z-index: 10;
   height: 2px;
   width: 0%;
-  background: #dd1818;
+  background: ${colors.error};
 `;
-
 const StyledInputErrorBorderAfter = styled.span`
   display: block;
   position: absolute;
@@ -93,7 +90,7 @@ const StyledInputErrorBorderAfter = styled.span`
   z-index: 10;
   height: 2px;
   width: 0%;
-  background: #222;
+  background: ${colors.blackSecondary};
 `;
 const StyledInputSuccessBorder = styled.span`
   display: block;
@@ -103,9 +100,8 @@ const StyledInputSuccessBorder = styled.span`
   z-index: 10;
   height: 2px;
   width: 0%;
-  background: #15ee11;
+  background: ${colors.success};
 `;
-
 const StyledInputSuccessBorderAfter = styled.span`
   display: block;
   position: absolute;
@@ -114,7 +110,7 @@ const StyledInputSuccessBorderAfter = styled.span`
   z-index: 10;
   height: 2px;
   width: 0%;
-  background: #222;
+  background: ${colors.blackSecondary};
 `;
 
 function Input({ type, placeholder, validation, isFormDirty }: { type: string, placeholder: string, validation: Function, isFormDirty: boolean }) {
@@ -187,7 +183,7 @@ function Input({ type, placeholder, validation, isFormDirty }: { type: string, p
     tlLabel.current.to(labelRef.current, {
       duration: 0.2,
       ease: "M0,0 C0.4,0 0.2,1 1,1",
-      color: "#fff",
+      color: colors.white,
       scale: 0.75,
       yPercent: -120
     });

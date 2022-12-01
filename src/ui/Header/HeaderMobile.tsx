@@ -5,13 +5,12 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { gsap } from "gsap";
 import Logo from 'src/ui/Logo';
-import Linkedin from '../../../public/svg/linkedin.svg';
-import Github from '../../../public/svg/github.svg';
 import SocialMedia from 'src/ui/SocialMedia';
+import { responsive, colors } from 'src/styled/mixins';
 
 const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props)`
   margin-top: 20px;
-  color: white;
+  color: ${colors.white};
   font-size: 18px;
   line-height: 1;
   display: block;
@@ -23,9 +22,9 @@ const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props)`
   &:first-child {
     margin-top: 0;
   }
-`
+`;
 const MobileNav = styled.div`
-  background: black;
+  background: ${colors.black};
   width: 100%;
   position: fixed;
   top: 80px;
@@ -33,12 +32,12 @@ const MobileNav = styled.div`
   z-index: 2;
   height: 0;
   overflow: hidden;
-`
+`;
 const MobileNavContainer = styled.div`
   padding: 50px 25px;
   display: flex;
   flex-direction: column;
-`
+`;
 const StyledBars = styled.button`
   width: 40px;
   height: 40px;
@@ -51,7 +50,7 @@ const StyledBars = styled.button`
     width: 4px;
     height: 4px;
     border-radius: 2px;
-    background: white;
+    background: ${colors.white};
     display: block;
     position: absolute;
     top: 50%;
@@ -66,7 +65,7 @@ const StyledBars = styled.button`
     transform-origin: center center;
     left: calc(50% + 12px);
   }
-`
+`;
 const HeaderBar = styled.div`
   display: flex;
   justify-content: space-between;
@@ -77,11 +76,11 @@ const HeaderBar = styled.div`
   top: 0;
   z-index: 1;
   width: 100%;
-  background: black;
-  @media screen and (min-width: 768px) {
+  background: ${colors.black};
+  ${responsive.tabletP`
     display: none;
-  }
-`
+  `}
+`;
 
 const Header = () => {
   const { pathname, locale, locales=[] } = useRouter();
@@ -126,7 +125,7 @@ const Header = () => {
     } else {
       gsap.to(headerBar.current, {
         duration: 0.1,
-        boxShadow: '0 0.7rem 2rem #ffffff0f'
+        boxShadow: `0 0.7rem 2rem ${colors.darken}`
       });
     }
 

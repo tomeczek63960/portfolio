@@ -4,12 +4,12 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import styled from 'styled-components'
 import HandleText from 'src/helpers/handleText'
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
+import { responsive, colors } from 'src/styled/mixins';
 
 const StyledTimeline = styled.section`
   margin-top: 35px;
   max-width: 310px;
   ul {
-    /* margin-top: 30px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,17 +28,16 @@ const StyledTimeline = styled.section`
   }
   .timeline-paragraph {
     opacity: 1;
-    /* transform: translateX(-60%); */
   }
   .data, p {
     font-size: 14px;
     line-height: 20px;
     transition: opacity 0.2s;
-    color: #cacaca;
-    @media screen and (min-width: 768px) {
+    color: ${colors.grayLightSecondary};
+    ${responsive.tabletP`
       font-size: 16px;
       line-height: 23px;
-    }
+    `}
   }
   .date {
     padding-right: 10px;
@@ -49,14 +48,14 @@ const StyledTimeline = styled.section`
     opacity: 0;
     transform: translateX(-30%);
     font-weight: 700;
-    color: #28b434;
-    @media screen and (min-width: 768px) {
+    color: ${colors.green};
+    ${responsive.tabletP`
       font-size: 14px;
       line-height: 23px;
-    }
+    `}
   }
   .timeline-line {
-    background: #cacaca;
+    background: ${colors.grayLightSecondary};
     width: 4px;
     border-radius: 12px;
     position: relative;
@@ -68,14 +67,14 @@ const StyledTimeline = styled.section`
     position: absolute;
   }
   .timeline-progress {
-    background: #cacaca;
+    background: ${colors.grayLightSecondary};
     height: 100%;
     top: 10px;
     left: 50px;
   }
   .timeline-progress-active {
     height: 0%;
-    background: #6428b4;
+    background: ${colors.purpleSecondary};
     background-size: 0% 0%;
     z-index: 1;
     top: 0;
@@ -87,7 +86,7 @@ const StyledTimeline = styled.section`
     position: absolute;
 
     border-radius: 50%;
-    background: #cacaca;
+    background: ${colors.grayLightSecondary};
     width: 4px;
     height: 4px;
     transform: translate(-50%, -50%);
@@ -101,14 +100,10 @@ const StyledTimeline = styled.section`
     height: 0%;
     top: 0%;
     left: 0%;
-    /* transition: 1s linear; */
   }
 `;
-const StyledTimelineList = styled.ul`
-
-`;
-const StyledTimelineListItem = styled.li`
-`;
+const StyledTimelineList = styled.ul``;
+const StyledTimelineListItem = styled.li``;
 
 const WorkExperience = () => {
   const triggerRef = useRef<any>(null);

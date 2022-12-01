@@ -4,10 +4,11 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import Linkedin from '../../../public/svg/linkedin.svg';
 import Github from '../../../public/svg/github.svg';
+import { responsive, colors } from 'src/styled/mixins';
 
 const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props)`
   margin: 5px 0;
-  color: black;
+  color: ${colors.black};
   font-family: 'Noto Serif Oriya', serif;
   font-size: 22px;
   line-height: 30px;
@@ -15,32 +16,31 @@ const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props)`
   font-weight: 700;
   transition: 0.3s;
   &:hover {
-    color: #6428b4;
+    color: ${colors.purpleSecondary};
   }
-  @media screen and (min-width: 1024px) {
+  ${responsive.tabletL`
     font-size: 24px;
     line-height: 33px;
-  }
-  @media screen and (min-width: 1366px) {
+  `}
+  ${responsive.desktop`
     margin: 10px 0;
     font-size: 26px;
     line-height: 36px;
-  }
-  @media screen and (min-width: 1920px) {
-    margin: 10px 0;
+  `}
+  ${responsive.desktopHd`
     font-size: 36px;
     line-height: 48px;
-  }
-`
+  `}
+`;
 const DesktopNav = styled.div`
   height: 100%;
   display: none;
-  @media screen and (min-width: 768px) {
+  ${responsive.tabletP`
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-`
+  `}
+`;
 const DesktopNavSocialMeida = styled.div`
   margin-bottom: 20px;
   display: flex;
@@ -58,7 +58,7 @@ const DesktopNavSocialMeida = styled.div`
       }
     }
     &:hover svg path {
-      fill: #6428b4;
+      fill: ${colors.purpleSecondary};
     }
   }
 `;

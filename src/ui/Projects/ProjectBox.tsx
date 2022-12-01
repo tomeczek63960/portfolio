@@ -6,6 +6,7 @@ import ArrowLeft from "../../../public/svg/arrow-left.svg"
 import World from "../../../public/svg/world.svg"
 import Github from "../../../public/svg/github.svg"
 import CustomImage from 'src/ui/Image/CustomImage';
+import { responsive, colors } from 'src/styled/mixins';
 
 const ProjectBox = styled.div`
   width: 100%;
@@ -14,7 +15,7 @@ const ProjectBox = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  background: white;
+  background: ${colors.white};
   z-index: 100;
   overflow-y: scroll;
   transform: translateX(100%);
@@ -36,7 +37,7 @@ const ProjectBoxShadow = styled.div`
 `;
 const ProjectBoxClose = styled.div`
   padding: 20px;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid ${colors.whiteSecondary};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,17 +47,17 @@ const ProjectBoxClose = styled.div`
     cursor: pointer;
   }
   h4 {
-    color: black;
+    color: ${colors.black};
   }
 `;
 const ProjectBoxContent = styled.div`
   padding: 20px;
-  color: black;
+  color: ${colors.black};
   .project-box__text {
     margin-top: 30px;
   }
   p {
-    color: #545454;
+    color: ${colors.grayDark};
     font-size: 14px;
   }
   h3 {
@@ -77,13 +78,13 @@ const ProjectBoxReference = styled.div`
   }
   a {
     word-break: break-all;
-    color: #0b0c15;
+    color: ${colors.blackTertiary};
     font-weight: 600;
     font-size: 11px;
-    @media screen and (min-width: 768px) {
+    ${responsive.tabletP`
       font-size: 13px;
       font-weight: 700;
-    }
+    `}
   }
   svg {
     width: 15px;
@@ -96,8 +97,8 @@ const ProjectBoxLink = styled.a`
   width: 100%;
   padding: 25px;
   text-align: center;
-  background-color: black;
-  color: white;
+  background-color: ${colors.black};
+  color: ${colors.white};
   font-size: 20px;
 `;
 const ProjectBoxTechnologies = styled.div`
@@ -107,7 +108,7 @@ const ProjectBoxTechnologies = styled.div`
   span {
     display: block;
     padding: 5px 10px;
-    background: lightgray;
+    background: ${colors.grayLight};
     color: black;
     margin: 5px;
     font-weight: 700;
@@ -121,22 +122,25 @@ const ProjectBoxCategories = styled.div`
   span {
     display: block;
     padding: 5px 10px;
-    background: lightgray;
-    color: black;
+    background: ${colors.grayLight};
+    color: ${colors.black};
     margin: 5px;
     font-weight: 700;
     font-size: 12px;
+
+    &.danger,
+    &.success,
+    &.warning {
+      color: ${colors.white};
+    }
     &.danger {
-      color: white;
-      background: #dd1818;
+      background: ${colors.error};
     }
     &.success {
-      color: white;
-      background: #15ee11;
+      background: ${colors.success};
     }
     &.warning {
-      color: white;
-      background: #f37335;
+      background: ${colors.warning};
     }
   }
 `;

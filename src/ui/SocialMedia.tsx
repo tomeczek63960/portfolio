@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import Linkedin from '../../public/svg/linkedin.svg';
 import Github from '../../public/svg/github.svg';
+import { colors } from 'src/styled/mixins';
 
 const SocialMeidaLinks = styled.div.attrs((props: {theme: string}) => props)`
   margin-bottom: 20px;
@@ -18,11 +19,11 @@ const SocialMeidaLinks = styled.div.attrs((props: {theme: string}) => props)`
       height: 30px;
       path {
         transition: 0.3s;
-        fill: ${ props => props.theme === 'dark' ? '#161614' : '#fff' }
+        fill: ${ props => props.theme === 'dark' ? colors.dark : colors.white }
       }
     }
     &:hover svg path {
-      fill: #6428b4;
+      fill: ${colors.purpleSecondary};
     }
   }
 `;

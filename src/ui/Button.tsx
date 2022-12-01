@@ -2,12 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components'
 import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
-import colors from 'src/ui/globalStyled/variables';
+import { colors } from 'src/styled/mixins';
 
 const StyledButton = styled.button.attrs((props: {ref: HTMLButtonElement}) => props)`
   margin-top: 40px;
   background: transparent;
-  color: #555;
+  color: ${colors.gray};
   height: 40px;
   font: 16px/30px "Lato", Arial, sans-serif;
   font-weight: 700;
@@ -26,7 +26,7 @@ const StyledButton = styled.button.attrs((props: {ref: HTMLButtonElement}) => pr
     content: "";
     height: 2px;
     width: 100%;
-    background: #222;
+    background: ${colors.blackSecondary};
     position: absolute;
     bottom: 0;
     left: 0;
@@ -40,7 +40,7 @@ const StyledButtonBorder = styled.span`
   z-index: 10;
   height: 2px;
   width: 0%;
-  background: #7928ca;
+  background: ${colors.purple};
 `;
 const StyledButtonBorderAfter = styled.span`
   display: block;
@@ -50,7 +50,7 @@ const StyledButtonBorderAfter = styled.span`
   z-index: 15;
   height: 2px;
   width: 0%;
-  background: #222;
+  background: ${colors.blackSecondary};
 `;
 
 function ButtonComponent({ children }: { children: string }) {
@@ -75,7 +75,7 @@ function ButtonComponent({ children }: { children: string }) {
     });
     tl.current.to(btnRef.current, {
       duration: 0.5,
-      color: '#7928ca'
+      color: colors.purple
     }, 'start');
   }, []);
 

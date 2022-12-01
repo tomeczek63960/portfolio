@@ -2,14 +2,15 @@ import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { gsap } from "gsap";
+import { responsive, colors } from 'src/styled/mixins';
 
 const WelcomeBox = styled.section`
-  background: white;
+  background: ${colors.white};
   border-radius: 5px;
   overflow: hidden;
 `;
 const WelcomeBoxHead = styled.div`
-  background: linear-gradient(-225deg, rgb(117, 93, 213) 35%, rgb(55, 136, 209) 100%);
+  background: linear-gradient(-225deg, ${colors.purple} 35%, ${colors.lightBlue} 100%);
   display: flex;
   gap: 10px;
   align-items: center;
@@ -24,11 +25,10 @@ const WelcomeBoxHeadParagraph = styled.p`
   line-height: 1;
 `;
 const WelcomeBoxHeadInfo = styled.div`
-  color: #fff;
+  color: ${colors.white};
   font-family: Arial;
 `;
 const WelcomeBoxImage = styled.div`
-  /* display: none; */
   width: 40px!important;
   height: 40px!important;
   border-radius: 50%;
@@ -47,29 +47,28 @@ const WelcomeBoxConversation = styled.div`
   height: 250px;
   overflow: auto;
   scroll-behavior: smooth;
-  @media screen and (min-width: 1024px) {
+  ${responsive.tabletL`
     height: 350px;
-  }
+  `}
 `;
 const WelcomeBoxMessage = styled.div.attrs((props: {position?: string, writingAnimation?: boolean}) => props)`
   font-size: 11px;
-  color: #cacaca;
   display: flex;
   gap: 10px;
   padding-right: 15px;
-  @media screen and (min-width: 768px) {
+  ${responsive.tabletP`
     padding-right: 60px;
     font-size: 12px;
-  }
+  `}
   ${
     ({ position }) => position === 'right' && css`
       justify-content: flex-end;
       padding-right: 0;
       padding-left: 15px;
-      @media screen and (min-width: 768px) {
+      ${responsive.tabletP`
         padding-left: 60px;
         padding-right: 0;
-      }
+      `}
     `
   }
 `;
@@ -80,9 +79,9 @@ const WelcomeBoxMessageImage = styled.div.attrs((props: {type: string}) => props
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  @media screen and (min-width: 768px) {
+  ${responsive.tabletP`
     margin-top: 0;
-  }
+  `}
   ${
     ({ type }) => type === 'user' ? "order: 1;" : "order: -1;"
   };
@@ -94,15 +93,15 @@ const WelcomeBoxMessageImage = styled.div.attrs((props: {type: string}) => props
 const WelcomeBoxMessageText = styled.div.attrs((props: {position?: string, writingAnimation?: boolean, visible?: boolean}) => props)`
   margin-top: 10px;
   padding: 8px 11px;
-  background: rgb(234, 240, 246);
+  background: ${colors.whiteTertiary};
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
-  color: #000;
+  color: ${colors.black};
   line-height: 1.4;
   width: fit-content;
-  @media screen and (min-width: 768px) {
+  ${responsive.tabletP`
     padding: 10px 13px;
-  }
+  `}
   ${
     ({ position }) => position === 'right' ? "border-top-left-radius: 4px;" : "border-top-right-radius: 4px;"
   };
@@ -116,14 +115,12 @@ const WelcomeBoxMessageText = styled.div.attrs((props: {position?: string, writi
 
   ${
     ({ writingAnimation }) => writingAnimation && css`
-      /* display: none; */
       transform: scale(0);
       opacity: 0;
-      /* background: transparent; */
       span {
         width: 6px;
         height: 6px;
-        background: #000;
+        background: ${colors.black};
         border-radius: 50%;
         display: inline-block;
         &:first-child {
@@ -146,35 +143,34 @@ const WelcomeBoxOptions = styled.div`
   margin-top: 0px;
   padding: 20px 10px;
   h4 {
-    color: black;
+    color: ${colors.black};
     font-family: Arial;
   }
   button {
     text-align: left;
     cursor: pointer;
-    background-color: black;
-    color: #fff;
+    background-color: ${colors.black};
+    color: ${colors.white};
     line-height: 1.4;
     width: fit-content;
     padding: 8px 11px;
     font-size: 11px;
     font-weight: 600;
     transition: 0.3s;
-    border: 2px solid black;
-    @media screen and (min-width: 768px) {
+    border: 2px solid ${colors.black};
+    ${responsive.tabletP`
       padding: 10px 13px;
       font-size: 12px;
-    }
+    `}
     &[disabled] {
       pointer-events: none;
-      color: #000;
-      /* background-color: #23074d; */
-      background-color: #eaf0f6;
+      color: ${colors.black};
+      background-color: ${colors.whiteTertiary};
       text-decoration: line-through;
     }
     &:hover {
-      color: black;
-      background-color: white;
+      color: ${colors.black};
+      background-color: ${colors.white};
     }
   }
 `;

@@ -23,21 +23,22 @@ import StyledComponents from "../../public/svg/styled-components.svg"
 import Php from "../../public/svg/php.svg"
 import Pimcore from "../../public/svg/pimcore.svg"
 import Shopware from "../../public/svg/shopware.svg"
+import { responsive, colors } from 'src/styled/mixins';
 
 const StyledCircleCarousel = styled.div`
   position: relative;
 	padding-top: 100%;
   svg {
     width: 30px;
-    @media screen and (min-width: 768px) {
+    ${responsive.tabletP`
       width: 35px;
-    }
-    @media screen and (min-width: 1024px) {
+    `}
+    ${responsive.tabletL`
       width: 45px;
-    }
-    @media screen and (min-width: 1920px) {
+    `}
+    ${responsive.desktopHd`
       width: 80px;
-    }
+    `}
     &.svg-large {
       transform: scale(2);
     }
@@ -63,9 +64,9 @@ const StyledSlidesText = styled.div`
     height: 100%;
     z-index: 0;
     background: rgba(red,.3);
-    @media screen and (min-width: 1920px) {
+    ${responsive.desktopHd`
       padding: 180px 90px 80px;
-    }
+    `}
     h5, p {
       transform: translateY(-40%);
       opacity: 0;
@@ -74,34 +75,34 @@ const StyledSlidesText = styled.div`
     h5 {
       line-height: 1;
       font-weight: 700;
-      color: orange;
+      color: ${colors.orange};
       text-align: center;
       font-size: 14px;
-      @media screen and (min-width: 768px) {
+      ${responsive.tabletP`
         font-size: 18px;
-      }
-      @media screen and (min-width: 1024px) {
+      `}
+      ${responsive.tabletL`
         font-size: 24px;
-      }
+      `}
     }
     p {
       margin-top: 10px;
-      color: #cacaca;
+      color: ${colors.grayLightSecondary};
       font-size: 12px;
       line-height: 15px;
       min-height: 60px;
       max-width: 230px;
-      @media screen and (min-width: 768px) {
+      ${responsive.tabletP`
         font-size: 14px;
         line-height: 19px;
         min-height: 80px;
-      }
-      @media screen and (min-width: 1024px) {
+      `}
+      ${responsive.tabletL`
         margin-top: 30px;
         font-size: 16px;
         line-height: 20px;
         max-width: 270px;
-      }
+      `}
     }
   }
 `
@@ -142,7 +143,6 @@ const StyledPagination = styled.div`
       svg {
         filter: grayscale(0%);
       }
-      /* svg ma mieć kolor */
     }
   }
   .item {
@@ -154,7 +154,6 @@ const StyledPagination = styled.div`
     border-radius: 50%;
   }
   .item.active {
-    // svg ma mieć kolor
     svg {
       transform: scale(1.5);
       filter: grayscale(0%);
@@ -163,8 +162,6 @@ const StyledPagination = styled.div`
       }
     }
   }
-`
-const StyledCircleCarouselIcon = styled.div`
 `
 
 function Skills() {

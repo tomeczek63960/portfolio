@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import styled from 'styled-components'
 import HandleText from 'src/helpers/handleText'
 import CustomImage from 'src/ui/Image/CustomImage';
+import { responsive, colors } from 'src/styled/mixins';
 
 const Project = styled.div`
   cursor: pointer;
@@ -25,14 +26,14 @@ const ProjectHover = styled.div`
   left: 0;
   bottom: 0;
   height: 100%;
-  color: white;
+  color: ${colors.white};
   z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  @media screen and (min-width: 1024px) {
+  ${responsive.tabletL`
     opacity: 0;
-  }
+  `}
   h4 {
     position: relative;
     padding-bottom: 5px;
@@ -41,16 +42,14 @@ const ProjectHover = styled.div`
     font-size: 20px;
     width: fit-content;
     opacity: 1;
-    /* transform: translateY(40%);
-    opacity: 0; */
-    @media screen and (min-width: 1024px) {
+    ${responsive.tabletL`
       transform: translateY(0);
       opacity: 1;
-    }
+    `}
     em {
       width: 100%;
       height: 2px;
-      background: #6A82FB;
+      background: ${colors.purplePrimary};
       position: absolute;
       bottom: 0;
       left: 0;
@@ -60,13 +59,13 @@ const ProjectHover = styled.div`
   }
   p {
     font-size: 12px;
-    color: #d5d5d5;
-    @media screen and (min-width: 1024px) {
+    color: ${colors.whitePrimary};
+    ${responsive.tabletL`
       transform: translateY(0);
       opacity: 1;
-    }
+    `}
   }
-`
+`;
 
 const ProjectComponent = ({project, onClickFunction}: {project: any, onClickFunction: Function}) => {
   const timeline = useRef<any>();
