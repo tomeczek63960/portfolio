@@ -38,6 +38,8 @@ export const colors = {
   gray: '#555',
   grayDark: '#545454',
   grayLight: '#d3d3d3',
+  grayFooter: '#1d1d1d',
+  grayFooterText: '#999',
   grayLightSecondary: '#cacaca',
   error: '#dd1818',
   success: '#15ee11',

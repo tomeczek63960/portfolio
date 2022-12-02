@@ -9,6 +9,7 @@ function Contact(props: any) {
       <h1>Contact page</h1>
       {/* animacja wysokości słópków i na ostatnim niech siedzi ten człowiek zeby uzyskać fajny efekt */}
       <Performence />
+      <p>Zostaw po sobie jakąś wiadomość 📭</p>
       <p>Jeżeli twoje wyniki zależą od tego jakich ludzi masz na pokładzie, to czemu nie wybrać tych właściwych 🐢</p>
       <p>Interesują mnie oferty związane z technologiami React/Next.js oraz Vue/Nuxt.js - szczególnie ambitne lub duże projekty. Jeśli jednak masz inną prośbę lub pytanie, nie wahaj się skorzystać z formularza.</p>
       <FormComponent />
