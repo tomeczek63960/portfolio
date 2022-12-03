@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import { gsap } from "gsap";
 import { responsive, colors } from 'src/styled/mixins';
+import HeadingComponent from 'src/ui/Heading/Heading';
 
 const WelcomeBox = styled.section`
   background: ${colors.white};
@@ -90,6 +91,13 @@ const WelcomeBoxMessageImage = styled.div.attrs((props: {type: string}) => props
     height: 100%;
   }
 `;
+
+const writingAnimationKeyframes = keyframes`
+  50% {
+    opacity: 0;
+    transform: scale(0.7) translateY(1px);      
+  }
+`;
 const WelcomeBoxMessageText = styled.div.attrs((props: {position?: string, writingAnimation?: boolean, visible?: boolean}) => props)`
   margin-top: 10px;
   padding: 8px 11px;
@@ -106,13 +114,6 @@ const WelcomeBoxMessageText = styled.div.attrs((props: {position?: string, writi
     ({ position }) => position === 'right' ? "border-top-left-radius: 4px;" : "border-top-right-radius: 4px;"
   };
 
-  @keyframes writingAnimation {
-    50% {
-      opacity: 0;
-      transform: scale(0.7) translateY(1px);      
-    }
-  }
-
   ${
     ({ writingAnimation }) => writingAnimation && css`
       transform: scale(0);
@@ -124,13 +125,13 @@ const WelcomeBoxMessageText = styled.div.attrs((props: {position?: string, writi
         border-radius: 50%;
         display: inline-block;
         &:first-child {
-          animation: 2s writingAnimation infinite ease-in-out;
+          animation: 2s ${writingAnimationKeyframes} infinite ease-in-out;
         }
         &:nth-child(2) {
-          animation: 2s writingAnimation 0.4s infinite ease-in-out;
+          animation: 2s ${writingAnimationKeyframes} 0.4s infinite ease-in-out;
         }
         &:nth-child(3) {
-          animation: 2s writingAnimation 0.8s infinite ease-in-out;
+          animation: 2s ${writingAnimationKeyframes} 0.8s infinite ease-in-out;
         }
         & + span {
           margin-left: 5px;
@@ -416,6 +417,9 @@ const WelcomeBoxComponent = () => {
   }, []);
   return (
     <>
+      <HeadingComponent tagName='h2' color="#6A82FB">
+        About Me
+      </HeadingComponent>
       <h3>Jezeli chcesz dowiedzieć się coś o mnie</h3>
       <br />
       <WelcomeBox>

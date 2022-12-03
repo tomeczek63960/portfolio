@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import { responsive, colors } from 'src/styled/mixins';
 
 const H2 = styled.h2.attrs((props: {color?: string}) => props)`
@@ -49,17 +49,22 @@ const H2 = styled.h2.attrs((props: {color?: string}) => props)`
     /* -webkit-text-stroke: 1px ${({color}) => color ? color : 'white' };; */
   }
 `
+
+const animate = keyframes`
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+`;
 const HexagonContainer = styled.div`
   overflow: hidden;
-  @keyframes animate {
-    0% {
-      filter: hue-rotate(0deg);
-    }
-    100% {
-      filter: hue-rotate(360deg);
-    }
-  }
-  animation: animate 4s linear infinite;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
+  animation: ${animate} 4s linear infinite;
   .row {
     margin-top: -32px;
     margin-left: -50px;

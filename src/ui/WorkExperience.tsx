@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import HandleText from 'src/helpers/handleText'
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { responsive, colors } from 'src/styled/mixins';
+import { simpleSplitText } from 'src/helpers/simpleSplitText';
+import HeadingComponent from 'src/ui/Heading/Heading';
 
 const StyledTimeline = styled.section`
   margin-top: 35px;
@@ -211,7 +213,9 @@ const WorkExperience = () => {
   }, []);
   return (
     <>
-      <h2>Experience</h2>
+      <HeadingComponent tagName='h2' color="#6A82FB">
+        Doświadczenie zawodowe
+      </HeadingComponent>
       <StyledTimeline className="timeline">
         <StyledTimelineList ref={ triggerRef }>
           { timelineData.map((item) => {

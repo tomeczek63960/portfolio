@@ -14,13 +14,14 @@ const Home: NextPage = () => {
     // wszystko rozdzielić na komponenty w folderach (plik tsx ze skryptami oraz oddzielny plik z deklaracjami styli dla komponentu i testy)
     <>
       {/* spróbować dodać animacje na np. wykres który będzie się rysował, kwiatek który będzie rosnął itp. */}
-      <HeadingComponent tagName='h2'>
-        Hej 😊<br/>
-        Jestem Tomek<br/>
-        I dziś będę twoim przewodnikiem
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <HeadingComponent tagName='h1' hoverColor="#6A82FB">
+        Hi 😊 <br/> 
+        I’m Tomek <br/> 
+        Nice to see You 👋
       </HeadingComponent>
       <OfficeEmployee />
-      <h4>Jezeli jesteś gotowy wypłynąć na nieznane wody 🐟, zapraszam na okręt 🚣🏻</h4>
+      <h4>Jezeli jesteś gotowy wypłynąć na nieznane wody 🐟, zapraszam na okręt 🚣🏻, Dziś będę twoim przewodnikiem</h4>
       <h2></h2>
       {/* <p>Cześć mam na imę Tomasz i dzisiaj będę twoim przewodnikiem 😊</p> */}
       <br />
@@ -31,12 +32,13 @@ const Home: NextPage = () => {
       <WelcomeBox />
       <Button />
       
-      <h1>Stack technologiczny</h1>
       <Skills />
       <br/>
-      <h1>Doświadczenie zawodowe</h1>
       <WorkExperience />
       <br/>
+      <HeadingComponent tagName='h2' color="#6A82FB">
+        Moje CV
+      </HeadingComponent>
       <h1>Sekcja do pobrania cv / lub to na oddzielną stronę wrzucić</h1>
       <h2>Jeżeli spodobała się dla Ciebie moja praca i chcesz dowiedzieć się więcej pobierz moje CV.</h2>
       <a href="/cv.pdf" download>Pobierz moje CV</a>

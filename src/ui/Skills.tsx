@@ -24,6 +24,7 @@ import Php from "../../public/svg/php.svg"
 import Pimcore from "../../public/svg/pimcore.svg"
 import Shopware from "../../public/svg/shopware.svg"
 import { responsive, colors } from 'src/styled/mixins';
+import HeadingComponent from 'src/ui/Heading/Heading';
 
 const StyledCircleCarousel = styled.div`
   position: relative;
@@ -164,7 +165,7 @@ const StyledPagination = styled.div`
   }
 `
 
-function Skills() {
+const Skills = () => {
   const jsSkills = [
     {
       icon: Javascript,
@@ -355,10 +356,15 @@ function Skills() {
 
   return (
     <>
+      <HeadingComponent tagName='h2' color="#6A82FB">
+        Stack technologiczny
+      </HeadingComponent>
       <p>Poniżej przedstawiam swój stack technologiczny, jednak warto mieć na uwadze że nic co posiada dokumentację nie jest mi straszne 😱</p>
       <p>Szybko się uczę oraz jestem otwarty na nowe doświadczenia 🐣</p>
 
-      <h2>Umiejętności czysto jsowe</h2>
+      <HeadingComponent tagName='h3' color="#7928ca">
+        Umiejętności czysto jsowe
+      </HeadingComponent>
       <StyledCircleCarousel ref={ technicalCarousel } className='circle-carousel' data-speed='800' data-autoplay='4500'>
         <StyledSlidesText ref={ technicalCarouselText } className='slides'>
           { jsSkills.map((skill) => {
@@ -383,7 +389,9 @@ function Skills() {
         </StyledPagination>
       </StyledCircleCarousel>
 
-      <h2>Narzędzia, Cmsy, Headless cmsy oraz wiedzą ogólna</h2>
+      <HeadingComponent tagName='h3' color="#7928ca">
+        Narzędzia, Cmsy, Headless cmsy oraz wiedzą ogólna
+      </HeadingComponent>
       <StyledCircleCarousel ref={ jsTechnicalCarousel } className='circle-carousel' data-speed='800' data-autoplay='4500'>
         <StyledSlidesText ref={ jsTechnicalCarouselText } className='slides'>
           { skills.map((skill) => {
