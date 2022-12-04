@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
-import Skills from 'src/ui/Skills';
-import WorkExperience from 'src/ui/WorkExperience';
+import Skills from 'src/ui/Skills/Skills';
+import WorkExperience from 'src/ui/WorkExperience/WorkExperience';
 import WelcomeBox from 'src/ui/WelcomeBox/WelcomeBox';
 import OfficeEmployee from "../../public/svg/office-employee.svg"
 import HeadingComponent from 'src/ui/Heading/Heading';

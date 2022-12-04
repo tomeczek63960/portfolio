@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import Projects from 'src/ui/Projects/Projects';
+import Projects from 'src/ui/Projects/Projects/Projects';
 import HeadingComponent from 'src/ui/Heading/Heading';
 import { variables } from 'src/styled/mixins';
 import styled from 'styled-components';

@@ -1,19 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from "gsap";
-import styled from 'styled-components'
 import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import Project from 'src/ui/Projects/Project';
-import ProjectBox from 'src/ui/Projects/ProjectBox';
-
-const ProjectsGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-`;
+import Project from 'src/ui/Projects/Project/Project';
+import ProjectBox from 'src/ui/Projects/ProjectBox/ProjectBox';
+import {ProjectsGrid} from './style';
 
 const fetchProjects = async () => {
   // const res = await axios.get('https://app-portfolio-tk.herokuapp.com/projects?_locale=en');

@@ -6,13 +6,14 @@
   --contact-rotation: 0;
 }
 html {
+  max-width: 100vw;
   -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
   font-size: 62.5%;
   font-style: normal;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   position: relative;
   &.no-scroll {
     overflow: hidden!important;

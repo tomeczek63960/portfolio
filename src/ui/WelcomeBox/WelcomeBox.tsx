@@ -1,190 +1,24 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import styled, { css, keyframes } from 'styled-components'
 import { gsap } from "gsap";
-import { responsive, colors, variables } from 'src/styled/mixins';
 import HeadingComponent from 'src/ui/Heading/Heading';
 import Paragraph from 'src/ui/Paragraph/Paragraph';
-
-const WelcomeBoxSection = styled.section`
-  padding-block: ${variables.sectionVerticalPadding};
-`;
-const WelcomeBox = styled.div`
-  background: ${colors.white};
-  border-radius: 5px;
-  overflow: hidden;
-`;
-const WelcomeBoxHead = styled.div`
-  background: linear-gradient(-225deg, ${colors.purple} 35%, ${colors.lightBlue} 100%);
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  padding: 10px;
-`;
-const WelcomeBoxHeadHeading = styled.h4`
-  font-size: 16px;
-  line-height: 1.3;
-`;
-const WelcomeBoxHeadParagraph = styled.p`
-  font-size: 11px;
-  line-height: 1;
-`;
-const WelcomeBoxHeadInfo = styled.div`
-  color: ${colors.white};
-  font-family: Arial;
-`;
-const WelcomeBoxImage = styled.div`
-  width: 40px!important;
-  height: 40px!important;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-const WelcomeBoxConversation = styled.div`
-  padding: 20px 10px;
-  display: flex;
-  flex-direction: column;
-  height: 250px;
-  overflow: auto;
-  scroll-behavior: smooth;
-  ${responsive.tabletL`
-    height: 350px;
-  `}
-`;
-const WelcomeBoxMessage = styled.div.attrs((props: {position?: string, writingAnimation?: boolean}) => props)`
-  font-size: 11px;
-  display: flex;
-  gap: 10px;
-  padding-right: 15px;
-  ${responsive.tabletP`
-    padding-right: 60px;
-    font-size: 12px;
-  `}
-  ${
-    ({ position }) => position === 'right' && css`
-      justify-content: flex-end;
-      padding-right: 0;
-      padding-left: 15px;
-      ${responsive.tabletP`
-        padding-left: 60px;
-        padding-right: 0;
-      `}
-    `
-  }
-`;
-const WelcomeBoxMessageImage = styled.div.attrs((props: {type: string}) => props)`
-  margin-top: 15px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-  ${responsive.tabletP`
-    margin-top: 0;
-  `}
-  ${
-    ({ type }) => type === 'user' ? "order: 1;" : "order: -1;"
-  };
-  img {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-const writingAnimationKeyframes = keyframes`
-  50% {
-    opacity: 0;
-    transform: scale(0.7) translateY(1px);      
-  }
-`;
-const WelcomeBoxMessageText = styled.div.attrs((props: {position?: string, writingAnimation?: boolean, visible?: boolean}) => props)`
-  margin-top: 10px;
-  padding: 8px 11px;
-  background: ${colors.whiteTertiary};
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-  color: ${colors.black};
-  line-height: 1.4;
-  width: fit-content;
-  ${responsive.tabletP`
-    padding: 10px 13px;
-  `}
-  ${
-    ({ position }) => position === 'right' ? "border-top-left-radius: 4px;" : "border-top-right-radius: 4px;"
-  };
-
-  ${
-    ({ writingAnimation }) => writingAnimation && css`
-      transform: scale(0);
-      opacity: 0;
-      span {
-        width: 6px;
-        height: 6px;
-        background: ${colors.black};
-        border-radius: 50%;
-        display: inline-block;
-        &:first-child {
-          animation: 2s ${writingAnimationKeyframes} infinite ease-in-out;
-        }
-        &:nth-child(2) {
-          animation: 2s ${writingAnimationKeyframes} 0.4s infinite ease-in-out;
-        }
-        &:nth-child(3) {
-          animation: 2s ${writingAnimationKeyframes} 0.8s infinite ease-in-out;
-        }
-        & + span {
-          margin-left: 5px;
-        }
-      }
-    `
-  }
-`;
-const WelcomeBoxOptions = styled.div`
-  margin-top: 0px;
-  padding: 20px 10px;
-  h4 {
-    color: ${colors.black};
-    font-family: Arial;
-  }
-  button {
-    text-align: left;
-    cursor: pointer;
-    background-color: ${colors.black};
-    color: ${colors.white};
-    line-height: 1.4;
-    width: fit-content;
-    padding: 8px 11px;
-    font-size: 11px;
-    font-weight: 600;
-    transition: 0.3s;
-    border: 2px solid ${colors.black};
-    ${responsive.tabletP`
-      padding: 10px 13px;
-      font-size: 12px;
-    `}
-    &[disabled] {
-      pointer-events: none;
-      color: ${colors.black};
-      background-color: ${colors.whiteTertiary};
-      text-decoration: line-through;
-    }
-    &:hover {
-      color: ${colors.black};
-      background-color: ${colors.white};
-    }
-  }
-`;
-const WelcomeBoxOptionsList = styled.div`
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-`;
+import {
+  WelcomeBoxSection,
+  WelcomeBox,
+  WelcomeBoxHead,
+  WelcomeBoxHeadHeading,
+  WelcomeBoxHeadParagraph,
+  WelcomeBoxHeadInfo,
+  WelcomeBoxImage,
+  WelcomeBoxConversation,
+  WelcomeBoxMessage,
+  WelcomeBoxMessageImage,
+  WelcomeBoxMessageText,
+  WelcomeBoxOptions,
+  WelcomeBoxOptionsList,
+} from './style';
+ 
 const WelcomeBoxComponent = () => {
   const [activeMessages, setActiveMessages] = useState<any>([
     {
@@ -421,7 +255,6 @@ const WelcomeBoxComponent = () => {
   }, []);
   return (
     <WelcomeBoxSection>
-
       <HeadingComponent tagName='h2' color="#6A82FB">
         About Me
       </HeadingComponent>
@@ -470,7 +303,7 @@ const WelcomeBoxComponent = () => {
             <h4>Wybierz co Ciebie interesuje</h4>
             <WelcomeBoxOptionsList ref={welcomeBoxOptions}>
               { 
-                messages.map((message) => <button key={message.toggler} onClick={(e) => writeMessage(e, message)}>{ message.toggler }</button>)
+                messages.map((message: any) => <button key={message.toggler} onClick={(e) => writeMessage(e, message)}>{ message.toggler }</button>)
               }
             </WelcomeBoxOptionsList>
           </WelcomeBoxOptions>

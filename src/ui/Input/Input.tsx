@@ -1,117 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components'
 import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
 import { colors } from 'src/styled/mixins';
-
-const InputGroup = styled.div`
-  position: relative;
-  margin-top: 30px;
-  &:first-child {
-    margin-top: 0;
-  }
-  &:after {
-    content: '';
-    width: 0;
-    height: 2px;
-    background: ${colors.blackPrimary};
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: 0.3s;
-    transform-origin: center center;
-  }
-  &:hover:after {
-    width: 100%;
-  }
-`;
-const InputGroupComponent = styled.div`
-  overflow: hidden;
-  position: relative;
-`;
-const StyledLabel = styled.label`
-  position: absolute;
-  bottom: 35%;
-  left: 0;
-  font-size: 18px;
-  line-height: 1;
-  color: ${colors.blackSecondary};
-  transform-origin: 0px 0px;
-  cursor: pointer;
-`;
-const StyledInput = styled.input`
-    background: transparent;
-    color: ${ colors.pink };
-    height: 35px;
-    font: 15px/24px "Lato", Arial, sans-serif;
-    letter-spacing: 1px;
-    outline: none !important;
-    width: 100%;
-    transition: 0.3s ease-in-out;
-    border: none;
-    border-bottom: 2px solid ${ colors.blackSecondary };;
-`;
-const StyledInputBorder = styled.span`
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  height: 2px;
-  width: 0%;
-  background: ${colors.purple};
-`;
-const StyledInputBorderAfter = styled.span`
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 15;
-  height: 2px;
-  width: 0%;
-  background: ${colors.blackSecondary};
-`;
-const StyledInputErrorBorder = styled.span`
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  height: 2px;
-  width: 0%;
-  background: ${colors.error};
-`;
-const StyledInputErrorBorderAfter = styled.span`
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  height: 2px;
-  width: 0%;
-  background: ${colors.blackSecondary};
-`;
-const StyledInputSuccessBorder = styled.span`
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  height: 2px;
-  width: 0%;
-  background: ${colors.success};
-`;
-const StyledInputSuccessBorderAfter = styled.span`
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  height: 2px;
-  width: 0%;
-  background: ${colors.blackSecondary};
-`;
+import {
+  InputGroup,
+  InputGroupComponent,
+  StyledLabel,
+  StyledInput,
+  StyledInputBorder,
+  StyledInputBorderAfter,
+  StyledInputErrorBorder,
+  StyledInputErrorBorderAfter, StyledInputSuccessBorder, StyledInputSuccessBorderAfter
+} from './style';
 
 interface Props {
   type: string;
