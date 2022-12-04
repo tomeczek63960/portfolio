@@ -4,7 +4,6 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { colors } from 'src/styled/mixins';
 
-
 const StyledLogo = styled.a`
   color: ${colors.white};
   font-size: 25px;
@@ -14,7 +13,7 @@ const StyledLogo = styled.a`
   transition: 0.3s;
 `;
 
-function Logo(props: any, ref: any) {
+const Logo = (props: any, ref: any) => {
   const { locale } = useRouter();
   return (
     <Link href="/" locale={ locale }><StyledLogo ref={ref}>TK</StyledLogo></Link>

@@ -53,7 +53,11 @@ const StyledButtonBorderAfter = styled.span`
   background: ${colors.blackSecondary};
 `;
 
-function ButtonComponent({ children }: { children: string }) {
+interface Props {
+  children: string;
+}
+
+const ButtonComponent = ({ children }: Props) => {
   const btnRef = useRef<HTMLButtonElement>();
   const buttonBorder = useRef<any>(null);
   const buttonBorderAfter = useRef<any>(null);

@@ -23,9 +23,13 @@ import StyledComponents from "../../public/svg/styled-components.svg"
 import Php from "../../public/svg/php.svg"
 import Pimcore from "../../public/svg/pimcore.svg"
 import Shopware from "../../public/svg/shopware.svg"
-import { responsive, colors } from 'src/styled/mixins';
+import { responsive, colors, variables } from 'src/styled/mixins';
 import HeadingComponent from 'src/ui/Heading/Heading';
+import Paragraph from 'src/ui/Paragraph/Paragraph';
 
+const SkillsSection = styled.section`
+  padding-block: ${variables.sectionVerticalPadding};
+`;
 const StyledCircleCarousel = styled.div`
   position: relative;
 	padding-top: 100%;
@@ -355,12 +359,12 @@ const Skills = () => {
   }, [])
 
   return (
-    <>
+    <SkillsSection>
       <HeadingComponent tagName='h2' color="#6A82FB">
         Stack technologiczny
       </HeadingComponent>
-      <p>Poniżej przedstawiam swój stack technologiczny, jednak warto mieć na uwadze że nic co posiada dokumentację nie jest mi straszne 😱</p>
-      <p>Szybko się uczę oraz jestem otwarty na nowe doświadczenia 🐣</p>
+      <Paragraph>Poniżej przedstawiam swój stack technologiczny, jednak warto mieć na uwadze że nic co posiada dokumentację nie jest mi straszne 😱</Paragraph>
+      <Paragraph>Szybko się uczę oraz jestem otwarty na nowe doświadczenia 🐣</Paragraph>
 
       <HeadingComponent tagName='h3' color="#7928ca">
         Umiejętności czysto jsowe
@@ -415,7 +419,7 @@ const Skills = () => {
           })}
         </StyledPagination>
       </StyledCircleCarousel>
-    </>
+    </SkillsSection>
   );
 }
 

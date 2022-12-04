@@ -145,9 +145,13 @@ const ProjectBoxCategories = styled.div`
   }
 `;
 
-const ProjectBoxComponent = (
-    {activeProject, onCloseFunction, isActiveProjectBox}: 
-      {activeProject: any, onCloseFunction: Function, isActiveProjectBox: boolean}) => {
+interface Props {
+  activeProject: any; // tutaj dodać kolejny interface na Project i z niego mozna wtedy skorzystać;
+  onCloseFunction: Function;
+  isActiveProjectBox: boolean;
+}
+
+const ProjectBoxComponent = ({activeProject, onCloseFunction, isActiveProjectBox}: Props) => {
   const projectBox = useRef<any>(null);
   const projectBoxShadow = useRef<any>(null);
   const timeline = useRef<any>();

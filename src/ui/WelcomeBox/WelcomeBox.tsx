@@ -2,10 +2,14 @@ import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import styled, { css, keyframes } from 'styled-components'
 import { gsap } from "gsap";
-import { responsive, colors } from 'src/styled/mixins';
+import { responsive, colors, variables } from 'src/styled/mixins';
 import HeadingComponent from 'src/ui/Heading/Heading';
+import Paragraph from 'src/ui/Paragraph/Paragraph';
 
-const WelcomeBox = styled.section`
+const WelcomeBoxSection = styled.section`
+  padding-block: ${variables.sectionVerticalPadding};
+`;
+const WelcomeBox = styled.div`
   background: ${colors.white};
   border-radius: 5px;
   overflow: hidden;
@@ -416,12 +420,12 @@ const WelcomeBoxComponent = () => {
     );
   }, []);
   return (
-    <>
+    <WelcomeBoxSection>
+
       <HeadingComponent tagName='h2' color="#6A82FB">
         About Me
       </HeadingComponent>
-      <h3>Jezeli chcesz dowiedzieć się coś o mnie</h3>
-      <br />
+      <Paragraph>Co chcesz się o mnie dowiedzieć?</Paragraph>
       <WelcomeBox>
         <WelcomeBoxHead>
           <WelcomeBoxImage>
@@ -472,7 +476,7 @@ const WelcomeBoxComponent = () => {
           </WelcomeBoxOptions>
           }
       </WelcomeBox>
-    </>
+    </WelcomeBoxSection>
   )
 }
 

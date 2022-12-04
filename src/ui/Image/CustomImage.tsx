@@ -20,7 +20,12 @@ const CustomImage = styled.div`
   }
 `;
 
-const CustomImageComponent = ({url, className}: {url: string, className?: string}) => {
+interface Props {
+  url: string;
+  className?: string;
+}
+
+const CustomImageComponent = ({url, className}: Props) => {
   return (
     <CustomImage>
       <Image

@@ -27,16 +27,43 @@ const headingStyled = (color: string, hoverColor?: string) => `
 `;
 
 const H1 = styled.h1.attrs((props: {color?: string, hoverColor?: string}) => props)`
-  font-size: 55px;
+  margin: 30px 0;
+  font-size: 35px;
   ${({color, hoverColor}) => headingStyled(color || 'white', hoverColor)}
+  ${responsive.tabletP`
+    font-size: 40px;
+  `}
+  ${responsive.tabletL`
+    font-size: 55px;
+  `}
+  ${responsive.desktopHd`
+    font-size: 75px;
+  `}
 `; 
 const H2 = styled.h2.attrs((props: {color?: string, hoverColor?: string}) => props)`
-  font-size: 45px;
+  font-size: 30px;
+  margin: 20px 0;
   ${({color, hoverColor}) => headingStyled(color || 'white', hoverColor)}
+  ${responsive.tabletP`
+    font-size: 35px;
+  `}
+  ${responsive.tabletL`
+    font-size: 45px;
+  `}
+  ${responsive.desktopHd`
+    font-size: 55px;
+  `}
 `;
 const H3 = styled.h3.attrs((props: {color?: string, hoverColor?: string}) => props)`
-  font-size: 30px;
+  font-size: 20px;
+  margin: 20px 0;
   ${({color, hoverColor}) => headingStyled(color || 'white', hoverColor)}
+  ${responsive.tabletP`
+    font-size: 25px;
+  `}
+  ${responsive.tabletL`
+    font-size: 30px;
+  `}
 `; 
 const H4 = styled.h4.attrs((props: {color?: string, hoverColor?: string}) => props)`
   font-size: 25px;
@@ -62,7 +89,12 @@ const defaultProps: Props = {
   color: "white"
 };
 
-const createTimeline = (target: HTMLElement, color?: string, hoverColor?: string) => {
+interface TimelineProps {
+  target: HTMLElement;
+  color?: string;
+  hoverColor?: string;
+}
+const createTimeline = ({target, color, hoverColor}: TimelineProps) => {
   let tl = gsap.timeline({paused: true});
   tl.add(
     gsap.to(target, {
@@ -155,7 +187,7 @@ const HeadingComponent = ({tagName, children, ...rest} : Props) => {
       } else {
         const animationIndex = (Math.random() * 10000000).toString();
         target.setAttribute('data-animation-index', animationIndex);
-        const tl = createTimeline(target, rest.color, rest.hoverColor);
+        const tl = createTimeline({target, color: rest.color, hoverColor: rest.hoverColor});
         tlEvents.current.push({
           animationIndex: animationIndex,
           tl: tl

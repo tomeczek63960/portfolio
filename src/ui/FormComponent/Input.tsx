@@ -113,7 +113,14 @@ const StyledInputSuccessBorderAfter = styled.span`
   background: ${colors.blackSecondary};
 `;
 
-function Input({ type, placeholder, validation, isFormDirty }: { type: string, placeholder: string, validation: Function, isFormDirty: boolean }) {
+interface Props {
+  type: string;
+  placeholder: string; 
+  validation: Function;
+  isFormDirty: boolean;
+}
+
+const Input = ({ type, placeholder, validation, isFormDirty }: Props ) => {
   const [inputValue, setInputValue] = useState<string>('');
   const input = useRef<any>(null);
   const inputBorder = useRef<any>(null);

@@ -28,7 +28,11 @@ const SocialMeidaLinks = styled.div.attrs((props: {theme: string}) => props)`
   }
 `;
 
-const SocialMedia = ({theme = 'dark'}: {theme?: string }, ref: any) => <SocialMeidaLinks theme={theme} ref={ref}>
+interface Props {
+  theme?: string;
+};
+
+const SocialMedia = ({theme = 'dark'}: Props, ref: any) => <SocialMeidaLinks theme={theme} ref={ref}>
   <a href="https://github.com/tomeczek63960" target="_blank"><Linkedin /></a>
   <a href="https://github.com/tomeczek63960" target="_blank"><Github /></a>
 </SocialMeidaLinks>

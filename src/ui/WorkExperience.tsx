@@ -4,11 +4,15 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import styled from 'styled-components'
 import HandleText from 'src/helpers/handleText'
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import { responsive, colors } from 'src/styled/mixins';
+import { responsive, colors, variables } from 'src/styled/mixins';
 import { simpleSplitText } from 'src/helpers/simpleSplitText';
 import HeadingComponent from 'src/ui/Heading/Heading';
+import Paragraph from 'src/ui/Paragraph/Paragraph';
 
-const StyledTimeline = styled.section`
+const WorkExperienceSection = styled.section`
+  padding-block: ${variables.sectionVerticalPadding};
+`;
+const StyledTimeline = styled.div`
   margin-top: 35px;
   max-width: 310px;
   ul {
@@ -127,7 +131,7 @@ const WorkExperience = () => {
       time: 'Future',
       content: 'Chcesz być następny? odezwij się :) (tutaj link do kontaktu)'
     },
-  ]
+  ];
 
   useIsomorphicLayoutEffect(() => {
     let tl: any;
@@ -212,10 +216,13 @@ const WorkExperience = () => {
     });
   }, []);
   return (
-    <>
+    <WorkExperienceSection>
       <HeadingComponent tagName='h2' color="#6A82FB">
         Doświadczenie zawodowe
       </HeadingComponent>
+      <Paragraph>
+        Coś o mnie i moim doświadczeniu zawodowym.
+      </Paragraph>
       <StyledTimeline className="timeline">
         <StyledTimelineList ref={ triggerRef }>
           { timelineData.map((item) => {
@@ -232,7 +239,7 @@ const WorkExperience = () => {
           }) }
         </StyledTimelineList>
       </StyledTimeline>
-    </>
+    </WorkExperienceSection>
   );
 }
 

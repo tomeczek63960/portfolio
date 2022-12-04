@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import { responsive, colors } from 'src/styled/mixins';
 
 const StyledFooter = styled.footer`
-  margin-top: 30px;
+  margin-top: auto;
   position: relative;
+  z-index: 1;
   .container__left {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -39,7 +40,7 @@ const StyledFooter = styled.footer`
   }
 `;
 
-function FooterComponent() {
+const FooterComponent = () => {
   return (
     <StyledFooter>
       <div className="container">

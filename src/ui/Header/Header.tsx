@@ -63,7 +63,7 @@ const DesktopNavSocialMeida = styled.div`
   }
 `;
 
-function Header() {
+const Header = () => {
   const { locale, locales=[] } = useRouter();
   const [ shortLocale ] = locale ? locale.split("-") : ["en"];
 

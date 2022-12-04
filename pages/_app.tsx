@@ -19,7 +19,7 @@ import en from "src/lang/en.json";
 import { TransitionProvider } from 'src/context/TransitionContext';
 import TransitionLayout from 'src/animation/TransitionLayout';
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const { locale } = useRouter();
   const [ shortLocale ] = locale ? locale.split("-") : ["en"];
   const queryClient = new QueryClient();

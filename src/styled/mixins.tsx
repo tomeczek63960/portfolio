@@ -52,3 +52,8 @@ export const colors = {
   purpleSecondary: '#6428b4',
   lightBlue: '#3788d1',
 };
+
+
+export const variables = {
+  sectionVerticalPadding: '30px',
+}

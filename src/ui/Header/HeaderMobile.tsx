@@ -222,6 +222,10 @@ const Header = () => {
       setTimeout(() => {
         tl.current.pause()
         tl.current.seek(0);
+        gsap.set('html', {
+          overflow: 'scroll',
+          height: 'auto'
+        });
       }, 1000)
     };
   }, [locale, pathname])
@@ -236,7 +240,7 @@ const Header = () => {
       isNavOpen.current = true;
     } else {
       gsap.set('html', {
-        overflow: 'auto',
+        overflow: 'scroll',
         height: 'auto'
       });
       tl.current.reverse();

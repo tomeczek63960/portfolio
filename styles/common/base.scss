@@ -12,9 +12,10 @@ html {
   font-style: normal;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  overflow-y: scroll;
   position: relative;
   &.no-scroll {
-    overflow: hidden;
+    overflow: hidden!important;
     height: 100vh;
     &.body-padding {
       @media screen and (hover) {
@@ -73,7 +74,6 @@ html {
 }
 body {
   margin: 0;
-  // padding-top: 80px;
   text-size-adjust: 100%; // iOS on orientation change
   color: $black;
   font-family: $fontFamilyPrimary;
@@ -164,15 +164,6 @@ select {
 
 strong {
   font-weight: $fontWeightBold;
-}
-
-
-html {
-  --content: "Ship.";
-  --padding: 0.05em;
-  --start-color: #FF4D4D;
-  --end-color: #F9CB28;
-  min-height: 400vh;
 }
 
 @keyframes imageAnimation {

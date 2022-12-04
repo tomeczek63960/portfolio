@@ -18,7 +18,7 @@ const StyledForm = styled.form.attrs((props: {rotation: string, ref: HTMLFormEle
     }
 `;
 
-function FormComponent() {
+const FormComponent = () => {
   const formRef = useRef<HTMLFormElement>();
   const [isFormDirty, setFormDirty] = useState(false);
   const onSubmit = (e: any) => {

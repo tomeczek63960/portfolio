@@ -63,8 +63,11 @@ const HexagonContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 50%;
+  width: 100%;
   animation: ${animate} 4s linear infinite;
+  ${responsive.tabletP`
+    width: 50%;
+  `}
   .row {
     margin-top: -32px;
     margin-left: -50px;
@@ -104,7 +107,7 @@ const ShowCase = () => {
   const hexagonArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
   return (
     <>
-      {/* <h1>Strona na której będą najbardziej zaawansowane anikacje pokazującę zlepki ze wszystkich projektó (coś na zasadzie wideo tylko ze animowane przez js</h1> */}
+      {/* <h1>Strona na której będą zaawansowane anikacje pokazującę zlepki ze wszystkich projektów (coś na zasadzie wideo tylko ze animowane przez js</h1> */}
       <HexagonContainer>
         <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
         <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>

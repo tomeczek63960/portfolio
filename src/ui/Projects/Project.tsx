@@ -67,7 +67,12 @@ const ProjectHover = styled.div`
   }
 `;
 
-const ProjectComponent = ({project, onClickFunction}: {project: any, onClickFunction: Function}) => {
+interface Props {
+  project: any;
+  onClickFunction: Function;
+}
+
+const ProjectComponent = ({project, onClickFunction}: Props) => {
   const timeline = useRef<any>();
   const mobileTl = useRef<any>();
   const projectHover = useRef<any>();
