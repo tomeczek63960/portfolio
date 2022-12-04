@@ -5,8 +5,8 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import Project from 'src/ui/Projects/Project/Project';
-import ProjectBox from 'src/ui/Projects/ProjectBox/ProjectBox';
+import Project from 'src/ui/Projects/Project';
+import ProjectBox from 'src/ui/Projects/ProjectBox';
 import {ProjectsGrid} from './style';
 
 const fetchProjects = async () => {

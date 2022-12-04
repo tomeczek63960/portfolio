@@ -3,8 +3,8 @@ import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect"
 import { useRouter } from "next/router";
 import Link from 'next/link'
 import { gsap } from "gsap";
-import Logo from 'src/ui/Logo/Logo';
-import SocialMedia from 'src/ui/SocialMedia/SocialMedia';
+import Logo from 'src/ui/Logo';
+import SocialMedia from 'src/ui/SocialMedia';
 import {StyledLink, MobileNav, MobileNavContainer, StyledBars, HeaderBar} from './style';
 import { colors } from 'src/styled/mixins';
 

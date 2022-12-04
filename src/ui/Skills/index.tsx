@@ -22,8 +22,8 @@ import StyledComponents from "../../../public/svg/styled-components.svg"
 import Php from "../../../public/svg/php.svg"
 import Pimcore from "../../../public/svg/pimcore.svg"
 import Shopware from "../../../public/svg/shopware.svg"
-import HeadingComponent from 'src/ui/Heading/Heading';
-import Paragraph from 'src/ui/Paragraph/Paragraph';
+import HeadingComponent from 'src/ui/Heading';
+import Paragraph from 'src/ui/Paragraph';
 import {SkillsSection, StyledCircleCarousel, StyledSlidesText, StyledPagination} from './style';
 
 const Skills = () => {

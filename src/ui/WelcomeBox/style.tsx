@@ -50,7 +50,7 @@ export const WelcomeBoxConversation = styled.div`
   display: flex;
   flex-direction: column;
   height: 250px;
-  overflow: scroll;
+  overflow-y: scroll;
   scroll-behavior: smooth;
   ${responsive.tabletL`
     height: 350px;

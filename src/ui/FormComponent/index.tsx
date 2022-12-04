@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Input from 'src/ui/Input/Input';
-import ButtonComponent from 'src/ui/Button/Button';
+import Input from 'src/ui/Input';
+import ButtonComponent from 'src/ui/Button';
 import { nameValidation, emailValidation, surnameValidation, phoneValidation } from 'src/helpers/validations';
 import {StyledForm} from './style';
 

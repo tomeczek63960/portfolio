@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
-import Skills from 'src/ui/Skills/Skills';
-import WorkExperience from 'src/ui/WorkExperience/WorkExperience';
-import WelcomeBox from 'src/ui/WelcomeBox/WelcomeBox';
+import Skills from 'src/ui/Skills';
+import WorkExperience from 'src/ui/WorkExperience';
+import WelcomeBox from 'src/ui/WelcomeBox';
 import OfficeEmployee from "../../public/svg/office-employee.svg"
-import HeadingComponent from 'src/ui/Heading/Heading';
+import HeadingComponent from 'src/ui/Heading';
 import styled from 'styled-components';
 import { responsive, colors, variables } from 'src/styled/mixins';
-import Paragraph from 'src/ui/Paragraph/Paragraph';
+import Paragraph from 'src/ui/Paragraph';
 
 const CvSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};

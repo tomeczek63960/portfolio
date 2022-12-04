@@ -3,7 +3,7 @@ import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect"
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import HandleText from 'src/helpers/handleText'
-import CustomImage from 'src/ui/Image/CustomImage';
+import CustomImage from 'src/ui/Image';
 import {Project, ProjectHover} from './style';
 
 interface Props {

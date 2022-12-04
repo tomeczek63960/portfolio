@@ -4,8 +4,8 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import HandleText from 'src/helpers/handleText'
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { simpleSplitText } from 'src/helpers/simpleSplitText';
-import HeadingComponent from 'src/ui/Heading/Heading';
-import Paragraph from 'src/ui/Paragraph/Paragraph';
+import HeadingComponent from 'src/ui/Heading';
+import Paragraph from 'src/ui/Paragraph';
 import {WorkExperienceSection, StyledTimeline, StyledTimelineList, StyledTimelineListItem} from './style';
 
 const WorkExperience = () => {

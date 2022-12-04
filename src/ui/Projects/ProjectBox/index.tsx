@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 import ArrowLeft from "../../../../public/svg/arrow-left.svg"
 import World from "../../../../public/svg/world.svg"
 import Github from "../../../../public/svg/github.svg"
-import CustomImage from 'src/ui/Image/CustomImage';
+import CustomImage from 'src/ui/Image';
 import {
   ProjectBox,
   ProjectBoxShadow,

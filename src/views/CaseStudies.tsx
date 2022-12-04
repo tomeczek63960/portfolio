@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-import Projects from 'src/ui/Projects/Projects/Projects';
-import HeadingComponent from 'src/ui/Heading/Heading';
+import Projects from 'src/ui/Projects/Projects';
+import HeadingComponent from 'src/ui/Heading';
 import { variables } from 'src/styled/mixins';
 import styled from 'styled-components';
-import Paragraph from 'src/ui/Paragraph/Paragraph';
+import Paragraph from 'src/ui/Paragraph';
 
 const CaseStudiesSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};

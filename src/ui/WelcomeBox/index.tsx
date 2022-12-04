@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from "gsap";
-import HeadingComponent from 'src/ui/Heading/Heading';
-import Paragraph from 'src/ui/Paragraph/Paragraph';
+import HeadingComponent from 'src/ui/Heading';
+import Paragraph from 'src/ui/Paragraph';
 import {
   WelcomeBoxSection,
   WelcomeBox,

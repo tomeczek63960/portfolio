@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { IntlProvider } from "react-intl";
 import { TextPlugin } from "gsap/dist/TextPlugin";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import LoadingAnimation from "src/animation/LoadingAnimation/LoadingAnimation"
+import LoadingAnimation from "src/animation/LoadingAnimation"
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { gsap } from 'gsap';
 import {
@@ -17,7 +17,7 @@ import {
 import pl from "src/lang/pl.json";
 import en from "src/lang/en.json";
 import { TransitionProvider } from 'src/context/TransitionContext';
-import TransitionLayout from 'src/animation/TransitionLayout/TransitionLayout';
+import TransitionLayout from 'src/animation/TransitionLayout';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { locale } = useRouter();
