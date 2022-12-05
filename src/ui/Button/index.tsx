@@ -1,44 +1,42 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from "gsap";
-import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
+import React, { useRef } from 'react';
 import {StyledButton, StyledButtonBorder, StyledButtonBorderAfter} from './style';
 import { colors } from 'src/styled/mixins';
+import {useTimeline} from 'src/hooks/useTimeline';
 
 interface Props {
   children: string;
 }
-
 const ButtonComponent = ({ children }: Props) => {
-  const btnRef = useRef<HTMLButtonElement>();
+  const btnRef = useRef<HTMLButtonElement>(null);
   const buttonBorder = useRef<any>(null);
   const buttonBorderAfter = useRef<any>(null);
-  const tl = useRef<any>(null);
 
-  useIsomorphicLayoutEffect(() => {
-    tl.current = gsap.timeline({ paused: true });
-    tl.current.to(buttonBorder.current, {
+  const callback = (timeline: GSAPTimeline) => {
+    timeline.to(buttonBorder.current, {
       duration: 0.5,
       width: '100%'
     }, 'start');
-    tl.current.to(buttonBorderAfter.current, {
+    timeline.to(buttonBorderAfter.current, {
       duration: 0.5,
       width: '100%'
     }, '-=0.3');
-    tl.current.to(buttonBorderAfter.current, {
+    timeline.to(buttonBorderAfter.current, {
       duration: 0.4,
       x: '100%'
     });
-    tl.current.to(btnRef.current, {
+    timeline.to(btnRef.current, {
       duration: 0.5,
       color: colors.purple
     }, 'start');
-  }, []);
+  }
+
+  const [tl] = useTimeline(callback);
 
   const onHover = () => {
-    tl.current.play();
+    tl.play();
   }
   const onBlur = () => {
-    tl.current.reverse();
+    tl.reverse();
   }
 
   return (

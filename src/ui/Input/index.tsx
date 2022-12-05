@@ -12,6 +12,7 @@ import {
   StyledInputErrorBorder,
   StyledInputErrorBorderAfter, StyledInputSuccessBorder, StyledInputSuccessBorderAfter
 } from './style';
+import {useTimeline} from 'src/hooks/useTimeline';
 
 interface Props {
   type: string;
@@ -30,71 +31,71 @@ const Input = ({ type, placeholder, validation, isFormDirty }: Props ) => {
   const inputErrorAfter = useRef<any>(null);
   const inputSuccess = useRef<any>(null);
   const inputSuccessAfter = useRef<any>(null);
-  const tl = useRef<any>(null);
-  const tlLabel = useRef<any>(null);
-  const tlError = useRef<any>(null);
-  const tlSuccess = useRef<any>(null);
   const isInputDirty = useRef(false);
-
-  useIsomorphicLayoutEffect(() => {
-    tl.current = gsap.timeline({ paused: true });
-    tlError.current = gsap.timeline({ paused: true });
-    tlLabel.current = gsap.timeline({ paused: true });
-    tlSuccess.current = gsap.timeline({ paused: true });
-
-    tl.current.to(inputBorder.current, {
+  
+  const tlCallback = (timeline: GSAPTimeline) => {
+    timeline.to(inputBorder.current, {
       duration: 0.5,
       width: '100%'
     });
-    tl.current.to(inputBorderAfter.current, {
+    timeline.to(inputBorderAfter.current, {
       duration: 0.5,
       width: '100%'
     }, '-=0.3');
-    tl.current.to(inputBorderAfter.current, {
+    timeline.to(inputBorderAfter.current, {
       duration: 0.4,
       x: '100%'
     });
-
-    tlError.current.call(() => {
+  }
+  const tlErrorCallback = (timeline: GSAPTimeline) => {
+    timeline.call(() => {
       input.current.classList.add('error');
     });
-    tlError.current.to(inputError.current, {
+    timeline.to(inputError.current, {
       duration: 0.5,
       width: '100%'
     });
-    tlError.current.to(inputErrorAfter.current, {
+    timeline.to(inputErrorAfter.current, {
       duration: 0.5,
       width: '100%'
     }, '-=0.3');
-    tlError.current.to(inputErrorAfter.current, {
+    timeline.to(inputErrorAfter.current, {
       duration: 0.4,
       x: '100%'
     });
-
-    tlSuccess.current.call(() => {
+  }
+  const tlSuccessCallback = (timeline: GSAPTimeline) => {
+    timeline.call(() => {
       input.current.classList.remove('error');
     });
-    tlSuccess.current.to(inputSuccess.current, {
+    timeline.to(inputSuccess.current, {
       duration: 0.5,
       width: '100%'
     });
-    tlSuccess.current.to(inputSuccessAfter.current, {
+    timeline.to(inputSuccessAfter.current, {
       duration: 0.5,
       width: '100%'
     }, '-=0.3');
-    tlSuccess.current.to(inputSuccessAfter.current, {
+    timeline.to(inputSuccessAfter.current, {
       duration: 0.4,
       x: '100%'
     });
-
-    tlLabel.current.to(labelRef.current, {
+  }
+  const tlLabelCallback = (timeline: GSAPTimeline) => {
+    timeline.to(labelRef.current, {
       duration: 0.2,
       ease: "M0,0 C0.4,0 0.2,1 1,1",
       color: colors.white,
       scale: 0.75,
       yPercent: -120
     });
-  }, []);
+  }
+
+  const [tl] = useTimeline(tlCallback);
+  const [tlError] = useTimeline(tlErrorCallback);
+  const [tlSuccess] = useTimeline(tlSuccessCallback);
+  const [tlLabel] = useTimeline(tlLabelCallback);
+
   useIsomorphicLayoutEffect(() => {
     if (isFormDirty) {
       onChange();
@@ -102,16 +103,16 @@ const Input = ({ type, placeholder, validation, isFormDirty }: Props ) => {
   }, [isFormDirty]);
 
   const focusRef = () => {
-    tlLabel.current.play();
+    tlLabel.play();
     if (isInputDirty.current) return;
-    tl.current.play();
+    tl.play();
   }
   const blurRef = (e: any) => {
     if (!e.target.value) {
-      tlLabel.current.reverse();
+      tlLabel.reverse();
     }
     if (isInputDirty.current) return;
-    tl.current.reverse();
+    tl.reverse();
   }
   const onChange = (e?: React.FormEvent<HTMLInputElement>) => {
     let value = inputValue;
@@ -121,20 +122,20 @@ const Input = ({ type, placeholder, validation, isFormDirty }: Props ) => {
     }
     const result = validation(value);
     if (!result.valid) {
-      tlSuccess.current.reverse().then(() => {
-        tlError.current.play().then(() => {
+      tlSuccess.reverse().then(() => {
+        tlError.play().then(() => {
           if (!isInputDirty.current) {
             isInputDirty.current = true;
-            tl.current.seek(0).pause().clear();
+            tl.seek(0).pause().clear();
           }
         });
       });
     } else {
-      tlError.current.reverse().then(() => {
-        tlSuccess.current.play().then(() => {
+      tlError.reverse().then(() => {
+        tlSuccess.play().then(() => {
           if (!isInputDirty.current) {
             isInputDirty.current = true;
-            tl.current.seek(0).pause().clear();
+            tl.seek(0).pause().clear();
           }
         });
       });
