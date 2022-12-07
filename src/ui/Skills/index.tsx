@@ -26,7 +26,7 @@ import HeadingComponent from 'src/ui/Heading';
 import Paragraph from 'src/ui/Paragraph';
 import {SkillsSection, StyledCircleCarousel, StyledSlidesText, StyledPagination} from './style';
 
-const Skills = () => {
+const Skills: React.FC = () => {
   const jsSkills = [
     {
       icon: Javascript,

@@ -15,6 +15,7 @@ import {
   ProjectBoxTechnologies,
   ProjectBoxCategories,
 } from './style';
+import {useTimeline} from 'src/hooks/useTimeline';
 
 interface Props {
   activeProject: any; // tutaj dodać kolejny interface na Project i z niego mozna wtedy skorzystać;
@@ -22,35 +23,33 @@ interface Props {
   isActiveProjectBox: boolean;
 }
 
-const ProjectBoxComponent = ({activeProject, onCloseFunction, isActiveProjectBox}: Props) => {
+const ProjectBoxComponent: React.FC<Props> = ({activeProject, onCloseFunction, isActiveProjectBox}: Props) => {
   const projectBox = useRef<any>(null);
   const projectBoxShadow = useRef<any>(null);
-  const timeline = useRef<any>();
-
-  useIsomorphicLayoutEffect(() => {
-    if (timeline.current) return;
-    timeline.current = gsap.timeline({ paused: true });
-    timeline.current.add(
+  
+  const tlCallback = (timeline: GSAPTimeline) => {
+    timeline.add(
       gsap.to(projectBox.current, {
         duration: 0.3,
         x: 0
       })
     );
-    timeline.current.add(
+    timeline.add(
       gsap.to(projectBoxShadow.current, {
         duration: 0.3,
         opacity: 1,
         visibility: 'visible'
       }), '-=0.3'
     );
-  }, []);
+  }
+  const [tl] = useTimeline(tlCallback);
 
   useIsomorphicLayoutEffect(() => {
     const bluerdElements = projectBox.current;
     const html = document.querySelector('html');
     if (isActiveProjectBox) {
       html?.classList.add('no-scroll');
-      timeline.current.play().then(() => {
+      tl.play().then(() => {
         gsap.to(bluerdElements, {
           duration: 0.3,
           filter: "blur(0px)",
@@ -59,7 +58,7 @@ const ProjectBoxComponent = ({activeProject, onCloseFunction, isActiveProjectBox
       });
     } else {
       html?.classList.remove('no-scroll');
-      timeline.current.reverse().then(() => {
+      tl.reverse().then(() => {
         projectBox.current.scrollTop = 0;
         gsap.set(bluerdElements, {
           filter: "blur(2px)",

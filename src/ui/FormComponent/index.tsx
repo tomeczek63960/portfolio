@@ -4,7 +4,7 @@ import ButtonComponent from 'src/ui/Button';
 import { nameValidation, emailValidation, surnameValidation, phoneValidation } from 'src/helpers/validations';
 import {StyledForm} from './style';
 
-const FormComponent = () => {
+const FormComponent: React.FC = () => {
   const formRef = useRef<HTMLFormElement>();
   const [isFormDirty, setFormDirty] = useState(false);
   const onSubmit = (e: any) => {

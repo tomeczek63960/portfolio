@@ -7,18 +7,20 @@ interface Props {
   className?: string;
 }
 
-const CustomImageComponent = ({url, className}: Props) => {
+const CustomImageComponent: React.FC<Props> = ({url, className}: Props) => {
   return (
-    <CustomImage>
-      <Image
-        className={className}
-        src={`http://localhost:1337${url}`}
-        alt="Picture of the author"
-        blurDataURL="data:..."
-        placeholder="blur"
-        layout='fill'
-    />
-    </CustomImage>
+    <>
+      <CustomImage>
+        <Image
+          className={className}
+          src={`http://localhost:1337${url}`}
+          alt="Picture of the author"
+          blurDataURL="data:..."
+          placeholder="blur"
+          layout='fill'
+      />
+      </CustomImage>
+    </>
   );
 }
 

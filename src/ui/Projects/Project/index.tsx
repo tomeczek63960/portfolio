@@ -5,23 +5,21 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import HandleText from 'src/helpers/handleText'
 import CustomImage from 'src/ui/Image';
 import {Project, ProjectHover} from './style';
+import {useTimeline} from 'src/hooks/useTimeline';
 
 interface Props {
   project: any;
   onClickFunction: Function;
 }
 
-const ProjectComponent = ({project, onClickFunction}: Props) => {
-  const timeline = useRef<any>();
-  const mobileTl = useRef<any>();
+const ProjectComponent: React.FC<Props> = ({project, onClickFunction}: Props) => {
   const projectHover = useRef<any>();
   const projectHoverHeading = useRef<any>();
   const projectHoverHeadingLine = useRef<any>();
   const projectHoverText = useRef<any>();
   const projectRef = useRef<any>();
 
-  useIsomorphicLayoutEffect(() => {
-    if (timeline.current || mobileTl.current) return;
+  const tlCallback = (timeline: GSAPTimeline) => {
     const heading = new HandleText(projectHoverHeading.current, {
       type:"chars, words",
       tag: 'span'
@@ -48,23 +46,23 @@ const ProjectComponent = ({project, onClickFunction}: Props) => {
       stagger: 0.02,
     });
     const spans = projectHoverText.current.querySelectorAll('span');
+
     if (window.innerWidth < 1024) {
-      mobileTl.current = gsap.timeline({ paused: true }); 
       setTimeout(() => {
         ScrollTrigger.create({
           trigger: projectRef.current,
           start: 'top center',
           once: true,
           onEnter: () => {
-            mobileTl.current.play();
+            timeline.play();
           }
         });
       }, 500);
-      mobileTl.current.to(projectHover.current, {
+      timeline.to(projectHover.current, {
         duration: 0.2,
         opacity: 1,
       });
-      mobileTl.current.to(headingSpans, {
+      timeline.to(headingSpans, {
         duration: 0.1,
         scale: 1,
         autoAlpha: 1,
@@ -73,11 +71,11 @@ const ProjectComponent = ({project, onClickFunction}: Props) => {
         ease:"back",
         stagger: 0.01,
       });
-      mobileTl.current.to(projectHoverHeadingLine.current, {
+      timeline.to(projectHoverHeadingLine.current, {
         duration: 0.2,
         scaleX: 1
       })
-      mobileTl.current.to(spans, {
+      timeline.to(spans, {
         duration: 0.05,
         scale: 1,
         autoAlpha: 1,
@@ -87,14 +85,13 @@ const ProjectComponent = ({project, onClickFunction}: Props) => {
         stagger: 0.01,
       });
     } else {
-      timeline.current = gsap.timeline({ paused: true });
-      timeline.current.add(
+      timeline.add(
         gsap.to(projectHover.current, {
           duration: 0.1,
           opacity: 1
         })
       );
-      timeline.current.to(headingSpans, {
+      timeline.to(headingSpans, {
         duration: 0.1,
         scale: 1,
         autoAlpha: 1,
@@ -103,14 +100,14 @@ const ProjectComponent = ({project, onClickFunction}: Props) => {
         ease:"back",
         stagger: 0.01
       });
-      timeline.current.add(
+      timeline.add(
         gsap.to(projectHoverHeadingLine.current, {
           duration: 0.2,
           scaleX: 1,
           ease: "power2.out"
         })
       );
-      timeline.current.to(spans, {
+      timeline.to(spans, {
         duration: 0.01,
         scale: 1,
         autoAlpha: 1,
@@ -120,15 +117,16 @@ const ProjectComponent = ({project, onClickFunction}: Props) => {
         stagger: 0.01
       });
     }
-  }, []);
+  }
+  const [tl] = useTimeline(tlCallback);
 
   const projectHoverAction = () => {
     if (window.innerWidth < 1024) return;
-    timeline.current.play();
+    tl.play();
   }
   const projectBlurAction = () => {
     if (window.innerWidth < 1024) return;
-    timeline.current.reverse();
+    tl.reverse();
   }
   return (
     <Project

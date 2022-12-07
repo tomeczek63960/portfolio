@@ -21,7 +21,7 @@ interface Props {
   isFormDirty: boolean;
 }
 
-const Input = ({ type, placeholder, validation, isFormDirty }: Props ) => {
+const Input: React.FC<Props> = ({ type, placeholder, validation, isFormDirty }: Props ) => {
   const [inputValue, setInputValue] = useState<string>('');
   const input = useRef<any>(null);
   const inputBorder = useRef<any>(null);

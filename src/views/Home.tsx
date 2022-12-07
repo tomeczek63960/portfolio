@@ -14,7 +14,7 @@ const CvSection = styled.section`
 const IntroductionSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
-const Home: NextPage = () => {
+const Home: React.FC = () => {
   return (
     // w głównej animacji Inicjały animować przez gsapa jako rysowane literki svg
     // wszystko rozdzielić na komponenty w folderach (plik tsx ze skryptami oraz oddzielny plik z deklaracjami styli dla komponentu | oddzielny plik na typy ts | i testy)

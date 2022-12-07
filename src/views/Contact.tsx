@@ -12,7 +12,7 @@ const IntroductionSection = styled.section`
 const ContactFormSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
-const Contact = () => {
+const Contact: React.FC = () => {
   return (
     <>
       <IntroductionSection>

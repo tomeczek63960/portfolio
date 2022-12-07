@@ -103,7 +103,7 @@ const Hexagon = styled.div`
   }
 `;
 
-const ShowCase = () => {
+const ShowCase: React.FC = () => {
   const hexagonArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
   return (
     <>
@@ -129,6 +129,8 @@ const ShowCase = () => {
       <H2 data-text="&nbsp;Contact&nbsp;" color='#fdc830'>&nbsp;Contact&nbsp;</H2>
       <H2 data-text="&nbsp;Case Studies&nbsp;" color='#15ee11'>&nbsp;Case Studies&nbsp;</H2>
       <H2 data-text="&nbsp;Show case&nbsp;" color='#3F5EFB'>&nbsp;Show case&nbsp;</H2>
+
+      {/* tutaj galerię ze zdjęciami (animowanymi customowym pluginem 'przerobić ten płatny plugin od jquery na czysty js') */}
     </>
   );
 }

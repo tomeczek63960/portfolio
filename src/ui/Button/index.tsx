@@ -6,7 +6,7 @@ import {useTimeline} from 'src/hooks/useTimeline';
 interface Props {
   children: string;
 }
-const ButtonComponent = ({ children }: Props) => {
+const ButtonComponent: React.FC<Props> = ({ children }: Props) => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const buttonBorder = useRef<any>(null);
   const buttonBorderAfter = useRef<any>(null);

@@ -8,7 +8,8 @@ import HeadingComponent from 'src/ui/Heading';
 import Paragraph from 'src/ui/Paragraph';
 import {WorkExperienceSection, StyledTimeline, StyledTimelineList, StyledTimelineListItem} from './style';
 
-const WorkExperience = () => {
+// do przerobienia na te karty cssowe zamiast timelina
+const WorkExperience: React.FC = () => {
   const triggerRef = useRef<any>(null);
   const isSplitted = useRef(false);
   const timelineData = [

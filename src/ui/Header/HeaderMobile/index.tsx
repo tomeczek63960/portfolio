@@ -8,7 +8,7 @@ import SocialMedia from 'src/ui/SocialMedia';
 import {StyledLink, MobileNav, MobileNavContainer, StyledBars, HeaderBar} from './style';
 import { colors } from 'src/styled/mixins';
 
-const Header = () => {
+const Header: React.FC = () => {
   const { pathname, locale, locales=[] } = useRouter();
   const [ shortLocale ] = locale ? locale.split("-") : ["en"];
   const isNavOpen = useRef(false);
@@ -24,7 +24,7 @@ const Header = () => {
   const bars = useRef<any>();
   const animateDots = useRef(true);
   const mobileNavContainer = useRef<any>();
-  const socialMediaRef = useRef<any>();
+  const socialMediaRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = () => {
     if (!bars.current) return;
@@ -130,7 +130,7 @@ const Header = () => {
       height: 'calc(100vh - 80px)',
       ease: "power2.out"
     }, 'rotate-dots')
-    tl.current.to([...socialMediaRef.current.children, ...mobileNavContainer.current.children], {
+    tl.current.to([...Array.from(socialMediaRef.current ? socialMediaRef.current.children : []), ...mobileNavContainer.current.children], {
       duration: 0.3,
       delay: 0.2,
       x: 0,

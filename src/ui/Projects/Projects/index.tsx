@@ -15,7 +15,7 @@ const fetchProjects = async () => {
   return res
 };
 
-const ProjectsComponent = () => {
+const ProjectsComponent: React.FC = () => {
   const { data, status } = useQuery(["projects"], fetchProjects);
   const [activeProject, setActiveProject] = useState<any>({});
   const [isActiveProjectBox, setActiveProjectBox] = useState(false);

@@ -18,8 +18,9 @@ import {
   WelcomeBoxOptions,
   WelcomeBoxOptionsList,
 } from './style';
+import {useTimeline} from 'src/hooks/useTimeline';
  
-const WelcomeBoxComponent = () => {
+const WelcomeBoxComponent: React.FC = () => {
   const [activeMessages, setActiveMessages] = useState<any>([
     {
       id: 1,
@@ -175,6 +176,36 @@ const WelcomeBoxComponent = () => {
     name: 'Tomasz Kardel',
     position: 'Front-end Developer'
   }
+
+  const tlCallback = (timeline: GSAPTimeline) => {
+    timeline.add(
+      gsap.to(writeAnimationElement.current, {
+        duration: 0,
+        scale: 1,
+      })
+    );
+    timeline.add(
+      gsap.to(writeAnimationElement.current, {
+        duration: 0.3,
+        opacity: 1
+      })
+    );
+    timeline.add(
+      gsap.to(writeAnimationElement.current, {
+        duration: 0.3,
+        opacity: 0,
+        delay: 2.5
+      })
+    );
+    timeline.add(
+      gsap.to(writeAnimationElement.current, {
+        duration: 0,
+        scale: 0,
+      })
+    );
+  }
+  const [tl] = useTimeline(tlCallback);
+
   const writeMessage = (event: React.MouseEvent<HTMLElement>, message: any) => {
     const togglerMessages = newMessages.filter((msg: any) => msg.toggler === message.toggler);
     // const target = event.target as HTMLInputElement;
@@ -188,7 +219,6 @@ const WelcomeBoxComponent = () => {
     } else {
       welcomeBoxConversation.current.scrollTo(0, isInConversation.offsetTop - welcomeBoxConversation.current.offsetTop);
     }
-
   }
   useEffect(() => {
     welcomeBoxOptions.current.style.pointerEvents = 'all';
@@ -208,8 +238,8 @@ const WelcomeBoxComponent = () => {
         writeAnimationWelcomeBoxImage.current.style.order = 1;
         writeAnimationWelcomeBox.current.style.padding = '0 0 0 60px';
       }
-      writingAnimationTl.current?.play().then(() => {
-        writingAnimationTl.current.seek(0).pause();
+      tl?.play().then(() => {
+        tl.seek(0).pause();
         const firstEll = messagesQueue.shift();
         setActiveMessages((prev: any) => ([
           ...prev,
@@ -223,36 +253,6 @@ const WelcomeBoxComponent = () => {
     welcomeBoxConversation.current.scrollTo(0, welcomeBoxConversation.current.scrollHeight);
   }, [activeMessages])
 
-  useEffect(() => {
-    if (!isFirst) return;
-    isFirst = false;
-    writingAnimationTl.current = gsap.timeline({ paused: true });
-    writingAnimationTl.current.add(
-      gsap.to(writeAnimationElement.current, {
-        duration: 0,
-        scale: 1,
-      })
-    );
-    writingAnimationTl.current.add(
-      gsap.to(writeAnimationElement.current, {
-        duration: 0.3,
-        opacity: 1
-      })
-    );
-    writingAnimationTl.current.add(
-      gsap.to(writeAnimationElement.current, {
-        duration: 0.3,
-        opacity: 0,
-        delay: 2.5
-      })
-    );
-    writingAnimationTl.current.add(
-      gsap.to(writeAnimationElement.current, {
-        duration: 0,
-        scale: 0,
-      })
-    );
-  }, []);
   return (
     <WelcomeBoxSection>
       <HeadingComponent tagName='h2' color="#6A82FB">
@@ -273,7 +273,7 @@ const WelcomeBoxComponent = () => {
         <WelcomeBoxConversation ref={welcomeBoxConversation}>
           {
             activeMessages.map((message: any) => 
-              <WelcomeBoxMessage position={message.type === 'user' ? 'right' : 'left'} data-scroll-to={message.toggler}>
+              <WelcomeBoxMessage key={Math.random() * 100000} position={message.type === 'user' ? 'right' : 'left'} data-scroll-to={message.toggler}>
                 <div>
                   <WelcomeBoxMessageText
                       position={message.type === 'user' ? 'right' : 'left'}

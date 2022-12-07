@@ -10,11 +10,9 @@ const defaultProps: Props = {
   color: "#cacaca"
 };
 
-const Paragraph = ({children, ...rest} : Props) => {
+const Paragraph: React.FC<Props> = ({children, ...rest} : Props) => {
   return (
-    <>
-      <ParagraphStyled {...rest}>{children}</ParagraphStyled>
-    </>
+    <ParagraphStyled {...rest}>{children}</ParagraphStyled>
   );
 }
 

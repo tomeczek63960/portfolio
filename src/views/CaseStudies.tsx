@@ -9,7 +9,7 @@ const CaseStudiesSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
 
-const CaseStudies = () => {
+const CaseStudies: React.FC = () => {
   return (
     <CaseStudiesSection>
       <HeadingComponent tagName='h2' color="#6A82FB">

@@ -5,7 +5,7 @@ import Linkedin from '../../../../public/svg/linkedin.svg';
 import Github from '../../../../public/svg/github.svg';
 import {StyledLink, DesktopNav, DesktopNavSocialMeida} from './style';
 
-const Header = () => {
+const Header: React.FC = () => {
   const { locale, locales=[] } = useRouter();
   const [ shortLocale ] = locale ? locale.split("-") : ["en"];
 
