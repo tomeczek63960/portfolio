@@ -8,7 +8,7 @@ interface TimelineProps {
   color?: string;
   hoverColor?: string;
 }
-const createTimeline = ({target, color, hoverColor}: TimelineProps) => {
+const createTimeline = ({target, color, hoverColor}: TimelineProps): GSAPTimeline => {
   let tl = gsap.timeline({paused: true});
   tl.add(
     gsap.to(target, {
@@ -76,8 +76,8 @@ const createTimeline = ({target, color, hoverColor}: TimelineProps) => {
 }
 
 // do refactoru
-export const useAnimatedChars = (props: any): [React.RefObject<HTMLHeadingElement | undefined>, React.MouseEventHandler<HTMLHeadingElement>] => {
-  const heading = useRef<HTMLHeadingElement>();
+export const useAnimatedChars = (props: any): [React.RefObject<HTMLHeadingElement>, React.MouseEventHandler<HTMLHeadingElement>] => {
+  const heading = useRef<HTMLHeadingElement>(null);
   const tlEvents = useRef<{tl: any, animationIndex: string}[]>([]);
 
   const handleAnimation = (animationIndex: string, target: HTMLHeadingElement) => {

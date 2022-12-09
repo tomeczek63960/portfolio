@@ -49,7 +49,7 @@ export const StyledInput = styled.input`
     border: none;
     border-bottom: 2px solid ${ colors.blackSecondary };;
 `;
-export const StyledInputBorder = styled.span`
+export const StyledInputBorder = styled.span.attrs((props: {background: string}) => props)`
   display: block;
   position: absolute;
   bottom: 0;
@@ -57,7 +57,7 @@ export const StyledInputBorder = styled.span`
   z-index: 10;
   height: 2px;
   width: 0%;
-  background: ${colors.purple};
+  background: ${({ background }) => background || colors.purple};
 `;
 export const StyledInputBorderAfter = styled.span`
   display: block;
@@ -65,46 +65,6 @@ export const StyledInputBorderAfter = styled.span`
   bottom: 0;
   left: 0;
   z-index: 15;
-  height: 2px;
-  width: 0%;
-  background: ${colors.blackSecondary};
-`;
-export const StyledInputErrorBorder = styled.span`
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  height: 2px;
-  width: 0%;
-  background: ${colors.error};
-`;
-export const StyledInputErrorBorderAfter = styled.span`
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  height: 2px;
-  width: 0%;
-  background: ${colors.blackSecondary};
-`;
-export const StyledInputSuccessBorder = styled.span`
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  height: 2px;
-  width: 0%;
-  background: ${colors.success};
-`;
-export const StyledInputSuccessBorderAfter = styled.span`
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
   height: 2px;
   width: 0%;
   background: ${colors.blackSecondary};

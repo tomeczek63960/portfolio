@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CustomImage = styled.div`
+export const StyledImage = styled.div`
   width: 100%;
   & > span {
     position: unset !important;

@@ -4,36 +4,13 @@ import Link from 'next/link'
 import Linkedin from '../../../../public/svg/linkedin.svg';
 import Github from '../../../../public/svg/github.svg';
 import {StyledLink, DesktopNav, DesktopNavSocialMeida} from './style';
+import {getPaths} from 'src/helpers/getPaths';
 
 const Header: React.FC = () => {
   const { locale, locales=[] } = useRouter();
   const [ shortLocale ] = locale ? locale.split("-") : ["en"];
 
-  const localePaths = useMemo(() => {
-    switch (shortLocale) {
-      case "pl":
-        return {
-          home: "/",
-          contact: "/kontakt",
-          caseStudies: "/case-studies",
-          showCase: "/show"
-        };
-      case "en":
-        return {
-          home: "/",
-          contact: "/contact",
-          caseStudies: "/case-studies",
-          showCase: "/show-case"
-        };
-      default:
-        return {
-          home: "/",
-          contact: "/contact",
-          caseStudies: "/case-studies",
-          showCase: "/show-case"
-        };
-    }
-  }, [locale]);
+  const localePaths = useMemo(() => getPaths(shortLocale), [locale]);
   return (
     <>
       <DesktopNav>

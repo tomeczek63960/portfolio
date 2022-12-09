@@ -13,7 +13,7 @@ html {
   font-style: normal;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  // overflow-y: scroll;
+  overflow-y: scroll;
   position: relative;
   &.no-scroll {
     overflow: hidden!important;
@@ -95,27 +95,6 @@ body {
   overflow: hidden;
   background: black;
   font-family: 'Inter', sans-serif;
-  // opacity: 0;
-  // animation: loadPageContent 0.3s 7.5s ease-in-out forwards;
-  &::before {
-    // content: "";
-    width: 50%;
-    height: 0;
-    position: fixed;
-    top: 0;
-    right: 0;
-    background-color: $white;
-    animation: loadHeight 1s 8.5s forwards;
-    z-index: -1;
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
-    @include tabletP {
-      opacity: 1;
-      pointer-events: all;
-      visibility: visible;
-    }
-  }
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
 import { colors } from 'src/styled/mixins';
 import {
@@ -8,9 +7,7 @@ import {
   StyledLabel,
   StyledInput,
   StyledInputBorder,
-  StyledInputBorderAfter,
-  StyledInputErrorBorder,
-  StyledInputErrorBorderAfter, StyledInputSuccessBorder, StyledInputSuccessBorderAfter
+  StyledInputBorderAfter
 } from './style';
 import {useTimeline} from 'src/hooks/useTimeline';
 
@@ -21,65 +18,50 @@ interface Props {
   isFormDirty: boolean;
 }
 
+const createInputAnimation = (timeline: GSAPTimeline, border: HTMLSpanElement, borderAfter: HTMLSpanElement) => {
+  timeline.to(border, {
+    duration: 0.5,
+    width: '100%'
+  });
+  timeline.to(borderAfter, {
+    duration: 0.5,
+    width: '100%'
+  }, '-=0.3');
+  timeline.to(borderAfter, {
+    duration: 0.4,
+    x: '100%'
+  });
+}
+
 const Input: React.FC<Props> = ({ type, placeholder, validation, isFormDirty }: Props ) => {
   const [inputValue, setInputValue] = useState<string>('');
-  const input = useRef<any>(null);
-  const inputBorder = useRef<any>(null);
-  const inputBorderAfter = useRef<any>(null);
-  const labelRef = useRef<any>(null);
-  const inputError = useRef<any>(null);
-  const inputErrorAfter = useRef<any>(null);
-  const inputSuccess = useRef<any>(null);
-  const inputSuccessAfter = useRef<any>(null);
+  const input = useRef<HTMLInputElement>(null);
+  const inputBorder = useRef<HTMLSpanElement>(null);
+  const inputBorderAfter = useRef<HTMLSpanElement>(null);
+  const labelRef = useRef<HTMLLabelElement>(null);
+  const inputError = useRef<HTMLSpanElement>(null);
+  const inputErrorAfter = useRef<HTMLSpanElement>(null);
+  const inputSuccess = useRef<HTMLSpanElement>(null);
+  const inputSuccessAfter = useRef<HTMLSpanElement>(null);
   const isInputDirty = useRef(false);
-  
+
   const tlCallback = (timeline: GSAPTimeline) => {
-    timeline.to(inputBorder.current, {
-      duration: 0.5,
-      width: '100%'
-    });
-    timeline.to(inputBorderAfter.current, {
-      duration: 0.5,
-      width: '100%'
-    }, '-=0.3');
-    timeline.to(inputBorderAfter.current, {
-      duration: 0.4,
-      x: '100%'
-    });
+    if (!inputBorder.current || !inputBorderAfter.current) return;
+    createInputAnimation(timeline, inputBorder.current, inputBorderAfter.current)
   }
   const tlErrorCallback = (timeline: GSAPTimeline) => {
+    if (!inputError.current || !inputErrorAfter.current) return;
     timeline.call(() => {
-      input.current.classList.add('error');
+      input.current?.classList.add('error');
     });
-    timeline.to(inputError.current, {
-      duration: 0.5,
-      width: '100%'
-    });
-    timeline.to(inputErrorAfter.current, {
-      duration: 0.5,
-      width: '100%'
-    }, '-=0.3');
-    timeline.to(inputErrorAfter.current, {
-      duration: 0.4,
-      x: '100%'
-    });
+    createInputAnimation(timeline, inputError.current, inputErrorAfter.current)
   }
   const tlSuccessCallback = (timeline: GSAPTimeline) => {
+    if (!inputSuccess.current || !inputSuccessAfter.current) return;
     timeline.call(() => {
-      input.current.classList.remove('error');
+      input.current?.classList.remove('error');
     });
-    timeline.to(inputSuccess.current, {
-      duration: 0.5,
-      width: '100%'
-    });
-    timeline.to(inputSuccessAfter.current, {
-      duration: 0.5,
-      width: '100%'
-    }, '-=0.3');
-    timeline.to(inputSuccessAfter.current, {
-      duration: 0.4,
-      x: '100%'
-    });
+    createInputAnimation(timeline, inputSuccess.current, inputSuccessAfter.current)
   }
   const tlLabelCallback = (timeline: GSAPTimeline) => {
     timeline.to(labelRef.current, {
@@ -92,15 +74,9 @@ const Input: React.FC<Props> = ({ type, placeholder, validation, isFormDirty }: 
   }
 
   const [tl] = useTimeline(tlCallback);
-  const [tlError] = useTimeline(tlErrorCallback);
   const [tlSuccess] = useTimeline(tlSuccessCallback);
+  const [tlError] = useTimeline(tlErrorCallback);
   const [tlLabel] = useTimeline(tlLabelCallback);
-
-  useIsomorphicLayoutEffect(() => {
-    if (isFormDirty) {
-      onChange();
-    }
-  }, [isFormDirty]);
 
   const focusRef = () => {
     tlLabel.play();
@@ -142,6 +118,10 @@ const Input: React.FC<Props> = ({ type, placeholder, validation, isFormDirty }: 
     }
   }
 
+  useIsomorphicLayoutEffect(() => {
+    if (!isFormDirty) return;
+    onChange();
+  }, [isFormDirty]);
   return (
     <InputGroup>
       <StyledLabel htmlFor={placeholder} ref={labelRef}>{placeholder}</StyledLabel>
@@ -155,15 +135,16 @@ const Input: React.FC<Props> = ({ type, placeholder, validation, isFormDirty }: 
           type={type}
           value={inputValue}
         />
-        <StyledInputBorder ref={inputBorder}>
+
+        <StyledInputBorder background={colors.purple} ref={inputBorder}> 
           <StyledInputBorderAfter ref={inputBorderAfter} />
         </StyledInputBorder>
-        <StyledInputErrorBorder ref={inputError}>
-          <StyledInputErrorBorderAfter ref={inputErrorAfter} />
-        </StyledInputErrorBorder>
-        <StyledInputSuccessBorder ref={inputSuccess}>
-          <StyledInputSuccessBorderAfter ref={inputSuccessAfter} />
-        </StyledInputSuccessBorder>
+        <StyledInputBorder background={colors.error} ref={inputError}>
+          <StyledInputBorderAfter ref={inputErrorAfter} />
+        </StyledInputBorder>
+        <StyledInputBorder background={colors.success} ref={inputSuccess}>
+          <StyledInputBorderAfter ref={inputSuccessAfter} />
+        </StyledInputBorder>
       </InputGroupComponent>
     </InputGroup>
   );
