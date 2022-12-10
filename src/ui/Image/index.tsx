@@ -1,13 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import {StyledImage} from './style';
+import {ImageProps} from './types';
 
-interface Props {
-  url: string;
-  className?: string;
-}
-
-const ImageComponent: React.FC<Props> = ({url, className}: Props) => {
+const ImageComponent: React.FC<ImageProps> = ({url, className}) => {
   return (
     <StyledImage>
       <Image

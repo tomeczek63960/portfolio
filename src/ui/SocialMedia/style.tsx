@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { colors } from 'src/styled/mixins';
 
-export const SocialMeidaLinks = styled.div.attrs((props: {theme: string}) => props)`
+export const StyledSocialMeidaLinks = styled.div.attrs((props: {theme: string}) => props)`
   margin-bottom: 20px;
   display: flex;
   a {

@@ -2,7 +2,7 @@ import React from 'react';
 import styled, {keyframes} from 'styled-components';
 import { responsive, colors } from 'src/styled/mixins';
 
-const H2 = styled.h2.attrs((props: {color?: string}) => props)`
+const StyledH2 = styled.h2.attrs((props: {color?: string}) => props)`
   margin-top: 30px;
   color: transparent;
   /* font-size: 45px; */
@@ -58,7 +58,7 @@ const animate = keyframes`
     filter: hue-rotate(360deg);
   }
 `;
-const HexagonContainer = styled.div`
+const StyledHexagonContainer = styled.div`
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -77,7 +77,7 @@ const HexagonContainer = styled.div`
     }
   }
 `;
-const Hexagon = styled.div`
+const StyledHexagon = styled.div`
   margin: 1px;
   position: relative;
   width: 100px;
@@ -108,27 +108,27 @@ const ShowCase: React.FC = () => {
   return (
     <>
       {/* <h1>Strona na której będą zaawansowane anikacje pokazującę zlepki ze wszystkich projektów (coś na zasadzie wideo tylko ze animowane przez js</h1> */}
-      <HexagonContainer>
-        <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
-        <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
-        <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
-        <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
-        <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
-        <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
-        <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
-        <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
-        <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
-        <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
-        <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
-        <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
-        <div className="row"> {hexagonArray.map(() => <Hexagon />)}</div>
-      </HexagonContainer>
+      <StyledHexagonContainer>
+        <div className="row"> {hexagonArray.map(() => <StyledHexagon />)}</div>
+        <div className="row"> {hexagonArray.map(() => <StyledHexagon />)}</div>
+        <div className="row"> {hexagonArray.map(() => <StyledHexagon />)}</div>
+        <div className="row"> {hexagonArray.map(() => <StyledHexagon />)}</div>
+        <div className="row"> {hexagonArray.map(() => <StyledHexagon />)}</div>
+        <div className="row"> {hexagonArray.map(() => <StyledHexagon />)}</div>
+        <div className="row"> {hexagonArray.map(() => <StyledHexagon />)}</div>
+        <div className="row"> {hexagonArray.map(() => <StyledHexagon />)}</div>
+        <div className="row"> {hexagonArray.map(() => <StyledHexagon />)}</div>
+        <div className="row"> {hexagonArray.map(() => <StyledHexagon />)}</div>
+        <div className="row"> {hexagonArray.map(() => <StyledHexagon />)}</div>
+        <div className="row"> {hexagonArray.map(() => <StyledHexagon />)}</div>
+        <div className="row"> {hexagonArray.map(() => <StyledHexagon />)}</div>
+      </StyledHexagonContainer>
 
-      <H2 data-text="&nbsp;Home&nbsp;" color='#f81ce5'>&nbsp;Home&nbsp;</H2>
-      <H2 data-text="&nbsp;Home&nbsp;" color='#f80759'>&nbsp;Home&nbsp;</H2>
-      <H2 data-text="&nbsp;Contact&nbsp;" color='#fdc830'>&nbsp;Contact&nbsp;</H2>
-      <H2 data-text="&nbsp;Case Studies&nbsp;" color='#15ee11'>&nbsp;Case Studies&nbsp;</H2>
-      <H2 data-text="&nbsp;Show case&nbsp;" color='#3F5EFB'>&nbsp;Show case&nbsp;</H2>
+      <StyledH2 data-text="&nbsp;Home&nbsp;" color='#f81ce5'>&nbsp;Home&nbsp;</StyledH2>
+      <StyledH2 data-text="&nbsp;Home&nbsp;" color='#f80759'>&nbsp;Home&nbsp;</StyledH2>
+      <StyledH2 data-text="&nbsp;Contact&nbsp;" color='#fdc830'>&nbsp;Contact&nbsp;</StyledH2>
+      <StyledH2 data-text="&nbsp;Case Studies&nbsp;" color='#15ee11'>&nbsp;Case Studies&nbsp;</StyledH2>
+      <StyledH2 data-text="&nbsp;Show case&nbsp;" color='#3F5EFB'>&nbsp;Show case&nbsp;</StyledH2>
 
       {/* tutaj galerię ze zdjęciami (animowanymi customowym pluginem 'przerobić ten płatny plugin od jquery na czysty js') */}
     </>

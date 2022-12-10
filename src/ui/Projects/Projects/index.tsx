@@ -1,13 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from "gsap";
+import React, { useState } from 'react';
 import {
   useQuery,
-  useQueryClient,
 } from '@tanstack/react-query';
 import Project from 'src/ui/Projects/Project';
 import ProjectBox from 'src/ui/Projects/ProjectBox';
-import {ProjectsGrid} from './style';
+import {StyledProjectsGrid} from './style';
 
 const fetchProjects = async () => {
   // const res = await axios.get('https://app-portfolio-tk.herokuapp.com/projects?_locale=en');
@@ -26,7 +24,7 @@ const ProjectsComponent: React.FC = () => {
 
   return (
     <>
-      <ProjectsGrid>
+      <StyledProjectsGrid>
         { data?.data.map((project: any) => 
           <Project
             key={ project.id }
@@ -34,7 +32,7 @@ const ProjectsComponent: React.FC = () => {
             project={project}
           />
         )}
-      </ProjectsGrid>
+      </StyledProjectsGrid>
       <ProjectBox
         activeProject={activeProject}
         onCloseFunction={setActiveProjectBox}

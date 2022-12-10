@@ -2,11 +2,9 @@ import React, { useRef } from 'react';
 import {StyledButton, StyledButtonBorder, StyledButtonBorderAfter} from './style';
 import { colors } from 'src/styled/mixins';
 import {useTimeline} from 'src/hooks/useTimeline';
+import {ButtonProps} from './types';
 
-interface Props {
-  children: string;
-}
-const ButtonComponent: React.FC<Props> = ({ children }: Props) => {
+const ButtonComponent: React.FC<ButtonProps> = ({ children }) => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const buttonBorder = useRef<any>(null);
   const buttonBorderAfter = useRef<any>(null);

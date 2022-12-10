@@ -1,8 +1,8 @@
 
 import { responsive, colors } from 'src/styled/mixins';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-const headingStyled = (color: string, hoverColor?: string) => `
+const headingStyles = (color: string) => `
   font-family: 'Poppins', sans-serif;
   line-height: 1;
   letter-spacing: 2px;
@@ -16,18 +16,13 @@ const headingStyled = (color: string, hoverColor?: string) => `
     display: inline-block;
     transition: color 0.3s;
     cursor: pointer;
-    // ${hoverColor && `
-    //   &:hover {
-    //     color: ${hoverColor};
-    //   }
-    // `}
   }
 `;
 
 export const H1 = styled.h1.attrs((props: {color?: string, hoverColor?: string}) => props)`
   margin: 30px 0;
   font-size: 35px;
-  ${({color, hoverColor}) => headingStyled(color || 'white', hoverColor)}
+  ${({color}) => headingStyles(color || colors.white)}
   ${responsive.tabletP`
     font-size: 40px;
   `}
@@ -41,7 +36,7 @@ export const H1 = styled.h1.attrs((props: {color?: string, hoverColor?: string})
 export const H2 = styled.h2.attrs((props: {color?: string, hoverColor?: string}) => props)`
   font-size: 30px;
   margin: 20px 0;
-  ${({color, hoverColor}) => headingStyled(color || 'white', hoverColor)}
+  ${({color}) => headingStyles(color || colors.white)}
   ${responsive.tabletP`
     font-size: 35px;
   `}
@@ -55,7 +50,7 @@ export const H2 = styled.h2.attrs((props: {color?: string, hoverColor?: string})
 export const H3 = styled.h3.attrs((props: {color?: string, hoverColor?: string}) => props)`
   font-size: 20px;
   margin: 20px 0;
-  ${({color, hoverColor}) => headingStyled(color || 'white', hoverColor)}
+  ${({color}) => headingStyles(color || colors.white)}
   ${responsive.tabletP`
     font-size: 25px;
   `}
@@ -65,12 +60,12 @@ export const H3 = styled.h3.attrs((props: {color?: string, hoverColor?: string})
 `; 
 export const H4 = styled.h4.attrs((props: {color?: string, hoverColor?: string}) => props)`
   font-size: 25px;
-  ${({color, hoverColor}) => headingStyled(color || 'white', hoverColor)}
+  ${({color}) => headingStyles(color || colors.white)}
 `; 
 export const H5 = styled.h5.attrs((props: {color?: string, hoverColor?: string}) => props)`
   font-size: 15px;
-  ${({color, hoverColor}) => headingStyled(color || 'white', hoverColor)}
+  ${({color}) => headingStyles(color || colors.white)}
 `; 
 export const H6 = styled.h6.attrs((props: {color?: string, hoverColor?: string}) => props)`
-  ${({color, hoverColor}) => headingStyled(color || 'white', hoverColor)}
+  ${({color}) => headingStyles(color || colors.white)}
 `; 

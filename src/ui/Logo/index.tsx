@@ -2,9 +2,9 @@ import React from 'react';
 import { useRouter } from "next/router";
 import Link from 'next/link'
 import {StyledLogo} from './style';
+import {LogoProps} from './types';
 
-interface Props {}
-const Logo = React.forwardRef<HTMLAnchorElement, Props>((props, ref) => {
+const Logo = React.forwardRef<HTMLAnchorElement, LogoProps>((props, ref) => {
   const { locale } = useRouter();
   return (
     <Link href="/" locale={ locale }><StyledLogo ref={ref}>TK</StyledLogo></Link>

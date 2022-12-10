@@ -2,21 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
 import { colors } from 'src/styled/mixins';
 import {
-  InputGroup,
-  InputGroupComponent,
+  StyledInputGroup,
+  StyledInputGroupComponent,
   StyledLabel,
   StyledInput,
   StyledInputBorder,
   StyledInputBorderAfter
 } from './style';
 import {useTimeline} from 'src/hooks/useTimeline';
-
-interface Props {
-  type: string;
-  placeholder: string; 
-  validation: Function;
-  isFormDirty: boolean;
-}
+import {InputProps} from './types';
 
 const createInputAnimation = (timeline: GSAPTimeline, border: HTMLSpanElement, borderAfter: HTMLSpanElement) => {
   timeline.to(border, {
@@ -33,7 +27,7 @@ const createInputAnimation = (timeline: GSAPTimeline, border: HTMLSpanElement, b
   });
 }
 
-const Input: React.FC<Props> = ({ type, placeholder, validation, isFormDirty }: Props ) => {
+const Input: React.FC<InputProps> = ({ type, placeholder, validation, isFormDirty }) => {
   const [inputValue, setInputValue] = useState<string>('');
   const input = useRef<HTMLInputElement>(null);
   const inputBorder = useRef<HTMLSpanElement>(null);
@@ -123,9 +117,9 @@ const Input: React.FC<Props> = ({ type, placeholder, validation, isFormDirty }: 
     onChange();
   }, [isFormDirty]);
   return (
-    <InputGroup>
+    <StyledInputGroup>
       <StyledLabel htmlFor={placeholder} ref={labelRef}>{placeholder}</StyledLabel>
-      <InputGroupComponent>
+      <StyledInputGroupComponent>
         <StyledInput
           id={placeholder}
           onInput={onChange}
@@ -145,8 +139,8 @@ const Input: React.FC<Props> = ({ type, placeholder, validation, isFormDirty }: 
         <StyledInputBorder background={colors.success} ref={inputSuccess}>
           <StyledInputBorderAfter ref={inputSuccessAfter} />
         </StyledInputBorder>
-      </InputGroupComponent>
-    </InputGroup>
+      </StyledInputGroupComponent>
+    </StyledInputGroup>
   );
 }
 

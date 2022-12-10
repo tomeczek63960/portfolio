@@ -27,7 +27,7 @@ export const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props
     line-height: 48px;
   `}
 `;
-export const DesktopNav = styled.div`
+export const StyledDesktopNav = styled.div`
   height: 100%;
   display: none;
   ${responsive.tabletP`
@@ -36,7 +36,7 @@ export const DesktopNav = styled.div`
     justify-content: center;
   `}
 `;
-export const DesktopNavSocialMeida = styled.div`
+export const StyledDesktopNavSocialMeida = styled.div`
   margin-bottom: 20px;
   display: flex;
   a {

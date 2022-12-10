@@ -3,10 +3,9 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import HandleText from 'src/helpers/handleText'
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import { simpleSplitText } from 'src/helpers/simpleSplitText';
 import HeadingComponent from 'src/ui/Heading';
 import Paragraph from 'src/ui/Paragraph';
-import {WorkExperienceSection, StyledTimeline, StyledTimelineList, StyledTimelineListItem} from './style';
+import {StyledWorkExperienceSection, StyledTimeline, StyledTimelineList, StyledTimelineListItem} from './style';
 
 // do przerobienia na te karty cssowe zamiast timelina
 const WorkExperience: React.FC = () => {
@@ -114,7 +113,7 @@ const WorkExperience: React.FC = () => {
     });
   }, []);
   return (
-    <WorkExperienceSection>
+    <StyledWorkExperienceSection>
       <HeadingComponent tagName='h2' color="#6A82FB">
         Doświadczenie zawodowe
       </HeadingComponent>
@@ -137,7 +136,7 @@ const WorkExperience: React.FC = () => {
           }) }
         </StyledTimelineList>
       </StyledTimeline>
-    </WorkExperienceSection>
+    </StyledWorkExperienceSection>
   );
 }
 

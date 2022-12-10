@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { responsive, colors } from 'src/styled/mixins';
 
-export const ProjectBox = styled.div`
+export const StyledProjectBox = styled.div`
   width: 100%;
   max-width: 600px;
   height: 100vh;
@@ -16,7 +16,7 @@ export const ProjectBox = styled.div`
     filter: blur(2px);
   }
 `;
-export const ProjectBoxShadow = styled.div`
+export const StyledProjectBoxShadow = styled.div`
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -28,7 +28,7 @@ export const ProjectBoxShadow = styled.div`
   visibility: hidden;
   cursor: pointer;
 `;
-export const ProjectBoxClose = styled.div`
+export const StyledProjectBoxClose = styled.div`
   padding: 20px;
   border-bottom: 1px solid ${colors.whiteSecondary};
   display: flex;
@@ -43,7 +43,7 @@ export const ProjectBoxClose = styled.div`
     color: ${colors.black};
   }
 `;
-export const ProjectBoxContent = styled.div`
+export const StyledProjectBoxContent = styled.div`
   padding: 20px;
   color: ${colors.black};
   .project-box__text {
@@ -63,7 +63,7 @@ export const ProjectBoxContent = styled.div`
     margin: 10px 0 40px;
   }
 `;
-export const ProjectBoxReference = styled.div`
+export const StyledProjectBoxReference = styled.div`
   margin-top: 30px;
   h5 {
     font-size: 18px;
@@ -84,7 +84,7 @@ export const ProjectBoxReference = styled.div`
     height: 15px;
   }
 `;
-export const ProjectBoxLink = styled.a`
+export const StyledProjectBoxLink = styled.a`
   margin-top: auto;
   display: block;
   width: 100%;
@@ -94,7 +94,7 @@ export const ProjectBoxLink = styled.a`
   color: ${colors.white};
   font-size: 20px;
 `;
-export const ProjectBoxTechnologies = styled.div`
+export const StyledProjectBoxTechnologies = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 0 -5px;
@@ -108,7 +108,7 @@ export const ProjectBoxTechnologies = styled.div`
     font-size: 12px;
   }
 `;
-export const ProjectBoxCategories = styled.div`
+export const StyledProjectBoxCategories = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 30px -5px 0;

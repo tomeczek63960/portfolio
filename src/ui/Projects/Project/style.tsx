@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { responsive, colors } from 'src/styled/mixins';
 
-export const Project = styled.div`
+export const StyledProject = styled.div`
   cursor: pointer;
   width: 100%;
   max-width: 100%;
@@ -12,7 +12,7 @@ export const Project = styled.div`
   border-radius: 5px;
   overflow: hidden;
 `
-export const ProjectHover = styled.div`
+export const StyledProjectHover = styled.div`
   padding: 20px 15px;
   width: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.78) 70%);

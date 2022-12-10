@@ -1,20 +1,12 @@
-import React, { useRef, useEffect } from 'react';
-import {ParagraphStyled} from './style';
+import React from 'react';
+import {StyledParagraph} from './style';
+import {ParagraphProps, paragraphDefaultProps} from './types';
 
-interface Props {
-  children?: React.ReactNode;
-  color?: string;
-}
-
-const defaultProps: Props = {
-  color: "#cacaca"
-};
-
-const Paragraph: React.FC<Props> = ({children, ...rest} : Props) => {
+const Paragraph: React.FC<ParagraphProps> = ({children, ...rest}) => {
   return (
-    <ParagraphStyled {...rest}>{children}</ParagraphStyled>
+    <StyledParagraph {...rest}>{children}</StyledParagraph>
   );
 }
 
-Paragraph.defaultProps = defaultProps;
+Paragraph.defaultProps = paragraphDefaultProps;
 export default Paragraph;

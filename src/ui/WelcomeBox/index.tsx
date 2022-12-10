@@ -4,19 +4,19 @@ import { gsap } from "gsap";
 import HeadingComponent from 'src/ui/Heading';
 import Paragraph from 'src/ui/Paragraph';
 import {
-  WelcomeBoxSection,
-  WelcomeBox,
-  WelcomeBoxHead,
-  WelcomeBoxHeadHeading,
-  WelcomeBoxHeadParagraph,
-  WelcomeBoxHeadInfo,
-  WelcomeBoxImage,
-  WelcomeBoxConversation,
-  WelcomeBoxMessage,
-  WelcomeBoxMessageImage,
-  WelcomeBoxMessageText,
-  WelcomeBoxOptions,
-  WelcomeBoxOptionsList,
+  StyledWelcomeBoxSection,
+  StyledWelcomeBox,
+  StyledWelcomeBoxHead,
+  StyledWelcomeBoxHeadHeading,
+  StyledWelcomeBoxHeadParagraph,
+  StyledWelcomeBoxHeadInfo,
+  StyledWelcomeBoxImage,
+  StyledWelcomeBoxConversation,
+  StyledWelcomeBoxMessage,
+  StyledWelcomeBoxMessageImage,
+  StyledWelcomeBoxMessageText,
+  StyledWelcomeBoxOptions,
+  StyledWelcomeBoxOptionsList,
 } from './style';
 import {useTimeline} from 'src/hooks/useTimeline';
  
@@ -164,13 +164,11 @@ const WelcomeBoxComponent: React.FC = () => {
     },
   ]);
   const [messagesQueue, setMessagesQueue] = useState<any>([]);
-  const writeAnimationWelcomeBox = useRef<any>();
-  const writeAnimationWelcomeBoxImage = useRef<any>();
-  const writeAnimationElement = useRef<any>();
-  const writingAnimationTl = useRef<any>();
-  const welcomeBoxConversation = useRef<any>();
-  const welcomeBoxOptions = useRef<any>();
-  let isFirst = true;
+  const writeAnimationWelcomeBox = useRef<HTMLDivElement>(null);
+  const writeAnimationWelcomeBoxImage = useRef<HTMLDivElement>(null);
+  const writeAnimationElement = useRef<HTMLDivElement>(null);
+  const welcomeBoxConversation = useRef<HTMLDivElement>(null);
+  const welcomeBoxOptions = useRef<HTMLDivElement>(null);
   const headInfo = {
     image: '/tk.jpeg',
     name: 'Tomasz Kardel',
@@ -207,10 +205,9 @@ const WelcomeBoxComponent: React.FC = () => {
   const [tl] = useTimeline(tlCallback);
 
   const writeMessage = (event: React.MouseEvent<HTMLElement>, message: any) => {
+    if (!welcomeBoxConversation.current) return;
     const togglerMessages = newMessages.filter((msg: any) => msg.toggler === message.toggler);
-    // const target = event.target as HTMLInputElement;
-    // target.setAttribute('disabled', 'true');
-    const isInConversation = welcomeBoxConversation.current.querySelector(`[data-scroll-to="${message.toggler}"]`)
+    const isInConversation = welcomeBoxConversation.current.querySelector(`[data-scroll-to="${message.toggler}"]`) as HTMLDivElement;
     if (!isInConversation) {
       setMessagesQueue((prev: any) => ([
         ...prev,
@@ -221,6 +218,12 @@ const WelcomeBoxComponent: React.FC = () => {
     }
   }
   useEffect(() => {
+    // cały blok ze stylami do przerobienia na gsap lub klasy
+    if (!welcomeBoxOptions.current 
+      || !writeAnimationWelcomeBox.current
+      || !writeAnimationWelcomeBoxImage.current
+      || !writeAnimationElement.current
+    ) return;
     welcomeBoxOptions.current.style.pointerEvents = 'all';
     if (messagesQueue.length) {
       welcomeBoxOptions.current.style.pointerEvents = 'none';
@@ -229,13 +232,13 @@ const WelcomeBoxComponent: React.FC = () => {
         writeAnimationElement.current.style.borderTopLeftRadius = '0';
         writeAnimationElement.current.style.borderTopRightRadius = '4px';
         writeAnimationWelcomeBox.current.style.justifyContent = 'flex-start';
-        writeAnimationWelcomeBoxImage.current.style.order = -1;
+        writeAnimationWelcomeBoxImage.current.style.order = '-1';
         writeAnimationWelcomeBox.current.style.padding = '0 60px 0 0';
       } else {
         writeAnimationWelcomeBox.current.style.justifyContent = 'flex-end';
         writeAnimationElement.current.style.borderTopLeftRadius = '4px';
         writeAnimationElement.current.style.borderTopRightRadius = '0';
-        writeAnimationWelcomeBoxImage.current.style.order = 1;
+        writeAnimationWelcomeBoxImage.current.style.order = '1';
         writeAnimationWelcomeBox.current.style.padding = '0 0 0 60px';
       }
       tl?.play().then(() => {
@@ -250,66 +253,67 @@ const WelcomeBoxComponent: React.FC = () => {
     }
   }, [messagesQueue, activeMessages]);
   useEffect(() => {
+    if (!welcomeBoxConversation.current) return;
     welcomeBoxConversation.current.scrollTo(0, welcomeBoxConversation.current.scrollHeight);
   }, [activeMessages])
 
   return (
-    <WelcomeBoxSection>
+    <StyledWelcomeBoxSection>
       <HeadingComponent tagName='h2' color="#6A82FB">
         About Me
       </HeadingComponent>
       <Paragraph>Co chcesz się o mnie dowiedzieć?</Paragraph>
-      <WelcomeBox>
-        <WelcomeBoxHead>
-          <WelcomeBoxImage>
+      <StyledWelcomeBox>
+        <StyledWelcomeBoxHead>
+          <StyledWelcomeBoxImage>
             <Image src={headInfo.image} width="100%" height="100%" />
-          </WelcomeBoxImage>
-          <WelcomeBoxHeadInfo>
-            <WelcomeBoxHeadHeading>{headInfo.name}</WelcomeBoxHeadHeading>
-            <WelcomeBoxHeadParagraph>{headInfo.position}</WelcomeBoxHeadParagraph>
-          </WelcomeBoxHeadInfo>
-        </WelcomeBoxHead>
+          </StyledWelcomeBoxImage>
+          <StyledWelcomeBoxHeadInfo>
+            <StyledWelcomeBoxHeadHeading>{headInfo.name}</StyledWelcomeBoxHeadHeading>
+            <StyledWelcomeBoxHeadParagraph>{headInfo.position}</StyledWelcomeBoxHeadParagraph>
+          </StyledWelcomeBoxHeadInfo>
+        </StyledWelcomeBoxHead>
 
-        <WelcomeBoxConversation ref={welcomeBoxConversation}>
+        <StyledWelcomeBoxConversation ref={welcomeBoxConversation}>
           {
             activeMessages.map((message: any) => 
-              <WelcomeBoxMessage key={Math.random() * 100000} position={message.type === 'user' ? 'right' : 'left'} data-scroll-to={message.toggler}>
+              <StyledWelcomeBoxMessage key={Math.random() * 100000} position={message.type === 'user' ? 'right' : 'left'} data-scroll-to={message.toggler}>
                 <div>
-                  <WelcomeBoxMessageText
+                  <StyledWelcomeBoxMessageText
                       position={message.type === 'user' ? 'right' : 'left'}
                       dangerouslySetInnerHTML={{ __html: message.message }}
-                    ></WelcomeBoxMessageText>
+                    ></StyledWelcomeBoxMessageText>
                 </div>
-                <WelcomeBoxMessageImage type={message.type}>
+                <StyledWelcomeBoxMessageImage type={message.type}>
                   {message.image && <Image src={message.image} width="100%" height="100%" />}
-                </WelcomeBoxMessageImage>
-              </WelcomeBoxMessage>
+                </StyledWelcomeBoxMessageImage>
+              </StyledWelcomeBoxMessage>
             )
           }
 
-          <WelcomeBoxMessage ref={writeAnimationWelcomeBox}>
-            <WelcomeBoxMessageImage ref={writeAnimationWelcomeBoxImage}></WelcomeBoxMessageImage>
+          <StyledWelcomeBoxMessage ref={writeAnimationWelcomeBox}>
+            <StyledWelcomeBoxMessageImage ref={writeAnimationWelcomeBoxImage}></StyledWelcomeBoxMessageImage>
             <div>
-              <WelcomeBoxMessageText ref={writeAnimationElement} writingAnimation={true} visible={true}>
+              <StyledWelcomeBoxMessageText ref={writeAnimationElement} writingAnimation={true} visible={true}>
                 <span></span>
                 <span></span>
                 <span></span>
-              </WelcomeBoxMessageText>
+              </StyledWelcomeBoxMessageText>
             </div>
-          </WelcomeBoxMessage> 
+          </StyledWelcomeBoxMessage> 
 
-        </WelcomeBoxConversation>
-          { messages.length && <WelcomeBoxOptions>
+        </StyledWelcomeBoxConversation>
+          { messages.length && <StyledWelcomeBoxOptions>
             <h4>Wybierz co Ciebie interesuje</h4>
-            <WelcomeBoxOptionsList ref={welcomeBoxOptions}>
+            <StyledWelcomeBoxOptionsList ref={welcomeBoxOptions}>
               { 
                 messages.map((message: any) => <button key={message.toggler} onClick={(e) => writeMessage(e, message)}>{ message.toggler }</button>)
               }
-            </WelcomeBoxOptionsList>
-          </WelcomeBoxOptions>
+            </StyledWelcomeBoxOptionsList>
+          </StyledWelcomeBoxOptions>
           }
-      </WelcomeBox>
-    </WelcomeBoxSection>
+      </StyledWelcomeBox>
+    </StyledWelcomeBoxSection>
   )
 }
 

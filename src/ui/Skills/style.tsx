@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { responsive, colors, variables } from 'src/styled/mixins';
 
-export const SkillsSection = styled.section`
+export const StyledSkillsSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
 export const StyledCircleCarousel = styled.div`

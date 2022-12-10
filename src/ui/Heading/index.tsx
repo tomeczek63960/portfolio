@@ -1,22 +1,9 @@
 import React, { useRef, useEffect } from 'react';
-import { gsap } from "gsap";
-import { simpleSplitText } from 'src/helpers/simpleSplitText';
 import { H1, H2, H3, H4, H5, H6} from './style';
 import {useAnimatedChars} from 'src/hooks/useAnimatedChars';
+import {HeadingProps, headingDefaultProps} from './types';
 
-interface Props {
-  tagName: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  children?: React.ReactNode;
-  color?: string;
-  hoverColor?: string;
-}
-
-const defaultProps: Props = {
-  tagName: "h1",
-  color: "white"
-};
-
-const HeadingComponent: React.FC<Props> = ({tagName, children, ...props} : Props) => {
+const HeadingComponent: React.FC<HeadingProps> = ({tagName, children, ...props}) => {
   const mapStyle = {
     h1: H1,
     h2: H2,
@@ -36,5 +23,5 @@ const HeadingComponent: React.FC<Props> = ({tagName, children, ...props} : Props
   );
 }
 
-HeadingComponent.defaultProps = defaultProps;
+HeadingComponent.defaultProps = headingDefaultProps;
 export default HeadingComponent;

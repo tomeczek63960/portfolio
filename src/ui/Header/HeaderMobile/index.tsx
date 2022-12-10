@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { gsap } from "gsap";
 import Logo from 'src/ui/Logo';
 import SocialMedia from 'src/ui/SocialMedia';
-import {StyledLink, MobileNav, MobileNavContainer, StyledBars, HeaderBar} from './style';
+import {StyledLink, StyledMobileNav, StyledMobileNavContainer, StyledBars, StyledHeaderBar} from './style';
 import {getPaths} from 'src/helpers/getPaths';
 import {useHeaderMobileAnimation} from 'src/hooks/useHeaderMobileAnimation';
 import { preventScroll } from 'src/helpers/preventScroll';
@@ -25,17 +25,17 @@ const Header: React.FC = () => {
   const localePaths = useMemo(() => getPaths(shortLocale), [locale]);
   return (
     <>
-      <HeaderBar ref={ headerBar }>
+      <StyledHeaderBar ref={ headerBar }>
         <Logo ref={ logoRef } />
         <StyledBars ref={ bars } onClick={handleBars}>
           <span ref={ firstDot }></span>
           <span></span>
           <span ref={ lastDot }></span>
         </StyledBars>
-      </HeaderBar>
+      </StyledHeaderBar>
 
-      <MobileNav ref={ mobileNav }>
-        <MobileNavContainer ref={ mobileNavContainer }>
+      <StyledMobileNav ref={ mobileNav }>
+        <StyledMobileNavContainer ref={ mobileNavContainer }>
           <SocialMedia theme='white' ref={socialMediaRef} />
           <Link href={ localePaths.home } locale={ locale }><StyledLink>Home</StyledLink></Link>
           <Link href={ localePaths.contact } locale={ locale }><StyledLink>Kontakt</StyledLink></Link>
@@ -47,8 +47,8 @@ const Header: React.FC = () => {
               </Link>
             )
           )}
-        </MobileNavContainer>
-      </MobileNav>
+        </StyledMobileNavContainer>
+      </StyledMobileNav>
     </>
   );
 }

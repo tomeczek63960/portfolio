@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Link from 'next/link'
 import Linkedin from '../../../../public/svg/linkedin.svg';
 import Github from '../../../../public/svg/github.svg';
-import {StyledLink, DesktopNav, DesktopNavSocialMeida} from './style';
+import {StyledLink, StyledDesktopNav, StyledDesktopNavSocialMeida} from './style';
 import {getPaths} from 'src/helpers/getPaths';
 
 const Header: React.FC = () => {
@@ -13,11 +13,11 @@ const Header: React.FC = () => {
   const localePaths = useMemo(() => getPaths(shortLocale), [locale]);
   return (
     <>
-      <DesktopNav>
-        <DesktopNavSocialMeida>
+      <StyledDesktopNav>
+        <StyledDesktopNavSocialMeida>
           <a href="https://github.com/tomeczek63960" target="_blank"><Linkedin /></a>
           <a href="https://github.com/tomeczek63960" target="_blank"><Github /></a>
-        </DesktopNavSocialMeida>
+        </StyledDesktopNavSocialMeida>
         <Link href={ localePaths.home } locale={ locale }>
           <StyledLink>Home</StyledLink>
         </Link>
@@ -35,7 +35,7 @@ const Header: React.FC = () => {
             <StyledLink isDisabled={localeItem === locale}>{ locale }</StyledLink>
           </Link>
         ))}
-      </DesktopNav>
+      </StyledDesktopNav>
     </>
   );
 }

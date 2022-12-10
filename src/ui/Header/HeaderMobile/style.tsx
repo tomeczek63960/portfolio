@@ -16,7 +16,7 @@ export const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props
     margin-top: 0;
   }
 `;
-export const MobileNav = styled.div`
+export const StyledMobileNav = styled.div`
   background: ${colors.black};
   width: 100%;
   position: fixed;
@@ -26,7 +26,7 @@ export const MobileNav = styled.div`
   height: 0;
   overflow: hidden;
 `;
-export const MobileNavContainer = styled.div`
+export const StyledMobileNavContainer = styled.div`
   padding: 50px 25px;
   display: flex;
   flex-direction: column;
@@ -59,7 +59,7 @@ export const StyledBars = styled.button`
     left: calc(50% + 12px);
   }
 `;
-export const HeaderBar = styled.div`
+export const StyledHeaderBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

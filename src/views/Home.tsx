@@ -11,7 +11,7 @@ import Paragraph from 'src/ui/Paragraph';
 const CvSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
-const IntroductionSection = styled.section`
+const StyledIntroductionSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
 const Home: React.FC = () => {
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
     // wszystko rozdzielić na komponenty w folderach (plik tsx ze skryptami oraz oddzielny plik z deklaracjami styli dla komponentu | oddzielny plik na typy ts | i testy)
     <>
       {/* spróbować dodać animacje na np. wykres który będzie się rysował, kwiatek który będzie rosnął itp. */}
-      <IntroductionSection>
+      <StyledIntroductionSection>
         <HeadingComponent tagName='h1' hoverColor="#6A82FB">
           Hi 👋<br/> 
           I’m Tomek 😊<br/> 
@@ -33,7 +33,7 @@ const Home: React.FC = () => {
         <Paragraph>
           Zapraszam do zapoznania się z moją pracą w która została stworzona z pasją 💜
         </Paragraph>
-      </IntroductionSection>
+      </StyledIntroductionSection>
 
       <WelcomeBox />
       <Skills />

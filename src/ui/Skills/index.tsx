@@ -24,7 +24,7 @@ import Pimcore from "../../../public/svg/pimcore.svg"
 import Shopware from "../../../public/svg/shopware.svg"
 import HeadingComponent from 'src/ui/Heading';
 import Paragraph from 'src/ui/Paragraph';
-import {SkillsSection, StyledCircleCarousel, StyledSlidesText, StyledPagination} from './style';
+import {StyledSkillsSection, StyledCircleCarousel, StyledSlidesText, StyledPagination} from './style';
 
 const Skills: React.FC = () => {
   const jsSkills = [
@@ -187,7 +187,6 @@ const Skills: React.FC = () => {
   const technicalCarouselText = useRef<any>();
   const isInited = useRef<boolean>(false);
   const isInited1 = useRef<boolean>(false);
-
   const jsTechnicalCarousel = useRef<any>();
   const jsTechnicalCarouselPagination = useRef<any>();
   const jsTechnicalCarouselText = useRef<any>();
@@ -216,7 +215,7 @@ const Skills: React.FC = () => {
   }, [])
 
   return (
-    <SkillsSection>
+    <StyledSkillsSection>
       <HeadingComponent tagName='h2' color="#6A82FB">
         Stack technologiczny
       </HeadingComponent>
@@ -276,7 +275,7 @@ const Skills: React.FC = () => {
           })}
         </StyledPagination>
       </StyledCircleCarousel>
-    </SkillsSection>
+    </StyledSkillsSection>
   );
 }
 

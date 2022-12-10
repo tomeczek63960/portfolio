@@ -1,7 +1,7 @@
 import { responsive } from 'src/styled/mixins';
 import styled from 'styled-components';
 
-export const ParagraphStyled = styled.p.attrs((props: {color?: string}) => props)`
+export const StyledParagraph = styled.p.attrs((props: {color?: string}) => props)`
   margin: 15px 0;
   font-size: 16px;
   line-height: 23px;

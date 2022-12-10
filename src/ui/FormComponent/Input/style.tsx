@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { colors } from 'src/styled/mixins';
 
-export const InputGroup = styled.div`
+export const StyledInputGroup = styled.div`
   position: relative;
   margin-top: 30px;
   &:first-child {
@@ -23,7 +23,7 @@ export const InputGroup = styled.div`
     width: 100%;
   }
 `;
-export const InputGroupComponent = styled.div`
+export const StyledInputGroupComponent = styled.div`
   overflow: hidden;
   position: relative;
 `;

@@ -5,13 +5,13 @@ import { variables } from 'src/styled/mixins';
 import styled from 'styled-components';
 import Paragraph from 'src/ui/Paragraph';
 
-const CaseStudiesSection = styled.section`
+const StyledCaseStudiesSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
 
 const CaseStudies: React.FC = () => {
   return (
-    <CaseStudiesSection>
+    <StyledCaseStudiesSection>
       <HeadingComponent tagName='h2' color="#6A82FB">
         Portfolio projects    
       </HeadingComponent>
@@ -23,7 +23,7 @@ const CaseStudies: React.FC = () => {
         Projety są podzielone na "Legacy" i "New" code zależnie od tego kiedy ten projekt był tworzony, najnowsze projekty oznaczone labelem 2022 / 2023 prezentują moją aktualną wiedzę.
       </Paragraph>
       <Projects />
-    </CaseStudiesSection>
+    </StyledCaseStudiesSection>
   );
 }
 

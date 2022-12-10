@@ -6,34 +6,34 @@ const writingAnimationKeyframes = keyframes`
     transform: scale(0.7) translateY(1px);      
   }
 `;
-export const WelcomeBoxSection = styled.section`
+export const StyledWelcomeBoxSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
-export const WelcomeBox = styled.div`
+export const StyledWelcomeBox = styled.div`
   background: ${colors.white};
   border-radius: 5px;
   overflow: hidden;
 `;
-export const WelcomeBoxHead = styled.div`
+export const StyledWelcomeBoxHead = styled.div`
   background: linear-gradient(-225deg, ${colors.purple} 35%, ${colors.lightBlue} 100%);
   display: flex;
   gap: 10px;
   align-items: center;
   padding: 10px;
 `;
-export const WelcomeBoxHeadHeading = styled.h4`
+export const StyledWelcomeBoxHeadHeading = styled.h4`
   font-size: 16px;
   line-height: 1.3;
 `;
-export const WelcomeBoxHeadParagraph = styled.p`
+export const StyledWelcomeBoxHeadParagraph = styled.p`
   font-size: 11px;
   line-height: 1;
 `;
-export const WelcomeBoxHeadInfo = styled.div`
+export const StyledWelcomeBoxHeadInfo = styled.div`
   color: ${colors.white};
   font-family: Arial;
 `;
-export const WelcomeBoxImage = styled.div`
+export const StyledWelcomeBoxImage = styled.div`
   width: 40px!important;
   height: 40px!important;
   border-radius: 50%;
@@ -45,7 +45,7 @@ export const WelcomeBoxImage = styled.div`
     object-fit: cover;
   }
 `;
-export const WelcomeBoxConversation = styled.div`
+export const StyledWelcomeBoxConversation = styled.div`
   padding: 20px 10px;
   display: flex;
   flex-direction: column;
@@ -56,7 +56,7 @@ export const WelcomeBoxConversation = styled.div`
     height: 350px;
   `}
 `;
-export const WelcomeBoxMessage = styled.div.attrs((props: {position?: string, writingAnimation?: boolean}) => props)`
+export const StyledWelcomeBoxMessage = styled.div.attrs((props: {position?: string, writingAnimation?: boolean}) => props)`
   font-size: 11px;
   display: flex;
   gap: 10px;
@@ -77,7 +77,7 @@ export const WelcomeBoxMessage = styled.div.attrs((props: {position?: string, wr
     `
   }
 `;
-export const WelcomeBoxMessageImage = styled.div.attrs((props: {type: string}) => props)`
+export const StyledWelcomeBoxMessageImage = styled.div.attrs((props: {type: string}) => props)`
   margin-top: 15px;
   width: 30px;
   height: 30px;
@@ -95,7 +95,7 @@ export const WelcomeBoxMessageImage = styled.div.attrs((props: {type: string}) =
     height: 100%;
   }
 `;
-export const WelcomeBoxMessageText = styled.div.attrs((props: {position?: string, writingAnimation?: boolean, visible?: boolean}) => props)`
+export const StyledWelcomeBoxMessageText = styled.div.attrs((props: {position?: string, writingAnimation?: boolean, visible?: boolean}) => props)`
   margin-top: 10px;
   padding: 8px 11px;
   background: ${colors.whiteTertiary};
@@ -137,7 +137,7 @@ export const WelcomeBoxMessageText = styled.div.attrs((props: {position?: string
     `
   }
 `;
-export const WelcomeBoxOptions = styled.div`
+export const StyledWelcomeBoxOptions = styled.div`
   margin-top: 0px;
   padding: 20px 10px;
   h4 {
@@ -172,7 +172,7 @@ export const WelcomeBoxOptions = styled.div`
     }
   }
 `;
-export const WelcomeBoxOptionsList = styled.div`
+export const StyledWelcomeBoxOptionsList = styled.div`
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;

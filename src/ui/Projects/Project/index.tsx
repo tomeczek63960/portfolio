@@ -1,18 +1,13 @@
-import React, { useEffect, useRef } from 'react';
-import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect"
+import React, { useRef } from 'react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import HandleText from 'src/helpers/handleText'
 import CustomImage from 'src/ui/Image';
-import {Project, ProjectHover} from './style';
+import {StyledProject, StyledProjectHover} from './style';
 import {useTimeline} from 'src/hooks/useTimeline';
+import {ProjectProps} from './types';
 
-interface Props {
-  project: any;
-  onClickFunction: Function;
-}
-
-const ProjectComponent: React.FC<Props> = ({project, onClickFunction}: Props) => {
+const ProjectComponent: React.FC<ProjectProps> = ({project, onClickFunction}) => {
   const projectHover = useRef<any>();
   const projectHoverHeading = useRef<any>();
   const projectHoverHeadingLine = useRef<any>();
@@ -129,7 +124,7 @@ const ProjectComponent: React.FC<Props> = ({project, onClickFunction}: Props) =>
     tl.reverse();
   }
   return (
-    <Project
+    <StyledProject
       onClick={() => onClickFunction(project)}
       onMouseEnter={projectHoverAction}
       onMouseLeave={projectBlurAction}
@@ -138,14 +133,14 @@ const ProjectComponent: React.FC<Props> = ({project, onClickFunction}: Props) =>
       ref={projectRef}
     >
       <CustomImage url={project.Image.url} />
-      <ProjectHover ref={projectHover}>
+      <StyledProjectHover ref={projectHover}>
         <h4 ref={projectHoverHeading}>
           { project.Title }
           <em ref={projectHoverHeadingLine}></em>
         </h4>
         <p ref={projectHoverText}>{ project.Description }</p>
-      </ProjectHover>
-    </Project>
+      </StyledProjectHover>
+    </StyledProject>
   );
 }
 

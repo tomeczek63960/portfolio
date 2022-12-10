@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect"
 import { gsap } from "gsap";
 import ArrowLeft from "../../../../public/svg/arrow-left.svg"
@@ -6,26 +6,21 @@ import World from "../../../../public/svg/world.svg"
 import Github from "../../../../public/svg/github.svg"
 import CustomImage from 'src/ui/Image';
 import {
-  ProjectBox,
-  ProjectBoxShadow,
-  ProjectBoxClose,
-  ProjectBoxContent,
-  ProjectBoxReference,
-  ProjectBoxLink,
-  ProjectBoxTechnologies,
-  ProjectBoxCategories,
+  StyledProjectBox,
+  StyledProjectBoxShadow,
+  StyledProjectBoxClose,
+  StyledProjectBoxContent,
+  StyledProjectBoxReference,
+  StyledProjectBoxLink,
+  StyledProjectBoxTechnologies,
+  StyledProjectBoxCategories,
 } from './style';
 import {useTimeline} from 'src/hooks/useTimeline';
+import {ProjectBoxProps} from './types';
 
-interface Props {
-  activeProject: any; // tutaj dodać kolejny interface na Project i z niego mozna wtedy skorzystać;
-  onCloseFunction: Function;
-  isActiveProjectBox: boolean;
-}
-
-const ProjectBoxComponent: React.FC<Props> = ({activeProject, onCloseFunction, isActiveProjectBox}: Props) => {
-  const projectBox = useRef<any>(null);
-  const projectBoxShadow = useRef<any>(null);
+const ProjectBoxComponent: React.FC<ProjectBoxProps> = ({activeProject, onCloseFunction, isActiveProjectBox}) => {
+  const projectBox = useRef<HTMLDivElement>(null);
+  const projectBoxShadow = useRef<HTMLDivElement>(null);
   
   const tlCallback = (timeline: GSAPTimeline) => {
     timeline.add(
@@ -59,7 +54,7 @@ const ProjectBoxComponent: React.FC<Props> = ({activeProject, onCloseFunction, i
     } else {
       html?.classList.remove('no-scroll');
       tl.reverse().then(() => {
-        projectBox.current.scrollTop = 0;
+        if(projectBox.current) projectBox.current.scrollTop = 0;
         gsap.set(bluerdElements, {
           filter: "blur(2px)",
         });
@@ -69,16 +64,16 @@ const ProjectBoxComponent: React.FC<Props> = ({activeProject, onCloseFunction, i
 
   return (
     <>
-      <ProjectBoxShadow ref={projectBoxShadow} onClick={() => onCloseFunction(false)}/>
-      <ProjectBox className='blured' ref={projectBox}>
-        <ProjectBoxClose>
+      <StyledProjectBoxShadow ref={projectBoxShadow} onClick={() => onCloseFunction(false)}/>
+      <StyledProjectBox className='blured' ref={projectBox}>
+        <StyledProjectBoxClose>
           <ArrowLeft onClick={() => onCloseFunction(false)} />
-        </ProjectBoxClose>
-        <ProjectBoxContent>
+        </StyledProjectBoxClose>
+        <StyledProjectBoxContent>
           <h3>{activeProject.Title}</h3>
           <p>{activeProject.ShortDescription}</p>
 
-          <ProjectBoxCategories>
+          <StyledProjectBoxCategories>
             { 
               activeProject.project_categories?.map((category: any) => 
                 <span key={category.id} className={category.Theme}>
@@ -86,7 +81,7 @@ const ProjectBoxComponent: React.FC<Props> = ({activeProject, onCloseFunction, i
                 </span>
               )
             }
-          </ProjectBoxCategories>
+          </StyledProjectBoxCategories>
 
           {activeProject?.Image ? <CustomImage url={activeProject?.Image?.url} /> : ''}
           <div className="project-box__text">
@@ -95,25 +90,25 @@ const ProjectBoxComponent: React.FC<Props> = ({activeProject, onCloseFunction, i
           </div>
           <div className="project-box__text">
             <h4>Technologies</h4>
-            <ProjectBoxTechnologies>
+            <StyledProjectBoxTechnologies>
               { 
                 activeProject.project_technologies?.map((technology: any) => <span key={technology.id}>{technology.Title}</span>)
               }
-            </ProjectBoxTechnologies>
+            </StyledProjectBoxTechnologies>
           </div>
-          <ProjectBoxReference>
+          <StyledProjectBoxReference>
             <h5><World /> Website</h5>
             <a href={activeProject.WebsiteUrl} target="_blank">{activeProject.WebsiteUrl}</a>
-          </ProjectBoxReference>
-          <ProjectBoxReference>
+          </StyledProjectBoxReference>
+          <StyledProjectBoxReference>
             <h5><Github /> Github</h5>
             <a href={activeProject.GithubUrl} target="_blank">{activeProject.GithubUrl}</a>
-          </ProjectBoxReference>
-        </ProjectBoxContent>
-        <ProjectBoxLink href={activeProject.WebsiteUrl} target="_blank">
+          </StyledProjectBoxReference>
+        </StyledProjectBoxContent>
+        <StyledProjectBoxLink href={activeProject.WebsiteUrl} target="_blank">
           Open Project
-        </ProjectBoxLink>
-      </ProjectBox>
+        </StyledProjectBoxLink>
+      </StyledProjectBox>
     </>
   );
 }
