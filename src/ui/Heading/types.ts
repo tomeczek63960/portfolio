@@ -3,6 +3,7 @@ export interface HeadingProps {
   children?: React.ReactNode;
   color?: string;
   hoverColor?: string;
+  selectionColor?: string;
 }
 
 export const headingDefaultProps: HeadingProps = {

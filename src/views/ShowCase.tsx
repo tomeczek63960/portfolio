@@ -131,6 +131,7 @@ const ShowCase: React.FC = () => {
       <StyledH2 data-text="&nbsp;Show case&nbsp;" color='#3F5EFB'>&nbsp;Show case&nbsp;</StyledH2>
 
       {/* tutaj galerię ze zdjęciami (animowanymi customowym pluginem 'przerobić ten płatny plugin od jquery na czysty js') */}
+      {/* <h2>Proces tworzenia aktualnej strony (i tutaj ten slider ze zdjęciami z przerobionego plugina) - i po kliknięciu otwira zdjęcie w popupie</h2> */}
     </>
   );
 }

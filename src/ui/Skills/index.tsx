@@ -222,7 +222,7 @@ const Skills: React.FC = () => {
       <Paragraph>Poniżej przedstawiam swój stack technologiczny, jednak warto mieć na uwadze że nic co posiada dokumentację nie jest mi straszne 😱</Paragraph>
       <Paragraph>Szybko się uczę oraz jestem otwarty na nowe doświadczenia 🐣</Paragraph>
 
-      <HeadingComponent tagName='h3' color="#7928ca">
+      <HeadingComponent tagName='h3' color="#7928ca" selectionColor="#6A82FB">
         Umiejętności czysto jsowe
       </HeadingComponent>
       <StyledCircleCarousel ref={ technicalCarousel } className='circle-carousel' data-speed='800' data-autoplay='4500'>
@@ -249,7 +249,7 @@ const Skills: React.FC = () => {
         </StyledPagination>
       </StyledCircleCarousel>
 
-      <HeadingComponent tagName='h3' color="#7928ca">
+      <HeadingComponent tagName='h3' color="#7928ca" selectionColor="#6A82FB">
         Narzędzia, Cmsy, Headless cmsy oraz wiedzą ogólna
       </HeadingComponent>
       <StyledCircleCarousel ref={ jsTechnicalCarousel } className='circle-carousel' data-speed='800' data-autoplay='4500'>

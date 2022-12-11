@@ -12,6 +12,13 @@ export const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props
   transform: translateX(-50px);
   opacity: 0;
   display: ${ props => props.isDisabled ? 'none' : 'block' };
+  text-decoration: none;
+  &::selection {
+    background-color: ${colors.purple};
+  }
+  &:hover {
+    opacity: 1;
+  }
   &:first-child {
     margin-top: 0;
   }

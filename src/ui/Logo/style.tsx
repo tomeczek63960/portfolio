@@ -8,4 +8,5 @@ export const StyledLogo = styled.a`
   position: relative;
   z-index: 10;
   transition: 0.3s;
+  text-decoration: none;
 `;

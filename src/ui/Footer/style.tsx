@@ -33,6 +33,9 @@ export const StyledFooter = styled.footer`
       text-decoration: underline;
       color: ${colors.grayFooterText};
       transition: 0.3s;
+      &::selection {
+        background-color: ${colors.purple};
+      }
       &:hover {
         opacity: 0.7;
       }

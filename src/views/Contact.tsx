@@ -17,7 +17,7 @@ const Contact: React.FC = () => {
     <>
       <StyledIntroductionSection>
         <HeadingComponent tagName='h2' color="#6A82FB">
-          Contact Page    
+          Contact Me
         </HeadingComponent>
         {/* animacja wysokości słópków i na ostatnim niech siedzi ten człowiek zeby uzyskać fajny efekt */}
         <Performence />
@@ -27,9 +27,10 @@ const Contact: React.FC = () => {
       </StyledIntroductionSection>
 
       <StyledContactFormSection>
-        <HeadingComponent tagName='h3' color="#7928ca">
+        <HeadingComponent tagName='h3' color="#7928ca" selectionColor="#6A82FB">
           Użyj formularza żeby się ze mną skontaktować
         </HeadingComponent>
+        <Paragraph>Milczenie jest złotem 🤫 jednak nie w tym przypadku, daj znać co Ci chodzi po głowie 💡</Paragraph>
         <FormComponent />
       </StyledContactFormSection>
     </>

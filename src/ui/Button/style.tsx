@@ -18,6 +18,9 @@ export const StyledButton = styled.button.attrs((props: {ref: HTMLButtonElement}
   overflow: hidden;
   position: relative;
   width: 100%;
+  &::selection {
+    background-color: ${colors.blue};
+  }
   &::after {
     content: "";
     height: 2px;

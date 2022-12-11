@@ -26,6 +26,7 @@ export const responsive = {
 // to samo dla font family
 export const colors = {
   white: '#fff',
+  whiteBackground: '#fbfcfd', // zmienić nazwę / ogarnąć mniej kolorów
   whitePrimary: '#d5d5d5',
   whiteSecondary: '#eaeaea',
   whiteTertiary: '#eaf0f6',
@@ -48,11 +49,10 @@ export const colors = {
   orange: '#ffa500',
   pink: '#f81ce5',
   purple: '#7928ca',
-  purplePrimary: '#6A82FB',
+  blue: '#6A82FB',
   purpleSecondary: '#6428b4',
-  lightBlue: '#3788d1',
+  shadowColor: '#6960d717',
 };
-
 
 export const variables = {
   sectionVerticalPadding: '30px',

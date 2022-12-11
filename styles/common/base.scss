@@ -188,3 +188,16 @@ img {
 }
 
 // scrollbar ma być taki jak na macu (globalnie ostylowany)
+
+a {
+  color: #7928ca;
+  font-weight: 700;
+  text-decoration: underline;
+  transition: opacity 0.3s;
+  &::selection {
+    background-color: #6A82FB;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+}

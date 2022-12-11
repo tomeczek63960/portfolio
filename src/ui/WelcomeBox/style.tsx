@@ -15,7 +15,7 @@ export const StyledWelcomeBox = styled.div`
   overflow: hidden;
 `;
 export const StyledWelcomeBoxHead = styled.div`
-  background: linear-gradient(-225deg, ${colors.purple} 35%, ${colors.lightBlue} 100%);
+  background: linear-gradient(-225deg, ${colors.purple} 25%, ${colors.blue} 100%);
   display: flex;
   gap: 10px;
   align-items: center;

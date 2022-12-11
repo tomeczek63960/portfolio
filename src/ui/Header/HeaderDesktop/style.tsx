@@ -10,8 +10,13 @@ export const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props
   display: ${ props => props.isDisabled ? 'none' : 'block' };
   font-weight: 700;
   transition: 0.3s;
+  text-decoration: none;
+  &::selection {
+    background-color: ${colors.purple};
+  }
   &:hover {
     color: ${colors.purpleSecondary};
+    opacity: 1;
   }
   ${responsive.tabletL`
     font-size: 24px;

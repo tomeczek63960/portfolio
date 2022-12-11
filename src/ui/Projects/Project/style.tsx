@@ -43,7 +43,7 @@ export const StyledProjectHover = styled.div`
     em {
       width: 100%;
       height: 2px;
-      background: ${colors.purplePrimary};
+      background: ${colors.blue};
       position: absolute;
       bottom: 0;
       left: 0;
