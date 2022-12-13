@@ -1,7 +1,8 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
 import { simpleSplitText } from 'src/helpers/simpleSplitText';
+import {ScrollTriggerContext} from 'src/context/ScrollTriggerContext';
 
 interface TimelineProps {
   target: HTMLHeadingElement;
@@ -79,6 +80,7 @@ const createTimeline = ({target, color, hoverColor}: TimelineProps): GSAPTimelin
 export const useAnimatedChars = (props: any): [React.RefObject<HTMLHeadingElement>, React.MouseEventHandler<HTMLHeadingElement>] => {
   const heading = useRef<HTMLHeadingElement>(null);
   const tlEvents = useRef<{tl: any, animationIndex: string}[]>([]);
+  const {isActive} = useContext<any>(ScrollTriggerContext)
 
   const handleAnimation = (animationIndex: string, target: HTMLHeadingElement) => {
     const tlObject = tlEvents.current.find((tlElement) => tlElement.animationIndex === animationIndex);
@@ -107,8 +109,22 @@ export const useAnimatedChars = (props: any): [React.RefObject<HTMLHeadingElemen
   }
 
   useIsomorphicLayoutEffect(() => {
+    console.log(isActive, 'here is active always');
+    if(!isActive || !heading.current) return;
+    gsap.to(heading.current, {
+      duration: 0.5,
+      opacity: 0.5,
+      scrollTrigger: {
+        trigger: heading.current,
+      }
+    })
+    console.log(isActive, 'here is active when true');
+  }, [isActive]);
+
+  useIsomorphicLayoutEffect(() => {
     if (!heading.current) return;
     simpleSplitText(heading.current);
+
     return () => {
       tlEvents.current.forEach((tlObject) => {
         tlObject.tl?.kill();

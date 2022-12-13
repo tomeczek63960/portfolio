@@ -4,11 +4,13 @@ import { useState, useContext, useRef, useEffect, useLayoutEffect } from "react"
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { useRouter } from "next/router";
 import {LeftTransition, RightTransition, CenterCircle, HtmlTextWrapper, HtmlText} from './style';
+import {ScrollTriggerContext} from 'src/context/ScrollTriggerContext';
 
 export default function TransitionLayout({ children }: {children: any}) {
   const { pathname, locale } = useRouter()
   const [displayChildren, setDisplayChildren] = useState(children)
   const { timeline, isInitAnimation } = useContext<any>(TransitionContext)
+  const { setActive } = useContext<any>(ScrollTriggerContext)
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [flagTrigger, setFlagTrigger] = useState(false);
   const el = useRef<any>()
@@ -48,22 +50,23 @@ export default function TransitionLayout({ children }: {children: any}) {
       }),
       0
     )
-    if (timeline.duration() === 0) {
+    // if (timeline.duration() === 0) {
+    //   setDisplayChildren(children)
+    // } else {
+    setActive(false);
+    timeline.play().then(() => {
+      timeline.seek(0).pause().clear()
+      gsap.set(leftTransition.current, {
+        y: '0%'
+      });
+      gsap.set(rightTransition.current, {
+        y: '0%'
+      });
       setDisplayChildren(children)
-    } else {
-      timeline.play().then(() => {
-        timeline.seek(0).pause().clear()
-        gsap.set(leftTransition.current, {
-          y: '0%'
-        });
-        gsap.set(rightTransition.current, {
-          y: '0%'
-        });
-        setDisplayChildren(children)
-        flag.current = true
-        pageTransition();
-      })
-    }
+      flag.current = true
+      pageTransition();
+    })
+    // }
   }, [pathname, locale, children])
   const pageTransition = () => {
     if (!flag.current) return
@@ -149,6 +152,9 @@ export default function TransitionLayout({ children }: {children: any}) {
     enterTl.set(rightCircle.current, {
       scaleY: 0
     });
+    enterTl.call(() => {
+      setActive(true)
+    })
   }
 
   return <>

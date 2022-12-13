@@ -9,6 +9,7 @@ const headingStyles = (color: string, selectionColor?: string) => css`
   color: ${color};
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 900;
+  opacity: 0;
   .splitted-words {
     white-space: nowrap;
   }

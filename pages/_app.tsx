@@ -17,6 +17,7 @@ import {
 import pl from "src/lang/pl.json";
 import en from "src/lang/en.json";
 import { TransitionProvider } from 'src/context/TransitionContext';
+import { ScrollTriggerProvider } from 'src/context/ScrollTriggerContext';
 import TransitionLayout from 'src/animation/TransitionLayout';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -50,13 +51,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return <IntlProvider locale={shortLocale} messages={curentMessage}>
     <QueryClientProvider client={queryClient}>
-      <TransitionProvider>
-        <LoadingAnimation>
-          <TransitionLayout>
-            <Component {...pageProps} />
-          </TransitionLayout>
-        </LoadingAnimation>
-      </TransitionProvider>
+      <ScrollTriggerProvider>
+        <TransitionProvider>
+          <LoadingAnimation>
+            <TransitionLayout>
+              <Component {...pageProps} />
+            </TransitionLayout>
+          </LoadingAnimation>
+        </TransitionProvider>
+      </ScrollTriggerProvider>
     </QueryClientProvider>
   </IntlProvider>
 }

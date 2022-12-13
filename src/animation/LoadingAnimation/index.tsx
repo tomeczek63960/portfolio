@@ -3,11 +3,13 @@ import { TransitionContext } from "src/context/TransitionContext";
 import { useState, useContext, useRef, useEffect, useLayoutEffect } from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { useRouter } from "next/router";
-import {Html, HtmlBefore, HtmlAfter, BodyBefore} from './style';
+import {Html, HtmlBefore, HtmlAfter, BodyBefore, BodyContent} from './style';
+import {ScrollTriggerContext} from 'src/context/ScrollTriggerContext';
 
 export default function LoadingAnimation({ children }: {children: any}) {
   const {pathname, locale} = useRouter();
   const {setIsInitAnimation} = useContext<any>(TransitionContext)
+  const {setActive} = useContext<any>(ScrollTriggerContext)
   const [displayChildren, setDisplayChildren] = useState();
   const [timeline, setTimeline] = useState<any>();
   const el = useRef<any>();
@@ -139,9 +141,19 @@ export default function LoadingAnimation({ children }: {children: any}) {
           setDisplayChildren(children);
           // tutaj zamiast tego wykonania animacji powinna iść jakaś globalna ze stora na którą tylko damy .play()
           gsap.to(bodyBefore.current, {
+            delay: 1,
             duration: 0.4,
             height: '100%'
           });
+          gsap.to(el.current, {
+            delay: 1.4,
+            duration: 0.4,
+            opacity: 1,
+            pointerEvents: 'all'
+          });
+          setTimeout(() => {
+            setActive(true);
+          }, 2500);
         });
       }
     }
@@ -155,8 +167,8 @@ export default function LoadingAnimation({ children }: {children: any}) {
       <BodyBefore ref={ bodyBefore } className="body--before"></BodyBefore>
     </Html>
 
-    <div ref={el}>
+    <BodyContent ref={el}>
       { displayChildren }
-    </div>
+    </BodyContent>
   </>
 }

@@ -130,6 +130,7 @@ const Home: React.FC = () => {
     // wszystko rozdzielić na komponenty w folderach (plik tsx ze skryptami oraz oddzielny plik z deklaracjami styli dla komponentu | oddzielny plik na typy ts | i testy)
 
     // globalne style dla linków (w tekstach) fioletowy lub niebieski kolor (font-wieght: 500) i underline
+    // globalne style przenieść do styled components
     <>
       {/* spróbować dodać animacje na np. wykres który będzie się rysował, kwiatek który będzie rosnął itp. */}
       <StyledIntroductionSection>
