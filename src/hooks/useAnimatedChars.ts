@@ -81,7 +81,6 @@ export const useAnimatedChars = (props: any): [React.RefObject<HTMLHeadingElemen
   const heading = useRef<HTMLHeadingElement>(null);
   const tlEvents = useRef<{tl: any, animationIndex: string}[]>([]);
   const {isActive} = useContext<any>(ScrollTriggerContext)
-
   const handleAnimation = (animationIndex: string, target: HTMLHeadingElement) => {
     const tlObject = tlEvents.current.find((tlElement) => tlElement.animationIndex === animationIndex);
 
@@ -109,22 +108,30 @@ export const useAnimatedChars = (props: any): [React.RefObject<HTMLHeadingElemen
   }
 
   useIsomorphicLayoutEffect(() => {
-    console.log(isActive, 'here is active always');
-    if(!isActive || !heading.current) return;
-    gsap.to(heading.current, {
-      duration: 0.5,
-      opacity: 0.5,
-      scrollTrigger: {
-        trigger: heading.current,
-      }
-    })
-    console.log(isActive, 'here is active when true');
+    setTimeout(() => {
+      if(!isActive || !heading.current) return;
+      const letters = heading.current.querySelectorAll('.splitted-text');
+      gsap.to(heading.current, {
+        duration: 0.3,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: heading.current,
+        }
+      })
+      gsap.to(letters, {
+        duration: 0.1,
+        stagger: 0.05,
+        scale: 1,
+        scrollTrigger: {
+          trigger: heading.current,
+        }
+      })
+    }, 0)
   }, [isActive]);
 
   useIsomorphicLayoutEffect(() => {
     if (!heading.current) return;
     simpleSplitText(heading.current);
-
     return () => {
       tlEvents.current.forEach((tlObject) => {
         tlObject.tl?.kill();

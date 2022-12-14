@@ -17,6 +17,7 @@ const headingStyles = (color: string, selectionColor?: string) => css`
     display: inline-block;
     transition: color 0.3s;
     cursor: pointer;
+    transform: scale(0);
   }
   ${selectionColor && css`
     &::selection,

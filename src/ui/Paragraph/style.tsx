@@ -6,6 +6,8 @@ export const StyledParagraph = styled.p.attrs((props: {color?: string}) => props
   font-size: 16px;
   line-height: 23px;
   color: ${({color}) => color};
+  opacity: 0;
+  transform: translateY(20%);
   ${responsive.tabletL`
     font-size: 20px;
     line-height: 28px;

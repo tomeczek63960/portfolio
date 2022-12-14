@@ -50,9 +50,7 @@ export default function TransitionLayout({ children }: {children: any}) {
       }),
       0
     )
-    // if (timeline.duration() === 0) {
-    //   setDisplayChildren(children)
-    // } else {
+  
     setActive(false);
     timeline.play().then(() => {
       timeline.seek(0).pause().clear()
@@ -66,7 +64,6 @@ export default function TransitionLayout({ children }: {children: any}) {
       flag.current = true
       pageTransition();
     })
-    // }
   }, [pathname, locale, children])
   const pageTransition = () => {
     if (!flag.current) return
