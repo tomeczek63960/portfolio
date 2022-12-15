@@ -48,68 +48,6 @@ export const StyledTimeline = styled.div`
   overflow: hidden;
   border-radius: 10px;
 `;
-export const StyledTimelineList = styled.div`
-  margin-left: 12px;
-  width: 100%;
-  transform: translateY(-50px);
-`;
-export const StyledCard = styled.div`
-  position: relative;
-  padding: 0 20px 20px;
-`;
-export const StyledCardContent = styled.div`
-  padding: 20px;
-  background: ${colors.white};
-  border-radius: 10px;
-  box-shadow: 0px 16px 15px -10px ${colors.shadowColor};
-  position: relative;
-  h4 {
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 19px;
-    margin-bottom:5px;
-    color: ${colors.purple};
-    &::selection {
-      background-color: ${colors.blue};
-    }
-  }
-  p {
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 22px;
-    color: #2B2862;
-  }
-`;
-export const StyledCardLine = styled.div.attrs((props: {order?: string}) => props)`
-  width: 3px;
-  height: ${({ order }) => order === 'first' ? 'calc(100% - 30px)' : '100%'};
-  position: absolute;
-  top: ${({ order }) => order === 'first' ? '30px' : '0'};
-  left: 0;
-  background: ${colors.blue};
-  .dot {
-    width: 14px;
-    height: 14px;
-    background: ${colors.blue};
-    border-radius: 7px;
-    position: absolute;
-    top: ${({ order }) => order === 'first' ? 'calc(50% - 20px)' : '50%'};
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  svg {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -60%);
-    width: auto;
-    height: 25px;
-  }
-`;
 export const StyledButtonSecondary = styled.button`
   width: 100%;
   height: 62px;
