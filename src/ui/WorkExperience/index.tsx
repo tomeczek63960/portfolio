@@ -15,7 +15,7 @@ import { useScrollTrigger } from 'src/hooks/useScrollTrigger';
 
 const WorkExperience: React.FC = () => {
   const [workExperienceHead] = useScrollTrigger() as [React.RefObject<HTMLDivElement>];
-  const [workExperienceCta] = useScrollTrigger(0.4) as [React.RefObject<HTMLButtonElement>];
+  const [workExperienceCta] = useScrollTrigger(0.7) as [React.RefObject<HTMLButtonElement>];
 
   return (
     <StyledWorkExperienceSection>

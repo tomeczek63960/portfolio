@@ -3,6 +3,7 @@ import { responsive, colors, variables } from 'src/styled/mixins';
 
 export const StyledWorkExperienceSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
+  margin-bottom: -200px;
 `;
 export const StyledWorkExperienceHeadBackground = styled.div`
   @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
