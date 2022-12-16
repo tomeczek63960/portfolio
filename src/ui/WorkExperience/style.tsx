@@ -4,7 +4,7 @@ import { responsive, colors, variables } from 'src/styled/mixins';
 export const StyledWorkExperienceSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
-export const StyledTimelineHeadBackground = styled.div`
+export const StyledWorkExperienceHeadBackground = styled.div`
   @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
   width: 100%;
   height: 200px;
@@ -18,8 +18,9 @@ export const StyledTimelineHeadBackground = styled.div`
     transform: rotate(180deg);
   }
 `;
-export const StyledTimelineHead = styled.div`
+export const StyledWorkExperienceHead = styled.div`
   padding: 50px 66px 60px 66px;
+  opacity: 0;
   h3 {
     font-family: Open Sans;
     font-style: normal;
@@ -37,12 +38,12 @@ export const StyledTimelineHead = styled.div`
     display: block;
   }
 `;
-export const StyledTimelineContent = styled.div`
+export const StyledWorkExperienceContent = styled.div`
   background: ${colors.whiteBackground};
   padding: 20px 30px;
   width: 100%;
 `;
-export const StyledTimeline = styled.div`
+export const StyledWorkExperience = styled.div`
   transform: translateY(-200px);
   backdrop-filter: blur(15px);
   overflow: hidden;
@@ -62,11 +63,12 @@ export const StyledButtonSecondary = styled.button`
   font-weight: bold;
   font-size: 14px;
   line-height: 19px;
-  transition: 0.3s;
+  transition: background-color 0.3s;
   color: ${colors.white};
   background: ${colors.blue};
-  &:hover{
+  opacity: 0;
+  transform: translateY(-20%);
+  &:hover {
     background:${colors.purple};
-    transform: scale(1.03);
   }
 `;

@@ -29,60 +29,46 @@ const WorkExperienceList: React.FC = () => {
     }
   ]
   useEffect(() => {
-
+    let id = 0;
+    if (!tl.current) {
+      tl.current = gsap.timeline();
+    }
     ScrollTrigger.batch(timelineList.current.children, {
-      start: "top 70%",
+      start: "top 50%",
       onEnter: (batch: any) => {
         const progress = batch.reduce((acc: any, cur: any) => {
+          id += 1;
           const dot = cur.querySelector('.dot');
           const line = cur.querySelector('.line');
           const lineSvg = cur.querySelector('.line svg');
           const itemContent = cur.querySelector('.list-item-content');
-
-          // zmienić na jeden obiekt w którym zawsze są te 4 wartości i zawsze obsługiwać te 4 wartości w odpowiedniej kolejności (linjia z kontentem w jednym tempie)
-          return acc.concat([
-            { type: 'line', el: line },
-            { type: 'content', el: itemContent },
-            { type: 'dot', el: dot },
-            { type: 'lineSvg', el: lineSvg }
-          ]);
-        }, []);
-        if (!tl.current) {
-          tl.current = gsap.timeline();
-        }
-        progress.forEach((obj: any) => {
-          if (!obj.el || obj.el.classList.contains('finished')) return;
-          obj.el.classList.add('finished');
-          if (obj.type === 'dot') {
-            tl.current.to(obj.el, {
-              delay: 0.2,
-              duration: 0.5,
-              opacity: 1,
-              stagger: 0.2,
-            });
-          } else if (obj.type === 'line') {
-            tl.current.to(obj.el, {
-              delay: 0.2,
-              duration: 0.5,
-              height: '100%',
-              stagger: 0.2,
-            });
-          } else if (obj.type === 'content') {
-            tl.current.to(obj.el, {
-              delay: 0.2,
-              duration: 0.5,
-              opacity: 1,
-              y: 0,
-              stagger: 0.2,
-            });
-          } else if (obj.type === 'lineSvg') {
-            tl.current.to(obj.el, {
-              delay: 0.2,
-              duration: 0.5,
-              opacity: 1,
-              stagger: 0.2,
-            });
+          const obj = {
+            line: line,
+            content: itemContent,
+            dot: dot,
+            lineSvg: lineSvg,
+            id: id
           }
+          return acc.concat([obj]);
+        }, []);
+        progress.forEach((obj: any) => {
+          if (!obj.dot || obj.dot.classList.contains('finished')) return;
+          obj.dot.classList.add('finished');
+          tl.current.to(obj.content, {
+            delay: 0.1,
+            duration: 0.5,
+            opacity: 1,
+            y: 0,
+          });
+          tl.current.to(obj.dot, {
+            duration: 0.5,
+            opacity: 1,
+          }, `start-${obj.id}`);
+          obj.lineSvg && tl.current.to(obj.lineSvg, {
+            duration: 0.5,
+            opacity: 1,
+            y: '-60%',
+          }, `start-${obj.id}aa`);
         })
       },
     });

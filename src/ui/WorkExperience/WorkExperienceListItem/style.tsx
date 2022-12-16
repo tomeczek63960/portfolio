@@ -11,7 +11,7 @@ export const StyledListItemContent = styled.div`
   border-radius: 10px;
   box-shadow: 0px 16px 15px -10px ${colors.shadowColor};
   position: relative;
-  transform: translateY(-20%);
+  transform: translateY(-30%);
   opacity: 0;
   h4 {
     font-family: Open Sans;
@@ -36,8 +36,7 @@ export const StyledListItemContent = styled.div`
 `;
 export const StyledListItemLine = styled.div.attrs((props: {order?: string}) => props)`
   width: 3px;
-  /* height: ${({ order }) => order === 'first' ? 'calc(100% - 30px)' : '100%'}; */
-  height: 0;
+  height: ${({ order }) => order === 'first' ? 'calc(100% - 30px)' : '100%'};
   position: absolute;
   top: ${({ order }) => order === 'first' ? '30px' : '0'};
   left: 0;
@@ -58,7 +57,7 @@ export const StyledListItemLine = styled.div.attrs((props: {order?: string}) => 
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -70%);
     width: auto;
     height: 25px;
     opacity: 0;

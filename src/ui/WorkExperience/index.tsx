@@ -1,22 +1,22 @@
 import React, { useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import HandleText from 'src/helpers/handleText'
-import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import HeadingComponent from 'src/ui/Heading';
 import Paragraph from 'src/ui/Paragraph';
 import {
   StyledWorkExperienceSection,
-  StyledTimelineHeadBackground,
-  StyledTimelineHead,
-  StyledTimelineContent,
-  StyledTimeline,
+  StyledWorkExperienceHeadBackground,
+  StyledWorkExperienceHead,
+  StyledWorkExperienceContent,
+  StyledWorkExperience,
   StyledButtonSecondary,
 } from './style';
 import SectionWave from '../../../public/svg/section-wave.svg';
 import WorkExperienceList from './WorkExperienceList';
+import { useScrollTrigger } from 'src/hooks/useScrollTrigger';
 
 const WorkExperience: React.FC = () => {
+  const [workExperienceHead] = useScrollTrigger() as [React.RefObject<HTMLDivElement>];
+  const [workExperienceCta] = useScrollTrigger(0.4) as [React.RefObject<HTMLButtonElement>];
+
   return (
     <StyledWorkExperienceSection>
       <HeadingComponent tagName='h2' color="#6A82FB">
@@ -26,21 +26,21 @@ const WorkExperience: React.FC = () => {
         Coś o mnie i moim doświadczeniu zawodowym.
       </Paragraph>
 
-      <StyledTimelineHeadBackground>
+      <StyledWorkExperienceHeadBackground>
         <SectionWave />
-      </StyledTimelineHeadBackground>
+      </StyledWorkExperienceHeadBackground>
 
-      <StyledTimeline>
-        <StyledTimelineHead>
+      <StyledWorkExperience>
+        <StyledWorkExperienceHead ref={workExperienceHead}>
           <h3>My programing timeline</h3>
           <label>Moje ostatnie 4 lata które były przesiąknięte programowaniem</label>
-        </StyledTimelineHead>
+        </StyledWorkExperienceHead>
         
-        <StyledTimelineContent>
+        <StyledWorkExperienceContent>
           <WorkExperienceList />
-          <StyledButtonSecondary>Go to Cv</StyledButtonSecondary>
-        </StyledTimelineContent>
-      </StyledTimeline>
+          <StyledButtonSecondary ref={workExperienceCta}>Go to Cv</StyledButtonSecondary>
+        </StyledWorkExperienceContent>
+      </StyledWorkExperience>
     </StyledWorkExperienceSection>
   );
 }
