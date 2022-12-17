@@ -1,6 +1,3 @@
-import { useRef } from "react";
-import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import { useCircleCarousel } from 'src/hooks/useCircleCarousel';
 import Angular from "../../../public/svg/angular.svg"
 import Adobexd from "../../../public/svg/adobexd.svg"
 import Contentful from "../../../public/svg/contentful.svg"
@@ -24,7 +21,8 @@ import Pimcore from "../../../public/svg/pimcore.svg"
 import Shopware from "../../../public/svg/shopware.svg"
 import HeadingComponent from 'src/ui/Heading';
 import Paragraph from 'src/ui/Paragraph';
-import {StyledSkillsSection, StyledCircleCarousel, StyledSlidesText, StyledPagination} from './style';
+import {StyledSkillsSection} from './style';
+import Carousel from 'src/ui/Skills/Carousel';
 
 const Skills: React.FC = () => {
   const jsSkills = [
@@ -180,101 +178,24 @@ const Skills: React.FC = () => {
       }
     },
   ];
-  const [carousel, setCarousel] = useCircleCarousel();
-  const [carousel1, setCarousel1] = useCircleCarousel();
-  const technicalCarousel = useRef<any>();
-  const technicalCarouselPagination = useRef<any>();
-  const technicalCarouselText = useRef<any>();
-  const isInited = useRef<boolean>(false);
-  const isInited1 = useRef<boolean>(false);
-  const jsTechnicalCarousel = useRef<any>();
-  const jsTechnicalCarouselPagination = useRef<any>();
-  const jsTechnicalCarouselText = useRef<any>();
-
-  useIsomorphicLayoutEffect(() => {
-    if (!isInited.current){
-      setCarousel({
-        node: technicalCarousel.current,
-        pagination: technicalCarouselPagination.current,
-        slides: technicalCarouselText.current,
-        speed: technicalCarousel.current.getAttribute('data-speed'),
-        autoplay: technicalCarousel.current.getAttribute('data-autoplay')
-      });
-      isInited.current = true;
-    }
-    if (!isInited1.current) {
-      setCarousel1({
-        node: jsTechnicalCarousel.current,
-        pagination: jsTechnicalCarouselPagination.current,
-        slides: jsTechnicalCarouselText.current,
-        speed: jsTechnicalCarousel.current.getAttribute('data-speed'),
-        autoplay: jsTechnicalCarousel.current.getAttribute('data-autoplay')
-      });
-      isInited1.current = true;
-    }
-  }, [])
 
   return (
     <StyledSkillsSection>
       <HeadingComponent tagName='h2' color="#6A82FB">
         Stack technologiczny
       </HeadingComponent>
-      <Paragraph>Poniżej przedstawiam swój stack technologiczny, jednak warto mieć na uwadze że nic co posiada dokumentację nie jest mi straszne 😱</Paragraph>
+      <Paragraph>Poniżej przedstawiam swój stack technologiczny, jednak warto też mieć na uwadze że nic co posiada dokumentację nie jest mi straszne 😱</Paragraph>
       <Paragraph>Szybko się uczę oraz jestem otwarty na nowe doświadczenia 🐣</Paragraph>
 
       <HeadingComponent tagName='h3' color="#7928ca" selectionColor="#6A82FB">
         Umiejętności czysto jsowe
       </HeadingComponent>
-      <StyledCircleCarousel ref={ technicalCarousel } className='circle-carousel' data-speed='800' data-autoplay='4500'>
-        <StyledSlidesText ref={ technicalCarouselText } className='slides'>
-          { jsSkills.map((skill) => {
-            return (
-              <div className="slide" key={`text-${skill.text.heading}`}>
-                <h5>{ skill.text.heading }</h5>
-                <p>{ skill.text.text }</p>
-              </div>
-            )
-        })}
-        </StyledSlidesText>
-        <StyledPagination ref={ technicalCarouselPagination } className='pagination'>
-          { jsSkills.map((skill) => {
-            return (
-              <div className="item" key={`icon-${skill.text.heading}`}>
-                <div className="dot">
-                    <skill.icon />
-                </div>
-              </div>
-            )
-          })}
-        </StyledPagination>
-      </StyledCircleCarousel>
+      <Carousel items={jsSkills} />
 
       <HeadingComponent tagName='h3' color="#7928ca" selectionColor="#6A82FB">
         Narzędzia, Cmsy, Headless cmsy oraz wiedzą ogólna
       </HeadingComponent>
-      <StyledCircleCarousel ref={ jsTechnicalCarousel } className='circle-carousel' data-speed='800' data-autoplay='4500'>
-        <StyledSlidesText ref={ jsTechnicalCarouselText } className='slides'>
-          { skills.map((skill) => {
-            return (
-              <div className="slide" key={`text-${skill.text.heading}`}>
-                <h5>{ skill.text.heading }</h5>
-                <p>{ skill.text.text }</p>
-              </div>
-            )
-        })}
-        </StyledSlidesText>
-        <StyledPagination ref={ jsTechnicalCarouselPagination } className='pagination'>
-          { skills.map((skill) => {
-            return (
-              <div className="item" key={`icon-${skill.text.heading}`}>
-                <div className="dot">
-                    <skill.icon className={skill.className} />
-                </div>
-              </div>
-            )
-          })}
-        </StyledPagination>
-      </StyledCircleCarousel>
+      <Carousel items={skills} />
     </StyledSkillsSection>
   );
 }
