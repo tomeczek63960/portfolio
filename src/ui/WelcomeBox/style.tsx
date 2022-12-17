@@ -6,6 +6,7 @@ const writingAnimationKeyframes = keyframes`
     transform: scale(0.7) translateY(1px);      
   }
 `;
+
 export const StyledWelcomeBoxSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
