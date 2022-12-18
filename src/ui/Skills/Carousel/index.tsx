@@ -1,5 +1,3 @@
-import {useRef} from "react";
-import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import {useCircleCarousel} from 'src/hooks/useCircleCarousel';
 import {StyledCircleCarousel, StyledSlidesText, StyledPagination} from './style';
 
@@ -8,10 +6,15 @@ interface SkillsProps {
 }
 
 const Skills: React.FC<SkillsProps> = ({items}) => {
-  const [carouselRef, carouselPaginationRef, carouselTextRef] = useCircleCarousel();
+  const [carouselRef, carouselPaginationRef, carouselTextRef, startAutoplay, stopAutoplay] = useCircleCarousel();
   
   return (
-    <StyledCircleCarousel ref={carouselRef} className='circle-carousel'>
+    <StyledCircleCarousel
+      ref={carouselRef}
+      className='circle-carousel'
+      onMouseEnter={stopAutoplay}
+      onMouseLeave={startAutoplay}
+    >
       <StyledSlidesText ref={carouselTextRef} className='slides'>
         {items.map((skill: any) => {
           return (

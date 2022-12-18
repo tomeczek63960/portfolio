@@ -2,61 +2,45 @@ import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 
-export const useCircleCarousel = (): [React.RefObject<HTMLDivElement>, React.RefObject<HTMLDivElement>, React.RefObject<HTMLDivElement>] => {
-  const [customCarousel, setCustomCarousel] = useState<any>(false);
-  const isInited = useRef<boolean>(false);
+export const useCircleCarousel = (): [React.RefObject<HTMLDivElement>, React.RefObject<HTMLDivElement>, React.RefObject<HTMLDivElement>, any, any] => {
+  const [isCarouselInited, setisCarouselInited] = useState<any>(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const carouselPaginationRef = useRef<HTMLDivElement>(null);
   const carouselTextRef = useRef<HTMLDivElement>(null);
+  const carousel = useRef<any>();
   useIsomorphicLayoutEffect(() => {
-    const options = {
-      node: carouselRef.current,
-      pagination: carouselPaginationRef.current,
-      slides: carouselTextRef.current,
-      speed: 800,
-      autoplay: 4500,
-      activeN: 0
-    }
-    !customCarousel && setCustomCarousel({
-      node        : options.node,
-      slides      : Array.from(options.slides ? options.slides.children : []),
-      slidesN     : options.slides ? options.slides.children.length : 0,
-      pagination  : options.pagination,
-      pagTransf   : 'translate( -50%, -50% )',
-      dots        : Array.from(options.pagination ? options.pagination.children : []),
-      dotsN       : options.pagination ? options.pagination.children.length : 0,
-      step        : -360/(options.pagination ? options.pagination.children.length : 0),
-      angle       : 0,
-      activeN     : options.activeN || 0,
-      prevN       : options.activeN || 0,
-      speed       : options.speed || 300,
-      autoplay    : options.autoplay || false,
-      autoplayId  : null,
-    });
+    setisCarouselInited(true);
   }, []);
   useIsomorphicLayoutEffect(() => {
-    if (isInited.current || !customCarousel) return;
-    isInited.current = true;
-    customCarousel.pagination.style.transitionDuration = customCarousel.speed +'ms';
-    customCarousel.dots.forEach(handleDotsListeners);
-    hadnleAutoplayListeners();
-  }, [customCarousel]);
-  
+    if (!isCarouselInited) return;
+    carousel.current = {
+      node        : carouselRef.current,
+      slides      : Array.from(carouselTextRef.current ? carouselTextRef.current.children : []),
+      slidesN     : carouselTextRef.current ? carouselTextRef.current.children.length : 0,
+      pagination  : carouselPaginationRef.current,
+      pagTransf   : 'translate( -50%, -50% )',
+      dots        : Array.from(carouselPaginationRef.current ? carouselPaginationRef.current.children : []),
+      dotsN       : carouselPaginationRef.current ? carouselPaginationRef.current.children.length : 0,
+      step        : -360/(carouselPaginationRef.current ? carouselPaginationRef.current.children.length : 0),
+      angle       : 0,
+      activeN     : 0,
+      prevN       : 0,
+      speed       : 800,
+      autoplay    : 4500,
+      autoplayId  : null,
+    }
+    carousel.current.pagination.style.transitionDuration = carousel.current.speed +'ms';
+    carousel.current.dots.forEach(handleDotsListeners);
+    if (carousel.current.autoplay) startAutoplay();
+  }, [isCarouselInited]);
   const handleDotsListeners = (dot: any, index: any) => {
     dot.addEventListener('click', () => setSlide(index));
-    dot.style.transform = 'rotate('+ 360 / customCarousel.dotsN * index + 'deg)';
+    dot.style.transform = 'rotate('+ 360 / carousel.current.dotsN * index + 'deg)';
   }
-  const hadnleAutoplayListeners = () => {
-    if (!customCarousel.autoplay) return;
-    startAutoplay();
-    customCarousel.node.addEventListener('mouseenter', stopAutoplay);
-    customCarousel.node.addEventListener('mouseleave', startAutoplay);
-  };
-
   const setSlide = function (slideN: any) {
     const tl = gsap.timeline();
-    customCarousel.slides[customCarousel.activeN].classList.remove('active');
-    tl.to(customCarousel.slides[customCarousel.activeN].children, {
+    carousel.current.slides[carousel.current.activeN].classList.remove('active');
+    tl.to(carousel.current.slides[carousel.current.activeN].children, {
       duration: 0.4,
       opacity: 0,
       pointerEvents: 'none',
@@ -64,33 +48,32 @@ export const useCircleCarousel = (): [React.RefObject<HTMLDivElement>, React.Ref
       stagger: 0.2
     });
 
-    if (customCarousel.dots[customCarousel.activeN]) {
-      customCarousel.dots[customCarousel.activeN].classList.remove('active');
+    if (carousel.current.dots[carousel.current.activeN]) {
+      carousel.current.dots[carousel.current.activeN].classList.remove('active');
     }
 
-    customCarousel.prevN = customCarousel.activeN;
-    customCarousel.activeN = slideN;
-    if (customCarousel.activeN < 0) {
-      customCarousel.activeN = customCarousel.slidesN -1;
-    } else if (customCarousel.activeN >= customCarousel.slidesN) {
-      customCarousel.activeN = 0;
+    carousel.current.prevN = carousel.current.activeN;
+    carousel.current.activeN = slideN;
+    if (carousel.current.activeN < 0) {
+      carousel.current.activeN = carousel.current.slidesN -1;
+    } else if (carousel.current.activeN >= carousel.current.slidesN) {
+      carousel.current.activeN = 0;
     }
 
-    customCarousel.slides[customCarousel.activeN].classList.toggle('active');	
-    tl.to(customCarousel.slides[customCarousel.activeN].children, {
+    carousel.current.slides[carousel.current.activeN].classList.toggle('active');	
+    tl.to(carousel.current.slides[carousel.current.activeN].children, {
       duration: 0.4,
       opacity: 1,
       y: 0,
       pointerEvents: 'all',
       stagger: 0.2
     });
-    if (customCarousel.dots[customCarousel.activeN]) {
-      customCarousel.dots[customCarousel.activeN].classList.toggle('active');
+    if (carousel.current.dots[carousel.current.activeN]) {
+      carousel.current.dots[carousel.current.activeN].classList.toggle('active');
     }
 
     rotate();
   };
-
   const getAngle = (dots: any, next: any, prev: any, step: any) => {
     let inc, half = dots / 2;
     if (prev > dots) prev = dots - 1;
@@ -99,24 +82,23 @@ export const useCircleCarousel = (): [React.RefObject<HTMLDivElement>, React.Ref
     if (Math.abs(inc = next - prev - dots) <= half) return step * inc;
   }
   const rotate = () => {
-    if (customCarousel.activeN >= customCarousel.dotsN) return;
-    customCarousel.angle += getAngle(customCarousel.dotsN, customCarousel.activeN, customCarousel.prevN, customCarousel.step);
-    customCarousel.pagination.style.transform = customCarousel.pagTransf +'rotate('+ customCarousel.angle +'deg)';
+    if (carousel.current.activeN >= carousel.current.dotsN) return;
+    carousel.current.angle += getAngle(carousel.current.dotsN, carousel.current.activeN, carousel.current.prevN, carousel.current.step);
+    carousel.current.pagination.style.transform = carousel.current.pagTransf +'rotate('+ carousel.current.angle +'deg)';
   };
-
   const startAutoplay = () => {
-    customCarousel.autoplayId = setInterval(() => {
-      setSlide(customCarousel.activeN + 1);
-    }, customCarousel.autoplay);
+    carousel.current.autoplayId = setInterval(() => {
+      setSlide(carousel.current.activeN + 1);
+    }, carousel.current.autoplay);
   };
-
   const stopAutoplay = () => {
-    clearInterval(customCarousel.autoplayId);
+    clearInterval(carousel.current.autoplayId);
   };
-
   return [
     carouselRef,
     carouselPaginationRef,
-    carouselTextRef
+    carouselTextRef,
+    startAutoplay,
+    stopAutoplay
   ];
 }
