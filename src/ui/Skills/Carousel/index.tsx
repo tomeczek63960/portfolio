@@ -8,21 +8,8 @@ interface SkillsProps {
 }
 
 const Skills: React.FC<SkillsProps> = ({items}) => {
-  const [carousel, setCarousel] = useCircleCarousel();
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const carouselPaginationRef = useRef<HTMLDivElement>(null);
-  const carouselTextRef = useRef<HTMLDivElement>(null);
+  const [carouselRef, carouselPaginationRef, carouselTextRef] = useCircleCarousel();
   
-  useIsomorphicLayoutEffect(() => {
-    !carousel && setCarousel({
-      node: carouselRef.current,
-      pagination: carouselPaginationRef.current,
-      slides: carouselTextRef.current,
-      speed: 800,
-      autoplay: 4500
-    });
-  }, []);
-
   return (
     <StyledCircleCarousel ref={carouselRef} className='circle-carousel'>
       <StyledSlidesText ref={carouselTextRef} className='slides'>
