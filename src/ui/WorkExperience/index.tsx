@@ -3,10 +3,11 @@ import HeadingComponent from 'src/ui/Heading';
 import Paragraph from 'src/ui/Paragraph';
 import {
   StyledWorkExperienceSection,
-  StyledWorkExperienceHeadBackground,
-  StyledWorkExperienceHead,
-  StyledWorkExperienceContent,
   StyledWorkExperience,
+  StyledWorkExperienceHead,
+  StyledWorkExperienceHeadBackground,
+  StyledWorkExperienceHeadContent,
+  StyledWorkExperienceContent,
   StyledButtonSecondary,
 } from './style';
 import SectionWave from '../../../public/svg/section-wave.svg';
@@ -14,7 +15,7 @@ import WorkExperienceList from './WorkExperienceList';
 import { useScrollTrigger } from 'src/hooks/useScrollTrigger';
 
 const WorkExperience: React.FC = () => {
-  const [workExperienceHead] = useScrollTrigger() as [React.RefObject<HTMLDivElement>];
+  const [workExperienceHeadContent] = useScrollTrigger(0.6, 'children') as [React.RefObject<HTMLDivElement>];
   const [workExperienceCta] = useScrollTrigger(0.7) as [React.RefObject<HTMLButtonElement>];
 
   return (
@@ -26,15 +27,18 @@ const WorkExperience: React.FC = () => {
         Coś o mnie i moim doświadczeniu zawodowym.
       </Paragraph>
 
-      <StyledWorkExperienceHeadBackground>
-        <SectionWave />
-      </StyledWorkExperienceHeadBackground>
 
       <StyledWorkExperience>
-        <StyledWorkExperienceHead ref={workExperienceHead}>
-          <h3>My programing timeline</h3>
-          <label>Moje ostatnie 4 lata które były przesiąknięte programowaniem</label>
+        <StyledWorkExperienceHead>
+          <StyledWorkExperienceHeadBackground>
+            <SectionWave />
+          </StyledWorkExperienceHeadBackground>
+          <StyledWorkExperienceHeadContent ref={workExperienceHeadContent}>
+            <h3>My programing timeline</h3>
+            <label>Moje ostatnie 4 lata które były przesiąknięte programowaniem</label>
+          </StyledWorkExperienceHeadContent>
         </StyledWorkExperienceHead>
+
         
         <StyledWorkExperienceContent>
           <WorkExperienceList />

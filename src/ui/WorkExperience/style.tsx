@@ -3,25 +3,59 @@ import { responsive, colors, variables } from 'src/styled/mixins';
 
 export const StyledWorkExperienceSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
-  margin-bottom: -200px;
 `;
+export const StyledWorkExperience = styled.div`
+  overflow: hidden;
+  border-radius: 10px;
+`;
+export const StyledWorkExperienceHead = styled.div`
+  position: relative;
+`;
+// TODO: import fontów z cssów do globalnych styli wywalić
 export const StyledWorkExperienceHeadBackground = styled.div`
   @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
-  width: 100%;
-  height: 200px;
   background: ${colors.purple};
-  border-radius: 10px;
   display: flex;
   overflow: hidden;
   align-items: flex-start;
+  z-index: -1;
+  &,
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  &::before {
+    content: '';
+    z-index: 1;
+    backdrop-filter: blur(15px);
+  }
   svg {
     height: auto;
     transform: rotate(180deg);
   }
 `;
-export const StyledWorkExperienceHead = styled.div`
-  padding: 50px 66px 60px 66px;
-  opacity: 0;
+export const StyledWorkExperienceHeadContent = styled.div`
+  padding: 20px 10px 50px 40px;
+  position: relative;
+  z-index: 1;
+  ${responsive.tabletP`
+    padding: 20px 10px 50px 40px;
+    // padding: 50px 66px 60px 66px;
+  `}
+  ${responsive.tabletL`
+    padding: 50px 66px 60px 66px;
+  `}
+  ${responsive.desktopHd`
+    padding: 60px 66px 80px 66px;
+  `}
+  h3, label {
+    position: relative;
+    opacity: 0;
+    transform: translateY(-20%);
+  }
   h3 {
     font-family: Open Sans;
     font-style: normal;
@@ -30,32 +64,33 @@ export const StyledWorkExperienceHead = styled.div`
     line-height: 30px;
   }
   label {
-    margin-top: 20px;
+    margin-top: 10px;
     font-family: Open Sans;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 18px;
     display: block;
+    ${responsive.tabletP`
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 18px;
+    `}
   }
 `;
 export const StyledWorkExperienceContent = styled.div`
-  background: ${colors.whiteBackground};
-  padding: 20px 30px;
+  padding: 20px 10px 10px;
   width: 100%;
-`;
-export const StyledWorkExperience = styled.div`
-  transform: translateY(-200px);
-  backdrop-filter: blur(15px);
-  overflow: hidden;
-  border-radius: 10px;
+  background: ${colors.whiteBackground};
+  ${responsive.tabletL`
+    padding: 20px 30px 30px;
+  `}
 `;
 export const StyledButtonSecondary = styled.button`
   width: 100%;
   height: 62px;
   mix-blend-mode: normal;
   cursor: pointer;
-  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,7 +104,9 @@ export const StyledButtonSecondary = styled.button`
   background: ${colors.blue};
   opacity: 0;
   transform: translateY(-20%);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   &:hover {
-    background:${colors.purple};
+    background: ${colors.purple};
   }
 `;

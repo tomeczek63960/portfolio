@@ -5,15 +5,16 @@ import {
   StyledListItem,
   StyledListItemContent,
   StyledListItemLine,
+  StyledListItemLineDot
 } from './style';
 import ArrowDown from '../../../../public/svg/arrow-down.svg';
 import {WrokExperienceProps} from './types';
 
 const WorkExperienceListItem: React.FC<WrokExperienceProps> = ({item, order}) => {
   return (
-    <StyledListItem className="list-item">
+    <StyledListItem>
         <StyledListItemLine className="line" order={order}>
-          <div className="dot"></div>
+          <StyledListItemLineDot className="dot" order={order}></StyledListItemLineDot>
           {order === 'last' ? <ArrowDown /> : ''}
         </StyledListItemLine>
         <StyledListItemContent className="list-item-content">

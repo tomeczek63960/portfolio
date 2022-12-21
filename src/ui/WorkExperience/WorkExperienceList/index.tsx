@@ -33,8 +33,9 @@ const WorkExperienceList: React.FC = () => {
     if (!tl.current) {
       tl.current = gsap.timeline();
     }
+    // TODO: przerobić timeline i zmienić klasy na styled components
     ScrollTrigger.batch(timelineList.current.children, {
-      start: "top 50%",
+      start: "top 70%",
       onEnter: (batch: any) => {
         const progress = batch.reduce((acc: any, cur: any) => {
           id += 1;
