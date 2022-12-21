@@ -1,17 +1,8 @@
-import type { NextPage } from 'next'
 import Skills from 'src/ui/Skills';
 import WorkExperience from 'src/ui/WorkExperience';
 import WelcomeBox from 'src/ui/WelcomeBox';
-import OfficeEmployee from "../../public/svg/office-employee.svg"
-import HeadingComponent from 'src/ui/Heading';
-import styled from 'styled-components';
-import { variables } from 'src/styled/mixins';
-import Paragraph from 'src/ui/Paragraph';
 import StyledCvSection from 'src/ui/Cv';
-
-const StyledIntroductionSection = styled.section`
-  padding-block: ${variables.sectionVerticalPadding};
-`;
+import IntroductionComponent from 'src/ui/Introduction';
 
 const Home: React.FC = () => {
   return (
@@ -21,22 +12,7 @@ const Home: React.FC = () => {
     // globalne style dla linków (w tekstach) fioletowy lub niebieski kolor (font-wieght: 500) i underline
     // globalne style przenieść do styled components
     <>
-      {/* spróbować dodać animacje na np. wykres który będzie się rysował, kwiatek który będzie rosnął itp. */}
-      <StyledIntroductionSection>
-        <HeadingComponent tagName='h1' hoverColor="#6A82FB">
-          Hi 👋<br/> 
-          I’m Tomek 😊<br/> 
-          Nice to see You
-        </HeadingComponent>
-        <OfficeEmployee />
-        <Paragraph>
-          Jezeli jesteś gotowy wypłynąć na nieznane wody 🐟, zapraszam na okręt 🚣🏻, Dziś będę twoim przewodnikiem
-        </Paragraph>
-        <Paragraph>
-          Zapraszam do zapoznania się z moją pracą w która została stworzona z pasją 💜
-        </Paragraph>
-      </StyledIntroductionSection>
-
+      <IntroductionComponent />
       <WelcomeBox />
       <Skills />
       <WorkExperience />
