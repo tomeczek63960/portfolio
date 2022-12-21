@@ -1,5 +1,5 @@
 import React from 'react';
-import { H1, H2, H3, H4, H5, H6} from './style';
+import {H1, H2, H3, H4, H5, H6} from './style';
 import {useAnimatedChars} from 'src/hooks/useAnimatedChars';
 import {HeadingProps, headingDefaultProps} from './types';
 
@@ -15,11 +15,9 @@ const HeadingComponent: React.FC<HeadingProps> = ({tagName, children, ...props})
   const Heading = mapStyle[tagName]
   const [headingRef, animateChars] = useAnimatedChars(props);
 
-  // TODO: dodać jeszcze animację pisania przy pierwszym wczytaniu (na scroll triggera);
+  // TODO: w strapim dodać wyjątki na emotki (tablicę do której dodawać mozna będzie emotki które potem przy splitcie tekstu będą pakowane w spana i animowane razem z resztą znaków)
   return (
-    <>
-      <Heading ref={headingRef} {...props} onMouseMove={animateChars}>{children}</Heading>
-    </>
+    <Heading ref={headingRef} {...props} onMouseMove={animateChars}>{children}</Heading>
   );
 }
 

@@ -1,6 +1,5 @@
 import '../styles/index.scss';
 import type { AppProps } from 'next/app'
-// import PageTransition from 'components/PageTransition';
 import React, { useMemo } from 'react';
 import { useRouter } from "next/router";
 import { IntlProvider } from "react-intl";
