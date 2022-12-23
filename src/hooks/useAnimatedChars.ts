@@ -79,7 +79,7 @@ const createTimeline = ({target, color, hoverColor}: TimelineProps): GSAPTimelin
 // do refactoru
 export const useAnimatedChars = (props: any): [React.RefObject<HTMLHeadingElement>, React.MouseEventHandler<HTMLHeadingElement>] => {
   const heading = useRef<HTMLHeadingElement>(null);
-  const tlEvents = useRef<{tl: any, animationIndex: string}[]>([]);
+  const tlEvents = useRef<{tl: GSAPTimeline, animationIndex: string}[]>([]);
   const {isActive} = useContext<any>(ScrollTriggerContext)
   const handleAnimation = (animationIndex: string, target: HTMLHeadingElement) => {
     const tlObject = tlEvents.current.find((tlElement) => tlElement.animationIndex === animationIndex);
@@ -89,7 +89,6 @@ export const useAnimatedChars = (props: any): [React.RefObject<HTMLHeadingElemen
       tlObject.tl.seek(0).pause();
     });
   }
-
   const animateChars = (event: React.MouseEvent<HTMLHeadingElement>) => {
     const target = event.target as HTMLHeadingElement;
     if (!target.classList.contains('splitted-text-animate')) return;
@@ -106,7 +105,6 @@ export const useAnimatedChars = (props: any): [React.RefObject<HTMLHeadingElemen
     }
     handleAnimation(animationIndex, target)
   }
-
   useIsomorphicLayoutEffect(() => {
     setTimeout(() => {
       if(!isActive || !heading.current) return;
@@ -117,7 +115,7 @@ export const useAnimatedChars = (props: any): [React.RefObject<HTMLHeadingElemen
         scrollTrigger: {
           trigger: heading.current,
         }
-      })
+      });
       gsap.to(letters, {
         duration: 0.1,
         stagger: 0.05,
@@ -125,10 +123,9 @@ export const useAnimatedChars = (props: any): [React.RefObject<HTMLHeadingElemen
         scrollTrigger: {
           trigger: heading.current,
         }
-      })
-    }, 0)
+      });
+    }, 0);
   }, [isActive]);
-
   useIsomorphicLayoutEffect(() => {
     if (!heading.current) return;
     simpleSplitText(heading.current);
@@ -136,8 +133,7 @@ export const useAnimatedChars = (props: any): [React.RefObject<HTMLHeadingElemen
       tlEvents.current.forEach((tlObject) => {
         tlObject.tl?.kill();
         tlObject.tl?.clear();
-        tlObject.tl = null;
-      })
+      });
     };
   }, [heading.current]);
   

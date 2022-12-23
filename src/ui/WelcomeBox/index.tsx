@@ -218,6 +218,7 @@ const WelcomeBoxComponent: React.FC = () => {
     }
   }
   useEffect(() => {
+    // TODO: Przerobić welcome box message
     // cały blok ze stylami do przerobienia na gsap lub klasy
     if (!welcomeBoxOptions.current 
       || !writeAnimationWelcomeBox.current
