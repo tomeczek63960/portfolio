@@ -22,4 +22,4 @@ const IntroductionComponent: React.FC = () => {
   )
 }
 
-export default IntroductionComponent
+export default IntroductionComponent;
