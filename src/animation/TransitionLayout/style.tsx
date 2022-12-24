@@ -44,11 +44,22 @@ export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) =
     left: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
+    justify-content: right;
+    padding-right: 8px;
+    /*  */
     z-index: 10000000;
     transform-origin: bottom;
     color: white;
     transform: scaleY(0);
+    svg {
+      height: 28px;
+      width: auto;
+      path {
+        stroke-dasharray: 250;
+        stroke-dashoffset: 250;
+      }
+    }
   }
   .circle-right {
     width: 50%;
@@ -57,13 +68,24 @@ export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) =
     color: black;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
+    justify-content: left;
+    padding-left: 8px;
+    /*  */
     position: absolute;
     top: 0;
     right: 0;
     z-index: 10000000;
     transform-origin: top;
     transform: scaleY(0);
+    svg {
+      height: 28px;
+      width: auto;
+      path {
+        stroke-dasharray: 250;
+        stroke-dashoffset: 250;
+      }
+    }
   }
 `
 export const HtmlTextWrapper = styled.div.attrs((props: {position: string}) => props)`
