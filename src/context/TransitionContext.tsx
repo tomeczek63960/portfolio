@@ -1,7 +1,7 @@
 import React, { useState, createContext, useCallback, useEffect } from "react"
 import gsap from "gsap"
 
-const TransitionContext = createContext({})
+const TransitionContext = createContext({});
 
 const TransitionProvider = ({ children }: {children: any}) => {
   const [timeline, setTimeline] = useState(() =>

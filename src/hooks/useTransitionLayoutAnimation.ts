@@ -1,56 +1,59 @@
-import { gsap } from "gsap";
-import { TransitionContext } from "src/context/TransitionContext";
-import { useState, useContext, useRef } from "react";
+import {gsap} from "gsap";
+import {TransitionContext} from "src/context/TransitionContext";
+import {useState, useContext, useRef} from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import { useRouter } from "next/router";
+import {useRouter} from "next/router";
 import {ScrollTriggerContext} from 'src/context/ScrollTriggerContext';
 
+// TODO: update context types;
+// TODO: update timelines to redux (redux toolkit);
 export const useTransitionLayoutAnimation = (children: any): any => {
-  const { pathname, locale } = useRouter()
+  const {pathname, locale} = useRouter();
   const [displayChildren, setDisplayChildren] = useState(children)
-  const { timeline, isInitAnimation } = useContext<any>(TransitionContext)
-  const { setActive } = useContext<any>(ScrollTriggerContext)
+  const {timeline, isInitAnimation} = useContext<any>(TransitionContext)
+  const {setActive} = useContext<any>(ScrollTriggerContext)
   const [shouldAnimate, setShouldAnimate] = useState(false);
-  const el = useRef<any>()
-  const leftTransition = useRef<any>()
-  const rightTransition = useRef<any>()
-  const centerCircle = useRef<any>()
-  const leftCircleWrapper = useRef<any>()
-  const leftCircle = useRef<any>()
-  const rightCircleWrapper = useRef<any>()
-  const rightCircle = useRef<any>()
-  const flag = useRef<any>(false)
-  const htmlTextLeftWrapper = useRef<any>();
-  const htmlTextRightWrapper = useRef<any>();
+  const content = useRef<HTMLDivElement>(null);
+  const leftTransition = useRef<HTMLDivElement>(null);
+  const rightTransition = useRef<HTMLDivElement>(null);
+  const centerCircle = useRef<HTMLDivElement>(null);
+  const leftCircleWrapper = useRef<HTMLSpanElement>(null);
+  const leftCircle = useRef<HTMLSpanElement>(null);
+  const rightCircleWrapper = useRef<HTMLSpanElement>(null);
+  const rightCircle = useRef<HTMLSpanElement>(null);
+  const flag = useRef<boolean>(false);
+  const htmlTextLeftWrapper = useRef<HTMLDivElement>(null);
+  const htmlTextRightWrapper = useRef<HTMLDivElement>(null);
+
   useIsomorphicLayoutEffect(() => {
     if (isInitAnimation) return;
     if (!shouldAnimate) {
-      setDisplayChildren(children)
+      setDisplayChildren(children);
       return setShouldAnimate(true);
     }
     timeline.add(
-      gsap.to(el.current, {
+      gsap.to(content.current, {
         duration: 1,
         opacity: 0,
         pointerEvents: 'none'
       }),
       0
-    )
+    );
     timeline.add(
       gsap.to(leftTransition.current, {
         duration: 1,
         y: '0%'
       }),
       0
-    )
+    );
     timeline.add(
       gsap.to(rightTransition.current, {
         duration: 1,
         y: '0%'
       }),
       0
-    )
-  
+    );
+
     setActive(false);
     timeline.play().then(() => {
       timeline.seek(0).pause().clear()
@@ -61,15 +64,14 @@ export const useTransitionLayoutAnimation = (children: any): any => {
         y: '0%'
       });
       setDisplayChildren(children)
-      flag.current = true
+      flag.current = true;
       pageTransition();
     })
   }, [pathname, locale, children]);
   const pageTransition = () => {
-    if (!flag.current) return
+    if (!flag.current) return;
     flag.current = false
     const enterTl = gsap.timeline({ paused: false })
-
     enterTl.set(leftTransition.current, {
       y: '0%'
     });
@@ -79,7 +81,7 @@ export const useTransitionLayoutAnimation = (children: any): any => {
     enterTl.set(centerCircle.current, {
       opacity: 0
     });
-    enterTl.set(el.current, {
+    enterTl.set(content.current, {
       opacity: 0,
       pointerEvents: 'none'
     });
@@ -105,8 +107,8 @@ export const useTransitionLayoutAnimation = (children: any): any => {
       duration: 1,
       scaleY: 1
     }, 'circle');
-    const leftLetter = leftCircle.current.querySelector('svg path');
-    const rightLetter = rightCircle.current.querySelector('svg path');
+    const leftLetter = leftCircle.current?.querySelector('svg path') || null;
+    const rightLetter = rightCircle.current?.querySelector('svg path') || null;
 
     enterTl.to(leftLetter, {
       duration: 1.5,
@@ -143,7 +145,7 @@ export const useTransitionLayoutAnimation = (children: any): any => {
       duration: 0.3,
       opacity: 0
     }, 'animation-end');
-    enterTl.to(el.current, {
+    enterTl.to(content.current, {
       duration: 1,
       opacity: 1
     }, 'animation-end');
@@ -163,7 +165,7 @@ export const useTransitionLayoutAnimation = (children: any): any => {
     enterTl.set(centerCircle.current, {
       opacity: 0
     });
-    enterTl.set(el.current, {
+    enterTl.set(content.current, {
       pointerEvents: 'all'
     });
     enterTl.set(leftTransition.current, {
@@ -188,7 +190,7 @@ export const useTransitionLayoutAnimation = (children: any): any => {
 
   return [
     displayChildren,
-    el,
+    content,
     leftTransition,
     rightTransition,
     centerCircle,
