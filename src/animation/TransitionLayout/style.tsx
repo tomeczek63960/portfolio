@@ -33,15 +33,13 @@ export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) =
   z-index: 10000000;
   transform: translate(-50%, -50%);
   border-radius: 50%;
+  border: none;
   overflow: hidden;
   opacity: 0;
+  transition: none;
   .circle-left {
-    width: 50%;
     height: 100%;
     background: black;
-    position: absolute;
-    top: 0;
-    left: 0;
     display: flex;
     align-items: center;
     /* justify-content: center; */
@@ -52,6 +50,14 @@ export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) =
     transform-origin: bottom;
     color: white;
     transform: scaleY(0);
+    &-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background: white;
+    }
     svg {
       height: 28px;
       width: auto;
@@ -62,7 +68,7 @@ export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) =
     }
   }
   .circle-right {
-    width: 50%;
+    /* width: 50%; */
     height: 100%;
     background: white;
     color: black;
@@ -71,13 +77,17 @@ export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) =
     /* justify-content: center; */
     justify-content: left;
     padding-left: 8px;
-    /*  */
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 10000000;
-    transform-origin: top;
     transform: scaleY(0);
+    transform-origin: top;
+    &-wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: black;
+      z-index: 10000000;
+    }
     svg {
       height: 28px;
       width: auto;
