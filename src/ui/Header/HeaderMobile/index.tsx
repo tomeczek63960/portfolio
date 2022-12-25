@@ -5,10 +5,10 @@ import Link from 'next/link'
 import { gsap } from "gsap";
 import Logo from 'src/ui/Logo';
 import SocialMedia from 'src/ui/SocialMedia';
-import {StyledLink, StyledMobileNav, StyledMobileNavContainer, StyledBars, StyledHeaderBar} from './style';
-import {getPaths} from 'src/helpers/getPaths';
-import {useHeaderMobileAnimation} from 'src/hooks/useHeaderMobileAnimation';
-import { preventScroll } from 'src/helpers/preventScroll';
+import {StyledLink, StyledMobileNav, StyledMobileNavContainer, StyledBars, StyledHeaderBar} from "./style";
+import {getPaths} from "src/helpers/getPaths";
+import {useHeaderMobileAnimation} from "src/hooks/useHeaderMobileAnimation";
+import {preventScroll} from "src/helpers/preventScroll";
 
 const Header: React.FC = () => {
   const { pathname, locale = 'en', locales=[] } = useRouter();

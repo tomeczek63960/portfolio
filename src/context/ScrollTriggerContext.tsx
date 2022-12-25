@@ -1,7 +1,6 @@
-import React, { useState, createContext, useCallback, useEffect } from "react"
-import gsap from "gsap"
+import React, {useState, createContext} from "react"
 
-const ScrollTriggerContext = createContext({})
+const ScrollTriggerContext = createContext({});
 
 const ScrollTriggerProvider = ({ children }: {children: any}) => {
   const [isActive, setActive] = useState(false);

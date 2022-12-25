@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
+import React, {useRef} from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect"
-import { gsap } from "gsap";
+import {gsap} from "gsap";
 import ArrowLeft from "../../../../public/svg/arrow-left.svg"
 import World from "../../../../public/svg/world.svg"
 import Github from "../../../../public/svg/github.svg"
-import CustomImage from 'src/ui/Image';
+import CustomImage from "src/ui/Image";
 import {
   StyledProjectBox,
   StyledProjectBoxShadow,
@@ -14,9 +14,9 @@ import {
   StyledProjectBoxLink,
   StyledProjectBoxTechnologies,
   StyledProjectBoxCategories,
-} from './style';
-import {useTimeline} from 'src/hooks/useTimeline';
-import {ProjectBoxProps} from './types';
+} from "./style";
+import {useTimeline} from "src/hooks/useTimeline";
+import {ProjectBoxProps} from "./types";
 
 const ProjectBoxComponent: React.FC<ProjectBoxProps> = ({activeProject, onCloseFunction, isActiveProjectBox}) => {
   const projectBox = useRef<HTMLDivElement>(null);

@@ -1,8 +1,8 @@
-import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
-import { gsap } from "gsap";
-import HeadingComponent from 'src/ui/Heading';
-import Paragraph from 'src/ui/Paragraph';
+import Image from "next/image"
+import {useEffect, useRef, useState} from "react"
+import {gsap} from "gsap";
+import HeadingComponent from "src/ui/Heading";
+import Paragraph from "src/ui/Paragraph";
 import {
   StyledWelcomeBoxSection,
   StyledWelcomeBox,
@@ -17,8 +17,8 @@ import {
   StyledWelcomeBoxMessageText,
   StyledWelcomeBoxOptions,
   StyledWelcomeBoxOptionsList,
-} from './style';
-import {useTimeline} from 'src/hooks/useTimeline';
+} from "./style";
+import {useTimeline} from "src/hooks/useTimeline";
  
 const WelcomeBoxComponent: React.FC = () => {
   const [activeMessages, setActiveMessages] = useState<any>([

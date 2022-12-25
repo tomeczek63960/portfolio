@@ -1,5 +1,5 @@
-import { responsive } from 'src/styled/mixins';
-import styled from 'styled-components';
+import {responsive} from "src/styled/mixins";
+import styled from "styled-components";
 
 export const StyledParagraph = styled.p.attrs((props: {color?: string}) => props)`
   margin: 15px 0;

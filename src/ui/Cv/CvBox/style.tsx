@@ -1,5 +1,5 @@
-import styled, {keyframes} from 'styled-components'
-import { responsive, colors, variables } from 'src/styled/mixins';
+import styled, {keyframes} from "styled-components"
+import {responsive, colors} from "src/styled/mixins";
 
 const widthAnimation = keyframes`
   0% {

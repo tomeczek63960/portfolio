@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { colors } from 'src/styled/mixins';
+import styled from "styled-components"
+import {colors} from "src/styled/mixins";
 
 export const StyledButton = styled.button.attrs((props: {ref: HTMLButtonElement}) => props)`
   margin-top: 40px;

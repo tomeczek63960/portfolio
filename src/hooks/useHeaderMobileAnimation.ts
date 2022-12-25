@@ -1,9 +1,9 @@
-import { useRef } from 'react';
-import { gsap } from "gsap";
-import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
-import {useTimeline} from 'src/hooks/useTimeline';
-import { colors } from 'src/styled/mixins';
-import { preventScroll } from 'src/helpers/preventScroll';
+import {useRef} from "react";
+import {gsap} from "gsap";
+import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
+import {useTimeline} from "src/hooks/useTimeline";
+import {colors} from "src/styled/mixins";
+import {preventScroll} from "src/helpers/preventScroll";
 
 export const useHeaderMobileAnimation = (locale: string, pathname: string): [
   GSAPTimeline,

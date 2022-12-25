@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { responsive, colors } from 'src/styled/mixins';
+import styled from "styled-components"
+import {responsive, colors} from "src/styled/mixins";
 
 export const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props)`
   margin: 5px 0;

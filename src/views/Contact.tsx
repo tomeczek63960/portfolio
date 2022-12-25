@@ -1,11 +1,10 @@
-import React from 'react';
-import FormComponent from 'src/ui/FormComponent';
-import Performence from "../../public/svg/performence.svg"
-import HeadingComponent from 'src/ui/Heading';
-import styled from 'styled-components';
-import { variables } from 'src/styled/mixins';
-import Paragraph from 'src/ui/Paragraph';
-import PerformenceComponent from 'src/ui/Introduction/Svg/Performence';
+import React from "react";
+import FormComponent from "src/ui/FormComponent";
+import HeadingComponent from "src/ui/Heading";
+import styled from "styled-components";
+import {variables} from "src/styled/mixins";
+import Paragraph from "src/ui/Paragraph";
+import PerformenceComponent from "src/ui/Introduction/Svg/Performence";
 
 const StyledIntroductionSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};

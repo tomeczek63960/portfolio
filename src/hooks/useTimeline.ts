@@ -1,6 +1,6 @@
-import { useRef } from 'react';
-import { gsap } from "gsap";
-import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
+import {useRef} from "react";
+import {gsap} from "gsap";
+import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 
 export const useTimeline = (callback: Function): [GSAPTimeline] => {
   const timeline = useRef<GSAPTimeline>(gsap.timeline({ paused: true }));

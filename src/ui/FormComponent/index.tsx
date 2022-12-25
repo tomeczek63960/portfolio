@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Input from 'src/ui/FormComponent/Input';
-import ButtonComponent from 'src/ui/Button';
-import { nameValidation, emailValidation, surnameValidation, phoneValidation } from 'src/helpers/validations';
-import {StyledForm} from './style';
+import React, {useRef, useState} from "react";
+import Input from "src/ui/FormComponent/Input";
+import ButtonComponent from "src/ui/Button";
+import {nameValidation, emailValidation, surnameValidation, phoneValidation} from "src/helpers/validations";
+import {StyledForm} from "./style";
 
 const FormComponent: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);

@@ -1,11 +1,11 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import axios from "axios";
+import React, {useState} from "react";
 import {
   useQuery,
-} from '@tanstack/react-query';
-import Project from 'src/ui/Projects/Project';
-import ProjectBox from 'src/ui/Projects/ProjectBox';
-import {StyledProjectsGrid} from './style';
+} from "@tanstack/react-query";
+import Project from "src/ui/Projects/Project";
+import ProjectBox from "src/ui/Projects/ProjectBox";
+import {StyledProjectsGrid} from "./style";
 
 const fetchProjects = async () => {
   // const res = await axios.get('https://app-portfolio-tk.herokuapp.com/projects?_locale=en');

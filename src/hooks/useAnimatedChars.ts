@@ -1,8 +1,8 @@
-import { useRef, useContext } from 'react';
-import { gsap } from "gsap";
-import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
-import { simpleSplitText } from 'src/helpers/simpleSplitText';
-import {ScrollTriggerContext} from 'src/context/ScrollTriggerContext';
+import {useRef, useContext} from "react";
+import {gsap} from "gsap";
+import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
+import {simpleSplitText} from "src/helpers/simpleSplitText";
+import {ScrollTriggerContext} from "src/context/ScrollTriggerContext";
 
 interface TimelineProps {
   target: HTMLHeadingElement;

@@ -1,6 +1,6 @@
-import React from 'react';
-import styled, {keyframes} from 'styled-components';
-import { responsive, colors } from 'src/styled/mixins';
+import React from "react";
+import styled, {keyframes} from "styled-components";
+import {responsive} from "src/styled/mixins";
 
 const StyledH2 = styled.h2.attrs((props: {color?: string}) => props)`
   margin-top: 30px;
@@ -48,7 +48,7 @@ const StyledH2 = styled.h2.attrs((props: {color?: string}) => props)`
     filter: drop-shadow(0 0 25px ${({color}) => color ? color : 'white' });
     /* -webkit-text-stroke: 1px ${({color}) => color ? color : 'white' };; */
   }
-`
+`;
 
 const animate = keyframes`
   0% {

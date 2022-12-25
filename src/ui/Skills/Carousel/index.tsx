@@ -1,4 +1,4 @@
-import {useCircleCarousel} from 'src/hooks/useCircleCarousel';
+import {useCircleCarousel} from "src/hooks/useCircleCarousel";
 import {
   StyledCarousel,
   StyledCarouselText,
@@ -6,7 +6,7 @@ import {
   StyledCarouselTextItem,
   StyledPaginationItem,
   StyledPaginationItemDot,
-} from './style';
+} from "./style";
 
 // TODO: dodać typ zgodny z tym co zwróci Strapi
 interface SkillsProps {

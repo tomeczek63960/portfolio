@@ -1,6 +1,6 @@
 import Head from "./Head"
-import Header from 'src/ui/Header/HeaderDesktop';
-import HeaderMobile from 'src/ui/Header/HeaderMobile';
+import Header from "src/ui/Header/HeaderDesktop";
+import HeaderMobile from "src/ui/Header/HeaderMobile";
 import { FormattedMessage, useIntl } from "react-intl";
 import FooterComponent from "src/ui/Footer";
 import styled from "styled-components";

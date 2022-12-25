@@ -1,5 +1,5 @@
-import React, { useState, createContext, useCallback, useEffect } from "react"
-import gsap from "gsap"
+import React, {useState, createContext} from "react";
+import gsap from "gsap";
 
 const TransitionContext = createContext({});
 

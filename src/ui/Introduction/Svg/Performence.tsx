@@ -1,8 +1,8 @@
-import { useRef, useContext } from 'react';
+import {useRef, useContext} from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import styled, {keyframes} from "styled-components";
-import {gsap} from 'gsap';
-import {ScrollTriggerContext} from 'src/context/ScrollTriggerContext';
+import {gsap} from "gsap";
+import {ScrollTriggerContext} from "src/context/ScrollTriggerContext";
 
 const Svg = styled.svg`
   .path-background,

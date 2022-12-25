@@ -1,7 +1,7 @@
-import { useRef, useContext } from 'react';
-import { gsap } from "gsap";
-import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
-import {ScrollTriggerContext} from 'src/context/ScrollTriggerContext';
+import {useRef, useContext} from "react";
+import {gsap} from "gsap";
+import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
+import {ScrollTriggerContext} from "src/context/ScrollTriggerContext";
 
 export const useTransformAnimation = (): [React.RefObject<HTMLHeadingElement>] => {
   const paragraph = useRef<HTMLHeadingElement>(null);

@@ -1,6 +1,6 @@
 
-import { responsive, colors } from 'src/styled/mixins';
-import styled, {css} from 'styled-components';
+import {responsive, colors} from "src/styled/mixins";
+import styled, {css} from "styled-components";
 
 const headingStyles = (color: string, selectionColor?: string) => css`
   font-family: 'Poppins', sans-serif;

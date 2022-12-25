@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
-import {StyledButton, StyledButtonBorder, StyledButtonBorderAfter} from './style';
-import { colors } from 'src/styled/mixins';
-import {useTimeline} from 'src/hooks/useTimeline';
-import {ButtonProps} from './types';
+import React, {useRef} from "react";
+import {StyledButton, StyledButtonBorder, StyledButtonBorderAfter} from "./style";
+import {colors} from "src/styled/mixins";
+import {useTimeline} from "src/hooks/useTimeline";
+import {ButtonProps} from "./types";
 
 const ButtonComponent: React.FC<ButtonProps> = ({ children }) => {
   const btnRef = useRef<HTMLButtonElement>(null);

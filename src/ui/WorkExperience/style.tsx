@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { responsive, colors, variables } from 'src/styled/mixins';
+import styled from "styled-components"
+import {responsive, colors, variables} from "src/styled/mixins";
 
 export const StyledWorkExperienceSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};

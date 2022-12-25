@@ -1,5 +1,5 @@
-import styled, { css, keyframes } from 'styled-components'
-import { responsive, colors, variables } from 'src/styled/mixins';
+import styled, {css, keyframes} from "styled-components"
+import {responsive, colors, variables} from "src/styled/mixins";
 const writingAnimationKeyframes = keyframes`
   50% {
     opacity: 0;

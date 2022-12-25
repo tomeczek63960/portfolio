@@ -1,7 +1,7 @@
-import React, { useRef, useContext } from 'react';
-import { gsap } from "gsap";
-import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
-import {ScrollTriggerContext} from 'src/context/ScrollTriggerContext';
+import React, {useRef, useContext} from "react";
+import {gsap} from "gsap";
+import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
+import {ScrollTriggerContext} from "src/context/ScrollTriggerContext";
 
 export const useScrollTrigger = (scrollTriggerStart?: number, type?: string): [React.RefObject<HTMLElement>] => {
   const element = useRef<HTMLElement>(null);

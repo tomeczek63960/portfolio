@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { colors } from 'src/styled/mixins';
+import styled from "styled-components"
+import {colors} from "src/styled/mixins";
 
 export const StyledSocialMeidaLinks = styled.div.attrs((props: {theme: string}) => props)`
   margin-bottom: 20px;

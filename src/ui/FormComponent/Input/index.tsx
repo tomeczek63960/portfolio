@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import useIsomorphicLayoutEffect from 'src/animation/useIsomorphicLayoutEffect';
-import { colors } from 'src/styled/mixins';
+import React, {useRef, useState} from "react";
+import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
+import {colors} from "src/styled/mixins";
 import {
   StyledInputGroup,
   StyledInputGroupComponent,
@@ -8,9 +8,9 @@ import {
   StyledInput,
   StyledInputBorder,
   StyledInputBorderAfter
-} from './style';
-import {useTimeline} from 'src/hooks/useTimeline';
-import {InputProps} from './types';
+} from "./style";
+import {useTimeline} from "src/hooks/useTimeline";
+import {InputProps} from "./types";
 
 const createInputAnimation = (timeline: GSAPTimeline, border: HTMLSpanElement, borderAfter: HTMLSpanElement) => {
   timeline.to(border, {

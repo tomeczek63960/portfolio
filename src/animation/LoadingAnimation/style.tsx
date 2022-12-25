@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import {colors} from "src/styled/mixins";
 
 export const Html = styled.div`
   position: fixed;
@@ -8,9 +9,8 @@ export const Html = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background: white;
+  background: ${colors.white};
   overflow: hidden;
-  /* background: black; */
   font-family: Times;
   .svg-letter {
     height: 50px;
@@ -31,13 +31,11 @@ export const HtmlBefore = styled.span`
   top: 200px;
   left: 50%;
   transform: translateX(-50%);
-  background: black;
+  background: ${colors.black};
   border-radius: 50%;
   display: block;
 `;
 export const HtmlAfter = styled.span`
-  /* width: 50px;
-  height: 50px; */
   width: 70px;
   height: 50px;
   display: flex;
@@ -50,7 +48,7 @@ export const HtmlAfter = styled.span`
   transform: translateX(-50%);
   z-index: 1;
   opacity: 0;
-  color: white;
+  color: ${colors.white};
   font-size: 25px;
   font-weight: 700;
 `;
@@ -60,7 +58,7 @@ export const BodyBefore = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  background-color: white;
+  background-color: ${colors.white};
   z-index: 10000000;
   opacity: 0;
   pointer-events: none;
@@ -72,7 +70,6 @@ export const BodyBefore = styled.div`
     visibility: visible;
   }
 `;
-
 export const BodyContent = styled.div`
   opacity: 0;
   pointer-events: none;

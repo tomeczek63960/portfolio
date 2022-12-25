@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import {gsap} from 'gsap';
+import React, {useEffect, useRef} from "react";
+import {gsap} from "gsap";
 import {
   StyledTimelineList,
-} from './style';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import WorkExperienceListItem from 'src/ui/WorkExperience/WorkExperienceListItem';
-import {WrokExperienceItem} from 'src/ui/WorkExperience/WorkExperienceListItem/types';
+} from "./style";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import WorkExperienceListItem from "src/ui/WorkExperience/WorkExperienceListItem";
+import {WrokExperienceItem} from "src/ui/WorkExperience/WorkExperienceListItem/types";
 
 const WorkExperienceList: React.FC = () => {
   const timelineList = useRef<any>();

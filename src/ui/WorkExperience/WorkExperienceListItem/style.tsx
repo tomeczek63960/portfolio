@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { responsive, colors, variables } from 'src/styled/mixins';
+import styled from "styled-components"
+import {responsive, colors} from "src/styled/mixins";
 
 export const StyledListItem = styled.div`
   position: relative;

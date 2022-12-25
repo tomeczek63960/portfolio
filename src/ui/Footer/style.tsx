@@ -1,6 +1,6 @@
 
-import styled from 'styled-components'
-import { responsive, colors } from 'src/styled/mixins';
+import styled from "styled-components"
+import {responsive, colors} from "src/styled/mixins";
 
 export const StyledFooter = styled.footer`
   margin-top: auto;

@@ -1,9 +1,9 @@
-import HeadingComponent from 'src/ui/Heading';
-import Paragraph from 'src/ui/Paragraph';
+import HeadingComponent from "src/ui/Heading";
+import Paragraph from "src/ui/Paragraph";
 import {
   StyledCvSection,
-} from './style';
-import CvBoxComponent from './CvBox';
+} from "./style";
+import CvBoxComponent from "./CvBox";
 
 const CvComponent: React.FC = () => {
   return (

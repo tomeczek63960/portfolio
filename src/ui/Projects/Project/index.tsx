@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
-import { gsap } from "gsap";
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import HandleText from 'src/helpers/handleText'
-import CustomImage from 'src/ui/Image';
-import {StyledProject, StyledProjectHover} from './style';
-import {useTimeline} from 'src/hooks/useTimeline';
-import {ProjectProps} from './types';
+import React, {useRef} from "react";
+import {gsap} from "gsap";
+import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
+import HandleText from "src/helpers/handleText"
+import CustomImage from "src/ui/Image";
+import {StyledProject, StyledProjectHover} from "./style";
+import {useTimeline} from "src/hooks/useTimeline";
+import {ProjectProps} from "./types";
 
 const ProjectComponent: React.FC<ProjectProps> = ({project, onClickFunction}) => {
   const projectHover = useRef<any>();

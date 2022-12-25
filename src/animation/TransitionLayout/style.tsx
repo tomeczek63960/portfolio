@@ -1,9 +1,10 @@
-import styled, { css } from 'styled-components'
+import styled, {css} from "styled-components"
+import {colors} from "src/styled/mixins";
 
 export const LeftTransition = styled.div.attrs((props: {ref: HTMLButtonElement}) => props)`
   width: 50%;
   height: 100vh;
-  background: white;
+  background: ${colors.white};
   position: fixed;
   left: 0;
   bottom: 0;
@@ -13,20 +14,20 @@ export const LeftTransition = styled.div.attrs((props: {ref: HTMLButtonElement})
 export const RightTransition = styled.div.attrs((props: {ref: HTMLButtonElement}) => props)`
   width: 50%;
   height: 100vh;
-  background: white;
+  background: ${colors.white};
   position: fixed;
   right: 0;
   top: 0;
   z-index: 10000;
   transform: translateY(-100%);
   @media screen and (min-width: 768px) {
-    background: black;
+    background: ${colors.black};
   }
 `
 export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) => props)`
   width: 100px;
   height: 100px;
-  background: black;
+  background: ${colors.black};
   position: fixed;
   left: 50%;
   top: 50%;
@@ -39,7 +40,7 @@ export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) =
   transition: none;
   .circle-left {
     height: 100%;
-    background: black;
+    background: ${colors.black};
     display: flex;
     align-items: center;
     /* justify-content: center; */
@@ -48,7 +49,7 @@ export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) =
     /*  */
     z-index: 10000000;
     transform-origin: bottom;
-    color: white;
+    color: ${colors.white};
     transform: scaleY(0);
     &-wrapper {
       position: absolute;
@@ -56,7 +57,7 @@ export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) =
       left: 0;
       width: 50%;
       height: 100%;
-      background: white;
+      background: ${colors.white};
     }
     svg {
       height: 28px;
@@ -70,8 +71,8 @@ export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) =
   .circle-right {
     /* width: 50%; */
     height: 100%;
-    background: white;
-    color: black;
+    background: ${colors.white};
+    color: ${colors.black};
     display: flex;
     align-items: center;
     /* justify-content: center; */
@@ -85,7 +86,7 @@ export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) =
       right: 0;
       width: 50%;
       height: 100%;
-      background: black;
+      background: ${colors.black};
       z-index: 10000000;
     }
     svg {
@@ -130,7 +131,7 @@ export const HtmlText = styled.h4.attrs((props: {theme: string}) => props)`
   font-family: Roboto;
   background-color: transparent;
   mix-blend-mode: darken;
-  color: black;
+  color: ${colors.black};
   @media screen and (min-width: 768px) {
     mix-blend-mode: ${({ theme }) => theme === 'light' ? 'darken' : 'screen'};
     color: ${({ theme }) => theme === 'light' ? 'black' : 'white'};

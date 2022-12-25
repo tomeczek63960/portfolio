@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { gsap } from "gsap";
+import React, {useRef} from "react";
+import {gsap} from "gsap";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 
 const getAngle = (dots: number, next: number, prev: number, step: number) => {

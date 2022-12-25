@@ -1,14 +1,12 @@
-import React, { useRef } from 'react';
-import { gsap } from 'gsap';
-import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
+import React from "react";
 import {
   StyledListItem,
   StyledListItemContent,
   StyledListItemLine,
   StyledListItemLineDot
-} from './style';
-import ArrowDown from '../../../../public/svg/arrow-down.svg';
-import {WrokExperienceProps} from './types';
+} from "./style";
+import ArrowDown from "../../../../public/svg/arrow-down.svg";
+import {WrokExperienceProps} from "./types";
 
 const WorkExperienceListItem: React.FC<WrokExperienceProps> = ({item, order}) => {
   return (

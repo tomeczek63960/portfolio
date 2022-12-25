@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import HeadingComponent from 'src/ui/Heading';
-import Paragraph from 'src/ui/Paragraph';
+import React from "react";
+import HeadingComponent from "src/ui/Heading";
+import Paragraph from "src/ui/Paragraph";
 import {
   StyledWorkExperienceSection,
   StyledWorkExperience,
@@ -9,10 +9,10 @@ import {
   StyledWorkExperienceHeadContent,
   StyledWorkExperienceContent,
   StyledButtonSecondary,
-} from './style';
-import SectionWave from '../../../public/svg/section-wave.svg';
-import WorkExperienceList from './WorkExperienceList';
-import { useScrollTrigger } from 'src/hooks/useScrollTrigger';
+} from "./style";
+import SectionWave from "../../../public/svg/section-wave.svg";
+import WorkExperienceList from "./WorkExperienceList";
+import {useScrollTrigger} from "src/hooks/useScrollTrigger";
 
 const WorkExperience: React.FC = () => {
   const [workExperienceHeadContent] = useScrollTrigger(0.6, 'children') as [React.RefObject<HTMLDivElement>];

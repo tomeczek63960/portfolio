@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
-import { useRouter } from "next/router";
-import Link from 'next/link'
-import Linkedin from '../../../../public/svg/linkedin.svg';
-import Github from '../../../../public/svg/github.svg';
-import {StyledLink, StyledDesktopNav, StyledDesktopNavSocialMeida} from './style';
-import {getPaths} from 'src/helpers/getPaths';
+import React, {useMemo} from "react";
+import {useRouter} from "next/router";
+import Link from "next/link"
+import Linkedin from "../../../../public/svg/linkedin.svg";
+import Github from "../../../../public/svg/github.svg";
+import {StyledLink, StyledDesktopNav, StyledDesktopNavSocialMeida} from "./style";
+import {getPaths} from "src/helpers/getPaths";
 
 const Header: React.FC = () => {
   const { locale, locales=[] } = useRouter();

@@ -1,5 +1,5 @@
-import Pdf from '../../../../public/svg/pdf.svg';
-import { useScrollTrigger } from 'src/hooks/useScrollTrigger';
+import Pdf from "../../../../public/svg/pdf.svg";
+import {useScrollTrigger} from "src/hooks/useScrollTrigger";
 import {
   StyledCvCardWrapper,
   StyedCvCard,
@@ -8,7 +8,7 @@ import {
   StyledDownloadCvLink,
   StyedCvCardContent,
   StyledCardListItem,
-} from './style';
+} from "./style";
 
 const CvBoxComponent: React.FC = () => {
   const [ul] = useScrollTrigger(0.6, 'children') as [React.RefObject<HTMLUListElement>];
