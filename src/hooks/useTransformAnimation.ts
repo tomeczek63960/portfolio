@@ -1,11 +1,12 @@
 import {useRef, useContext} from "react";
 import {gsap} from "gsap";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import {ScrollTriggerContext} from "src/context/ScrollTriggerContext";
+import {useSelector} from "react-redux";
+import type {IRootState} from "src/store";
 
 export const useTransformAnimation = (): [React.RefObject<HTMLHeadingElement>] => {
   const paragraph = useRef<HTMLHeadingElement>(null);
-  const {isActive} = useContext<{isActive: boolean, setActive: Function}>(ScrollTriggerContext)
+  const {isActive} = useSelector((state: IRootState) => state.scrollTrigger);
 
   useIsomorphicLayoutEffect(() => {
     if(!isActive || !paragraph.current) return;

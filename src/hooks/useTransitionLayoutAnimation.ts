@@ -1,17 +1,18 @@
 import {gsap} from "gsap";
-import {TransitionContext} from "src/context/TransitionContext";
 import {useState, useContext, useRef} from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import {useRouter} from "next/router";
-import {ScrollTriggerContext} from 'src/context/ScrollTriggerContext';
+import {useDispatch, useSelector} from "react-redux";
+import type {IRootState} from "src/store";
+import {setActive} from "src/store/scrollTrigger";
 
 // TODO: update context types;
 // TODO: update timelines to redux (redux toolkit);
-export const useTransitionLayoutAnimation = (children: any): any => {
+export const useTransitionLayoutAnimation = (children: React.ReactNode): any => {
+  const dispatch = useDispatch();
   const {pathname, locale} = useRouter();
   const [displayChildren, setDisplayChildren] = useState(children)
-  const {timeline, isInitAnimation} = useContext<any>(TransitionContext)
-  const {setActive} = useContext<any>(ScrollTriggerContext)
+  const {timeline, isInitAnimation} = useSelector((state: IRootState) => state.transition);
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const content = useRef<HTMLDivElement>(null);
   const leftTransition = useRef<HTMLDivElement>(null);
@@ -54,7 +55,7 @@ export const useTransitionLayoutAnimation = (children: any): any => {
       0
     );
 
-    setActive(false);
+    dispatch(setActive(false));
     timeline.play().then(() => {
       timeline.seek(0).pause().clear()
       gsap.set(leftTransition.current, {
@@ -184,7 +185,7 @@ export const useTransitionLayoutAnimation = (children: any): any => {
       scaleY: 0
     });
     enterTl.call(() => {
-      setActive(true)
+      dispatch(setActive(true));
     });
   }
 

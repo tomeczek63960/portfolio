@@ -1,16 +1,17 @@
 import {gsap} from "gsap";
-import {TransitionContext} from "src/context/TransitionContext";
 import {useState, useContext, useRef} from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import {useRouter} from "next/router";
 import {Html, HtmlBefore, HtmlAfter, BodyBefore, BodyContent} from "./style";
-import {ScrollTriggerContext} from "src/context/ScrollTriggerContext";
+import {useDispatch} from "react-redux";
+import {setIsInitAnimation} from "src/store/transition";
+import {setActive} from "src/store/scrollTrigger";
 
-const LoadingAnimation = ({ children }: {children: any}) => {
+const LoadingAnimation = ({ children }: {children: React.ReactNode}) => {
   const {pathname, locale} = useRouter();
-  const {setIsInitAnimation} = useContext<any>(TransitionContext)
-  const {setActive} = useContext<any>(ScrollTriggerContext)
-  const [displayChildren, setDisplayChildren] = useState();
+  const dispatch = useDispatch();
+
+  const [displayChildren, setDisplayChildren] = useState<React.ReactNode>();
   const timeline = useRef<GSAPTimeline>();
   const timelineEnter = useRef<GSAPTimeline>();
   const content = useRef<HTMLDivElement>(null);
@@ -164,12 +165,12 @@ const LoadingAnimation = ({ children }: {children: any}) => {
     if (!timeline.current.isActive()) {
       timeline.current.play().then(() => {
         timeline.current?.pause();
-        setIsInitAnimation(false);
+        dispatch(setIsInitAnimation(false));
         // timeline.current.seek(0).pause().clear()
         setDisplayChildren(children);
         
         timelineEnter.current?.play().then(() => {
-          setActive(true);
+          dispatch(setActive(true));
         });
       });
     }
