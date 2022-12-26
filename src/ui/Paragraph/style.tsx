@@ -1,11 +1,13 @@
-import {responsive} from "src/styled/mixins";
+import { responsive } from "src/styled/mixins";
 import styled from "styled-components";
 
-export const StyledParagraph = styled.p.attrs((props: {color?: string}) => props)`
+export const StyledParagraph = styled.p.attrs(
+  (props: { color?: string }) => props
+)`
   margin: 15px 0;
   font-size: 16px;
   line-height: 23px;
-  color: ${({color}) => color};
+  color: ${({ color }) => color};
   opacity: 0;
   transform: translateY(20%);
   ${responsive.tabletL`

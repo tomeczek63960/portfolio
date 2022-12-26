@@ -1,13 +1,16 @@
-import styled from "styled-components"
-import {responsive, colors} from "src/styled/mixins";
+import styled from "styled-components";
+import { responsive, colors } from "src/styled/mixins";
+import { isTruthy } from "src/helpers/checkFalsyType";
 
-export const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props)`
+export const StyledLink = styled.a.attrs(
+  (props: { isDisabled: Boolean }) => props
+)`
   margin: 5px 0;
   color: ${colors.black};
-  font-family: 'Noto Serif Oriya', serif;
+  font-family: "Noto Serif Oriya", serif;
   font-size: 22px;
   line-height: 30px;
-  display: ${ props => props.isDisabled ? 'none' : 'block' };
+  display: ${(props) => (isTruthy(props.isDisabled) ? "none" : "block")};
   font-weight: 700;
   transition: 0.3s;
   text-decoration: none;

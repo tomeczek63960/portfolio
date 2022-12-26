@@ -1,10 +1,10 @@
-import styled from "styled-components"
-import {responsive, colors, variables} from "src/styled/mixins";
+import styled from "styled-components";
+import { responsive, colors } from "src/styled/mixins";
 
 export const StyledCarousel = styled.div`
   position: relative;
-	padding-top: 100%;
-`
+  padding-top: 100%;
+`;
 export const StyledCarouselText = styled.div`
   position: absolute;
   top: 0;
@@ -99,7 +99,7 @@ export const StyledPaginationItemDot = styled.div`
   transform: translate(-50%, -50%);
   border-radius: 50%;
   pointer-events: auto;
-  transition: .3s;
+  transition: 0.3s;
   svg {
     width: 30px;
     transition: 0.5s ease-in-out;

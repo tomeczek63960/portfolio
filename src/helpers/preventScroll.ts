@@ -1,8 +1,10 @@
-export const preventScroll = (preventScroll?: boolean) => {
-  const html = document.querySelector('html');
-  if (preventScroll) {
-    html?.classList.add('no-scroll');
+import { isTruthy } from "src/helpers/checkFalsyType";
+
+export const preventScroll = (preventScroll?: boolean): void => {
+  const html = document.querySelector("html");
+  if (isTruthy(preventScroll)) {
+    html?.classList.add("no-scroll");
   } else {
-    html?.classList.remove('no-scroll');
+    html?.classList.remove("no-scroll");
   }
-}
+};

@@ -1,7 +1,10 @@
-import styled from "styled-components"
-import {responsive, colors} from "src/styled/mixins";
+import styled from "styled-components";
+import { responsive, colors } from "src/styled/mixins";
+import { isTruthy } from "src/helpers/checkFalsyType";
 
-export const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props)`
+export const StyledLink = styled.a.attrs(
+  (props: { isDisabled: Boolean }) => props
+)`
   margin-top: 20px;
   color: ${colors.white};
   font-size: 18px;
@@ -11,7 +14,7 @@ export const StyledLink = styled.a.attrs((props: {isDisabled: Boolean}) => props
   font-family: Arial, Helvetica, sans-serif;
   transform: translateX(-50px);
   opacity: 0;
-  display: ${ props => props.isDisabled ? 'none' : 'block' };
+  display: ${(props) => (isTruthy(props.isDisabled) ? "none" : "block")};
   text-decoration: none;
   &::selection {
     background-color: ${colors.purple};

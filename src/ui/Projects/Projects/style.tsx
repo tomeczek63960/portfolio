@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 export const StyledProjectsGrid = styled.div`
   display: flex;
   flex-wrap: wrap;

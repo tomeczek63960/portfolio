@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import {StyledImage} from "./style";
-import {ImageProps} from "./types";
+import { StyledImage } from "./style";
+import { ImageProps } from "./types";
 
-const ImageComponent: React.FC<ImageProps> = ({url, className}) => {
+const ImageComponent: React.FC<ImageProps> = ({ url, className }) => {
   return (
     <StyledImage>
       <Image
@@ -12,10 +12,10 @@ const ImageComponent: React.FC<ImageProps> = ({url, className}) => {
         alt="Picture of the author"
         blurDataURL="data:..."
         placeholder="blur"
-        layout='fill'
-    />
+        layout="fill"
+      />
     </StyledImage>
   );
-}
+};
 
 export default ImageComponent;

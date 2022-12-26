@@ -3,4 +3,3 @@ export interface ProjectBoxProps {
   onCloseFunction: Function;
   isActiveProjectBox: boolean;
 }
-  

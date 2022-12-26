@@ -1,7 +1,9 @@
-import styled from "styled-components"
-import {colors} from "src/styled/mixins";
+import styled from "styled-components";
+import { colors } from "src/styled/mixins";
 
-export const StyledButton = styled.button.attrs((props: {ref: HTMLButtonElement}) => props)`
+export const StyledButton = styled.button.attrs(
+  (props: { ref: HTMLButtonElement }) => props
+)`
   margin-top: 40px;
   background: transparent;
   color: ${colors.gray};
@@ -30,7 +32,7 @@ export const StyledButton = styled.button.attrs((props: {ref: HTMLButtonElement}
     bottom: 0;
     left: 0;
   }
-`
+`;
 export const StyledButtonBorder = styled.span`
   display: block;
   position: absolute;

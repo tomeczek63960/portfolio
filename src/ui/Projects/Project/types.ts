@@ -1,6 +1,4 @@
-export interface Project {
-  
-}
+export interface Project {}
 
 export interface ProjectProps {
   project: any;

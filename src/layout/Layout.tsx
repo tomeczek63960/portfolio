@@ -1,7 +1,8 @@
-import Head from "./Head"
+import React from "react";
+import Head from "./Head";
 import Header from "src/ui/Header/HeaderDesktop";
 import HeaderMobile from "src/ui/Header/HeaderMobile";
-import { FormattedMessage, useIntl } from "react-intl";
+// import { FormattedMessage, useIntl } from "react-intl";
 import FooterComponent from "src/ui/Footer";
 import styled from "styled-components";
 
@@ -11,31 +12,38 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const Layout = (props: any) => {
-  return (
-    <>
-      <ContentWrapper>
-        <div>
-          <Head { ...props } />
-          <HeaderMobile />
 
-          <div className="container">
-            <div className="container__left">
-              {/* <h1> <FormattedMessage id="page.home.description" /> </h1> */}
-              <main>
-                { props.children }
-              </main>
-            </div>
-            <div className="container__right">
-              <Header />
-            </div>
-          </div>
-        </div>
-
-        <FooterComponent />
-      </ContentWrapper>
-    </>
-  )
+export interface LayoutProps {
+  children: React.ReactNode;
+  title: string;
+  description: string;
+  url: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  twitter?: string;
 }
 
-export default Layout
+const Layout: React.FC<LayoutProps> = (props) => {
+  return (
+    <ContentWrapper>
+      <div>
+        <Head {...props} />
+        <HeaderMobile />
+
+        <div className="container">
+          <div className="container__left">
+            {/* <h1> <FormattedMessage id="page.home.description" /> </h1> */}
+            <main>{props.children}</main>
+          </div>
+          <div className="container__right">
+            <Header />
+          </div>
+        </div>
+      </div>
+
+      <FooterComponent />
+    </ContentWrapper>
+  );
+};
+
+export default Layout;

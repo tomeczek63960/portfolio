@@ -1,3 +1,4 @@
+import React from "react";
 import Skills from "src/ui/Skills";
 import WorkExperience from "src/ui/WorkExperience";
 import WelcomeBox from "src/ui/WelcomeBox";
@@ -6,14 +7,12 @@ import IntroductionComponent from "src/ui/Introduction";
 
 const Home: React.FC = () => {
   return (
-    // TODO: 
+    // TODO:
     // Dodać do kazdego komponentu testy
     // dodać na resize refresh komponentów / timeline / gsapa
 
     // globalne style dla linków (w tekstach) fioletowy lub niebieski kolor (font-wieght: 500) i underline
     // globalne style przenieść do styled components
-    // zmienić zarządzanie statem na reduxa
-    // Dodać linta zeby nie było trzeba ręcznie updatować
     <>
       <IntroductionComponent />
       <WelcomeBox />
@@ -21,7 +20,7 @@ const Home: React.FC = () => {
       <WorkExperience />
       <StyledCvSection />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

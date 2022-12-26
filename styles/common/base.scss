@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Oriya:wght@400;500;600;700&family=Poppins:wght@400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Oriya:wght@400;500;600;700&family=Poppins:wght@400;700;900&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap");
 
 :root {
   --contact-rotation: 0;
@@ -16,7 +16,7 @@ html {
   overflow-y: scroll;
   position: relative;
   &.no-scroll {
-    overflow: hidden!important;
+    overflow: hidden !important;
     height: 100vh;
     &.body-padding {
       @media screen and (hover) {
@@ -94,11 +94,16 @@ body {
   min-height: 100vh;
   overflow: hidden;
   background: black;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Noto Serif Oriya', serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Noto Serif Oriya", serif;
   line-height: 1.2;
 }
 
@@ -112,13 +117,15 @@ button {
   font-family: $fontFamilyPrimary;
 }
 
-img, picture {
+img,
+picture {
   display: block;
   max-width: 100%;
   height: auto;
 }
 picture {
-  source, img {
+  source,
+  img {
     object-fit: cover;
     height: 100%;
   }
@@ -195,9 +202,80 @@ a {
   text-decoration: underline;
   transition: opacity 0.3s;
   &::selection {
-    background-color: #6A82FB;
+    background-color: #6a82fb;
   }
   &:hover {
     opacity: 0.8;
+  }
+}
+
+*::selection {
+  background-color: $violet;
+  -webkit-text-fill-color: $white;
+}
+
+p {
+  color: $white;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  max-width: 47.8rem;
+  height: 100%;
+  padding-left: $gridSpacerMobile;
+  padding-right: $gridSpacerMobile;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  @include tabletP {
+    flex-direction: row;
+    padding-left: $gridSpacerTabletP;
+    padding-right: $gridSpacerTabletP;
+    max-width: 76.8rem;
+  }
+
+  @include tabletL {
+    padding-left: $gridSpacerTabletL;
+    padding-right: $gridSpacerTabletL;
+    max-width: 102.4rem;
+  }
+
+  @include desk {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 99.8rem;
+  }
+
+  @include deskHD {
+    max-width: 139rem;
+  }
+  &__left {
+    width: 100%;
+    @include tabletP {
+      padding-right: 30px;
+      width: 50%;
+    }
+    // padding: 20px;
+  }
+  &__right {
+    order: -1;
+    width: 100%;
+    @include tabletP {
+      order: 1;
+      width: 50%;
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+    }
+    padding-left: 30px;
+    @media screen and (min-width: 1024px) {
+      padding-left: 60px;
+    }
+    @media screen and (min-width: 1366px) {
+      padding-left: 80px;
+    }
   }
 }

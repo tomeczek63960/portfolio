@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import {responsive, colors} from "src/styled/mixins";
+import styled from "styled-components";
+import { responsive, colors } from "src/styled/mixins";
 
 export const StyledProject = styled.div`
   cursor: pointer;
@@ -11,7 +11,7 @@ export const StyledProject = styled.div`
   border: 1px solid transparent;
   border-radius: 5px;
   overflow: hidden;
-`
+`;
 export const StyledProjectHover = styled.div`
   padding: 20px 15px;
   width: 100%;
