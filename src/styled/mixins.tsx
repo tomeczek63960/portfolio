@@ -1,26 +1,36 @@
 import { css } from "styled-components";
 
+function getProps(
+  ...args: Array<TemplateStringsArray | string>
+): Array<TemplateStringsArray | string> {
+  return args;
+}
+
 export const responsive = {
   tabletP: (...props: Array<TemplateStringsArray | string>) => css`
     @media (min-width: 768px) {
-      ${css(...props)};
+      ${getProps(...props)};
     }
   `,
+  /* ${css(...props)}; */
   tabletL: (...props: Array<TemplateStringsArray | string>) => css`
     @media (min-width: 1024px) {
-      ${css(...props)};
+      ${getProps(...props)};
     }
   `,
+  // ${css(...props)};
   desktop: (...props: Array<TemplateStringsArray | string>) => css`
     @media (min-width: 1366px) {
-      ${css(...props)};
+      ${getProps(...props)};
     }
   `,
+  /* ${css(...props)}; */
   desktopHd: (...props: Array<TemplateStringsArray | string>) => css`
     @media (min-width: 1920px) {
-      ${css(...props)};
+      ${getProps(...props)};
     }
   `,
+  // ${css(...props)};
 };
 // ustawić tutaj jakieś globlane fonty sizy i line height i się tego trzymać na przestrzeni całego projektu
 // to samo dla font family

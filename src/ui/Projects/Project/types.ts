@@ -1,4 +1,6 @@
-export interface Project {}
+export interface Project {
+  title?: any;
+}
 
 export interface ProjectProps {
   project: any;

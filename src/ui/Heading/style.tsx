@@ -5,7 +5,7 @@ import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 const headingStyles = (
   color: string,
   selectionColor?: string
-): FlattenSimpleInterpolation => css`
+): FlattenSimpleInterpolation | any => css`
   font-family: "Poppins", sans-serif;
   line-height: 1;
   letter-spacing: 2px;
