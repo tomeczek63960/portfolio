@@ -1,6 +1,6 @@
 export interface InputProps {
   type: string;
-  placeholder: string; 
+  placeholder: string;
   validation: Function;
   isFormDirty: boolean;
 }

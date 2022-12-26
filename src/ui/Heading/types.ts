@@ -8,5 +8,5 @@ export interface HeadingProps {
 
 export const headingDefaultProps: HeadingProps = {
   tagName: "h1",
-  color: "white"
+  color: "white",
 };

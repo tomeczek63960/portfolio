@@ -1,5 +1,6 @@
-import styled from "styled-components"
-import {colors} from "src/styled/mixins";
+import styled from "styled-components";
+import { colors } from "src/styled/mixins";
+import { isTruthy } from "src/helpers/checkFalsyType";
 
 export const StyledInputGroup = styled.div`
   position: relative;
@@ -8,7 +9,7 @@ export const StyledInputGroup = styled.div`
     margin-top: 0;
   }
   &:after {
-    content: '';
+    content: "";
     width: 0;
     height: 2px;
     background: ${colors.blackPrimary};
@@ -38,18 +39,20 @@ export const StyledLabel = styled.label`
   cursor: pointer;
 `;
 export const StyledInput = styled.input`
-    background: transparent;
-    color: ${ colors.pink };
-    height: 35px;
-    font: 15px/24px "Lato", Arial, sans-serif;
-    letter-spacing: 1px;
-    outline: none !important;
-    width: 100%;
-    transition: 0.3s ease-in-out;
-    border: none;
-    border-bottom: 2px solid ${ colors.blackSecondary };;
+  background: transparent;
+  color: ${colors.pink};
+  height: 35px;
+  font: 15px/24px "Lato", Arial, sans-serif;
+  letter-spacing: 1px;
+  outline: none !important;
+  width: 100%;
+  transition: 0.3s ease-in-out;
+  border: none;
+  border-bottom: 2px solid ${colors.blackSecondary}; ;
 `;
-export const StyledInputBorder = styled.span.attrs((props: {background: string}) => props)`
+export const StyledInputBorder = styled.span.attrs(
+  (props: { background: string }) => props
+)`
   display: block;
   position: absolute;
   bottom: 0;
@@ -57,7 +60,8 @@ export const StyledInputBorder = styled.span.attrs((props: {background: string})
   z-index: 10;
   height: 2px;
   width: 0%;
-  background: ${({ background }) => background || colors.purple};
+  background: ${({ background }) =>
+    isTruthy(background) ? background : colors.purple};
 `;
 export const StyledInputBorderAfter = styled.span`
   display: block;

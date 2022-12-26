@@ -9,7 +9,7 @@ body {
 }
 
 blockquote {
-  quotes: none
+  quotes: none;
 }
 
 small {
@@ -89,7 +89,6 @@ summary {
   display: block;
 }
 
-
 @media print {
   * {
     background: transparent !important;
@@ -101,19 +100,19 @@ summary {
 
   a,
   a:visited {
-    text-decoration: underline
+    text-decoration: underline;
   }
 
   a[href]::after {
-    content: " ("attr(href) ")"
+    content: " (" attr(href) ")";
   }
 
   a[href^="#"]::after {
-    content: ""
+    content: "";
   }
 
   img {
-    max-width: 100% !important
+    max-width: 100% !important;
   }
 }
 

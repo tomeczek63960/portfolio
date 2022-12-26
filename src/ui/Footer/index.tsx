@@ -1,5 +1,5 @@
 import React from "react";
-import {StyledFooter} from "./style";
+import { StyledFooter } from "./style";
 
 const FooterComponent: React.FC = () => {
   return (
@@ -11,22 +11,31 @@ const FooterComponent: React.FC = () => {
             <a
               href="https://iconscout.com/illustrations/office"
               target="_blank"
-            >Office employee working overnight Illustration</a>
+              rel="noreferrer"
+            >
+              Office employee working overnight Illustration
+            </a>
             <span> by </span>
             <a
               href="https://iconscout.com/contributors/iconscout"
               target="_blank"
-            >IconScout Store</a>
+              rel="noreferrer"
+            >
+              IconScout Store
+            </a>
           </p>
           <p>
             <a
               href="https://iconscout.com/illustrations/employee-performance"
               target="_blank"
-            >Employee performance Illustration</a>
+              rel="noreferrer"
+            >
+              Employee performance Illustration
+            </a>
             <span> by </span>
-            <a
-              href="https://iconscout.com/contributors/manypixels-gallery"
-            >Manypixels Gallery</a>
+            <a href="https://iconscout.com/contributors/manypixels-gallery">
+              Manypixels Gallery
+            </a>
             <span> on </span>
             <a href="https://iconscout.com">IconScout</a>
           </p>
@@ -34,6 +43,6 @@ const FooterComponent: React.FC = () => {
       </div>
     </StyledFooter>
   );
-}
+};
 
 export default FooterComponent;

@@ -1,5 +1,5 @@
-import styled, {keyframes} from "styled-components"
-import {responsive, colors} from "src/styled/mixins";
+import styled, { keyframes } from "styled-components";
+import { responsive, colors } from "src/styled/mixins";
 
 const widthAnimation = keyframes`
   0% {
@@ -18,11 +18,16 @@ const widthAnimation = keyframes`
     transform: translateX(100%);
   }
 `;
-export const StyledCvCardWrapper = styled.section.attrs((props: {position: string}) => props)`
-	padding-left: 15px;
-  transform: ${({ position }) => position === 'left' ? 'skewY(-5deg)' : 'skewY(5deg)'};
+export const StyledCvCardWrapper = styled.section.attrs(
+  (props: { position: string }) => props
+)`
+  padding-left: 15px;
+  transform: ${({ position }) =>
+    position === "left" ? "skewY(-5deg)" : "skewY(5deg)"};
 `;
-export const StyedCvCard = styled.div.attrs((props: {position: string}) => props)`
+export const StyedCvCard = styled.div.attrs(
+  (props: { position: string }) => props
+)`
   margin: 40px 0;
   position: relative;
   max-width: 300px;
@@ -31,7 +36,7 @@ export const StyedCvCard = styled.div.attrs((props: {position: string}) => props
   transition: 0.5s;
   &::before,
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     background: ${colors.blue};
     transition: 0.5s;
@@ -43,17 +48,19 @@ export const StyedCvCard = styled.div.attrs((props: {position: string}) => props
     height: 15px;
     filter: brightness(90%);
     transform-origin: bottom;
-    transform: ${({ position }) => position === 'left' ? 'skewX(45deg)' : 'skewX(-45deg)'};
+    transform: ${({ position }) =>
+      position === "left" ? "skewX(45deg)" : "skewX(-45deg)"};
   }
   &:after {
-    top: ${({ position }) => position === 'left' ? '-15px' : '0'};
-    left: ${({ position }) => position === 'left' ? '-15px' : 'unset'};
-    right: ${({ position }) => position === 'left' ? 'unset' : '-15px'};
+    top: ${({ position }) => (position === "left" ? "-15px" : "0")};
+    left: ${({ position }) => (position === "left" ? "-15px" : "unset")};
+    right: ${({ position }) => (position === "left" ? "unset" : "-15px")};
     width: 15px;
     height: 100%;
     filter: brightness(80%);
     transform-origin: left;
-    transform: ${({ position }) => position === 'left' ? 'skewY(45deg)' : 'skewY(-45deg)'};
+    transform: ${({ position }) =>
+      position === "left" ? "skewY(45deg)" : "skewY(-45deg)"};
   }
 `;
 export const StyledCvCardHead = styled.div`
@@ -91,7 +98,7 @@ export const StyledDownloadCvLink = styled.a`
   transition: filter 0.3s;
   &::before,
   &::after {
-    content: '';
+    content: "";
     width: 100%;
     height: 2px;
     position: absolute;
@@ -107,7 +114,9 @@ export const StyledDownloadCvLink = styled.a`
     filter: brightness(90%);
   }
 `;
-export const StyedCvCardContent = styled.ul.attrs((props: {position: string}) => props)`
+export const StyedCvCardContent = styled.ul.attrs(
+  (props: { position: string }) => props
+)`
   position: relative;
   width: 100%;
   min-height: 200px;
@@ -115,7 +124,7 @@ export const StyedCvCardContent = styled.ul.attrs((props: {position: string}) =>
   background: ${colors.white};
   text-align: center;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -15px;
     left: -15px;
@@ -124,19 +133,25 @@ export const StyedCvCardContent = styled.ul.attrs((props: {position: string}) =>
     background: ${colors.white};
     filter: brightness(80%);
     transform-origin: left;
-    transform: ${({ position }) => position === 'left' ? 'skewY(45deg)' : 'skewY(-45deg)'};
+    transform: ${({ position }) =>
+      position === "left" ? "skewY(45deg)" : "skewY(-45deg)"};
     z-index: 10;
   }
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     height: 400px;
-    background: linear-gradient(transparent,transparent,rgba(160,160,160,.2));
+    background: linear-gradient(
+      transparent,
+      transparent,
+      rgba(160, 160, 160, 0.2)
+    );
     transform-origin: bottom;
-    transform: ${({ position }) => position === 'left' ? 'skewX(45deg)' : 'skewX(-45deg)'};
+    transform: ${({ position }) =>
+      position === "left" ? "skewX(45deg)" : "skewX(-45deg)"};
     transition: 0.5s;
     pointer-events: none;
     z-index: -1;

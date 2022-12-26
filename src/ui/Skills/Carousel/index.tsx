@@ -1,4 +1,5 @@
-import {useCircleCarousel} from "src/hooks/useCircleCarousel";
+import React from "react";
+import { useCircleCarousel } from "src/hooks/useCircleCarousel";
 import {
   StyledCarousel,
   StyledCarouselText,
@@ -9,13 +10,27 @@ import {
 } from "./style";
 
 // TODO: dodać typ zgodny z tym co zwróci Strapi
+interface Item {
+  text: {
+    heading: string;
+    text: string;
+  };
+  icon: any;
+}
 interface SkillsProps {
-  items: any;
+  items: Item[];
 }
 
-const Skills: React.FC<SkillsProps> = ({items}) => {
-  const [carouselRef, carouselPaginationRef, carouselTextRef, startAutoplay, stopAutoplay, setSlide] = useCircleCarousel();
-  
+const Skills: React.FC<SkillsProps> = ({ items }) => {
+  const [
+    carouselRef,
+    carouselPaginationRef,
+    carouselTextRef,
+    startAutoplay,
+    stopAutoplay,
+    setSlide,
+  ] = useCircleCarousel();
+
   return (
     <StyledCarousel
       ref={carouselRef}
@@ -23,34 +38,32 @@ const Skills: React.FC<SkillsProps> = ({items}) => {
       onMouseLeave={startAutoplay}
     >
       <StyledCarouselText ref={carouselTextRef}>
-        {items.map((skill: any) => {
+        {items.map((skill: Item) => {
           return (
             <StyledCarouselTextItem key={`text-${skill.text.heading}`}>
               <h5>{skill.text.heading}</h5>
               <p>{skill.text.text}</p>
             </StyledCarouselTextItem>
-          )
-      })}
+          );
+        })}
       </StyledCarouselText>
-      <StyledPagination
-        ref={carouselPaginationRef}
-      >
-        {items.map((skill: any) => {
+      <StyledPagination ref={carouselPaginationRef}>
+        {items.map((skill: Item) => {
           return (
             <StyledPaginationItem
               data-carousel-item="true"
-              key={`icon-${skill.text.heading}`} 
+              key={`icon-${skill.text.heading}`}
               onClick={setSlide}
             >
               <StyledPaginationItemDot>
-                  <skill.icon />
+                <skill.icon />
               </StyledPaginationItemDot>
             </StyledPaginationItem>
-          )
+          );
         })}
       </StyledPagination>
     </StyledCarousel>
   );
-}
+};
 
 export default Skills;

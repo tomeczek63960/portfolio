@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colors} from "src/styled/mixins";
+import { colors } from "src/styled/mixins";
 
 export const Html = styled.div`
   position: fixed;
@@ -26,7 +26,7 @@ export const Html = styled.div`
 `;
 export const HtmlBefore = styled.span`
   width: 50px;
-  height: 50px;    
+  height: 50px;
   position: absolute;
   top: 200px;
   left: 50%;

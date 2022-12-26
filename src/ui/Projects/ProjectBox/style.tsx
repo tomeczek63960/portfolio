@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import {responsive, colors} from "src/styled/mixins";
+import styled from "styled-components";
+import { responsive, colors } from "src/styled/mixins";
 
 export const StyledProjectBox = styled.div`
   width: 100%;
@@ -22,7 +22,7 @@ export const StyledProjectBoxShadow = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 100;
   opacity: 0;
   visibility: hidden;

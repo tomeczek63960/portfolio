@@ -1,11 +1,7 @@
-@import 'variables';
-@import 'utils';
-@import 'common/reset';
-@import 'common/fonts';
-@import 'common/base';
-@import 'common/buttons';
-@import 'common/forms.scss';
-@import 'common/helpers.scss';
+@import "variables";
+@import "utils/mixins.scss";
+@import "common/reset";
+@import "common/base";
 
 .slide-in {
   position: fixed;

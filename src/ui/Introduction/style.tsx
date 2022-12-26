@@ -1,4 +1,4 @@
-import {variables} from "src/styled/mixins";
+import { variables } from "src/styled/mixins";
 import styled from "styled-components";
 
 export const StyledIntroductionSection = styled.section`

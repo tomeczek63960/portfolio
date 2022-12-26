@@ -1,5 +1,5 @@
-import {useRef} from "react";
-import {gsap} from "gsap";
+import { useRef } from "react";
+import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 
 export const useTimeline = (callback: Function): [GSAPTimeline] => {
@@ -12,6 +12,6 @@ export const useTimeline = (callback: Function): [GSAPTimeline] => {
       timeline.current?.clear();
     };
   }, []);
-  
+
   return [timeline.current];
-}
+};

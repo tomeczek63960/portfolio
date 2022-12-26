@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import {colors} from "src/styled/mixins";
+import styled from "styled-components";
+import { colors } from "src/styled/mixins";
 
 export const StyledLogo = styled.a`
   color: ${colors.white};

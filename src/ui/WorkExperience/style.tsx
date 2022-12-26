@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import {responsive, colors, variables} from "src/styled/mixins";
+import styled from "styled-components";
+import { responsive, colors, variables } from "src/styled/mixins";
 
 export const StyledWorkExperienceSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
@@ -28,7 +28,7 @@ export const StyledWorkExperienceHeadBackground = styled.div`
     height: 100%;
   }
   &::before {
-    content: '';
+    content: "";
     z-index: 1;
     backdrop-filter: blur(15px);
   }
@@ -43,7 +43,6 @@ export const StyledWorkExperienceHeadContent = styled.div`
   z-index: 1;
   ${responsive.tabletP`
     padding: 20px 10px 50px 40px;
-    // padding: 50px 66px 60px 66px;
   `}
   ${responsive.tabletL`
     padding: 50px 66px 60px 66px;

@@ -1,7 +1,9 @@
-import styled, {css} from "styled-components"
-import {colors} from "src/styled/mixins";
+import styled, { css } from "styled-components";
+import { colors } from "src/styled/mixins";
 
-export const LeftTransition = styled.div.attrs((props: {ref: HTMLButtonElement}) => props)`
+export const LeftTransition = styled.div.attrs(
+  (props: { ref: HTMLButtonElement }) => props
+)`
   width: 50%;
   height: 100vh;
   background: ${colors.white};
@@ -10,8 +12,10 @@ export const LeftTransition = styled.div.attrs((props: {ref: HTMLButtonElement})
   bottom: 0;
   z-index: 10;
   transform: translateY(100%);
-`
-export const RightTransition = styled.div.attrs((props: {ref: HTMLButtonElement}) => props)`
+`;
+export const RightTransition = styled.div.attrs(
+  (props: { ref: HTMLButtonElement }) => props
+)`
   width: 50%;
   height: 100vh;
   background: ${colors.white};
@@ -23,8 +27,10 @@ export const RightTransition = styled.div.attrs((props: {ref: HTMLButtonElement}
   @media screen and (min-width: 768px) {
     background: ${colors.black};
   }
-`
-export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) => props)`
+`;
+export const CenterCircle = styled.div.attrs(
+  (props: { ref: HTMLButtonElement }) => props
+)`
   width: 100px;
   height: 100px;
   background: ${colors.black};
@@ -98,8 +104,10 @@ export const CenterCircle = styled.div.attrs((props: {ref: HTMLButtonElement}) =
       }
     }
   }
-`
-export const HtmlTextWrapper = styled.div.attrs((props: {position: string}) => props)`
+`;
+export const HtmlTextWrapper = styled.div.attrs(
+  (props: { position: string }) => props
+)`
   position: fixed;
   top: 40%;
   transform: translateY(-50%);
@@ -108,24 +116,26 @@ export const HtmlTextWrapper = styled.div.attrs((props: {position: string}) => p
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
-  ${({ position }) => position === 'left' ? css`
-    left: 0;
-    display: flex;
-    justify-content: flex-end;
-    h4 {
-      transform: translateX(50%);
-    }
-  ` : css `
-    display: flex;
-    justify-content: flex-start;
-    left: 50%;
-    h4 {
-      transform: translateX(-50%);
-    }
-  `
-  }
+  ${({ position }) =>
+    position === "left"
+      ? css`
+          left: 0;
+          display: flex;
+          justify-content: flex-end;
+          h4 {
+            transform: translateX(50%);
+          }
+        `
+      : css`
+          display: flex;
+          justify-content: flex-start;
+          left: 50%;
+          h4 {
+            transform: translateX(-50%);
+          }
+        `}
 `;
-export const HtmlText = styled.h4.attrs((props: {theme: string}) => props)`
+export const HtmlText = styled.h4.attrs((props: { theme: string }) => props)`
   font-size: 22px;
   line-height: 1;
   font-family: Roboto;
@@ -133,8 +143,8 @@ export const HtmlText = styled.h4.attrs((props: {theme: string}) => props)`
   mix-blend-mode: darken;
   color: ${colors.black};
   @media screen and (min-width: 768px) {
-    mix-blend-mode: ${({ theme }) => theme === 'light' ? 'darken' : 'screen'};
-    color: ${({ theme }) => theme === 'light' ? 'black' : 'white'};
+    mix-blend-mode: ${({ theme }) => (theme === "light" ? "darken" : "screen")};
+    color: ${({ theme }) => (theme === "light" ? "black" : "white")};
   }
   transition: none;
   & + h4 {
