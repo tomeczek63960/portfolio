@@ -2,7 +2,8 @@ import {useRef, useContext} from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import styled from "styled-components";
 import {gsap} from "gsap";
-import {ScrollTriggerContext} from "src/context/ScrollTriggerContext";
+import {useSelector} from "react-redux";
+import type {IRootState} from "src/store";
 
 const Svg = styled.svg`
   .path-1,
@@ -74,7 +75,7 @@ const Svg = styled.svg`
 `;
 
 const ChartComponent: React.FC = () => {
-  const {isActive} = useContext<any>(ScrollTriggerContext)
+  const {isActive} = useSelector((state: IRootState) => state.scrollTrigger);
   const svgRef = useRef<SVGSVGElement>(null);
   const tl = useRef<GSAPTimeline>();
 

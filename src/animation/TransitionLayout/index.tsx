@@ -1,7 +1,8 @@
 import {LeftTransition, RightTransition, CenterCircle, HtmlTextWrapper, HtmlText} from "./style";
 import {useTransitionLayoutAnimation} from "src/hooks/useTransitionLayoutAnimation";
+import {TransitionLayoutProps} from 'src/animation/TransitionLayout/types';
 
-export default function TransitionLayout({ children }: {children: any}) {
+const TransitionLayout = ({ children }: TransitionLayoutProps) => {
   const [
     displayChildren,
     content,
@@ -15,7 +16,6 @@ export default function TransitionLayout({ children }: {children: any}) {
     htmlTextLeftWrapper,
     htmlTextRightWrapper,
   ] = useTransitionLayoutAnimation(children);
-
   return <>
     <HtmlTextWrapper ref={htmlTextLeftWrapper} position="left">
       <HtmlText theme="light">Created With Passion</HtmlText>
@@ -43,5 +43,4 @@ export default function TransitionLayout({ children }: {children: any}) {
   </>
 }
 
-
-
+export default TransitionLayout;

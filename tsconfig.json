@@ -19,6 +19,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/ui/SplitText.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/ui/SplitText.js", "src/store/index.js", "src/store/index.js"],
   "exclude": ["node_modules"]
 }

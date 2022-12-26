@@ -1,10 +1,9 @@
-import React, { useMemo, useRef } from 'react';
+import React, {useMemo, useRef} from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect"
-import { useRouter } from "next/router";
-import Link from 'next/link'
-import { gsap } from "gsap";
-import Logo from 'src/ui/Logo';
-import SocialMedia from 'src/ui/SocialMedia';
+import {useRouter} from "next/router";
+import Link from "next/link"
+import Logo from "src/ui/Logo";
+import SocialMedia from "src/ui/SocialMedia";
 import {StyledLink, StyledMobileNav, StyledMobileNavContainer, StyledBars, StyledHeaderBar} from "./style";
 import {getPaths} from "src/helpers/getPaths";
 import {useHeaderMobileAnimation} from "src/hooks/useHeaderMobileAnimation";

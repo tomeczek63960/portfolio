@@ -1,17 +1,20 @@
 import {gsap} from "gsap";
-import {TransitionContext} from "src/context/TransitionContext";
 import {useState, useContext, useRef} from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import {useRouter} from "next/router";
-import {ScrollTriggerContext} from 'src/context/ScrollTriggerContext';
+import {useDispatch, useSelector} from "react-redux";
+import type {IRootState} from "src/store";
+import {setActive} from "src/store/scrollTrigger";
 
 // TODO: update context types;
 // TODO: update timelines to redux (redux toolkit);
-export const useTransitionLayoutAnimation = (children: any): any => {
+// TODO: check if gsap.timeline should/have to be inited in useEffect 
+export const useTransitionLayoutAnimation = (children: React.ReactNode): any => {
+  const dispatch = useDispatch();
   const {pathname, locale} = useRouter();
   const [displayChildren, setDisplayChildren] = useState(children)
-  const {timeline, isInitAnimation} = useContext<any>(TransitionContext)
-  const {setActive} = useContext<any>(ScrollTriggerContext)
+  const timeline = useRef(gsap.timeline({ paused: true })); 
+  const {isInitAnimation} = useSelector((state: IRootState) => state.transition);
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const content = useRef<HTMLDivElement>(null);
   const leftTransition = useRef<HTMLDivElement>(null);
@@ -31,7 +34,7 @@ export const useTransitionLayoutAnimation = (children: any): any => {
       setDisplayChildren(children);
       return setShouldAnimate(true);
     }
-    timeline.add(
+    timeline.current.add(
       gsap.to(content.current, {
         duration: 1,
         opacity: 0,
@@ -39,14 +42,14 @@ export const useTransitionLayoutAnimation = (children: any): any => {
       }),
       0
     );
-    timeline.add(
+    timeline.current.add(
       gsap.to(leftTransition.current, {
         duration: 1,
         y: '0%'
       }),
       0
     );
-    timeline.add(
+    timeline.current.add(
       gsap.to(rightTransition.current, {
         duration: 1,
         y: '0%'
@@ -54,9 +57,9 @@ export const useTransitionLayoutAnimation = (children: any): any => {
       0
     );
 
-    setActive(false);
-    timeline.play().then(() => {
-      timeline.seek(0).pause().clear()
+    dispatch(setActive(false));
+    timeline.current.play().then(() => {
+      timeline.current.seek(0).pause().clear()
       gsap.set(leftTransition.current, {
         y: '0%'
       });
@@ -184,7 +187,7 @@ export const useTransitionLayoutAnimation = (children: any): any => {
       scaleY: 0
     });
     enterTl.call(() => {
-      setActive(true)
+      dispatch(setActive(true));
     });
   }
 

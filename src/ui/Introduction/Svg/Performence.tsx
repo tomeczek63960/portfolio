@@ -1,8 +1,9 @@
-import {useRef, useContext} from "react";
+import {useRef} from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import styled, {keyframes} from "styled-components";
+import styled from "styled-components";
 import {gsap} from "gsap";
-import {ScrollTriggerContext} from "src/context/ScrollTriggerContext";
+import {useSelector} from "react-redux";
+import type {IRootState} from "src/store";
 
 const Svg = styled.svg`
   .path-background,
@@ -27,7 +28,7 @@ const Svg = styled.svg`
 `;
 
 const PerformenceComponent: React.FC = () => {
-  const {isActive} = useContext<any>(ScrollTriggerContext)
+  const {isActive} = useSelector((state: IRootState) => state.scrollTrigger);
   const svgRef = useRef<SVGSVGElement>(null);
   const tl = useRef<GSAPTimeline>();
 
