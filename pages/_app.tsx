@@ -1,4 +1,3 @@
-import "../styles/index.scss";
 import type { AppProps } from "next/app";
 import React, { useMemo } from "react";
 import { useRouter } from "next/router";
@@ -9,6 +8,7 @@ import LoadingAnimation from "src/animation/LoadingAnimation";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { gsap } from "gsap";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Style } from "src/styled/index";
 
 import pl from "src/lang/pl.json";
 import en from "src/lang/en.json";
@@ -46,11 +46,11 @@ const App = ({ Component, pageProps }: AppProps): any => {
       gsap.registerPlugin(TextPlugin);
     }
   });
-
   return (
     <Provider store={store}>
       <IntlProvider locale={shortLocale} messages={curentMessage}>
         <QueryClientProvider client={queryClient}>
+          <Style />
           <LoadingAnimation>
             <TransitionLayout>
               <Component {...pageProps} />

@@ -1,36 +1,40 @@
-import { css } from "styled-components";
+import { css, FlattenSimpleInterpolation } from "styled-components";
 
 function getProps(
-  ...args: Array<TemplateStringsArray | string>
-): Array<TemplateStringsArray | string> {
+  ...args: Array<TemplateStringsArray | string | FlattenSimpleInterpolation>
+): Array<TemplateStringsArray | string | FlattenSimpleInterpolation> {
   return args;
 }
 
 export const responsive = {
-  tabletP: (...props: Array<TemplateStringsArray | string>) => css`
+  tabletP: (
+    ...props: Array<TemplateStringsArray | string | FlattenSimpleInterpolation>
+  ) => css`
     @media (min-width: 768px) {
       ${getProps(...props)};
     }
   `,
-  /* ${css(...props)}; */
-  tabletL: (...props: Array<TemplateStringsArray | string>) => css`
+  tabletL: (
+    ...props: Array<TemplateStringsArray | string | FlattenSimpleInterpolation>
+  ) => css`
     @media (min-width: 1024px) {
       ${getProps(...props)};
     }
   `,
-  // ${css(...props)};
-  desktop: (...props: Array<TemplateStringsArray | string>) => css`
+  desktop: (
+    ...props: Array<TemplateStringsArray | string | FlattenSimpleInterpolation>
+  ) => css`
     @media (min-width: 1366px) {
       ${getProps(...props)};
     }
   `,
-  /* ${css(...props)}; */
-  desktopHd: (...props: Array<TemplateStringsArray | string>) => css`
+  desktopHd: (
+    ...props: Array<TemplateStringsArray | string | FlattenSimpleInterpolation>
+  ) => css`
     @media (min-width: 1920px) {
       ${getProps(...props)};
     }
   `,
-  // ${css(...props)};
 };
 // ustawić tutaj jakieś globlane fonty sizy i line height i się tego trzymać na przestrzeni całego projektu
 // to samo dla font family

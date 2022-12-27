@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "src/styled/mixins";
+import { colors, responsive } from "src/styled/mixins";
 
 export const Html = styled.div`
   position: fixed;
@@ -18,10 +18,10 @@ export const Html = styled.div`
     & + .svg-letter {
       margin-left: 5px;
     }
-  }
-  .svg-letter path {
-    stroke-dasharray: 250;
-    stroke-dashoffset: 250;
+    path {
+      stroke-dasharray: 250;
+      stroke-dashoffset: 250;
+    }
   }
 `;
 export const HtmlBefore = styled.span`
@@ -63,12 +63,13 @@ export const BodyBefore = styled.div`
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
-  @media screen and (min-width: 768px) {
+
+  ${responsive.tabletP`
     width: 50%;
     opacity: 1;
     pointer-events: all;
     visibility: visible;
-  }
+  `}
 `;
 export const BodyContent = styled.div`
   opacity: 0;

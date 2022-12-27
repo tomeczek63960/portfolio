@@ -12,6 +12,33 @@ const DocHead: React.FC<LayoutProps> = (props) => (
     <meta name="description" content={props.description} />
     <meta property="og:title" content={props.title} />
     <meta property="og:description" content={props.description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossOrigin="true"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    ></link>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Oriya:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    ></link>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:400,400i,700&display=swap"
+      rel="stylesheet"
+    ></link>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    ></link>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    ></link>
     {isTruthy(props.imageUrl) && (
       <meta property="og:image" content={props.imageUrl} />
     )}
