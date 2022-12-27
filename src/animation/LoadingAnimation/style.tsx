@@ -73,4 +73,6 @@ export const BodyBefore = styled.div`
 export const BodyContent = styled.div`
   opacity: 0;
   pointer-events: none;
+  height: 100vh;
+  overflow: hidden;
 `;

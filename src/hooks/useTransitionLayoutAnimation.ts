@@ -7,12 +7,23 @@ import type { IRootState } from "src/store";
 import { setActive } from "src/store/scrollTrigger";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
-// TODO: update context types;
-// TODO: update timelines to redux (redux toolkit);
+// TODO: update return types to object
 // TODO: check if gsap.timeline should/have to be inited in useEffect
 export const useTransitionLayoutAnimation = (
   children: React.ReactNode
-): any => {
+): [
+  displayChildren: React.ReactNode,
+  content: React.RefObject<HTMLDivElement>,
+  leftTransition: React.RefObject<HTMLDivElement>,
+  rightTransition: React.RefObject<HTMLDivElement>,
+  centerCircle: React.RefObject<HTMLDivElement>,
+  leftCircleWrapper: React.RefObject<HTMLSpanElement>,
+  leftCircle: React.RefObject<HTMLSpanElement>,
+  rightCircleWrapper: React.RefObject<HTMLSpanElement>,
+  rightCircle: React.RefObject<HTMLSpanElement>,
+  htmlTextLeftWrapper: React.RefObject<HTMLDivElement>,
+  htmlTextRightWrapper: React.RefObject<HTMLDivElement>
+] => {
   const dispatch = useDispatch();
   const { pathname, locale } = useRouter();
   const [displayChildren, setDisplayChildren] = useState(children);
