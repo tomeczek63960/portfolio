@@ -6,7 +6,6 @@ import { Html, HtmlBefore, HtmlAfter, BodyBefore, BodyContent } from "./style";
 import { useDispatch } from "react-redux";
 import { setIsInitAnimation } from "src/store/transition";
 import { setActive } from "src/store/scrollTrigger";
-import { isFalsy } from "src/helpers/checkFalsyType";
 
 const LoadingAnimation = ({
   children,
@@ -15,7 +14,6 @@ const LoadingAnimation = ({
 }): React.ReactElement => {
   const { pathname, locale } = useRouter();
   const dispatch = useDispatch();
-  const [isCurrentActive, setCurrentActive] = useState<boolean>(false);
 
   const [displayChildren, setDisplayChildren] = useState<React.ReactNode>();
   const timeline = useRef<GSAPTimeline>();
@@ -28,6 +26,7 @@ const LoadingAnimation = ({
   useIsomorphicLayoutEffect(() => {
     if (timeline.current != null) return;
     timeline.current = gsap.timeline({ paused: true });
+    timelineEnter.current = gsap.timeline({ paused: true });
     timeline.current.add(
       gsap.to(htmlBefore.current, {
         duration: 0.7,
@@ -142,7 +141,7 @@ const LoadingAnimation = ({
       gsap.to(htmlBefore.current, {
         duration: 2.45,
         delay: 0.5,
-        scale: 55,
+        scale: 50,
       })
     );
     timeline.current.add(
@@ -152,47 +151,24 @@ const LoadingAnimation = ({
       }),
       "-=0.7"
     );
-  }, []);
-
-  useIsomorphicLayoutEffect(() => {
-    if (isFalsy(displayChildren)) return;
-    gsap.to(content.current, {
-      delay: 0.5,
-      duration: 1,
-      opacity: 1,
-      pointerEvents: "all",
-    });
-    gsap.to(content.current, {
-      delay: 0.5,
-      duration: 1,
-      height: "auto",
-      overflow: "none",
-    });
-    setTimeout(() => {
-      dispatch(setActive(true));
-    }, 1500);
-  }, [displayChildren]);
-  useIsomorphicLayoutEffect(() => {
-    if (isFalsy(isCurrentActive)) return;
-    timelineEnter.current = gsap.timeline({ paused: true });
 
     timelineEnter.current.add(
       gsap.to(bodyBefore.current, {
+        delay: 1,
         duration: 1,
         height: "100%",
       })
     );
-
-    timelineEnter.current
-      ?.play()
-      .then(() => {
-        setDisplayChildren(children);
-        // dispatch(setActive(true));
+    timelineEnter.current.add(
+      gsap.to(content.current, {
+        duration: 0.4,
+        opacity: 1,
+        pointerEvents: "all",
+        overflow: "none",
+        height: "auto",
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [isCurrentActive]);
+    );
+  }, []);
 
   useIsomorphicLayoutEffect(() => {
     if (timeline.current == null) return;
@@ -203,15 +179,23 @@ const LoadingAnimation = ({
         .then(() => {
           timeline.current?.pause();
           dispatch(setIsInitAnimation(false));
-          setCurrentActive(true);
           // timeline.current.seek(0).pause().clear()
+          setDisplayChildren(children);
+
+          timelineEnter.current
+            ?.play()
+            .then(() => {
+              dispatch(setActive(true));
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         })
         .catch((err) => {
           console.log(err);
         });
     }
   }, [timeline.current, locale, pathname]);
-
   return (
     <>
       <Html>

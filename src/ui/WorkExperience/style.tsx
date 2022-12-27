@@ -13,7 +13,6 @@ export const StyledWorkExperienceHead = styled.div`
 `;
 // TODO: import fontów z cssów do globalnych styli wywalić
 export const StyledWorkExperienceHeadBackground = styled.div`
-  @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
   background: ${colors.purple};
   display: flex;
   overflow: hidden;
