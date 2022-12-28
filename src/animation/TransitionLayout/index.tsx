@@ -1,10 +1,11 @@
 import React from "react";
 import {
-  LeftTransition,
-  RightTransition,
-  CenterCircle,
+  StyledTransition,
+  StyledCircle,
   HtmlTextWrapper,
   HtmlText,
+  StyledCirclePart,
+  StyledCirclePartWrapper,
 } from "./style";
 import { useTransitionLayoutAnimation } from "src/hooks/useTransitionLayoutAnimation";
 import { TransitionLayoutProps } from "src/animation/TransitionLayout/types";
@@ -12,19 +13,17 @@ import { TransitionLayoutProps } from "src/animation/TransitionLayout/types";
 const TransitionLayout = ({
   children,
 }: TransitionLayoutProps): React.ReactElement => {
-  const [
+  const {
     displayChildren,
     content,
     leftTransition,
     rightTransition,
     centerCircle,
-    leftCircleWrapper,
     leftCircle,
-    rightCircleWrapper,
     rightCircle,
     htmlTextLeftWrapper,
     htmlTextRightWrapper,
-  ] = useTransitionLayoutAnimation(children);
+  } = useTransitionLayoutAnimation(children);
   return (
     <>
       <HtmlTextWrapper ref={htmlTextLeftWrapper} position="left">
@@ -33,11 +32,11 @@ const TransitionLayout = ({
       <HtmlTextWrapper ref={htmlTextRightWrapper} position="right">
         <HtmlText theme="dark">Created With Passion</HtmlText>
       </HtmlTextWrapper>
-      <LeftTransition ref={leftTransition}></LeftTransition>
-      <RightTransition ref={rightTransition}></RightTransition>
-      <CenterCircle ref={centerCircle}>
-        <span ref={leftCircleWrapper} className="circle-left-wrapper">
-          <span ref={leftCircle} className="circle-left">
+      <StyledTransition type="left" ref={leftTransition}></StyledTransition>
+      <StyledTransition type="right" ref={rightTransition}></StyledTransition>
+      <StyledCircle ref={centerCircle}>
+        <StyledCirclePartWrapper type="left">
+          <StyledCirclePart type="left" ref={leftCircle}>
             <svg
               width="61.3"
               height="71.4"
@@ -59,10 +58,10 @@ const TransitionLayout = ({
                 />
               </g>
             </svg>
-          </span>
-        </span>
-        <span ref={rightCircleWrapper} className="circle-right-wrapper">
-          <span ref={rightCircle} className="circle-right">
+          </StyledCirclePart>
+        </StyledCirclePartWrapper>
+        <StyledCirclePartWrapper type="right">
+          <StyledCirclePart type="right" ref={rightCircle}>
             <svg
               width="69.6"
               height="71.4"
@@ -84,9 +83,9 @@ const TransitionLayout = ({
                 />
               </g>
             </svg>
-          </span>
-        </span>
-      </CenterCircle>
+          </StyledCirclePart>
+        </StyledCirclePartWrapper>
+      </StyledCircle>
       <div ref={content}>{displayChildren}</div>
     </>
   );

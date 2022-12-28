@@ -11,7 +11,6 @@ export const StyledWorkExperience = styled.div`
 export const StyledWorkExperienceHead = styled.div`
   position: relative;
 `;
-// TODO: import fontów z cssów do globalnych styli wywalić
 export const StyledWorkExperienceHeadBackground = styled.div`
   background: ${colors.purple};
   display: flex;

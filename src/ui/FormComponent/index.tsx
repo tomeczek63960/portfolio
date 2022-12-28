@@ -8,7 +8,7 @@ import {
   phoneValidation,
 } from "src/helpers/validations";
 import { StyledForm } from "./style";
-
+// TODO: add animation on scroll for inputs
 const FormComponent: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [isFormDirty, setFormDirty] = useState(false);

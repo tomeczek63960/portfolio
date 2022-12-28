@@ -7,23 +7,20 @@ import type { IRootState } from "src/store";
 import { setActive } from "src/store/scrollTrigger";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
-// TODO: update return types to object
 // TODO: check if gsap.timeline should/have to be inited in useEffect
 export const useTransitionLayoutAnimation = (
   children: React.ReactNode
-): [
-  displayChildren: React.ReactNode,
-  content: React.RefObject<HTMLDivElement>,
-  leftTransition: React.RefObject<HTMLDivElement>,
-  rightTransition: React.RefObject<HTMLDivElement>,
-  centerCircle: React.RefObject<HTMLDivElement>,
-  leftCircleWrapper: React.RefObject<HTMLSpanElement>,
-  leftCircle: React.RefObject<HTMLSpanElement>,
-  rightCircleWrapper: React.RefObject<HTMLSpanElement>,
-  rightCircle: React.RefObject<HTMLSpanElement>,
-  htmlTextLeftWrapper: React.RefObject<HTMLDivElement>,
-  htmlTextRightWrapper: React.RefObject<HTMLDivElement>
-] => {
+): {
+  displayChildren: React.ReactNode;
+  content: React.RefObject<HTMLDivElement>;
+  leftTransition: React.RefObject<HTMLDivElement>;
+  rightTransition: React.RefObject<HTMLDivElement>;
+  centerCircle: React.RefObject<HTMLDivElement>;
+  leftCircle: React.RefObject<HTMLSpanElement>;
+  rightCircle: React.RefObject<HTMLSpanElement>;
+  htmlTextLeftWrapper: React.RefObject<HTMLDivElement>;
+  htmlTextRightWrapper: React.RefObject<HTMLDivElement>;
+} => {
   const dispatch = useDispatch();
   const { pathname, locale } = useRouter();
   const [displayChildren, setDisplayChildren] = useState(children);
@@ -36,9 +33,7 @@ export const useTransitionLayoutAnimation = (
   const leftTransition = useRef<HTMLDivElement>(null);
   const rightTransition = useRef<HTMLDivElement>(null);
   const centerCircle = useRef<HTMLDivElement>(null);
-  const leftCircleWrapper = useRef<HTMLSpanElement>(null);
   const leftCircle = useRef<HTMLSpanElement>(null);
-  const rightCircleWrapper = useRef<HTMLSpanElement>(null);
   const rightCircle = useRef<HTMLSpanElement>(null);
   const flag = useRef<boolean>(false);
   const htmlTextLeftWrapper = useRef<HTMLDivElement>(null);
@@ -272,17 +267,15 @@ export const useTransitionLayoutAnimation = (
     });
   };
 
-  return [
+  return {
     displayChildren,
     content,
     leftTransition,
     rightTransition,
     centerCircle,
-    leftCircleWrapper,
     leftCircle,
-    rightCircleWrapper,
     rightCircle,
     htmlTextLeftWrapper,
     htmlTextRightWrapper,
-  ];
+  };
 };

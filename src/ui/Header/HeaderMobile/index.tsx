@@ -19,7 +19,7 @@ const Header: React.FC = () => {
   const { pathname, locale = "en", locales = [] } = useRouter();
   const [shortLocale] = isTruthy(locale) ? locale.split("-") : ["en"];
   const logoRef = useRef<HTMLAnchorElement>(null);
-  // do animacji rysowania np. podczas scroll top (tak jak teraz z kropkami)
+  // TODO: do animacji rysowania np. podczas scroll top (tak jak teraz z kropkami)
   const [
     tl,
     firstDot,

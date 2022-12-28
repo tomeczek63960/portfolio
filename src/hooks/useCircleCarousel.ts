@@ -29,6 +29,16 @@ interface CarouselConfig {
   autoplayId: NodeJS.Timer | undefined;
 }
 
+interface AnimationObject {
+  duration: number;
+  opacity?: number;
+  y?: number | string;
+  pointerEvents?: string;
+  stagger?: number;
+  scale?: string;
+  filter?: string;
+}
+
 export const useCircleCarousel = (
   speed: number = 800,
   autoplay: number = 4500
@@ -71,15 +81,15 @@ export const useCircleCarousel = (
     Array.from(dots).forEach((dot: HTMLElement, index: number) => {
       dot.style.transform = `rotate(${(360 / dots.length) * index}deg)`;
     });
-    if (pagination.current != null)
+    if (isTruthy(pagination.current))
       pagination.current.style.transitionDuration = `${speed}ms`;
-    if (isTruthy(autoplay) && configObject.current.autoplayId == null)
+    if (isTruthy(autoplay) && isFalsy(configObject.current.autoplayId))
       startAutoplay();
   }, []);
 
   const startAutoplay = (): void => {
     configObject.current.autoplayId = setInterval(() => {
-      if (typeof document !== "undefined" && !document.hidden) {
+      if (isTruthy(document) && !document.hidden) {
         setSlide(configObject.current.activeSlide + 1);
       }
     }, autoplay);
@@ -87,44 +97,23 @@ export const useCircleCarousel = (
   const stopAutoplay = (): void => {
     clearInterval(configObject.current.autoplayId);
   };
-  const getTransformAnimateObject = (type: string = "in"): any => {
-    // TODO: dodać typ zwracanego obiektu
-    let animationObject;
-    if (type === "in") {
-      animationObject = {
-        duration: 0.3,
-        opacity: 1,
-        y: 0,
-        pointerEvents: "all",
-        stagger: 0.2,
-      };
-    } else {
-      animationObject = {
-        duration: 0.3,
-        opacity: 0,
-        pointerEvents: "none",
-        y: "-40%",
-        stagger: 0.2,
-      };
-    }
+  const getTransformAnimateObject = (type: string = "in"): AnimationObject => {
+    const animationObject = {
+      duration: 0.3,
+      opacity: type === "in" ? 1 : 0,
+      y: type === "in" ? 0 : "-40%",
+      pointerEvents: type === "in" ? "all" : "none",
+      stagger: 0.2,
+    };
     return animationObject;
   };
-  const getTransformSvgObject = (type: string = "in"): any => {
-    // TODO: dodać typ zwracanego obiektu
-    let animationObject;
-    if (type === "out") {
-      animationObject = {
-        duration: 0.5,
-        scale: "1",
-        filter: "grayscale(100%)",
-      };
-    } else {
-      animationObject = {
-        duration: 0.5,
-        scale: "1.5",
-        filter: "grayscale(0%)",
-      };
-    }
+  const getTransformSvgObject = (type: string = "in"): AnimationObject => {
+    const animationObject = {
+      duration: 0.5,
+      scale: type === "out" ? "1" : "1.5",
+      filter: type === "out" ? "grayscale(100%)" : "grayscale(0%)",
+    };
+
     return animationObject;
   };
 
