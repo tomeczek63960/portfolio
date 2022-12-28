@@ -21,15 +21,17 @@ export const StyledFooter = styled.footer`
         width: 50%;
       `}
     }
+    h3,
     p {
+      opacity: 0;
+      transform: translateY(-30%);
+    }
+    p {
+      margin-top: 15px;
       color: ${colors.grayFooterText};
       font-size: 12px;
-      & + p {
-        margin-top: 20px;
-      }
     }
     a {
-      text-decoration: underline;
       color: ${colors.grayFooterText};
       transition: 0.3s;
       &::selection {

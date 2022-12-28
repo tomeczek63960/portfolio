@@ -11,10 +11,8 @@ const Home: React.FC = () => {
     // Dodać do kazdego komponentu testy
     // dodać na resize refresh komponentów / timeline / gsapa
 
-    // globalne style dla linków (w tekstach) fioletowy lub niebieski kolor (font-wieght: 500) i underline
-    // globalne style przenieść do styled components
-
     // TODO: add page where all of my projects will be presentent
+    // TODO: absolute import for svg icons instead of relative imports
     <>
       <IntroductionComponent />
       <WelcomeBox />

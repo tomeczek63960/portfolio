@@ -1,34 +1,34 @@
 import styled, { css } from "styled-components";
-import { colors } from "src/styled/mixins";
+import { colors, responsive } from "src/styled/mixins";
 
-export const LeftTransition = styled.div.attrs(
-  (props: { ref: HTMLButtonElement }) => props
+export const StyledTransition = styled.div.attrs(
+  (props: { type: "left" | "right" }) => props
 )`
   width: 50%;
   height: 100vh;
   background: ${colors.white};
   position: fixed;
-  left: 0;
-  bottom: 0;
-  z-index: 10;
-  transform: translateY(100%);
+  z-index: ${(props) => (props.type === "left" ? 10 : 100)};
+  transform: ${(props) =>
+    props.type === "left" ? "translateY(100%)" : "translateY(-100%)"};
+
+  ${(props) =>
+    props.type === "left"
+      ? css`
+          left: 0;
+          bottom: 0;
+        `
+      : css`
+          right: 0;
+          top: 0;
+        `}
+  ${(props) =>
+    props.type === "right" &&
+    responsive.tabletP`
+      background: ${colors.black}
+  `}
 `;
-export const RightTransition = styled.div.attrs(
-  (props: { ref: HTMLButtonElement }) => props
-)`
-  width: 50%;
-  height: 100vh;
-  background: ${colors.white};
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 10000;
-  transform: translateY(-100%);
-  @media screen and (min-width: 768px) {
-    background: ${colors.black};
-  }
-`;
-export const CenterCircle = styled.div.attrs(
+export const StyledCircle = styled.div.attrs(
   (props: { ref: HTMLButtonElement }) => props
 )`
   width: 100px;
@@ -44,64 +44,59 @@ export const CenterCircle = styled.div.attrs(
   overflow: hidden;
   opacity: 0;
   transition: none;
-  .circle-left {
-    height: 100%;
-    background: ${colors.black};
-    display: flex;
-    align-items: center;
-    /* justify-content: center; */
-    justify-content: right;
-    padding-right: 8px;
-    /*  */
-    z-index: 10000000;
-    transform-origin: bottom;
-    color: ${colors.white};
-    transform: scaleY(0);
-    &-wrapper {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      background: ${colors.white};
-    }
-    svg {
-      height: 28px;
-      width: auto;
-      path {
-        stroke-dasharray: 250;
-        stroke-dashoffset: 250;
-      }
-    }
-  }
-  .circle-right {
-    /* width: 50%; */
-    height: 100%;
-    background: ${colors.white};
-    color: ${colors.black};
-    display: flex;
-    align-items: center;
-    /* justify-content: center; */
-    justify-content: left;
-    padding-left: 8px;
-    transform: scaleY(0);
-    transform-origin: top;
-    &-wrapper {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 50%;
-      height: 100%;
-      background: ${colors.black};
-      z-index: 10000000;
-    }
-    svg {
-      height: 28px;
-      width: auto;
-      path {
-        stroke-dasharray: 250;
-        stroke-dashoffset: 250;
-      }
+`;
+
+export const StyledCirclePartWrapper = styled.span.attrs(
+  (props: { type: "left" | "right" }) => props
+)`
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  ${(props) =>
+    props.type === "left"
+      ? css`
+          left: 0;
+          background: ${colors.white};
+          z-index: 1;
+        `
+      : css`
+          right: 0;
+          background: ${colors.black};
+          z-index: 10000000;
+        `}
+`;
+
+export const StyledCirclePart = styled.span.attrs(
+  (props: { type: "left" | "right" }) => props
+)`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 10000000;
+  transform: scaleY(0);
+  ${(props) =>
+    props.type === "left"
+      ? css`
+          color: ${colors.white};
+          background: ${colors.black};
+          padding-right: 8px;
+          transform-origin: bottom;
+          justify-content: right;
+        `
+      : css`
+          color: ${colors.black};
+          background: ${colors.white};
+          justify-content: left;
+          transform-origin: top;
+          padding-left: 8px;
+        `}
+  svg {
+    height: 28px;
+    width: auto;
+    path {
+      stroke-dasharray: 250;
+      stroke-dashoffset: 250;
     }
   }
 `;
