@@ -21,6 +21,7 @@ export const useScrollTrigger = (
       y: 0,
       opacity: 1,
       stagger: 0.2,
+      pointerEvents: "all",
       scrollTrigger: {
         trigger: element.current,
         start: () =>

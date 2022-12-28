@@ -13,6 +13,8 @@ const Home: React.FC = () => {
 
     // globalne style dla linków (w tekstach) fioletowy lub niebieski kolor (font-wieght: 500) i underline
     // globalne style przenieść do styled components
+
+    // TODO: add page where all of my projects will be presentent
     <>
       <IntroductionComponent />
       <WelcomeBox />
