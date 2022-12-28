@@ -12,14 +12,16 @@ export const StyledLink = styled.a.attrs(
   line-height: 30px;
   display: ${(props) => (isTruthy(props.isDisabled) ? "none" : "block")};
   font-weight: 700;
-  transition: 0.3s;
+  transition: color 0.3s;
   text-decoration: none;
+  opacity: 0;
+  transform: translateY(-30%);
+  pointer-events: none;
   &::selection {
     background-color: ${colors.purple};
   }
   &:hover {
     color: ${colors.purpleSecondary};
-    opacity: 1;
   }
   ${responsive.tabletL`
     font-size: 24px;
@@ -47,6 +49,9 @@ export const StyledDesktopNav = styled.div`
 export const StyledDesktopNavSocialMeida = styled.div`
   margin-bottom: 20px;
   display: flex;
+  opacity: 0;
+  transform: translateY(-30%);
+  pointer-events: none;
   a {
     display: block;
     margin-right: 20px;

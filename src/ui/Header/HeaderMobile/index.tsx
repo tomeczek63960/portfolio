@@ -1,5 +1,4 @@
 import React, { useMemo, useRef } from "react";
-// import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Logo from "src/ui/Logo";
@@ -19,7 +18,8 @@ import { isTruthy } from "src/helpers/checkFalsyType";
 const Header: React.FC = () => {
   const { pathname, locale = "en", locales = [] } = useRouter();
   const [shortLocale] = isTruthy(locale) ? locale.split("-") : ["en"];
-  const logoRef = useRef<HTMLAnchorElement>(null); // do animacji rysowania np. podczas scroll top (tak jak teraz z kropkami)
+  const logoRef = useRef<HTMLAnchorElement>(null);
+  // do animacji rysowania np. podczas scroll top (tak jak teraz z kropkami)
   const [
     tl,
     firstDot,
