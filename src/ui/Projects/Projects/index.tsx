@@ -11,6 +11,8 @@ const fetchProjects = async (): Promise<any> => {
   return res;
 };
 
+// TODO: add activeProject types
+// TODO: fetch projects using static props (for ssg)
 const ProjectsComponent: FC = () => {
   // const { data, status } = useQuery(["projects"], fetchProjects);
   const { data } = useQuery(["projects"], fetchProjects);

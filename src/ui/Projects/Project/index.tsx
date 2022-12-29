@@ -7,6 +7,7 @@ import { StyledProject, StyledProjectHover } from "./style";
 import { useTimeline } from "src/hooks/useTimeline";
 import { ProjectProps } from "./types";
 
+// TODO: change hover animation
 const ProjectComponent: FC<ProjectProps> = ({ project, onClickFunction }) => {
   const projectHover = useRef<any>();
   const projectHoverHeading = useRef<any>();
