@@ -19,7 +19,6 @@ const Home: FC = () => {
     // TODO: add tests
     // TODO: move everything to strapi
 
-    // TODO: remove useTimeline and change it to specific hooks for components
     // TODO: in all timeline .then .catch blocks add global error handling, np. popup with info something went wrong, try to refresh the page
     // TODO: add removeEventListener everywhere is used addEventListener
     // TODO: in skills add next carousel & add prismic.io, hygraph, ...

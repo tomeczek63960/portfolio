@@ -72,6 +72,9 @@ export const useWelcomeBoxAnimation = (
         scale: 0,
       })
     );
+    return () => {
+      timeline.current?.clear().kill();
+    };
   }, []);
 
   const writeMessage = (
