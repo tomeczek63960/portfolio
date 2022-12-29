@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, FC } from "react";
 import {
   StyledButton,
   StyledButtonBorder,
@@ -8,7 +8,7 @@ import { colors } from "src/styled/mixins";
 import { useTimeline } from "src/hooks/useTimeline";
 import { ButtonProps } from "./types";
 
-const ButtonComponent: React.FC<ButtonProps> = ({ children }) => {
+const ButtonComponent: FC<ButtonProps> = ({ children }) => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const buttonBorder = useRef<HTMLSpanElement>(null);
   const buttonBorderAfter = useRef<HTMLSpanElement>(null);

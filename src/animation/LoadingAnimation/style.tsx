@@ -12,17 +12,6 @@ export const Html = styled.div`
   background: ${colors.white};
   overflow: hidden;
   font-family: Times;
-  .svg-letter {
-    height: 50px;
-    width: auto;
-    & + .svg-letter {
-      margin-left: 5px;
-    }
-    path {
-      stroke-dasharray: 250;
-      stroke-dashoffset: 250;
-    }
-  }
 `;
 export const HtmlBefore = styled.span`
   width: 50px;
@@ -51,6 +40,17 @@ export const HtmlAfter = styled.span`
   color: ${colors.white};
   font-size: 25px;
   font-weight: 700;
+  svg {
+    height: 50px;
+    width: auto;
+    & + svg {
+      margin-left: 5px;
+    }
+    path {
+      stroke-dasharray: 250;
+      stroke-dashoffset: 250;
+    }
+  }
 `;
 export const BodyBefore = styled.div`
   display: block;

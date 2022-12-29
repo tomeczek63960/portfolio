@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, FC } from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { gsap } from "gsap";
 import ArrowLeft from "../../../../public/svg/arrow-left.svg";
@@ -19,7 +19,8 @@ import { useTimeline } from "src/hooks/useTimeline";
 import { ProjectBoxProps } from "./types";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
-const ProjectBoxComponent: React.FC<ProjectBoxProps> = ({
+// TODO: move animation to hook
+const ProjectBoxComponent: FC<ProjectBoxProps> = ({
   activeProject,
   onCloseFunction,
   isActiveProjectBox,

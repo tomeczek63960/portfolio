@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, ReactElement } from "react";
 import {
   StyledTransition,
   StyledCircle,
@@ -10,9 +10,9 @@ import {
 import { useTransitionLayoutAnimation } from "src/hooks/useTransitionLayoutAnimation";
 import { TransitionLayoutProps } from "src/animation/TransitionLayout/types";
 
-const TransitionLayout = ({
+const TransitionLayout: FC<TransitionLayoutProps> = ({
   children,
-}: TransitionLayoutProps): React.ReactElement => {
+}): ReactElement => {
   const {
     displayChildren,
     content,

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC, RefObject } from "react";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 import { StyledFooter } from "./style";
 
-const FooterComponent: React.FC = () => {
+const FooterComponent: FC = () => {
   const [links] = useScrollTrigger(0.9, "children") as [
-    React.RefObject<HTMLDivElement>
+    RefObject<HTMLDivElement>
   ];
   return (
     <StyledFooter>

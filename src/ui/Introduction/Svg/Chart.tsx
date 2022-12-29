@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, FC } from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import styled from "styled-components";
 import { gsap } from "gsap";
@@ -73,7 +73,7 @@ const Svg = styled.svg`
   }
 `;
 
-const ChartComponent: React.FC = () => {
+const ChartComponent: FC = () => {
   const { isActive } = useSelector((state: IRootState) => state.scrollTrigger);
   const svgRef = useRef<SVGSVGElement>(null);
   const tl = useRef<GSAPTimeline>();

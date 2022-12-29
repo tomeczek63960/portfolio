@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import Image from "next/image";
 import { StyledImage } from "./style";
 import { ImageProps } from "./types";
 
-const ImageComponent: React.FC<ImageProps> = ({ url, className }) => {
+const ImageComponent: FC<ImageProps> = ({ url, className }) => {
   return (
     <StyledImage>
       <Image

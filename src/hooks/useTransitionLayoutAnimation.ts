@@ -1,5 +1,5 @@
+import { useState, useRef, ReactNode, RefObject } from "react";
 import { gsap } from "gsap";
-import { useState, useRef } from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,24 +7,26 @@ import type { IRootState } from "src/store";
 import { setActive } from "src/store/scrollTrigger";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
+interface TransitionLayoutReturn {
+  displayChildren: ReactNode;
+  content: RefObject<HTMLDivElement>;
+  leftTransition: RefObject<HTMLDivElement>;
+  rightTransition: RefObject<HTMLDivElement>;
+  centerCircle: RefObject<HTMLDivElement>;
+  leftCircle: RefObject<HTMLSpanElement>;
+  rightCircle: RefObject<HTMLSpanElement>;
+  htmlTextLeftWrapper: RefObject<HTMLDivElement>;
+  htmlTextRightWrapper: RefObject<HTMLDivElement>;
+}
+
 export const useTransitionLayoutAnimation = (
-  children: React.ReactNode
-): {
-  displayChildren: React.ReactNode;
-  content: React.RefObject<HTMLDivElement>;
-  leftTransition: React.RefObject<HTMLDivElement>;
-  rightTransition: React.RefObject<HTMLDivElement>;
-  centerCircle: React.RefObject<HTMLDivElement>;
-  leftCircle: React.RefObject<HTMLSpanElement>;
-  rightCircle: React.RefObject<HTMLSpanElement>;
-  htmlTextLeftWrapper: React.RefObject<HTMLDivElement>;
-  htmlTextRightWrapper: React.RefObject<HTMLDivElement>;
-} => {
+  children: ReactNode
+): TransitionLayoutReturn => {
   const dispatch = useDispatch();
   const { pathname, locale } = useRouter();
   const [displayChildren, setDisplayChildren] = useState(children);
   const timeline = useRef(gsap.timeline({ paused: true }));
-  const enterTl = useRef<any>(null);
+  const enterTl = useRef<GSAPTimeline>();
   const { isInitAnimation } = useSelector(
     (state: IRootState) => state.transition
   );
@@ -264,7 +266,7 @@ export const useTransitionLayoutAnimation = (
     });
     enterTl.current.call(() => {
       dispatch(setActive(true));
-      enterTl.current.clear().kill();
+      enterTl.current?.clear().kill();
     });
   };
 

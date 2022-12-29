@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, RefObject, MouseEventHandler, MouseEvent } from "react";
 import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { simpleSplitText } from "src/helpers/simpleSplitText";
@@ -86,13 +86,10 @@ const createTimeline = ({
   return tl;
 };
 
-// do refactoru
+// TODO: do refactoru
 export const useAnimatedChars = (
   props: any
-): [
-  React.RefObject<HTMLHeadingElement>,
-  React.MouseEventHandler<HTMLHeadingElement>
-] => {
+): [RefObject<HTMLHeadingElement>, MouseEventHandler<HTMLHeadingElement>] => {
   const heading = useRef<HTMLHeadingElement>(null);
   const tlEvents = useRef<Array<{ tl: GSAPTimeline; animationIndex: string }>>(
     []
@@ -116,7 +113,7 @@ export const useAnimatedChars = (
         console.log(err);
       });
   };
-  const animateChars = (event: React.MouseEvent<HTMLHeadingElement>): void => {
+  const animateChars = (event: MouseEvent<HTMLHeadingElement>): void => {
     const target = event.target as HTMLHeadingElement;
     if (!target.classList.contains("splitted-text-animate")) return;
     target.classList.remove("splitted-text-animate");

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, FC } from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import styled from "styled-components";
 import { gsap } from "gsap";
@@ -27,7 +27,8 @@ const Svg = styled.svg`
   }
 `;
 
-const PerformenceComponent: React.FC = () => {
+// TODO: extract style & animation to separate files (style & hook)
+const PerformenceComponent: FC = () => {
   const { isActive } = useSelector((state: IRootState) => state.scrollTrigger);
   const svgRef = useRef<SVGSVGElement>(null);
   const tl = useRef<GSAPTimeline>();

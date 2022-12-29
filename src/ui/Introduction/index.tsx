@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import HeadingComponent from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
 import { StyledIntroductionSection } from "src/ui/Introduction/style";
 import ChartComponent from "src/ui/Introduction/Svg/Chart";
 
-const IntroductionComponent: React.FC = () => {
+const IntroductionComponent: FC = () => {
   return (
     <StyledIntroductionSection>
       <HeadingComponent tagName="h1" hoverColor="#6A82FB">

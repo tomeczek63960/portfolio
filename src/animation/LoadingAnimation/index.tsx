@@ -1,215 +1,25 @@
-import { gsap } from "gsap";
-import React, { useState, useRef } from "react";
-import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import { useRouter } from "next/router";
+import React, { ReactElement, FC } from "react";
+import { useLoadingAnimation } from "src/hooks/useLoadingAnimation";
 import { Html, HtmlBefore, HtmlAfter, BodyBefore, BodyContent } from "./style";
-import { useDispatch } from "react-redux";
-import { setIsInitAnimation } from "src/store/transition";
-import { setActive } from "src/store/scrollTrigger";
+import { LoadingAnimationProps } from "./types";
 
-const LoadingAnimation = ({
+const LoadingAnimation: FC<LoadingAnimationProps> = ({
   children,
-}: {
-  children: React.ReactNode;
-}): React.ReactElement => {
-  const { pathname, locale } = useRouter();
-  const dispatch = useDispatch();
-
-  const [displayChildren, setDisplayChildren] = useState<React.ReactNode>();
-  const timeline = useRef<GSAPTimeline>();
-  const timelineEnter = useRef<GSAPTimeline>();
-  const content = useRef<HTMLDivElement>(null);
-  const htmlBefore = useRef<HTMLSpanElement>(null);
-  const htmlAfter = useRef<HTMLSpanElement>(null);
-  const bodyBefore = useRef<HTMLDivElement>(null);
-
-  useIsomorphicLayoutEffect(() => {
-    if (timeline.current != null) return;
-    timeline.current = gsap.timeline({ paused: true });
-    timelineEnter.current = gsap.timeline({ paused: true });
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 0.7,
-        y: 240,
-      }),
-      "start"
-    );
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 0.35,
-        width: 40,
-      }),
-      "start"
-    );
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 0.35,
-        height: 30,
-        width: 57,
-      }),
-      "-=0.35"
-    );
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 0.7,
-        y: 0,
-      }),
-      "back"
-    );
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 0.35,
-        height: 50,
-      }),
-      "back"
-    );
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 0.35,
-        width: 50,
-      }),
-      "-=0.35"
-    );
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 0.7,
-        y: 240,
-      }),
-      "start2"
-    );
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 0.35,
-        width: 40,
-      }),
-      "start2"
-    );
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 0.35,
-        height: 30,
-        width: 57,
-      }),
-      "-=0.35"
-    );
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 0.7,
-        y: 0,
-      }),
-      "back2"
-    );
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 0.35,
-        height: 50,
-      }),
-      "back2"
-    );
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 0.35,
-        width: 50,
-      }),
-      "-=0.35"
-    );
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 0.7,
-        scale: 3,
-      })
-    );
-    timeline.current.add(
-      gsap.to(htmlAfter.current, {
-        duration: 0.7,
-        opacity: 1,
-      })
-    );
-    timeline.current.add(
-      gsap.to(".svg-letter path", {
-        duration: 2,
-        strokeDashoffset: 0,
-      })
-    );
-    timeline.current.add(
-      gsap.to(".svg-letter path", {
-        duration: 1,
-        fill: "#fff",
-      })
-    );
-    timeline.current.add(
-      gsap.to(htmlBefore.current, {
-        duration: 2.45,
-        delay: 0.5,
-        scale: 50,
-      })
-    );
-    timeline.current.add(
-      gsap.to(htmlAfter.current, {
-        duration: 0.35,
-        opacity: 0,
-      }),
-      "-=0.7"
-    );
-
-    timelineEnter.current.add(
-      gsap.to(bodyBefore.current, {
-        delay: 1,
-        duration: 1,
-        height: "100%",
-      })
-    );
-    timelineEnter.current.add(
-      gsap.to(content.current, {
-        duration: 0.4,
-        opacity: 1,
-        pointerEvents: "all",
-        overflow: "none",
-        height: "auto",
-      })
-    );
-  }, []);
-
-  useIsomorphicLayoutEffect(() => {
-    if (timeline.current == null) return;
-
-    if (!timeline.current.isActive()) {
-      timeline.current
-        .play()
-        .then(() => {
-          timeline.current?.pause();
-          dispatch(setIsInitAnimation(false));
-          // timeline.current.seek(0).pause().clear()
-          setDisplayChildren(children);
-
-          timelineEnter.current
-            ?.play()
-            .then(() => {
-              dispatch(setActive(true));
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [timeline.current, locale, pathname]);
+}): ReactElement => {
+  const { displayChildren, content, htmlBefore, htmlAfter, bodyBefore } =
+    useLoadingAnimation(children);
   return (
     <>
       <Html>
-        <HtmlBefore ref={htmlBefore} className="html--before"></HtmlBefore>
-        <HtmlAfter ref={htmlAfter} className="html--after">
+        <HtmlBefore ref={htmlBefore}></HtmlBefore>
+        <HtmlAfter ref={htmlAfter}>
           <svg
-            className="svg-letter"
             width="61.3"
             height="71.4"
             viewBox="0 0 61.3 71.4"
             xmlns="http://www.w3.org/2000/svg"
           >
             <g
-              id="svgGroup"
               strokeLinecap="round"
               fillRule="evenodd"
               fontSize="9pt"
@@ -224,14 +34,12 @@ const LoadingAnimation = ({
             </g>
           </svg>
           <svg
-            className="svg-letter"
             width="69.6"
             height="71.4"
             viewBox="0 0 69.6 71.4"
             xmlns="http://www.w3.org/2000/svg"
           >
             <g
-              id="svgGroup"
               strokeLinecap="round"
               fillRule="evenodd"
               fontSize="9pt"

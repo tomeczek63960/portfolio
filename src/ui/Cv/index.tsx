@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import HeadingComponent from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
 import { StyledCvSection } from "./style";
 import CvBoxComponent from "./CvBox";
 
-const CvComponent: React.FC = () => {
+const CvComponent: FC = () => {
   return (
     <StyledCvSection>
       <HeadingComponent tagName="h2" color="#6A82FB">

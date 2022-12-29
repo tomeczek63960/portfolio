@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import styled, { keyframes } from "styled-components";
 import { responsive } from "src/styled/mixins";
 import { isTruthy } from "src/helpers/checkFalsyType";
@@ -109,7 +109,7 @@ const StyledHexagon = styled.div`
   }
 `;
 
-const ShowCase: React.FC = () => {
+const ShowCase: FC = () => {
   const hexagonArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   return (
     <>

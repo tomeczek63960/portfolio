@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, RefObject } from "react";
 import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { useTimeline } from "src/hooks/useTimeline";
@@ -11,13 +11,13 @@ export const useHeaderMobileAnimation = (
   pathname: string
 ): [
   GSAPTimeline,
-  React.Ref<HTMLSpanElement>,
-  React.Ref<HTMLSpanElement>,
-  React.Ref<HTMLDivElement>,
-  React.Ref<HTMLDivElement>,
-  React.Ref<HTMLButtonElement>,
-  React.Ref<HTMLDivElement>,
-  React.Ref<HTMLDivElement>
+  RefObject<HTMLSpanElement>,
+  RefObject<HTMLSpanElement>,
+  RefObject<HTMLDivElement>,
+  RefObject<HTMLDivElement>,
+  RefObject<HTMLButtonElement>,
+  RefObject<HTMLDivElement>,
+  RefObject<HTMLDivElement>
 ] => {
   const bars = useRef<HTMLButtonElement>(null);
   const firstDot = useRef<HTMLSpanElement>(null);

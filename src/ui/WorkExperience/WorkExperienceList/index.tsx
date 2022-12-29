@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, FC } from "react";
 import { gsap } from "gsap";
 import { StyledTimelineList } from "./style";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -14,7 +14,7 @@ interface IElementsObj {
   id: number;
 }
 
-const WorkExperienceList: React.FC = () => {
+const WorkExperienceList: FC = () => {
   const timelineList = useRef<any>();
   const tl = useRef<any>();
   const workExperienceItems = [

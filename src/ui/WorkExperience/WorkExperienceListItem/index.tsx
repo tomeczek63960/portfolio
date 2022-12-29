@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   StyledListItem,
   StyledListItemContent,
@@ -8,10 +8,7 @@ import {
 import ArrowDown from "../../../../public/svg/arrow-down.svg";
 import { WrokExperienceProps } from "./types";
 
-const WorkExperienceListItem: React.FC<WrokExperienceProps> = ({
-  item,
-  order,
-}) => {
+const WorkExperienceListItem: FC<WrokExperienceProps> = ({ item, order }) => {
   return (
     <StyledListItem>
       <StyledListItemLine className="line" order={order}>

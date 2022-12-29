@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, FC, SyntheticEvent } from "react";
 import Input from "src/ui/FormComponent/Input";
 import ButtonComponent from "src/ui/Button";
 import {
@@ -9,10 +9,10 @@ import {
 } from "src/helpers/validations";
 import { StyledForm } from "./style";
 // TODO: add animation on scroll for inputs
-const FormComponent: React.FC = () => {
+const FormComponent: FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [isFormDirty, setFormDirty] = useState(false);
-  const onSubmit = (e: React.SyntheticEvent): void => {
+  const onSubmit = (e: SyntheticEvent): void => {
     e.preventDefault();
     setFormDirty(true);
     setTimeout(

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useCircleCarousel } from "src/hooks/useCircleCarousel";
 import {
   StyledCarousel,
@@ -21,7 +21,7 @@ interface SkillsProps {
   items: Item[];
 }
 
-const Skills: React.FC<SkillsProps> = ({ items }) => {
+const Skills: FC<SkillsProps> = ({ items }) => {
   const [
     carouselRef,
     carouselPaginationRef,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import Projects from "src/ui/Projects/Projects";
 import HeadingComponent from "src/ui/Heading";
 import { variables } from "src/styled/mixins";
@@ -9,7 +9,7 @@ const StyledCaseStudiesSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
 
-const CaseStudies: React.FC = () => {
+const CaseStudies: FC = () => {
   return (
     <StyledCaseStudiesSection>
       <HeadingComponent tagName="h2" color="#6A82FB">

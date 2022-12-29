@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, FC } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Logo from "src/ui/Logo";
@@ -15,11 +15,9 @@ import { useHeaderMobileAnimation } from "src/hooks/useHeaderMobileAnimation";
 import { preventScroll } from "src/helpers/preventScroll";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
-const Header: React.FC = () => {
+const Header: FC = () => {
   const { pathname, locale = "en", locales = [] } = useRouter();
   const [shortLocale] = isTruthy(locale) ? locale.split("-") : ["en"];
-  const logoRef = useRef<HTMLAnchorElement>(null);
-  // TODO: do animacji rysowania np. podczas scroll top (tak jak teraz z kropkami)
   const [
     tl,
     firstDot,
@@ -41,7 +39,7 @@ const Header: React.FC = () => {
   return (
     <>
       <StyledHeaderBar ref={headerBar}>
-        <Logo ref={logoRef} />
+        <Logo />
         <StyledBars ref={bars} onClick={handleBars}>
           <span ref={firstDot}></span>
           <span></span>

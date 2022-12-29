@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, FC } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import HandleText from "src/helpers/handleText";
@@ -7,10 +7,7 @@ import { StyledProject, StyledProjectHover } from "./style";
 import { useTimeline } from "src/hooks/useTimeline";
 import { ProjectProps } from "./types";
 
-const ProjectComponent: React.FC<ProjectProps> = ({
-  project,
-  onClickFunction,
-}) => {
+const ProjectComponent: FC<ProjectProps> = ({ project, onClickFunction }) => {
   const projectHover = useRef<any>();
   const projectHoverHeading = useRef<any>();
   const projectHoverHeadingLine = useRef<any>();

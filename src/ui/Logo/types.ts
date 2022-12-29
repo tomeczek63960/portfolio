@@ -1,3 +1,3 @@
 export interface LogoProps {
-  children?: any;
+  children?: React.ReactNode;
 }

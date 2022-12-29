@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, RefObject } from "react";
 import Pdf from "../../../../public/svg/pdf.svg";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 import {
@@ -11,12 +11,12 @@ import {
   StyledCardListItem,
 } from "./style";
 
-const CvBoxComponent: React.FC = () => {
+const CvBoxComponent: FC = () => {
   const [ul] = useScrollTrigger(0.6, "children") as [
-    React.RefObject<HTMLUListElement>
+    RefObject<HTMLUListElement>
   ];
   const [box] = useScrollTrigger(0.6, "children") as [
-    React.RefObject<HTMLDivElement>
+    RefObject<HTMLDivElement>
   ];
   return (
     <StyledCvCardWrapper position="left">

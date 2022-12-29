@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode, FC } from "react";
 import Head from "./Head";
 import Header from "src/ui/Header/HeaderDesktop";
 import HeaderMobile from "src/ui/Header/HeaderMobile";
@@ -14,7 +14,7 @@ const ContentWrapper = styled.div`
 `;
 
 export interface LayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
   title: string;
   description: string;
   url: string;
@@ -23,7 +23,7 @@ export interface LayoutProps {
   twitter?: string;
 }
 
-const Layout: React.FC<LayoutProps> = (props) => {
+const Layout: FC<LayoutProps> = (props) => {
   return (
     <ContentWrapper>
       <div>

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, FC, FormEvent } from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { colors } from "src/styled/mixins";
 import {
@@ -36,7 +36,7 @@ const createInputAnimation = (
   });
 };
 
-const Input: React.FC<InputProps> = ({
+const Input: FC<InputProps> = ({
   type,
   placeholder,
   validation,
@@ -107,7 +107,7 @@ const Input: React.FC<InputProps> = ({
     if (isInputDirty.current) return;
     tl.reverse();
   };
-  const onChange = (e?: React.FormEvent<HTMLInputElement>): void => {
+  const onChange = (e?: FormEvent<HTMLInputElement>): void => {
     let value = inputValue;
     if (e != null) {
       setInputValue(e.currentTarget.value);

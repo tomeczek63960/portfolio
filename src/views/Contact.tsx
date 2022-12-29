@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import FormComponent from "src/ui/FormComponent";
 import HeadingComponent from "src/ui/Heading";
 import styled from "styled-components";
@@ -12,7 +12,7 @@ const StyledIntroductionSection = styled.section`
 const StyledContactFormSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
-const Contact: React.FC = () => {
+const Contact: FC = () => {
   return (
     <>
       <StyledIntroductionSection>

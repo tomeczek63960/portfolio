@@ -1,4 +1,9 @@
-import React, { useRef } from "react";
+import {
+  useRef,
+  RefObject,
+  MouseEventHandler,
+  MouseEvent as ReactMouseEvent,
+} from "react";
 import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
@@ -43,12 +48,12 @@ export const useCircleCarousel = (
   speed: number = 800,
   autoplay: number = 4500
 ): [
-  React.RefObject<HTMLDivElement>,
-  React.RefObject<HTMLDivElement>,
-  React.RefObject<HTMLDivElement>,
-  React.MouseEventHandler<HTMLDivElement>,
-  React.MouseEventHandler<HTMLDivElement>,
-  React.MouseEventHandler<HTMLDivElement>
+  RefObject<HTMLDivElement>,
+  RefObject<HTMLDivElement>,
+  RefObject<HTMLDivElement>,
+  MouseEventHandler<HTMLDivElement>,
+  MouseEventHandler<HTMLDivElement>,
+  MouseEventHandler<HTMLDivElement>
 ] => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const pagination = useRef<HTMLDivElement>(null);
@@ -128,7 +133,7 @@ export const useCircleCarousel = (
   };
 
   const findClickedElementIndex = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    event: ReactMouseEvent<HTMLDivElement, MouseEvent>
   ): number => {
     let target = event.target as HTMLElement;
     while (isFalsy(target.dataset.carouselItem)) {
@@ -160,7 +165,7 @@ export const useCircleCarousel = (
   };
 
   const setSlide = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent> | number
+    event: ReactMouseEvent<HTMLDivElement, MouseEvent> | number
   ): void => {
     const prev = configObject.current.activeSlide;
     const index =

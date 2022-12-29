@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, FC, RefObject } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Linkedin from "../../../../public/svg/linkedin.svg";
@@ -12,13 +12,13 @@ import { getPaths } from "src/helpers/getPaths";
 import { isTruthy } from "src/helpers/checkFalsyType";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 
-const Header: React.FC = () => {
+const Header: FC = () => {
   const { locale, locales = [] } = useRouter();
   const [shortLocale] = isTruthy(locale) ? locale.split("-") : ["en"];
   const localePaths = useMemo(() => getPaths(shortLocale), [locale]);
 
   const [links] = useScrollTrigger(0.9, "children") as [
-    React.RefObject<HTMLDivElement>
+    RefObject<HTMLDivElement>
   ];
   return (
     <StyledDesktopNav ref={links}>

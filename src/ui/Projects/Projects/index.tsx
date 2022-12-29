@@ -1,5 +1,5 @@
+import React, { useState, FC } from "react";
 import axios from "axios";
-import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Project from "src/ui/Projects/Project";
 import ProjectBox from "src/ui/Projects/ProjectBox";
@@ -11,7 +11,7 @@ const fetchProjects = async (): Promise<any> => {
   return res;
 };
 
-const ProjectsComponent: React.FC = () => {
+const ProjectsComponent: FC = () => {
   // const { data, status } = useQuery(["projects"], fetchProjects);
   const { data } = useQuery(["projects"], fetchProjects);
   const [activeProject, setActiveProject] = useState<any>({});

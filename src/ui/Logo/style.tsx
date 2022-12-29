@@ -9,4 +9,16 @@ export const StyledLogo = styled.a`
   z-index: 10;
   transition: 0.3s;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  svg {
+    height: 25px;
+    & + svg {
+      margin-left: 5px;
+    }
+    path {
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+    }
+  }
 `;

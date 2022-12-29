@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef, RefObject } from "react";
 import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { useSelector } from "react-redux";
@@ -8,7 +8,7 @@ import { isTruthy } from "src/helpers/checkFalsyType";
 export const useScrollTrigger = (
   scrollTriggerStart?: number,
   type?: string
-): [React.RefObject<HTMLElement>] => {
+): [RefObject<HTMLElement>] => {
   const element = useRef<HTMLElement>(null);
   const { isActive } = useSelector((state: IRootState) => state.scrollTrigger);
 

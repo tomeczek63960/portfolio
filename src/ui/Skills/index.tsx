@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import Angular from "../../../public/svg/angular.svg";
 import Adobexd from "../../../public/svg/adobexd.svg";
 import Contentful from "../../../public/svg/contentful.svg";
@@ -25,7 +25,7 @@ import Paragraph from "src/ui/Paragraph";
 import { StyledSkillsSection } from "./style";
 import Carousel from "src/ui/Skills/Carousel";
 
-const Skills: React.FC = () => {
+const Skills: FC = () => {
   const jsSkills = [
     {
       icon: Javascript,

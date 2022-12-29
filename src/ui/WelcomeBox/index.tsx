@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, FC, MouseEvent } from "react";
 import { gsap } from "gsap";
 import HeadingComponent from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
@@ -33,7 +33,7 @@ interface IMessageTogglers {
   toggler: string;
 }
 
-const WelcomeBoxComponent: React.FC = () => {
+const WelcomeBoxComponent: FC = () => {
   const [activeMessages, setActiveMessages] = useState<IMessage[]>([
     {
       id: 1,
@@ -226,7 +226,7 @@ const WelcomeBoxComponent: React.FC = () => {
   const [tl] = useTimeline(tlCallback);
 
   const writeMessage = (
-    event: React.MouseEvent<HTMLElement>,
+    event: MouseEvent<HTMLElement>,
     message: IMessage
   ): void => {
     if (welcomeBoxConversation.current == null) return;
