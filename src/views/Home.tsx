@@ -16,6 +16,10 @@ const Home: FC = () => {
     // TODO: change px to rem unit
     // TODO: fix gsap.target not found after change page
     // TODO: in folders with files use relative imports for (./types, ./style) for rest use absolute imports
+    // TODO: add tests
+    // TODO: move everything to strapi
+
+    // TODO: remove useTimeline and change it to specific hooks for components
     <>
       <IntroductionComponent />
       <WelcomeBox />
