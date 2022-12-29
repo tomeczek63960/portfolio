@@ -46,9 +46,6 @@ export const StyledProjectBoxClose = styled.div`
 export const StyledProjectBoxContent = styled.div`
   padding: 20px;
   color: ${colors.black};
-  .project-box__text {
-    margin-top: 30px;
-  }
   p {
     color: ${colors.grayDark};
     font-size: 14px;
@@ -62,6 +59,9 @@ export const StyledProjectBoxContent = styled.div`
   img {
     margin: 10px 0 40px;
   }
+`;
+export const StyledProjectBoxText = styled.div`
+  margin-top: 30px;
 `;
 export const StyledProjectBoxReference = styled.div`
   margin-top: 30px;

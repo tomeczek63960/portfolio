@@ -1,6 +1,4 @@
-import React, { useRef, FC } from "react";
-import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import { gsap } from "gsap";
+import React, { FC } from "react";
 import ArrowLeft from "../../../../public/svg/arrow-left.svg";
 import World from "../../../../public/svg/world.svg";
 import Github from "../../../../public/svg/github.svg";
@@ -14,68 +12,19 @@ import {
   StyledProjectBoxLink,
   StyledProjectBoxTechnologies,
   StyledProjectBoxCategories,
+  StyledProjectBoxText,
 } from "./style";
-import { useTimeline } from "src/hooks/useTimeline";
 import { ProjectBoxProps } from "./types";
 import { isTruthy } from "src/helpers/checkFalsyType";
+import { useProjectBoxAnimation } from "src/hooks/useProjectBoxAnimation";
 
-// TODO: move animation to hook
 const ProjectBoxComponent: FC<ProjectBoxProps> = ({
   activeProject,
   onCloseFunction,
   isActiveProjectBox,
 }) => {
-  const projectBox = useRef<HTMLDivElement>(null);
-  const projectBoxShadow = useRef<HTMLDivElement>(null);
-
-  const tlCallback = (timeline: GSAPTimeline): void => {
-    timeline.add(
-      gsap.to(projectBox.current, {
-        duration: 0.3,
-        x: 0,
-      })
-    );
-    timeline.add(
-      gsap.to(projectBoxShadow.current, {
-        duration: 0.3,
-        opacity: 1,
-        visibility: "visible",
-      }),
-      "-=0.3"
-    );
-  };
-  const [tl] = useTimeline(tlCallback);
-
-  useIsomorphicLayoutEffect((): void => {
-    const bluerdElements = projectBox.current;
-    const html = document.querySelector("html");
-    if (isActiveProjectBox) {
-      html?.classList.add("no-scroll");
-      tl.play()
-        .then(() => {
-          gsap.to(bluerdElements, {
-            duration: 0.3,
-            filter: "blur(0px)",
-            delay: 0.2,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      html?.classList.remove("no-scroll");
-      tl.reverse()
-        .then(() => {
-          if (projectBox.current != null) projectBox.current.scrollTop = 0;
-          gsap.set(bluerdElements, {
-            filter: "blur(2px)",
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [isActiveProjectBox]);
+  const [projectBox, projectBoxShadow] =
+    useProjectBoxAnimation(isActiveProjectBox);
 
   return (
     <>
@@ -104,18 +53,18 @@ const ProjectBoxComponent: FC<ProjectBoxProps> = ({
           ) : (
             ""
           )}
-          <div className="project-box__text">
+          <StyledProjectBoxText>
             <h4>About project</h4>
             <p>{activeProject.Description}</p>
-          </div>
-          <div className="project-box__text">
+          </StyledProjectBoxText>
+          <StyledProjectBoxText>
             <h4>Technologies</h4>
             <StyledProjectBoxTechnologies>
               {activeProject.project_technologies?.map((technology: any) => (
                 <span key={technology.id}>{technology.Title}</span>
               ))}
             </StyledProjectBoxTechnologies>
-          </div>
+          </StyledProjectBoxText>
           <StyledProjectBoxReference>
             <h5>
               <World /> Website
