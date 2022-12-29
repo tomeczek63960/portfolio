@@ -1,16 +1,9 @@
-import Image from "next/image";
-import React, { useEffect, useRef, useState, FC, MouseEvent } from "react";
-import { gsap } from "gsap";
+import React, { FC, useState } from "react";
 import HeadingComponent from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
 import {
   StyledWelcomeBoxSection,
   StyledWelcomeBox,
-  StyledWelcomeBoxHead,
-  StyledWelcomeBoxHeadHeading,
-  StyledWelcomeBoxHeadParagraph,
-  StyledWelcomeBoxHeadInfo,
-  StyledWelcomeBoxImage,
   StyledWelcomeBoxConversation,
   StyledWelcomeBoxMessage,
   StyledWelcomeBoxMessageImage,
@@ -18,9 +11,15 @@ import {
   StyledWelcomeBoxOptions,
   StyledWelcomeBoxOptionsList,
 } from "./style";
-import { useTimeline } from "src/hooks/useTimeline";
-import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
+import { isTruthy } from "src/helpers/checkFalsyType";
+import WelcomeBoxMessageComponent from "./WelcomeBoxMessage";
+import WelcomeBoxHead from "./WelcomeBoxHead";
+import { useWelcomeBoxAnimation } from "src/hooks/useWelcomeBoxAnimation";
 
+interface IMessageTogglers {
+  id: number;
+  toggler: string;
+}
 interface IMessage {
   id: number;
   type: string;
@@ -28,26 +27,7 @@ interface IMessage {
   message: string;
   toggler?: string;
 }
-interface IMessageTogglers {
-  id: number;
-  toggler: string;
-}
-
 const WelcomeBoxComponent: FC = () => {
-  const [activeMessages, setActiveMessages] = useState<IMessage[]>([
-    {
-      id: 1,
-      type: "admin",
-      image: "/tk.jpeg",
-      message: "Cześć <br/> Miło jest Ciebie tu widzieć",
-    },
-    {
-      id: 1,
-      type: "admin",
-      image: "",
-      message: "Co chciałbyś się o mnie dowiedzieć?",
-    },
-  ]);
   const [messages] = useState<IMessageTogglers[]>([
     {
       id: 222,
@@ -184,115 +164,22 @@ const WelcomeBoxComponent: FC = () => {
         "Najbardziej zainteresowany jestem technologiami React/Gatsby/Next jednak rozważę też propozycje w vue/Nuxt",
     },
   ]);
-  const [messagesQueue, setMessagesQueue] = useState<any>([]);
-  const writeAnimationWelcomeBox = useRef<HTMLDivElement>(null);
-  const writeAnimationWelcomeBoxImage = useRef<HTMLDivElement>(null);
-  const writeAnimationElement = useRef<HTMLDivElement>(null);
-  const welcomeBoxConversation = useRef<HTMLDivElement>(null);
-  const welcomeBoxOptions = useRef<HTMLDivElement>(null);
+
   const headInfo = {
     image: "/tk.jpeg",
     name: "Tomasz Kardel",
     position: "Front-end Developer",
   };
 
-  const tlCallback = (timeline: GSAPTimeline): void => {
-    timeline.add(
-      gsap.to(writeAnimationElement.current, {
-        duration: 0,
-        scale: 1,
-      })
-    );
-    timeline.add(
-      gsap.to(writeAnimationElement.current, {
-        duration: 0.3,
-        opacity: 1,
-      })
-    );
-    timeline.add(
-      gsap.to(writeAnimationElement.current, {
-        duration: 0.3,
-        opacity: 0,
-        delay: 2.5,
-      })
-    );
-    timeline.add(
-      gsap.to(writeAnimationElement.current, {
-        duration: 0,
-        scale: 0,
-      })
-    );
-  };
-  const [tl] = useTimeline(tlCallback);
-
-  const writeMessage = (
-    event: MouseEvent<HTMLElement>,
-    message: IMessage
-  ): void => {
-    if (welcomeBoxConversation.current == null) return;
-    const togglerMessages = newMessages.filter(
-      (msg: IMessage) => msg.toggler === message.toggler
-    );
-    const selector = `[data-scroll-to="${
-      isTruthy(message?.toggler) ? message.toggler : ""
-    }"]`;
-    const isInConversation = welcomeBoxConversation.current.querySelector(
-      selector
-    ) as HTMLDivElement;
-    if (isFalsy(isInConversation)) {
-      setMessagesQueue((prev: any) => [...prev, ...togglerMessages]);
-    } else {
-      welcomeBoxConversation.current.scrollTo(
-        0,
-        isInConversation.offsetTop - welcomeBoxConversation.current.offsetTop
-      );
-    }
-  };
-  useEffect(() => {
-    // TODO: Przerobić welcome box message
-    // cały blok ze stylami do przerobienia na gsap lub klasy
-    if (
-      welcomeBoxOptions.current == null ||
-      writeAnimationWelcomeBox.current == null ||
-      writeAnimationWelcomeBoxImage.current == null ||
-      writeAnimationElement.current == null
-    )
-      return;
-    welcomeBoxOptions.current.style.pointerEvents = "all";
-    if (isTruthy(messagesQueue.length)) {
-      welcomeBoxOptions.current.style.pointerEvents = "none";
-      if (messagesQueue[0].type === "admin") {
-        writeAnimationWelcomeBox.current.style.justifyContent = "flex-start";
-        writeAnimationElement.current.style.borderTopLeftRadius = "0";
-        writeAnimationElement.current.style.borderTopRightRadius = "4px";
-        writeAnimationWelcomeBox.current.style.justifyContent = "flex-start";
-        writeAnimationWelcomeBoxImage.current.style.order = "-1";
-        writeAnimationWelcomeBox.current.style.padding = "0 60px 0 0";
-      } else {
-        writeAnimationWelcomeBox.current.style.justifyContent = "flex-end";
-        writeAnimationElement.current.style.borderTopLeftRadius = "4px";
-        writeAnimationElement.current.style.borderTopRightRadius = "0";
-        writeAnimationWelcomeBoxImage.current.style.order = "1";
-        writeAnimationWelcomeBox.current.style.padding = "0 0 0 60px";
-      }
-      tl?.play()
-        .then(() => {
-          tl.seek(0).pause();
-          const firstEll = messagesQueue.shift();
-          setActiveMessages((prev: any) => [...prev, firstEll]);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [messagesQueue, activeMessages]);
-  useEffect(() => {
-    if (welcomeBoxConversation.current == null) return;
-    welcomeBoxConversation.current.scrollTo(
-      0,
-      welcomeBoxConversation.current.scrollHeight
-    );
-  }, [activeMessages]);
+  const {
+    activeMessages,
+    writeAnimationWelcomeBox,
+    writeAnimationWelcomeBoxImage,
+    writeAnimationElement,
+    welcomeBoxConversation,
+    welcomeBoxOptions,
+    writeMessage,
+  } = useWelcomeBoxAnimation(newMessages);
 
   return (
     <StyledWelcomeBoxSection>
@@ -301,39 +188,14 @@ const WelcomeBoxComponent: FC = () => {
       </HeadingComponent>
       <Paragraph>Co chcesz się o mnie dowiedzieć?</Paragraph>
       <StyledWelcomeBox>
-        <StyledWelcomeBoxHead>
-          <StyledWelcomeBoxImage>
-            <Image src={headInfo.image} width="100%" height="100%" />
-          </StyledWelcomeBoxImage>
-          <StyledWelcomeBoxHeadInfo>
-            <StyledWelcomeBoxHeadHeading>
-              {headInfo.name}
-            </StyledWelcomeBoxHeadHeading>
-            <StyledWelcomeBoxHeadParagraph>
-              {headInfo.position}
-            </StyledWelcomeBoxHeadParagraph>
-          </StyledWelcomeBoxHeadInfo>
-        </StyledWelcomeBoxHead>
+        <WelcomeBoxHead {...headInfo} />
 
         <StyledWelcomeBoxConversation ref={welcomeBoxConversation}>
           {activeMessages.map((message: any) => (
-            <StyledWelcomeBoxMessage
-              key={Math.random() * 100000}
-              position={message.type === "user" ? "right" : "left"}
-              data-scroll-to={message.toggler}
-            >
-              <div>
-                <StyledWelcomeBoxMessageText
-                  position={message.type === "user" ? "right" : "left"}
-                  dangerouslySetInnerHTML={{ __html: message.message }}
-                ></StyledWelcomeBoxMessageText>
-              </div>
-              <StyledWelcomeBoxMessageImage type={message.type}>
-                {isTruthy(message.image) && (
-                  <Image src={message.image} width="100%" height="100%" />
-                )}
-              </StyledWelcomeBoxMessageImage>
-            </StyledWelcomeBoxMessage>
+            <WelcomeBoxMessageComponent
+              message={message}
+              key={message.message}
+            />
           ))}
 
           <StyledWelcomeBoxMessage ref={writeAnimationWelcomeBox}>

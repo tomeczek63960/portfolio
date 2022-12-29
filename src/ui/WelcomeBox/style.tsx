@@ -68,20 +68,24 @@ export const StyledWelcomeBoxMessage = styled.div.attrs(
   font-size: 11px;
   display: flex;
   gap: 10px;
-  padding-right: 15px;
   ${responsive.tabletP`
-    padding-right: 60px;
     font-size: 12px;
   `}
   ${({ position }) =>
     position === "right" &&
     css`
       justify-content: flex-end;
-      padding-right: 0;
       padding-left: 15px;
       ${responsive.tabletP`
         padding-left: 60px;
-        padding-right: 0;
+      `}
+    `}
+  ${({ position }) =>
+    position === "left" &&
+    css`
+      padding-right: 15px;
+      ${responsive.tabletP`
+        padding-right: 60px;
       `}
     `}
 `;

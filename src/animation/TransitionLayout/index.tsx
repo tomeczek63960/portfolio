@@ -26,6 +26,7 @@ const TransitionLayout: FC<TransitionLayoutProps> = ({
   } = useTransitionLayoutAnimation(children);
   return (
     <>
+      {/* TODO: change name Styled... instead of HtmlTextWrapper */}
       <HtmlTextWrapper ref={htmlTextLeftWrapper} position="left">
         <HtmlText theme="light">Created With Passion</HtmlText>
       </HtmlTextWrapper>
