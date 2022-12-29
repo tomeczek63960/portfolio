@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { responsive, colors } from "src/styled/mixins";
+import { colors } from "src/styled/mixins";
 
 export const StyledProject = styled.div`
   cursor: pointer;
@@ -11,6 +11,10 @@ export const StyledProject = styled.div`
   border: 1px solid transparent;
   border-radius: 5px;
   overflow: hidden;
+  transition: 0.3s;
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 export const StyledProjectHover = styled.div`
   padding: 20px 15px;
@@ -19,15 +23,17 @@ export const StyledProjectHover = styled.div`
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 100%;
   color: ${colors.white};
-  z-index: 100;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  ${responsive.tabletL`
+  transform: translateY(100%);
+  h4,
+  p {
     opacity: 0;
-  `}
+    transform: translateY(-30%);
+  }
   h4 {
     position: relative;
     padding-bottom: 5px;
@@ -35,12 +41,7 @@ export const StyledProjectHover = styled.div`
     line-height: 1;
     font-size: 20px;
     width: fit-content;
-    opacity: 1;
-    ${responsive.tabletL`
-      transform: translateY(0);
-      opacity: 1;
-    `}
-    em {
+    span {
       width: 100%;
       height: 2px;
       background: ${colors.blue};
@@ -54,9 +55,5 @@ export const StyledProjectHover = styled.div`
   p {
     font-size: 12px;
     color: ${colors.whitePrimary};
-    ${responsive.tabletL`
-      transform: translateY(0);
-      opacity: 1;
-    `}
   }
 `;
