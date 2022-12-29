@@ -23,6 +23,7 @@ const Home: FC = () => {
     // TODO: in all timeline .then .catch blocks add global error handling, np. popup with info something went wrong, try to refresh the page
     // TODO: add removeEventListener everywhere is used addEventListener
     // TODO: in skills add next carousel & add prismic.io, hygraph, ...
+    // Add seo values for pages in strapi
     <>
       <IntroductionComponent />
       <WelcomeBox />

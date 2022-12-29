@@ -44,6 +44,7 @@ export const StyledCircle = styled.div.attrs(
   overflow: hidden;
   opacity: 0;
   transition: none;
+  pointer-events: none;
 `;
 
 export const StyledCirclePartWrapper = styled.span.attrs(

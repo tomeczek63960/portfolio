@@ -3,6 +3,7 @@ import { useLoadingAnimation } from "src/hooks/useLoadingAnimation";
 import { Html, HtmlBefore, HtmlAfter, BodyBefore, BodyContent } from "./style";
 import { LoadingAnimationProps } from "./types";
 
+// TODO: change names of styled components (html, body ...)
 const LoadingAnimation: FC<LoadingAnimationProps> = ({
   children,
 }): ReactElement => {

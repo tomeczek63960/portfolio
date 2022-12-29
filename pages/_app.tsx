@@ -17,7 +17,6 @@ import TransitionLayout from "src/animation/TransitionLayout";
 import { Provider } from "react-redux";
 import store from "src/store/index";
 import { isTruthy } from "src/helpers/checkFalsyType";
-import Head from "next/head";
 
 const App = ({ Component, pageProps }: AppProps): any => {
   const { locale } = useRouter();
@@ -49,9 +48,6 @@ const App = ({ Component, pageProps }: AppProps): any => {
   });
   return (
     <>
-      <Head>
-        <title>TK Portfolio</title>
-      </Head>
       <Provider store={store}>
         <IntlProvider locale={shortLocale} messages={curentMessage}>
           <QueryClientProvider client={queryClient}>
