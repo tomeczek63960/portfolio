@@ -4,6 +4,7 @@ import { StyledParagraph } from "./style";
 import { ParagraphProps, paragraphDefaultProps } from "./types";
 
 const Paragraph: FC<ParagraphProps> = ({ children, ...rest }) => {
+  // TODO: change usetransformAnimation to useScrollTrigger
   const [paragraph] = useTransformAnimation();
   return (
     <StyledParagraph ref={paragraph} {...rest}>

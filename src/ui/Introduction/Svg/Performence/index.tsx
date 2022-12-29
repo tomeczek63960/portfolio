@@ -1,110 +1,15 @@
-import React, { useRef, FC } from "react";
-import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import styled from "styled-components";
-import { gsap } from "gsap";
-import { useSelector } from "react-redux";
-import type { IRootState } from "src/store";
+import React, { FC } from "react";
+import { usePerformenceSvgAnimation } from "src/hooks/usePerformenceSvgAnimation";
+import { Svg } from "./style";
 
-const Svg = styled.svg`
-  .path-background,
-  .path-person,
-  .path-dot-1,
-  .path-dot-2,
-  .path-dot-3,
-  .path-bottom-line {
-    opacity: 0;
-  }
-  .path-progress-line {
-    stroke-dasharray: 800;
-    stroke-dashoffset: -800;
-  }
-  .path-bar-1,
-  .path-bar-2,
-  .path-bar-3,
-  .path-bar-4 {
-    transform: scaleY(0);
-    transform-origin: bottom !important;
-  }
-`;
-
-// TODO: extract style & animation to separate files (style & hook)
 const PerformenceComponent: FC = () => {
-  const { isActive } = useSelector((state: IRootState) => state.scrollTrigger);
-  const svgRef = useRef<SVGSVGElement>(null);
-  const tl = useRef<GSAPTimeline>();
-
-  useIsomorphicLayoutEffect(() => {
-    if (!isActive) return;
-    tl.current = gsap.timeline({
-      scrollTrigger: {
-        trigger: svgRef.current,
-        start: "top center",
-        end: "center bottom",
-      },
-    });
-    tl.current.to(".path-bottom-line", {
-      duration: 0.7,
-      opacity: 1,
-      delay: 0.5,
-    });
-    tl.current.to(".path-bar-1", {
-      duration: 0.6,
-      transform: "scaleY(1)",
-    });
-    tl.current.to(".path-bar-2", {
-      duration: 0.6,
-      transform: "scaleY(1)",
-    });
-    tl.current.to(".path-bar-3", {
-      duration: 0.6,
-      transform: "scaleY(1)",
-    });
-    tl.current.to(".path-bar-4", {
-      duration: 0.6,
-      transform: "scaleY(1)",
-    });
-    tl.current.to(
-      ".path-dot-1",
-      {
-        duration: 0.4,
-        opacity: 1,
-      },
-      "dot-1"
-    );
-    tl.current.to(".path-dot-2", {
-      duration: 0.4,
-      opacity: 1,
-    });
-    tl.current.to(".path-dot-3", {
-      duration: 0.4,
-      opacity: 1,
-    });
-    tl.current.to(
-      ".path-progress-line",
-      {
-        duration: 1.5,
-        strokeDashoffset: 0,
-      },
-      "dot-1"
-    );
-    tl.current.to(
-      ".path-person",
-      {
-        duration: 0.8,
-        opacity: 1,
-      },
-      "-=0.5"
-    );
-    tl.current.to(".path-background", {
-      duration: 0.7,
-      opacity: 0.18,
-    });
-  }, [isActive]);
+  const [svgRef] = usePerformenceSvgAnimation();
   return (
     <Svg
       ref={svgRef}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 702.65 597"
+      className="performence-svg"
     >
       <defs>
         <linearGradient
