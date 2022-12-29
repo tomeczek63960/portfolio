@@ -1,7 +1,6 @@
 import { useRef, RefObject } from "react";
 import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import { useTimeline } from "src/hooks/useTimeline";
 import { colors } from "src/styled/mixins";
 import { preventScroll } from "src/helpers/preventScroll";
 import { isTruthy } from "src/helpers/checkFalsyType";
@@ -10,7 +9,7 @@ export const useHeaderMobileAnimation = (
   locale: string,
   pathname: string
 ): [
-  GSAPTimeline,
+  RefObject<GSAPTimeline | undefined>,
   RefObject<HTMLSpanElement>,
   RefObject<HTMLSpanElement>,
   RefObject<HTMLDivElement>,
@@ -29,6 +28,7 @@ export const useHeaderMobileAnimation = (
   const prevScrollPosition = useRef(0);
   const currentScrollPos = useRef(0);
   const animateDots = useRef(true);
+  const timeline = useRef<GSAPTimeline>();
   const runDotsAnimation = (): void => {
     const barsChildren = isTruthy(bars.current) ? bars.current.children : [];
     gsap.to(barsChildren, {
@@ -48,7 +48,6 @@ export const useHeaderMobileAnimation = (
   const handleScroll = (): void => {
     currentScrollPos.current = window.pageYOffset;
     const headerHeight = `-${
-      // isTruthy(headerBar.current) ? headerBar.current.offsetHeight : ""
       isTruthy(headerBar.current) ? headerBar.current.offsetHeight : ""
     }px`;
     const isTop = currentScrollPos.current === 0;
@@ -75,10 +74,11 @@ export const useHeaderMobileAnimation = (
 
     prevScrollPosition.current = currentScrollPos.current;
   };
-  const tlCallback = (timeline: GSAPTimeline): void => {
+  useIsomorphicLayoutEffect(() => {
+    timeline.current = gsap.timeline({ paused: true });
     prevScrollPosition.current = window.pageYOffset;
     isTruthy(bars.current) &&
-      timeline.to(
+      timeline.current.to(
         bars.current.children,
         {
           duration: 0.3,
@@ -88,7 +88,7 @@ export const useHeaderMobileAnimation = (
         "load-dot"
       );
     isTruthy(bars.current) &&
-      timeline.to(
+      timeline.current.to(
         bars.current.children,
         {
           duration: 0.3,
@@ -98,7 +98,7 @@ export const useHeaderMobileAnimation = (
         },
         "load-dot"
       );
-    timeline.to(
+    timeline.current.to(
       firstDot.current,
       {
         duration: 0.3,
@@ -107,7 +107,7 @@ export const useHeaderMobileAnimation = (
       },
       "join-dots"
     );
-    timeline.to(
+    timeline.current.to(
       lastDot.current,
       {
         duration: 0.3,
@@ -116,7 +116,7 @@ export const useHeaderMobileAnimation = (
       },
       "join-dots"
     );
-    timeline.to(
+    timeline.current.to(
       firstDot.current,
       {
         duration: 0.5,
@@ -124,7 +124,7 @@ export const useHeaderMobileAnimation = (
       },
       "rotate-dots"
     );
-    timeline.to(
+    timeline.current.to(
       lastDot.current,
       {
         duration: 0.5,
@@ -132,7 +132,7 @@ export const useHeaderMobileAnimation = (
       },
       "rotate-dots"
     );
-    timeline.to(
+    timeline.current.to(
       mobileNav.current,
       {
         duration: 0.5,
@@ -141,7 +141,7 @@ export const useHeaderMobileAnimation = (
       },
       "rotate-dots"
     );
-    timeline.to(
+    timeline.current.to(
       [
         ...Array.from(
           socialMediaRef.current != null ? socialMediaRef.current.children : []
@@ -164,21 +164,23 @@ export const useHeaderMobileAnimation = (
     );
     handleScroll();
     window.addEventListener("scroll", handleScroll);
-  };
-  const [tl] = useTimeline(tlCallback);
+    return () => {
+      timeline.current?.clear().kill();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useIsomorphicLayoutEffect(() => {
     return () => {
       setTimeout(() => {
-        tl.pause();
-        tl.seek(0);
+        timeline.current?.pause().seek(0);
         preventScroll();
       }, 1000);
     };
   }, [locale, pathname]);
 
   return [
-    tl,
+    timeline,
     firstDot,
     lastDot,
     mobileNav,

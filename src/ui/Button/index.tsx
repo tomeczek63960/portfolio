@@ -4,47 +4,12 @@ import {
   StyledButtonBorder,
   StyledButtonBorderAfter,
 } from "./style";
-import { colors } from "src/styled/mixins";
-import { useTimeline } from "src/hooks/useTimeline";
 import { ButtonProps } from "./types";
+import { useInputAnimation } from "src/hooks/useInputAnimation";
 
 const ButtonComponent: FC<ButtonProps> = ({ children }) => {
   const btnRef = useRef<HTMLButtonElement>(null);
-  const buttonBorder = useRef<HTMLSpanElement>(null);
-  const buttonBorderAfter = useRef<HTMLSpanElement>(null);
-
-  const callback = (timeline: GSAPTimeline): void => {
-    timeline.to(
-      buttonBorder.current,
-      {
-        duration: 0.5,
-        width: "100%",
-      },
-      "start"
-    );
-    timeline.to(
-      buttonBorderAfter.current,
-      {
-        duration: 0.5,
-        width: "100%",
-      },
-      "-=0.3"
-    );
-    timeline.to(buttonBorderAfter.current, {
-      duration: 0.4,
-      x: "100%",
-    });
-    timeline.to(
-      btnRef.current,
-      {
-        duration: 0.5,
-        color: colors.purple,
-      },
-      "start"
-    );
-  };
-
-  const [tl] = useTimeline(callback);
+  const [tl, buttonBorder, buttonBorderAfter] = useInputAnimation();
 
   const onHover = (): void => {
     tl.play();

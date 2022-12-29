@@ -13,7 +13,7 @@ import {
 import { getPaths } from "src/helpers/getPaths";
 import { useHeaderMobileAnimation } from "src/hooks/useHeaderMobileAnimation";
 import { preventScroll } from "src/helpers/preventScroll";
-import { isTruthy } from "src/helpers/checkFalsyType";
+import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
 
 const Header: FC = () => {
   const { pathname, locale = "en", locales = [] } = useRouter();
@@ -30,8 +30,9 @@ const Header: FC = () => {
   ] = useHeaderMobileAnimation(locale, pathname);
 
   const handleBars = (): void => {
-    const shouldPlay = tl.reversed() || tl.time() === 0;
-    shouldPlay ? tl.play() : tl.reverse();
+    if (isFalsy(tl) || isFalsy(tl.current)) return;
+    const shouldPlay = tl.current.reversed() || tl.current.time() === 0;
+    shouldPlay ? tl.current.play() : tl.current.reverse();
     preventScroll(shouldPlay);
   };
 

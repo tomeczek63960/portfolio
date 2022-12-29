@@ -20,6 +20,10 @@ export const StyledButton = styled.button.attrs(
   overflow: hidden;
   position: relative;
   width: 100%;
+  transition: color 0.6s;
+  &:hover {
+    color: ${colors.purple};
+  }
   &::selection {
     background-color: ${colors.blue};
   }

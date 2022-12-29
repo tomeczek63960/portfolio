@@ -60,7 +60,7 @@ export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       duration: 1.5,
       opacity: 1,
     });
-    tl.current.to(".chart-svg .path-14", {
+    tl.current.to(".chart-svg .path-cup", {
       duration: 0.3,
       opacity: 1,
     });

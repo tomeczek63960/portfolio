@@ -21,6 +21,7 @@ const Home: FC = () => {
 
     // TODO: remove useTimeline and change it to specific hooks for components
     // TODO: in all timeline .then .catch blocks add global error handling, np. popup with info something went wrong, try to refresh the page
+    // TODO: add removeEventListener everywhere is used addEventListener
     <>
       <IntroductionComponent />
       <WelcomeBox />
