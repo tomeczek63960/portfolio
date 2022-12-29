@@ -5,6 +5,8 @@ import { isTruthy } from "src/helpers/checkFalsyType";
 export const StyledInputGroup = styled.div`
   position: relative;
   margin-top: 30px;
+  opacity: 0;
+  transform: translateY(-30%);
   &:first-child {
     margin-top: 0;
   }

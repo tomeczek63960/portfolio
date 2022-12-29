@@ -1,4 +1,4 @@
-import React, { useRef, useState, FC, FormEvent } from "react";
+import React, { useRef, useState, FC, FormEvent, RefObject } from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { colors } from "src/styled/mixins";
 import {
@@ -12,6 +12,7 @@ import {
 import { useTimeline } from "src/hooks/useTimeline";
 import { InputProps } from "./types";
 import { isFalsy } from "src/helpers/checkFalsyType";
+import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 
 const createInputAnimation = (
   timeline: GSAPTimeline,
@@ -155,12 +156,14 @@ const Input: FC<InputProps> = ({
     }
   };
 
+  const [inputGroup] = useScrollTrigger(0.55) as [RefObject<HTMLDivElement>];
+
   useIsomorphicLayoutEffect(() => {
     if (!isFormDirty) return;
     onChange();
   }, [isFormDirty]);
   return (
-    <StyledInputGroup>
+    <StyledInputGroup ref={inputGroup}>
       <StyledLabel htmlFor={placeholder} ref={labelRef}>
         {placeholder}
       </StyledLabel>
