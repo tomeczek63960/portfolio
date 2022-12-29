@@ -7,7 +7,6 @@ import type { IRootState } from "src/store";
 import { setActive } from "src/store/scrollTrigger";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
-// TODO: check if gsap.timeline should/have to be inited in useEffect
 export const useTransitionLayoutAnimation = (
   children: React.ReactNode
 ): {
@@ -25,6 +24,7 @@ export const useTransitionLayoutAnimation = (
   const { pathname, locale } = useRouter();
   const [displayChildren, setDisplayChildren] = useState(children);
   const timeline = useRef(gsap.timeline({ paused: true }));
+  const enterTl = useRef<any>(null);
   const { isInitAnimation } = useSelector(
     (state: IRootState) => state.transition
   );
@@ -72,7 +72,7 @@ export const useTransitionLayoutAnimation = (
     timeline.current
       .play()
       .then(() => {
-        timeline.current.seek(0).pause().clear();
+        timeline.current.seek(0).pause().clear().kill();
         gsap.set(leftTransition.current, {
           y: "0%",
         });
@@ -90,22 +90,22 @@ export const useTransitionLayoutAnimation = (
   const pageTransition = (): void => {
     if (!flag.current) return;
     flag.current = false;
-    const enterTl = gsap.timeline({ paused: false });
-    enterTl.set(leftTransition.current, {
+    enterTl.current = gsap.timeline({ paused: false });
+    enterTl.current.set(leftTransition.current, {
       y: "0%",
     });
-    enterTl.set(rightTransition.current, {
+    enterTl.current.set(rightTransition.current, {
       y: "0%",
     });
-    enterTl.set(centerCircle.current, {
+    enterTl.current.set(centerCircle.current, {
       opacity: 0,
     });
-    enterTl.set(content.current, {
+    enterTl.current.set(content.current, {
       opacity: 0,
       pointerEvents: "none",
     });
 
-    enterTl.to(
+    enterTl.current.to(
       centerCircle.current,
       {
         duration: 0.7,
@@ -113,7 +113,7 @@ export const useTransitionLayoutAnimation = (
       },
       "circle-show"
     );
-    enterTl.to(
+    enterTl.current.to(
       htmlTextLeftWrapper.current,
       {
         duration: 0.7,
@@ -121,7 +121,7 @@ export const useTransitionLayoutAnimation = (
       },
       "circle-show"
     );
-    enterTl.to(
+    enterTl.current.to(
       htmlTextRightWrapper.current,
       {
         duration: 0.7,
@@ -130,7 +130,7 @@ export const useTransitionLayoutAnimation = (
       "circle-show"
     );
 
-    enterTl.to(
+    enterTl.current.to(
       leftCircle.current,
       {
         duration: 1,
@@ -138,7 +138,7 @@ export const useTransitionLayoutAnimation = (
       },
       "circle"
     );
-    enterTl.to(
+    enterTl.current.to(
       rightCircle.current,
       {
         duration: 1,
@@ -153,7 +153,7 @@ export const useTransitionLayoutAnimation = (
       ? rightCircle.current.querySelector("svg path")
       : null;
 
-    enterTl.to(
+    enterTl.current.to(
       leftLetter,
       {
         duration: 1.5,
@@ -161,7 +161,7 @@ export const useTransitionLayoutAnimation = (
       },
       "circle-letter"
     );
-    enterTl.to(
+    enterTl.current.to(
       rightLetter,
       {
         duration: 1.5,
@@ -170,7 +170,7 @@ export const useTransitionLayoutAnimation = (
       "circle-letter"
     );
 
-    enterTl.to(
+    enterTl.current.to(
       leftLetter,
       {
         duration: 1.5,
@@ -179,7 +179,7 @@ export const useTransitionLayoutAnimation = (
       },
       "circle-letter"
     );
-    enterTl.to(
+    enterTl.current.to(
       rightLetter,
       {
         duration: 1.5,
@@ -188,7 +188,7 @@ export const useTransitionLayoutAnimation = (
       },
       "circle-letter"
     );
-    enterTl.to(
+    enterTl.current.to(
       leftTransition.current,
       {
         duration: 1,
@@ -196,7 +196,7 @@ export const useTransitionLayoutAnimation = (
       },
       "start"
     );
-    enterTl.to(
+    enterTl.current.to(
       rightTransition.current,
       {
         duration: 1,
@@ -204,7 +204,7 @@ export const useTransitionLayoutAnimation = (
       },
       "start"
     );
-    enterTl.to(
+    enterTl.current.to(
       htmlTextLeftWrapper.current,
       {
         duration: 0.3,
@@ -212,7 +212,7 @@ export const useTransitionLayoutAnimation = (
       },
       "animation-end"
     );
-    enterTl.to(
+    enterTl.current.to(
       htmlTextRightWrapper.current,
       {
         duration: 0.3,
@@ -220,7 +220,7 @@ export const useTransitionLayoutAnimation = (
       },
       "animation-end"
     );
-    enterTl.to(
+    enterTl.current.to(
       content.current,
       {
         duration: 1,
@@ -228,42 +228,43 @@ export const useTransitionLayoutAnimation = (
       },
       "animation-end"
     );
-    enterTl.to(centerCircle.current, {
+    enterTl.current.to(centerCircle.current, {
       duration: 0.3,
       opacity: 0,
     });
 
-    enterTl.set(leftLetter, {
+    enterTl.current.set(leftLetter, {
       strokeDashoffset: 250,
       fill: "none",
     });
-    enterTl.set(rightLetter, {
+    enterTl.current.set(rightLetter, {
       strokeDashoffset: 250,
       fill: "none",
     });
-    enterTl.set(centerCircle.current, {
+    enterTl.current.set(centerCircle.current, {
       opacity: 0,
     });
-    enterTl.set(content.current, {
+    enterTl.current.set(content.current, {
       pointerEvents: "all",
     });
-    enterTl.set(leftTransition.current, {
+    enterTl.current.set(leftTransition.current, {
       y: "100%",
     });
-    enterTl.set(rightTransition.current, {
+    enterTl.current.set(rightTransition.current, {
       y: "-100%",
     });
-    enterTl.set(centerCircle.current, {
+    enterTl.current.set(centerCircle.current, {
       opacity: 0,
     });
-    enterTl.set(leftCircle.current, {
+    enterTl.current.set(leftCircle.current, {
       scaleY: 0,
     });
-    enterTl.set(rightCircle.current, {
+    enterTl.current.set(rightCircle.current, {
       scaleY: 0,
     });
-    enterTl.call(() => {
+    enterTl.current.call(() => {
       dispatch(setActive(true));
+      enterTl.current.clear().kill();
     });
   };
 
