@@ -7,39 +7,39 @@ import type { IRootState } from "src/store";
 import { setActive } from "src/store/scrollTrigger";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
-interface TransitionLayoutReturn {
+interface ITransitionLayoutReturn {
   displayChildren: ReactNode;
-  content: RefObject<HTMLDivElement>;
-  leftTransition: RefObject<HTMLDivElement>;
-  rightTransition: RefObject<HTMLDivElement>;
-  centerCircle: RefObject<HTMLDivElement>;
-  leftCircle: RefObject<HTMLSpanElement>;
-  rightCircle: RefObject<HTMLSpanElement>;
-  htmlTextLeftWrapper: RefObject<HTMLDivElement>;
-  htmlTextRightWrapper: RefObject<HTMLDivElement>;
+  refContent: RefObject<HTMLDivElement>;
+  refLeftTransition: RefObject<HTMLDivElement>;
+  refRightTransition: RefObject<HTMLDivElement>;
+  refCenterCircle: RefObject<HTMLDivElement>;
+  refLeftCircle: RefObject<HTMLSpanElement>;
+  refRightCircle: RefObject<HTMLSpanElement>;
+  refTransitionLeftText: RefObject<HTMLDivElement>;
+  refTransitionRightText: RefObject<HTMLDivElement>;
 }
 
 export const useTransitionLayoutAnimation = (
   children: ReactNode
-): TransitionLayoutReturn => {
+): ITransitionLayoutReturn => {
   const dispatch = useDispatch();
   const { pathname, locale } = useRouter();
   const [displayChildren, setDisplayChildren] = useState(children);
-  const timeline = useRef(gsap.timeline({ paused: true }));
-  const enterTl = useRef<GSAPTimeline>();
+  const [shouldAnimate, setShouldAnimate] = useState(false);
   const { isInitAnimation } = useSelector(
     (state: IRootState) => state.transition
   );
-  const [shouldAnimate, setShouldAnimate] = useState(false);
-  const content = useRef<HTMLDivElement>(null);
-  const leftTransition = useRef<HTMLDivElement>(null);
-  const rightTransition = useRef<HTMLDivElement>(null);
-  const centerCircle = useRef<HTMLDivElement>(null);
-  const leftCircle = useRef<HTMLSpanElement>(null);
-  const rightCircle = useRef<HTMLSpanElement>(null);
-  const flag = useRef<boolean>(false);
-  const htmlTextLeftWrapper = useRef<HTMLDivElement>(null);
-  const htmlTextRightWrapper = useRef<HTMLDivElement>(null);
+  const refTimeline = useRef(gsap.timeline({ paused: true }));
+  const refTimelineEnter = useRef<GSAPTimeline>();
+  const refContent = useRef<HTMLDivElement>(null);
+  const refLeftTransition = useRef<HTMLDivElement>(null);
+  const refRightTransition = useRef<HTMLDivElement>(null);
+  const refCenterCircle = useRef<HTMLDivElement>(null);
+  const refLeftCircle = useRef<HTMLSpanElement>(null);
+  const refRightCircle = useRef<HTMLSpanElement>(null);
+  const refTransitionLeftText = useRef<HTMLDivElement>(null);
+  const refTransitionRightText = useRef<HTMLDivElement>(null);
+  const refFlag = useRef<boolean>(false);
 
   useIsomorphicLayoutEffect(() => {
     if (isInitAnimation) return;
@@ -47,23 +47,23 @@ export const useTransitionLayoutAnimation = (
       setDisplayChildren(children);
       return setShouldAnimate(true);
     }
-    timeline.current.add(
-      gsap.to(content.current, {
+    refTimeline.current.add(
+      gsap.to(refContent.current, {
         duration: 1,
         opacity: 0,
         pointerEvents: "none",
       }),
       0
     );
-    timeline.current.add(
-      gsap.to(leftTransition.current, {
+    refTimeline.current.add(
+      gsap.to(refLeftTransition.current, {
         duration: 1,
         y: "0%",
       }),
       0
     );
-    timeline.current.add(
-      gsap.to(rightTransition.current, {
+    refTimeline.current.add(
+      gsap.to(refRightTransition.current, {
         duration: 1,
         y: "0%",
       }),
@@ -71,18 +71,18 @@ export const useTransitionLayoutAnimation = (
     );
 
     dispatch(setActive(false));
-    timeline.current
+    refTimeline.current
       .play()
       .then(() => {
-        timeline.current.seek(0).pause().clear().kill();
-        gsap.set(leftTransition.current, {
+        refTimeline.current.seek(0).pause().clear().kill();
+        gsap.set(refLeftTransition.current, {
           y: "0%",
         });
-        gsap.set(rightTransition.current, {
+        gsap.set(refRightTransition.current, {
           y: "0%",
         });
         setDisplayChildren(children);
-        flag.current = true;
+        refFlag.current = true;
         pageTransition();
       })
       .catch((err) => {
@@ -90,41 +90,41 @@ export const useTransitionLayoutAnimation = (
       });
   }, [pathname, locale, children]);
   const pageTransition = (): void => {
-    if (!flag.current) return;
-    flag.current = false;
-    enterTl.current = gsap.timeline({ paused: false });
-    enterTl.current.set(leftTransition.current, {
+    if (!refFlag.current) return;
+    refFlag.current = false;
+    refTimelineEnter.current = gsap.timeline({ paused: false });
+    refTimelineEnter.current.set(refLeftTransition.current, {
       y: "0%",
     });
-    enterTl.current.set(rightTransition.current, {
+    refTimelineEnter.current.set(refRightTransition.current, {
       y: "0%",
     });
-    enterTl.current.set(centerCircle.current, {
+    refTimelineEnter.current.set(refCenterCircle.current, {
       opacity: 0,
     });
-    enterTl.current.set(content.current, {
+    refTimelineEnter.current.set(refContent.current, {
       opacity: 0,
       pointerEvents: "none",
     });
 
-    enterTl.current.to(
-      centerCircle.current,
+    refTimelineEnter.current.to(
+      refCenterCircle.current,
       {
         duration: 0.7,
         opacity: 1,
       },
       "circle-show"
     );
-    enterTl.current.to(
-      htmlTextLeftWrapper.current,
+    refTimelineEnter.current.to(
+      refTransitionLeftText.current,
       {
         duration: 0.7,
         opacity: 1,
       },
       "circle-show"
     );
-    enterTl.current.to(
-      htmlTextRightWrapper.current,
+    refTimelineEnter.current.to(
+      refTransitionRightText.current,
       {
         duration: 0.7,
         opacity: 1,
@@ -132,30 +132,30 @@ export const useTransitionLayoutAnimation = (
       "circle-show"
     );
 
-    enterTl.current.to(
-      leftCircle.current,
+    refTimelineEnter.current.to(
+      refLeftCircle.current,
       {
         duration: 1,
         scaleY: 1,
       },
       "circle"
     );
-    enterTl.current.to(
-      rightCircle.current,
+    refTimelineEnter.current.to(
+      refRightCircle.current,
       {
         duration: 1,
         scaleY: 1,
       },
       "circle"
     );
-    const leftLetter = isTruthy(leftCircle.current)
-      ? leftCircle.current.querySelector("svg path")
+    const leftLetter = isTruthy(refLeftCircle.current)
+      ? refLeftCircle.current.querySelector("svg path")
       : null;
-    const rightLetter = isTruthy(rightCircle.current)
-      ? rightCircle.current.querySelector("svg path")
+    const rightLetter = isTruthy(refRightCircle.current)
+      ? refRightCircle.current.querySelector("svg path")
       : null;
 
-    enterTl.current.to(
+    refTimelineEnter.current.to(
       leftLetter,
       {
         duration: 1.5,
@@ -163,7 +163,7 @@ export const useTransitionLayoutAnimation = (
       },
       "circle-letter"
     );
-    enterTl.current.to(
+    refTimelineEnter.current.to(
       rightLetter,
       {
         duration: 1.5,
@@ -172,7 +172,7 @@ export const useTransitionLayoutAnimation = (
       "circle-letter"
     );
 
-    enterTl.current.to(
+    refTimelineEnter.current.to(
       leftLetter,
       {
         duration: 1.5,
@@ -181,7 +181,7 @@ export const useTransitionLayoutAnimation = (
       },
       "circle-letter"
     );
-    enterTl.current.to(
+    refTimelineEnter.current.to(
       rightLetter,
       {
         duration: 1.5,
@@ -190,95 +190,95 @@ export const useTransitionLayoutAnimation = (
       },
       "circle-letter"
     );
-    enterTl.current.to(
-      leftTransition.current,
+    refTimelineEnter.current.to(
+      refLeftTransition.current,
       {
         duration: 1,
         y: "-100%",
       },
       "start"
     );
-    enterTl.current.to(
-      rightTransition.current,
+    refTimelineEnter.current.to(
+      refRightTransition.current,
       {
         duration: 1,
         y: "100%",
       },
       "start"
     );
-    enterTl.current.to(
-      htmlTextLeftWrapper.current,
+    refTimelineEnter.current.to(
+      refTransitionLeftText.current,
       {
         duration: 0.3,
         opacity: 0,
       },
       "animation-end"
     );
-    enterTl.current.to(
-      htmlTextRightWrapper.current,
+    refTimelineEnter.current.to(
+      refTransitionRightText.current,
       {
         duration: 0.3,
         opacity: 0,
       },
       "animation-end"
     );
-    enterTl.current.to(
-      content.current,
+    refTimelineEnter.current.to(
+      refContent.current,
       {
         duration: 1,
         opacity: 1,
       },
       "animation-end"
     );
-    enterTl.current.to(centerCircle.current, {
+    refTimelineEnter.current.to(refCenterCircle.current, {
       duration: 0.3,
       opacity: 0,
     });
 
-    enterTl.current.set(leftLetter, {
+    refTimelineEnter.current.set(leftLetter, {
       strokeDashoffset: 250,
       fill: "none",
     });
-    enterTl.current.set(rightLetter, {
+    refTimelineEnter.current.set(rightLetter, {
       strokeDashoffset: 250,
       fill: "none",
     });
-    enterTl.current.set(centerCircle.current, {
+    refTimelineEnter.current.set(refCenterCircle.current, {
       opacity: 0,
     });
-    enterTl.current.set(content.current, {
+    refTimelineEnter.current.set(refContent.current, {
       pointerEvents: "all",
     });
-    enterTl.current.set(leftTransition.current, {
+    refTimelineEnter.current.set(refLeftTransition.current, {
       y: "100%",
     });
-    enterTl.current.set(rightTransition.current, {
+    refTimelineEnter.current.set(refRightTransition.current, {
       y: "-100%",
     });
-    enterTl.current.set(centerCircle.current, {
+    refTimelineEnter.current.set(refCenterCircle.current, {
       opacity: 0,
     });
-    enterTl.current.set(leftCircle.current, {
+    refTimelineEnter.current.set(refLeftCircle.current, {
       scaleY: 0,
     });
-    enterTl.current.set(rightCircle.current, {
+    refTimelineEnter.current.set(refRightCircle.current, {
       scaleY: 0,
     });
-    enterTl.current.call(() => {
+    refTimelineEnter.current.call(() => {
       dispatch(setActive(true));
-      enterTl.current?.clear().kill();
+      refTimelineEnter.current?.clear().kill();
     });
   };
 
   return {
     displayChildren,
-    content,
-    leftTransition,
-    rightTransition,
-    centerCircle,
-    leftCircle,
-    rightCircle,
-    htmlTextLeftWrapper,
-    htmlTextRightWrapper,
+    refContent,
+    refLeftTransition,
+    refRightTransition,
+    refCenterCircle,
+    refLeftCircle,
+    refRightCircle,
+    refTransitionLeftText,
+    refTransitionRightText,
   };
 };

@@ -1,3 +1,3 @@
-export interface TransitionLayoutProps {
+export interface PropsTransitionLayout {
   children: React.ReactNode;
 }
