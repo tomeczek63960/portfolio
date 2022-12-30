@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setIsInitAnimation } from "src/store/transition";
 import { setActive } from "src/store/scrollTrigger";
-import { isTruthy } from "src/helpers/checkFalsyType";
+import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
 
 export const useLoadingAnimation = (
   children: ReactNode
@@ -27,7 +27,6 @@ export const useLoadingAnimation = (
   const refPageAnimationBackground = useRef<HTMLDivElement>(null);
 
   useIsomorphicLayoutEffect(() => {
-    if (refTimeline.current != null) return;
     refTimeline.current = gsap.timeline({ paused: true });
     refTimelineEnter.current = gsap.timeline({ paused: true });
     refTimeline.current.add(
@@ -174,10 +173,14 @@ export const useLoadingAnimation = (
         height: "auto",
       })
     );
+    return () => {
+      refTimeline.current?.clear().kill();
+      refTimelineEnter.current?.clear().kill();
+    };
   }, []);
 
   useIsomorphicLayoutEffect(() => {
-    if (refTimeline.current == null) return;
+    if (isFalsy(refTimeline.current)) return;
 
     if (!refTimeline.current.isActive()) {
       refTimeline.current

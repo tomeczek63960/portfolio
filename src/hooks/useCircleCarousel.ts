@@ -43,7 +43,7 @@ interface IAnimationObject {
   scale?: string;
   filter?: string;
 }
-
+// TODO: fix multiple slide click text animation delay
 export const useCircleCarousel = (
   speed: number = 800,
   autoplay: number = 4500
@@ -58,7 +58,7 @@ export const useCircleCarousel = (
   const refCarousel = useRef<HTMLDivElement>(null);
   const refPagination = useRef<HTMLDivElement>(null);
   const refCarouselText = useRef<HTMLDivElement>(null);
-  const refTimelineSlide = useRef(gsap.timeline());
+  const refTimelineSlide = useRef<GSAPTimeline>();
   const refConfig = useRef<ICarouselConfig>({
     slides: [],
     activeSlide: 0,
@@ -69,7 +69,8 @@ export const useCircleCarousel = (
     autoplayId: undefined,
   });
 
-  useIsomorphicLayoutEffect((): void => {
+  useIsomorphicLayoutEffect(() => {
+    refTimelineSlide.current = gsap.timeline();
     const dots = refPagination.current?.children as
       | HTMLCollectionOf<HTMLElement>
       | never[];
@@ -90,6 +91,10 @@ export const useCircleCarousel = (
       refPagination.current.style.transitionDuration = `${speed}ms`;
     if (isTruthy(autoplay) && isFalsy(refConfig.current.autoplayId))
       startAutoplay();
+
+    return () => {
+      refTimelineSlide.current?.clear().kill();
+    };
   }, []);
 
   const startAutoplay = (): void => {
@@ -153,12 +158,12 @@ export const useCircleCarousel = (
     const dots = refConfig.current.dots[index];
     const svg = dots.querySelector("svg");
     const isEnterAnimation = classAction === "add";
-    refTimelineSlide.current.to(
+    refTimelineSlide.current?.to(
       svg,
       getTransformSvgObject(isEnterAnimation ? "in" : "out"),
       "start"
     );
-    refTimelineSlide.current.to(
+    refTimelineSlide.current?.to(
       slide.children,
       getTransformAnimateObject(isEnterAnimation ? "in" : "out")
     );
