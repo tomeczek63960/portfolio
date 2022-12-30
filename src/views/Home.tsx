@@ -23,6 +23,7 @@ const Home: FC = () => {
     // TODO: add removeEventListener everywhere is used addEventListener
     // TODO: in skills add next carousel & add prismic.io, hygraph, ...
     // Add seo values for pages in strapi
+    // TODO: refactore container __left & __right to styled components
     <>
       <IntroductionComponent />
       <WelcomeBox />

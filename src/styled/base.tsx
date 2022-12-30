@@ -22,7 +22,7 @@ export const StyledBase = createGlobalStyle`
         @media screen and (hover) {
           padding-right: 17px;
         }
-        .body--before {
+        .page-animation-background {
           @media screen and (hover) {
             width: calc(50% + (17px / 2));
           }
@@ -36,7 +36,7 @@ export const StyledBase = createGlobalStyle`
           @media screen and (hover) {
             padding-right: 15px;
           }
-          .body--before {
+          .page-animation-background {
             @media screen and (hover) {
               width: calc(50% + (15px / 2));
             }
