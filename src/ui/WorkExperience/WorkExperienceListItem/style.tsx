@@ -17,7 +17,7 @@ export const StyledListItemContent = styled.div`
   border-radius: 10px;
   box-shadow: 0px 16px 15px -10px ${colors.shadowColor};
   position: relative;
-  transform: translateY(-30%);
+  transform: translateY(-40%);
   opacity: 0;
   ${responsive.tabletP`
     padding: 20px;
@@ -82,7 +82,6 @@ export const StyledListItemLine = styled.div.attrs(
     transform: translate(-50%, -70%);
     width: auto;
     height: 25px;
-    opacity: 0;
   }
 `;
 export const StyledListItemLineDot = styled.div.attrs(
@@ -96,5 +95,4 @@ export const StyledListItemLineDot = styled.div.attrs(
   top: ${({ order }) => (order === "first" ? "calc(50% - 20px)" : "50%")};
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0;
 `;

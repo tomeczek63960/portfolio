@@ -7,7 +7,8 @@ import { isTruthy } from "src/helpers/checkFalsyType";
 
 export const useScrollTrigger = (
   scrollTriggerStart?: number,
-  type?: string
+  type?: string,
+  duration?: number
 ): [RefObject<HTMLElement>] => {
   const refElement = useRef<HTMLElement>(null);
   const { isActive } = useSelector((state: IRootState) => state.scrollTrigger);
@@ -17,7 +18,7 @@ export const useScrollTrigger = (
     const elements =
       type === "children" ? refElement.current.children : refElement.current;
     gsap.to(elements, {
-      duration: 0.5,
+      duration: isTruthy(duration) ? duration : 0.5,
       y: 0,
       opacity: 1,
       stagger: 0.2,
