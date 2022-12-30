@@ -67,7 +67,6 @@ const ComponentLoadingAnimation: FC<PropsLoadingAnimation> = ({ children }) => {
         </StyledPageAnimationText>
         <StyledPageAnimationBackground
           ref={refPageAnimationBackground}
-          className="page-animation-background"
         ></StyledPageAnimationBackground>
       </StyledPageAnimation>
 
