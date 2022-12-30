@@ -28,7 +28,7 @@ export const StyledTransition = styled.div.attrs(
       background: ${colors.black}
   `}
 `;
-export const StyledCircle = styled.div.attrs(
+export const StyledTransitionCircle = styled.div.attrs(
   (props: { ref: HTMLButtonElement }) => props
 )`
   width: 100px;
@@ -47,7 +47,7 @@ export const StyledCircle = styled.div.attrs(
   pointer-events: none;
 `;
 
-export const StyledCirclePartWrapper = styled.span.attrs(
+export const StyledTransitionCirclePartWrapper = styled.span.attrs(
   (props: { type: "left" | "right" }) => props
 )`
   position: absolute;
@@ -68,7 +68,7 @@ export const StyledCirclePartWrapper = styled.span.attrs(
         `}
 `;
 
-export const StyledCirclePart = styled.span.attrs(
+export const StyledTransitionCirclePart = styled.span.attrs(
   (props: { type: "left" | "right" }) => props
 )`
   height: 100%;
@@ -101,7 +101,7 @@ export const StyledCirclePart = styled.span.attrs(
     }
   }
 `;
-export const HtmlTextWrapper = styled.div.attrs(
+export const StyledTransitionTextWrapper = styled.div.attrs(
   (props: { position: string }) => props
 )`
   position: fixed;
@@ -131,7 +131,9 @@ export const HtmlTextWrapper = styled.div.attrs(
           }
         `}
 `;
-export const HtmlText = styled.h4.attrs((props: { theme: string }) => props)`
+export const StyledTransitionText = styled.h4.attrs(
+  (props: { theme: string }) => props
+)`
   font-size: 22px;
   line-height: 1;
   font-family: Roboto;

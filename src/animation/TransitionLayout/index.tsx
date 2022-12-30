@@ -1,43 +1,50 @@
-import React, { FC, ReactElement } from "react";
+import React, { FC } from "react";
+import { PropsTransitionLayout } from "./types";
 import {
   StyledTransition,
-  StyledCircle,
-  HtmlTextWrapper,
-  HtmlText,
-  StyledCirclePart,
-  StyledCirclePartWrapper,
+  StyledTransitionCircle,
+  StyledTransitionTextWrapper,
+  StyledTransitionText,
+  StyledTransitionCirclePart,
+  StyledTransitionCirclePartWrapper,
 } from "./style";
 import { useTransitionLayoutAnimation } from "src/hooks/useTransitionLayoutAnimation";
-import { TransitionLayoutProps } from "src/animation/TransitionLayout/types";
 
-const TransitionLayout: FC<TransitionLayoutProps> = ({
-  children,
-}): ReactElement => {
+const ComponentTransitionLayout: FC<PropsTransitionLayout> = ({ children }) => {
   const {
     displayChildren,
-    content,
-    leftTransition,
-    rightTransition,
-    centerCircle,
-    leftCircle,
-    rightCircle,
-    htmlTextLeftWrapper,
-    htmlTextRightWrapper,
+    refContent,
+    refLeftTransition,
+    refRightTransition,
+    refCenterCircle,
+    refLeftCircle,
+    refRightCircle,
+    refTransitionLeftText,
+    refTransitionRightText,
   } = useTransitionLayoutAnimation(children);
   return (
     <>
-      {/* TODO: change name Styled... instead of HtmlTextWrapper */}
-      <HtmlTextWrapper ref={htmlTextLeftWrapper} position="left">
-        <HtmlText theme="light">Created With Passion</HtmlText>
-      </HtmlTextWrapper>
-      <HtmlTextWrapper ref={htmlTextRightWrapper} position="right">
-        <HtmlText theme="dark">Created With Passion</HtmlText>
-      </HtmlTextWrapper>
-      <StyledTransition type="left" ref={leftTransition}></StyledTransition>
-      <StyledTransition type="right" ref={rightTransition}></StyledTransition>
-      <StyledCircle ref={centerCircle}>
-        <StyledCirclePartWrapper type="left">
-          <StyledCirclePart type="left" ref={leftCircle}>
+      <StyledTransitionTextWrapper ref={refTransitionLeftText} position="left">
+        <StyledTransitionText theme="light">
+          Created With Passion
+        </StyledTransitionText>
+      </StyledTransitionTextWrapper>
+      <StyledTransitionTextWrapper
+        ref={refTransitionRightText}
+        position="right"
+      >
+        <StyledTransitionText theme="dark">
+          Created With Passion
+        </StyledTransitionText>
+      </StyledTransitionTextWrapper>
+      <StyledTransition type="left" ref={refLeftTransition}></StyledTransition>
+      <StyledTransition
+        type="right"
+        ref={refRightTransition}
+      ></StyledTransition>
+      <StyledTransitionCircle ref={refCenterCircle}>
+        <StyledTransitionCirclePartWrapper type="left">
+          <StyledTransitionCirclePart type="left" ref={refLeftCircle}>
             <svg
               width="61.3"
               height="71.4"
@@ -59,10 +66,10 @@ const TransitionLayout: FC<TransitionLayoutProps> = ({
                 />
               </g>
             </svg>
-          </StyledCirclePart>
-        </StyledCirclePartWrapper>
-        <StyledCirclePartWrapper type="right">
-          <StyledCirclePart type="right" ref={rightCircle}>
+          </StyledTransitionCirclePart>
+        </StyledTransitionCirclePartWrapper>
+        <StyledTransitionCirclePartWrapper type="right">
+          <StyledTransitionCirclePart type="right" ref={refRightCircle}>
             <svg
               width="69.6"
               height="71.4"
@@ -84,12 +91,12 @@ const TransitionLayout: FC<TransitionLayoutProps> = ({
                 />
               </g>
             </svg>
-          </StyledCirclePart>
-        </StyledCirclePartWrapper>
-      </StyledCircle>
-      <div ref={content}>{displayChildren}</div>
+          </StyledTransitionCirclePart>
+        </StyledTransitionCirclePartWrapper>
+      </StyledTransitionCircle>
+      <div ref={refContent}>{displayChildren}</div>
     </>
   );
 };
 
-export default TransitionLayout;
+export default ComponentTransitionLayout;
