@@ -11,10 +11,10 @@ export const useLoadingAnimation = (
   children: ReactNode
 ): {
   displayChildren: ReactNode;
-  content: RefObject<HTMLDivElement>;
-  htmlBefore: RefObject<HTMLSpanElement>;
-  htmlAfter: RefObject<HTMLSpanElement>;
-  bodyBefore: RefObject<HTMLDivElement>;
+  pageContent: RefObject<HTMLDivElement>;
+  pageAnimationBall: RefObject<HTMLSpanElement>;
+  pageAnimationText: RefObject<HTMLSpanElement>;
+  pageAnimationBackground: RefObject<HTMLDivElement>;
 } => {
   const { pathname, locale } = useRouter();
   const dispatch = useDispatch();
@@ -22,31 +22,31 @@ export const useLoadingAnimation = (
   const [displayChildren, setDisplayChildren] = useState<ReactNode>();
   const timeline = useRef<GSAPTimeline>();
   const timelineEnter = useRef<GSAPTimeline>();
-  const content = useRef<HTMLDivElement>(null);
-  const htmlBefore = useRef<HTMLSpanElement>(null);
-  const htmlAfter = useRef<HTMLSpanElement>(null);
-  const bodyBefore = useRef<HTMLDivElement>(null);
+  const pageContent = useRef<HTMLDivElement>(null);
+  const pageAnimationBall = useRef<HTMLSpanElement>(null);
+  const pageAnimationText = useRef<HTMLSpanElement>(null);
+  const pageAnimationBackground = useRef<HTMLDivElement>(null);
 
   useIsomorphicLayoutEffect(() => {
     if (timeline.current != null) return;
     timeline.current = gsap.timeline({ paused: true });
     timelineEnter.current = gsap.timeline({ paused: true });
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 0.7,
         y: 240,
       }),
       "start"
     );
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 0.35,
         width: 40,
       }),
       "start"
     );
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 0.35,
         height: 30,
         width: 57,
@@ -54,42 +54,42 @@ export const useLoadingAnimation = (
       "-=0.35"
     );
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 0.7,
         y: 0,
       }),
       "back"
     );
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 0.35,
         height: 50,
       }),
       "back"
     );
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 0.35,
         width: 50,
       }),
       "-=0.35"
     );
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 0.7,
         y: 240,
       }),
       "start2"
     );
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 0.35,
         width: 40,
       }),
       "start2"
     );
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 0.35,
         height: 30,
         width: 57,
@@ -97,40 +97,40 @@ export const useLoadingAnimation = (
       "-=0.35"
     );
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 0.7,
         y: 0,
       }),
       "back2"
     );
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 0.35,
         height: 50,
       }),
       "back2"
     );
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 0.35,
         width: 50,
       }),
       "-=0.35"
     );
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 0.7,
         scale: 3,
       })
     );
     timeline.current.add(
-      gsap.to(htmlAfter.current, {
+      gsap.to(pageAnimationText.current, {
         duration: 0.7,
         opacity: 1,
       })
     );
-    const svgPaths = isTruthy(htmlAfter.current)
-      ? htmlAfter.current.querySelectorAll("svg path")
+    const svgPaths = isTruthy(pageAnimationText.current)
+      ? pageAnimationText.current.querySelectorAll("svg path")
       : [];
     timeline.current.add(
       gsap.to(svgPaths, {
@@ -145,14 +145,14 @@ export const useLoadingAnimation = (
       })
     );
     timeline.current.add(
-      gsap.to(htmlBefore.current, {
+      gsap.to(pageAnimationBall.current, {
         duration: 2.45,
         delay: 0.5,
         scale: 50,
       })
     );
     timeline.current.add(
-      gsap.to(htmlAfter.current, {
+      gsap.to(pageAnimationText.current, {
         duration: 0.35,
         opacity: 0,
       }),
@@ -160,14 +160,14 @@ export const useLoadingAnimation = (
     );
 
     timelineEnter.current.add(
-      gsap.to(bodyBefore.current, {
+      gsap.to(pageAnimationBackground.current, {
         delay: 1,
         duration: 1,
         height: "100%",
       })
     );
     timelineEnter.current.add(
-      gsap.to(content.current, {
+      gsap.to(pageContent.current, {
         duration: 0.4,
         opacity: 1,
         pointerEvents: "all",
@@ -203,5 +203,11 @@ export const useLoadingAnimation = (
         });
     }
   }, [timeline.current, locale, pathname]);
-  return { displayChildren, content, htmlBefore, htmlAfter, bodyBefore };
+  return {
+    displayChildren,
+    pageContent,
+    pageAnimationBall,
+    pageAnimationText,
+    pageAnimationBackground,
+  };
 };

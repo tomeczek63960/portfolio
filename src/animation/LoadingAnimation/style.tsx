@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors, responsive } from "src/styled/mixins";
 
-export const Html = styled.div`
+export const StyledPageAnimation = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -13,7 +13,7 @@ export const Html = styled.div`
   overflow: hidden;
   font-family: Times;
 `;
-export const HtmlBefore = styled.span`
+export const StyledPageAnimationBall = styled.span`
   width: 50px;
   height: 50px;
   position: absolute;
@@ -24,7 +24,7 @@ export const HtmlBefore = styled.span`
   border-radius: 50%;
   display: block;
 `;
-export const HtmlAfter = styled.span`
+export const StyledPageAnimationText = styled.span`
   width: 70px;
   height: 50px;
   display: flex;
@@ -52,7 +52,7 @@ export const HtmlAfter = styled.span`
     }
   }
 `;
-export const BodyBefore = styled.div`
+export const StyledPageAnimationBackground = styled.div`
   display: block;
   height: 0%;
   position: fixed;
@@ -71,7 +71,7 @@ export const BodyBefore = styled.div`
     visibility: visible;
   `}
 `;
-export const BodyContent = styled.div`
+export const StyledPageContent = styled.div`
   opacity: 0;
   pointer-events: none;
   height: 100vh;

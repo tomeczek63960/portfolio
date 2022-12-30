@@ -1,19 +1,29 @@
-import React, { ReactElement, FC } from "react";
+import React, { FC } from "react";
 import { useLoadingAnimation } from "src/hooks/useLoadingAnimation";
-import { Html, HtmlBefore, HtmlAfter, BodyBefore, BodyContent } from "./style";
+import {
+  StyledPageAnimation,
+  StyledPageAnimationBall,
+  StyledPageAnimationText,
+  StyledPageAnimationBackground,
+  StyledPageContent,
+} from "./style";
 import { LoadingAnimationProps } from "./types";
 
-// TODO: change names of styled components (html, body ...)
-const LoadingAnimation: FC<LoadingAnimationProps> = ({
-  children,
-}): ReactElement => {
-  const { displayChildren, content, htmlBefore, htmlAfter, bodyBefore } =
-    useLoadingAnimation(children);
+const LoadingAnimation: FC<LoadingAnimationProps> = ({ children }) => {
+  const {
+    displayChildren,
+    pageContent,
+    pageAnimationBall,
+    pageAnimationText,
+    pageAnimationBackground,
+  } = useLoadingAnimation(children);
   return (
     <>
-      <Html>
-        <HtmlBefore ref={htmlBefore}></HtmlBefore>
-        <HtmlAfter ref={htmlAfter}>
+      <StyledPageAnimation>
+        <StyledPageAnimationBall
+          ref={pageAnimationBall}
+        ></StyledPageAnimationBall>
+        <StyledPageAnimationText ref={pageAnimationText}>
           <svg
             width="61.3"
             height="71.4"
@@ -54,11 +64,14 @@ const LoadingAnimation: FC<LoadingAnimationProps> = ({
               />
             </g>
           </svg>
-        </HtmlAfter>
-        <BodyBefore ref={bodyBefore} className="body--before"></BodyBefore>
-      </Html>
+        </StyledPageAnimationText>
+        <StyledPageAnimationBackground
+          ref={pageAnimationBackground}
+          className="page-animation-background"
+        ></StyledPageAnimationBackground>
+      </StyledPageAnimation>
 
-      <BodyContent ref={content}>{displayChildren}</BodyContent>
+      <StyledPageContent ref={pageContent}>{displayChildren}</StyledPageContent>
     </>
   );
 };
