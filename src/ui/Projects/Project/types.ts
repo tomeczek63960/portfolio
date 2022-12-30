@@ -1,8 +1,8 @@
-export interface Project {
+export interface IProject {
   title?: any;
 }
 
-export interface ProjectProps {
+export interface PropsProject {
   project: any;
   onClickFunction: Function;
 }

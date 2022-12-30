@@ -1,5 +1,5 @@
 import React, { FC, RefObject } from "react";
-import HeadingComponent from "src/ui/Heading";
+import Heading from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
 import {
   StyledWorkExperienceSection,
@@ -14,19 +14,19 @@ import SectionWave from "../../../public/svg/section-wave.svg";
 import WorkExperienceList from "./WorkExperienceList";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 
-const WorkExperience: FC = () => {
-  const [workExperienceHeadContent] = useScrollTrigger(0.6, "children") as [
+const ComponentWorkExperience: FC = () => {
+  const [refWorkExperienceHeadContent] = useScrollTrigger(0.6, "children") as [
     RefObject<HTMLDivElement>
   ];
-  const [workExperienceCta] = useScrollTrigger(0.7) as [
+  const [refWorkExperienceCta] = useScrollTrigger(0.7) as [
     RefObject<HTMLButtonElement>
   ];
 
   return (
     <StyledWorkExperienceSection>
-      <HeadingComponent tagName="h2" color="#6A82FB">
+      <Heading tagName="h2" color="#6A82FB">
         Doświadczenie zawodowe
-      </HeadingComponent>
+      </Heading>
       <Paragraph>Coś o mnie i moim doświadczeniu zawodowym.</Paragraph>
 
       <StyledWorkExperience>
@@ -34,7 +34,7 @@ const WorkExperience: FC = () => {
           <StyledWorkExperienceHeadBackground>
             <SectionWave />
           </StyledWorkExperienceHeadBackground>
-          <StyledWorkExperienceHeadContent ref={workExperienceHeadContent}>
+          <StyledWorkExperienceHeadContent ref={refWorkExperienceHeadContent}>
             <h3>My programing timeline</h3>
             <label>
               Moje ostatnie 4 lata które były przesiąknięte programowaniem
@@ -44,7 +44,7 @@ const WorkExperience: FC = () => {
 
         <StyledWorkExperienceContent>
           <WorkExperienceList />
-          <StyledButtonSecondary ref={workExperienceCta}>
+          <StyledButtonSecondary ref={refWorkExperienceCta}>
             Go to Cv
           </StyledButtonSecondary>
         </StyledWorkExperienceContent>
@@ -53,4 +53,4 @@ const WorkExperience: FC = () => {
   );
 };
 
-export default WorkExperience;
+export default ComponentWorkExperience;

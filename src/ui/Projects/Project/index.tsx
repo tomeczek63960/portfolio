@@ -1,19 +1,19 @@
 import React, { FC } from "react";
-import CustomImage from "src/ui/Image";
 import { StyledProject, StyledProjectHover } from "./style";
-import { ProjectProps } from "./types";
+import { PropsProject } from "./types";
+import CustomImage from "src/ui/Image";
 import { useProjectScrollAnimation } from "src/hooks/useProjectScrollAnimation";
 
-const ProjectComponent: FC<ProjectProps> = ({ project, onClickFunction }) => {
-  const [projectHover, projectHoverLine] = useProjectScrollAnimation();
+const ComponentProject: FC<PropsProject> = ({ project, onClickFunction }) => {
+  const [refProjectHover, refProjectHoverLine] = useProjectScrollAnimation();
 
   return (
     <StyledProject onClick={() => onClickFunction(project)}>
       <CustomImage url={project.Image.url} />
-      <StyledProjectHover ref={projectHover}>
+      <StyledProjectHover ref={refProjectHover}>
         <h4>
           {project.Title}
-          <span ref={projectHoverLine}></span>
+          <span ref={refProjectHoverLine}></span>
         </h4>
         <p>{project.Description}</p>
       </StyledProjectHover>
@@ -21,4 +21,4 @@ const ProjectComponent: FC<ProjectProps> = ({ project, onClickFunction }) => {
   );
 };
 
-export default ProjectComponent;
+export default ComponentProject;

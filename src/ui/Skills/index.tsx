@@ -20,12 +20,12 @@ import StyledComponents from "../../../public/svg/styled-components.svg";
 import Php from "../../../public/svg/php.svg";
 import Pimcore from "../../../public/svg/pimcore.svg";
 import Shopware from "../../../public/svg/shopware.svg";
-import HeadingComponent from "src/ui/Heading";
+import Heading from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
 import { StyledSkillsSection } from "./style";
 import Carousel from "src/ui/Skills/Carousel";
 
-const Skills: FC = () => {
+const ComponentSkills: FC = () => {
   const jsSkills = [
     {
       icon: Javascript,
@@ -182,9 +182,9 @@ const Skills: FC = () => {
 
   return (
     <StyledSkillsSection>
-      <HeadingComponent tagName="h2" color="#6A82FB">
+      <Heading tagName="h2" color="#6A82FB">
         Stack technologiczny
-      </HeadingComponent>
+      </Heading>
       <Paragraph>
         Poniżej przedstawiam swój stack technologiczny, jednak warto też mieć na
         uwadze że nic co posiada dokumentację nie jest mi straszne 😱
@@ -193,17 +193,17 @@ const Skills: FC = () => {
         Szybko się uczę oraz jestem otwarty na nowe doświadczenia 🐣
       </Paragraph>
 
-      <HeadingComponent tagName="h3" color="#7928ca" selectionColor="#6A82FB">
+      <Heading tagName="h3" color="#7928ca" selectionColor="#6A82FB">
         Umiejętności czysto jsowe
-      </HeadingComponent>
+      </Heading>
       <Carousel items={jsSkills} />
 
-      <HeadingComponent tagName="h3" color="#7928ca" selectionColor="#6A82FB">
+      <Heading tagName="h3" color="#7928ca" selectionColor="#6A82FB">
         Narzędzia, Cmsy, Headless cmsy oraz wiedzą ogólna
-      </HeadingComponent>
+      </Heading>
       <Carousel items={skills} />
     </StyledSkillsSection>
   );
 };
 
-export default Skills;
+export default ComponentSkills;

@@ -1,4 +1,4 @@
-export interface InputProps {
+export interface PropsInput {
   type: string;
   placeholder: string;
   validation: Function;

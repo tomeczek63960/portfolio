@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface ScrollTriggerState {
+export interface IScrollTriggerState {
   isActive: boolean;
 }
-const initialState: ScrollTriggerState = {
+const initialState: IScrollTriggerState = {
   isActive: false,
 };
 export const scrollTrigger = createSlice({

@@ -6,9 +6,12 @@ import {
   StyledListItemLineDot,
 } from "./style";
 import ArrowDown from "../../../../public/svg/arrow-down.svg";
-import { WrokExperienceProps } from "./types";
+import { PropsWrokExperience } from "./types";
 
-const WorkExperienceListItem: FC<WrokExperienceProps> = ({ item, order }) => {
+const ComponentWorkExperienceListItem: FC<PropsWrokExperience> = ({
+  item,
+  order,
+}) => {
   return (
     <StyledListItem>
       <StyledListItemLine className="line" order={order}>
@@ -26,4 +29,4 @@ const WorkExperienceListItem: FC<WrokExperienceProps> = ({ item, order }) => {
   );
 };
 
-export default WorkExperienceListItem;
+export default ComponentWorkExperienceListItem;

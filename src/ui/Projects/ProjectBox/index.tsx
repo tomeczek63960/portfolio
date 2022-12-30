@@ -14,25 +14,25 @@ import {
   StyledProjectBoxCategories,
   StyledProjectBoxText,
 } from "./style";
-import { ProjectBoxProps } from "./types";
+import { PropsProjectBox } from "./types";
 import { isTruthy } from "src/helpers/checkFalsyType";
 import { useProjectBoxAnimation } from "src/hooks/useProjectBoxAnimation";
 
-const ProjectBoxComponent: FC<ProjectBoxProps> = ({
+const ComponentProjectBox: FC<PropsProjectBox> = ({
   activeProject,
   onCloseFunction,
   isActiveProjectBox,
 }) => {
-  const [projectBox, projectBoxShadow] =
+  const [refProjectBox, refProjectBoxShadow] =
     useProjectBoxAnimation(isActiveProjectBox);
 
   return (
     <>
       <StyledProjectBoxShadow
-        ref={projectBoxShadow}
+        ref={refProjectBoxShadow}
         onClick={() => onCloseFunction(false)}
       />
-      <StyledProjectBox className="blured" ref={projectBox}>
+      <StyledProjectBox className="blured" ref={refProjectBox}>
         <StyledProjectBoxClose>
           <ArrowLeft onClick={() => onCloseFunction(false)} />
         </StyledProjectBoxClose>
@@ -90,4 +90,4 @@ const ProjectBoxComponent: FC<ProjectBoxProps> = ({
   );
 };
 
-export default ProjectBoxComponent;
+export default ComponentProjectBox;

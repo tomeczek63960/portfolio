@@ -1,3 +1,3 @@
-export interface SocialMediaProps {
+export interface PropsSocialMedia {
   theme?: string;
 }

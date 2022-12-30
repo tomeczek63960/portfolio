@@ -1,8 +1,8 @@
-export interface WrokExperienceItem {
+export interface IWrokExperienceItem {
   date: string;
   content: string;
 }
-export interface WrokExperienceProps {
-  item: WrokExperienceItem;
+export interface PropsWrokExperience {
+  item: IWrokExperienceItem;
   order: string;
 }

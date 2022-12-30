@@ -5,47 +5,47 @@ import {
   StyledCvCardWrapper,
   StyedCvCard,
   StyledCvCardHead,
-  StyledDownloadCvIcon,
-  StyledDownloadCvLink,
+  StyledCvDownloadIcon,
+  StyledCvDownloadLink,
   StyedCvCardContent,
-  StyledCardListItem,
+  StyledCvCardListItem,
 } from "./style";
 
-const CvBoxComponent: FC = () => {
-  const [ul] = useScrollTrigger(0.6, "children") as [
+const ComponentCvBox: FC = () => {
+  const [refUl] = useScrollTrigger(0.6, "children") as [
     RefObject<HTMLUListElement>
   ];
-  const [box] = useScrollTrigger(0.6, "children") as [
+  const [refBox] = useScrollTrigger(0.6, "children") as [
     RefObject<HTMLDivElement>
   ];
   return (
     <StyledCvCardWrapper position="left">
       <StyedCvCard position="left">
-        <StyledCvCardHead ref={box}>
-          <StyledDownloadCvIcon href="/cv.pdf">
+        <StyledCvCardHead ref={refBox}>
+          <StyledCvDownloadIcon href="/cv.pdf">
             <Pdf />
-          </StyledDownloadCvIcon>
-          <StyledDownloadCvLink href="/cv.pdf" download>
+          </StyledCvDownloadIcon>
+          <StyledCvDownloadLink href="/cv.pdf" download>
             Download CV
-          </StyledDownloadCvLink>
+          </StyledCvDownloadLink>
         </StyledCvCardHead>
-        <StyedCvCardContent position="left" ref={ul}>
-          <StyledCardListItem>
+        <StyedCvCardContent position="left" ref={refUl}>
+          <StyledCvCardListItem>
             Spodobały Ci się moje projekty
-          </StyledCardListItem>
-          <StyledCardListItem>
+          </StyledCvCardListItem>
+          <StyledCvCardListItem>
             Mój stack technologiczny pasuje do twojej firmy/ogłoszenia
-          </StyledCardListItem>
-          <StyledCardListItem>
+          </StyledCvCardListItem>
+          <StyledCvCardListItem>
             Oraz moje doświadczenie jest tym czego szukasz?
-          </StyledCardListItem>
-          <StyledCardListItem>
+          </StyledCvCardListItem>
+          <StyledCvCardListItem>
             kliknij w link powyżej żeby pobrać moje Cv 😊.
-          </StyledCardListItem>
+          </StyledCvCardListItem>
         </StyedCvCardContent>
       </StyedCvCard>
     </StyledCvCardWrapper>
   );
 };
 
-export default CvBoxComponent;
+export default ComponentCvBox;

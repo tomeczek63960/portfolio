@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { H1, H2, H3, H4, H5, H6 } from "./style";
+import { PropsHeading, propsHeadingDefault } from "./types";
 import { useAnimatedChars } from "src/hooks/useAnimatedChars";
-import { HeadingProps, headingDefaultProps } from "./types";
 
-const HeadingComponent: FC<HeadingProps> = ({
+const ComponentHeading: FC<PropsHeading> = ({
   tagName,
   children,
   ...props
@@ -27,5 +27,5 @@ const HeadingComponent: FC<HeadingProps> = ({
   );
 };
 
-HeadingComponent.defaultProps = headingDefaultProps;
-export default HeadingComponent;
+ComponentHeading.defaultProps = propsHeadingDefault;
+export default ComponentHeading;

@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import Head from "next/head";
 import { isTruthy } from "src/helpers/checkFalsyType";
-import { LayoutProps } from "./Layout";
+import { PropsLayout } from "./Layout";
 
-const DocHead: FC<LayoutProps> = (props) => (
+const DocHead: FC<PropsLayout> = (props) => (
   <Head>
     <title>{props.title}</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />

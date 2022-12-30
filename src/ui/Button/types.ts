@@ -1,3 +1,3 @@
-export interface ButtonProps {
+export interface PropsButton {
   children: React.ReactNode;
 }

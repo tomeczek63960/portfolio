@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface TransitionState {
+export interface ITransitionState {
   isInitAnimation: boolean;
 }
-const initialState: TransitionState = {
+const initialState: ITransitionState = {
   isInitAnimation: true,
 };
 export const transitionSlice = createSlice({

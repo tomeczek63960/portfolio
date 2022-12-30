@@ -1,21 +1,20 @@
-import React, { useRef, FC } from "react";
+import React, { FC } from "react";
 import {
   StyledButton,
   StyledButtonBorder,
   StyledButtonBorderAfter,
 } from "./style";
-import { ButtonProps } from "./types";
+import { PropsButton } from "./types";
 import { useInputAnimation } from "src/hooks/useInputAnimation";
 
-const ButtonComponent: FC<ButtonProps> = ({ children }) => {
-  const btnRef = useRef<HTMLButtonElement>(null);
-  const [tl, buttonBorder, buttonBorderAfter] = useInputAnimation();
+const ComponentButton: FC<PropsButton> = ({ children }) => {
+  const [timeline, refButtonBorder, refButtonBorderAfter] = useInputAnimation();
 
   const onHover = (): void => {
-    tl.play();
+    timeline.play();
   };
   const onBlur = (): void => {
-    tl.reverse();
+    timeline.reverse();
   };
 
   return (
@@ -24,13 +23,12 @@ const ButtonComponent: FC<ButtonProps> = ({ children }) => {
       onTouchEnd={onBlur}
       onMouseOver={onHover}
       onMouseLeave={onBlur}
-      ref={btnRef}
     >
       {children}
-      <StyledButtonBorder ref={buttonBorder} />
-      <StyledButtonBorderAfter ref={buttonBorderAfter} />
+      <StyledButtonBorder ref={refButtonBorder} />
+      <StyledButtonBorderAfter ref={refButtonBorderAfter} />
     </StyledButton>
   );
 };
 
-export default ButtonComponent;
+export default ComponentButton;

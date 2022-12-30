@@ -9,7 +9,7 @@ const StyledCaseStudiesSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
 
-const CaseStudies: FC = () => {
+const ViewCaseStudies: FC = () => {
   return (
     <StyledCaseStudiesSection>
       <HeadingComponent tagName="h2" color="#6A82FB">
@@ -30,4 +30,4 @@ const CaseStudies: FC = () => {
   );
 };
 
-export default CaseStudies;
+export default ViewCaseStudies;
