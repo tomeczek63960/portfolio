@@ -1,10 +1,10 @@
-interface Paths {
+interface IPaths {
   home: string;
   contact: string;
   caseStudies: string;
   showCase: string;
 }
-export const getPaths = (locale: string): Paths => {
+export const getPaths = (locale: string): IPaths => {
   switch (locale) {
     case "pl":
       return {

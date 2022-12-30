@@ -6,20 +6,20 @@ import { isFalsy } from "src/helpers/checkFalsyType";
 export const useProjectBoxAnimation = (
   isActiveProjectBox: boolean
 ): [RefObject<HTMLDivElement>, RefObject<HTMLDivElement>] => {
-  const projectBox = useRef<HTMLDivElement>(null);
-  const projectBoxShadow = useRef<HTMLDivElement>(null);
-  const timeline = useRef<GSAPTimeline>();
+  const refProjectBox = useRef<HTMLDivElement>(null);
+  const refProjectBoxShadow = useRef<HTMLDivElement>(null);
+  const refTimeline = useRef<GSAPTimeline>();
 
   useIsomorphicLayoutEffect(() => {
-    timeline.current = gsap.timeline({ paused: true });
-    timeline.current.add(
-      gsap.to(projectBox.current, {
+    refTimeline.current = gsap.timeline({ paused: true });
+    refTimeline.current.add(
+      gsap.to(refProjectBox.current, {
         duration: 0.3,
         x: 0,
       })
     );
-    timeline.current.add(
-      gsap.to(projectBoxShadow.current, {
+    refTimeline.current.add(
+      gsap.to(refProjectBoxShadow.current, {
         duration: 0.3,
         opacity: 1,
         visibility: "visible",
@@ -27,7 +27,7 @@ export const useProjectBoxAnimation = (
       "-=0.3"
     );
     return () => {
-      timeline.current?.clear().kill();
+      refTimeline.current?.clear().kill();
     };
   }, []);
 
@@ -35,10 +35,10 @@ export const useProjectBoxAnimation = (
     const html = document.querySelector("html");
     if (isActiveProjectBox) {
       html?.classList.add("no-scroll");
-      timeline.current
+      refTimeline.current
         ?.play()
         .then(() => {
-          gsap.to(projectBox.current, {
+          gsap.to(refProjectBox.current, {
             duration: 0.3,
             filter: "blur(0px)",
             delay: 0.2,
@@ -49,12 +49,12 @@ export const useProjectBoxAnimation = (
         });
     } else {
       html?.classList.remove("no-scroll");
-      timeline.current
+      refTimeline.current
         ?.reverse()
         .then(() => {
-          if (isFalsy(projectBox.current)) return;
-          projectBox.current.scrollTop = 0;
-          gsap.set(projectBox.current, {
+          if (isFalsy(refProjectBox.current)) return;
+          refProjectBox.current.scrollTop = 0;
+          gsap.set(refProjectBox.current, {
             filter: "blur(2px)",
           });
         })
@@ -63,5 +63,5 @@ export const useProjectBoxAnimation = (
         });
     }
   }, [isActiveProjectBox]);
-  return [projectBox, projectBoxShadow];
+  return [refProjectBox, refProjectBoxShadow];
 };

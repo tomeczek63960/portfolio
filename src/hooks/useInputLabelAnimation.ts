@@ -7,11 +7,11 @@ export const useInputLabelAnimation = (): [
   GSAPTimeline,
   RefObject<HTMLLabelElement>
 ] => {
-  const timeline = useRef<GSAPTimeline>(gsap.timeline({ paused: true }));
-  const labelRef = useRef<HTMLLabelElement>(null);
+  const refTimeline = useRef<GSAPTimeline>(gsap.timeline({ paused: true }));
+  const refLabel = useRef<HTMLLabelElement>(null);
 
   useIsomorphicLayoutEffect(() => {
-    timeline.current.to(labelRef.current, {
+    refTimeline.current.to(refLabel.current, {
       duration: 0.2,
       ease: "M0,0 C0.4,0 0.2,1 1,1",
       color: colors.white,
@@ -19,9 +19,9 @@ export const useInputLabelAnimation = (): [
       yPercent: -120,
     });
     return () => {
-      timeline.current?.clear().kill();
+      refTimeline.current?.clear().kill();
     };
   }, []);
 
-  return [timeline.current, labelRef];
+  return [refTimeline.current, refLabel];
 };

@@ -6,40 +6,40 @@ import type { IRootState } from "src/store";
 
 export const usePerformenceSvgAnimation = (): [RefObject<SVGSVGElement>] => {
   const { isActive } = useSelector((state: IRootState) => state.scrollTrigger);
-  const svgRef = useRef<SVGSVGElement>(null);
-  const tl = useRef<GSAPTimeline>();
+  const refSvg = useRef<SVGSVGElement>(null);
+  const refTimeline = useRef<GSAPTimeline>();
 
   useIsomorphicLayoutEffect(() => {
     if (!isActive) return;
-    tl.current = gsap.timeline({
+    refTimeline.current = gsap.timeline({
       scrollTrigger: {
-        trigger: svgRef.current,
+        trigger: refSvg.current,
         start: "top center",
         end: "center bottom",
       },
     });
-    tl.current.to(".performence-svg .path-bottom-line", {
+    refTimeline.current.to(".performence-svg .path-bottom-line", {
       duration: 0.7,
       opacity: 1,
       delay: 0.5,
     });
-    tl.current.to(".performence-svg .path-bar-1", {
+    refTimeline.current.to(".performence-svg .path-bar-1", {
       duration: 0.6,
       transform: "scaleY(1)",
     });
-    tl.current.to(".performence-svg .path-bar-2", {
+    refTimeline.current.to(".performence-svg .path-bar-2", {
       duration: 0.6,
       transform: "scaleY(1)",
     });
-    tl.current.to(".performence-svg .path-bar-3", {
+    refTimeline.current.to(".performence-svg .path-bar-3", {
       duration: 0.6,
       transform: "scaleY(1)",
     });
-    tl.current.to(".performence-svg .path-bar-4", {
+    refTimeline.current.to(".performence-svg .path-bar-4", {
       duration: 0.6,
       transform: "scaleY(1)",
     });
-    tl.current.to(
+    refTimeline.current.to(
       ".performence-svg .path-dot-1",
       {
         duration: 0.4,
@@ -47,15 +47,15 @@ export const usePerformenceSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       },
       "dot-1"
     );
-    tl.current.to(".performence-svg .path-dot-2", {
+    refTimeline.current.to(".performence-svg .path-dot-2", {
       duration: 0.4,
       opacity: 1,
     });
-    tl.current.to(".performence-svg .path-dot-3", {
+    refTimeline.current.to(".performence-svg .path-dot-3", {
       duration: 0.4,
       opacity: 1,
     });
-    tl.current.to(
+    refTimeline.current.to(
       ".performence-svg .path-progress-line",
       {
         duration: 1.5,
@@ -63,7 +63,7 @@ export const usePerformenceSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       },
       "dot-1"
     );
-    tl.current.to(
+    refTimeline.current.to(
       ".performence-svg .path-person",
       {
         duration: 0.8,
@@ -71,13 +71,13 @@ export const usePerformenceSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       },
       "-=0.5"
     );
-    tl.current.to(".performence-svg .path-background", {
+    refTimeline.current.to(".performence-svg .path-background", {
       duration: 0.7,
       opacity: 0.18,
     });
     return () => {
-      tl.current?.clear().kill();
+      refTimeline.current?.clear().kill();
     };
   }, [isActive]);
-  return [svgRef];
+  return [refSvg];
 };

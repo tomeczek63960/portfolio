@@ -7,23 +7,23 @@ import {
   StyledPageAnimationBackground,
   StyledPageContent,
 } from "./style";
-import { LoadingAnimationProps } from "./types";
+import { PropsLoadingAnimation } from "./types";
 
-const LoadingAnimation: FC<LoadingAnimationProps> = ({ children }) => {
+const ComponentLoadingAnimation: FC<PropsLoadingAnimation> = ({ children }) => {
   const {
     displayChildren,
-    pageContent,
-    pageAnimationBall,
-    pageAnimationText,
-    pageAnimationBackground,
+    refPageContent,
+    refPageAnimationBall,
+    refPageAnimationText,
+    refPageAnimationBackground,
   } = useLoadingAnimation(children);
   return (
     <>
       <StyledPageAnimation>
         <StyledPageAnimationBall
-          ref={pageAnimationBall}
+          ref={refPageAnimationBall}
         ></StyledPageAnimationBall>
-        <StyledPageAnimationText ref={pageAnimationText}>
+        <StyledPageAnimationText ref={refPageAnimationText}>
           <svg
             width="61.3"
             height="71.4"
@@ -66,14 +66,16 @@ const LoadingAnimation: FC<LoadingAnimationProps> = ({ children }) => {
           </svg>
         </StyledPageAnimationText>
         <StyledPageAnimationBackground
-          ref={pageAnimationBackground}
+          ref={refPageAnimationBackground}
           className="page-animation-background"
         ></StyledPageAnimationBackground>
       </StyledPageAnimation>
 
-      <StyledPageContent ref={pageContent}>{displayChildren}</StyledPageContent>
+      <StyledPageContent ref={refPageContent}>
+        {displayChildren}
+      </StyledPageContent>
     </>
   );
 };
 
-export default LoadingAnimation;
+export default ComponentLoadingAnimation;

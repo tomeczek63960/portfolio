@@ -1,7 +1,7 @@
 import { useRef, RefObject } from "react";
 import { gsap } from "gsap";
-import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { useSelector } from "react-redux";
+import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import type { IRootState } from "src/store";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
@@ -9,13 +9,13 @@ export const useScrollTrigger = (
   scrollTriggerStart?: number,
   type?: string
 ): [RefObject<HTMLElement>] => {
-  const element = useRef<HTMLElement>(null);
+  const refElement = useRef<HTMLElement>(null);
   const { isActive } = useSelector((state: IRootState) => state.scrollTrigger);
 
   useIsomorphicLayoutEffect(() => {
-    if (!isActive || element.current == null) return;
+    if (!isActive || refElement.current == null) return;
     const elements =
-      type === "children" ? element.current.children : element.current;
+      type === "children" ? refElement.current.children : refElement.current;
     gsap.to(elements, {
       duration: 0.5,
       y: 0,
@@ -23,7 +23,7 @@ export const useScrollTrigger = (
       stagger: 0.2,
       pointerEvents: "all",
       scrollTrigger: {
-        trigger: element.current,
+        trigger: refElement.current,
         start: () =>
           `top ${
             window.innerHeight *
@@ -38,5 +38,5 @@ export const useScrollTrigger = (
     });
   }, [isActive]);
 
-  return [element];
+  return [refElement];
 };

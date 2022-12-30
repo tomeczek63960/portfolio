@@ -24,7 +24,7 @@ const getAngle = (
   return step * inc;
 };
 
-interface CarouselConfig {
+interface ICarouselConfig {
   slides: HTMLCollectionOf<HTMLElement> | never[];
   activeSlide: number;
   dots: HTMLCollectionOf<HTMLElement> | never[];
@@ -34,7 +34,7 @@ interface CarouselConfig {
   autoplayId: NodeJS.Timer | undefined;
 }
 
-interface AnimationObject {
+interface IAnimationObject {
   duration: number;
   opacity?: number;
   y?: number | string;
@@ -55,11 +55,11 @@ export const useCircleCarousel = (
   MouseEventHandler<HTMLDivElement>,
   MouseEventHandler<HTMLDivElement>
 ] => {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const pagination = useRef<HTMLDivElement>(null);
-  const carouselTextRef = useRef<HTMLDivElement>(null);
-  const slideTimeline = useRef(gsap.timeline());
-  const configObject = useRef<CarouselConfig>({
+  const refCarousel = useRef<HTMLDivElement>(null);
+  const refPagination = useRef<HTMLDivElement>(null);
+  const refCarouselText = useRef<HTMLDivElement>(null);
+  const refTimelineSlide = useRef(gsap.timeline());
+  const refConfig = useRef<ICarouselConfig>({
     slides: [],
     activeSlide: 0,
     dots: [],
@@ -70,14 +70,14 @@ export const useCircleCarousel = (
   });
 
   useIsomorphicLayoutEffect((): void => {
-    const dots = pagination.current?.children as
+    const dots = refPagination.current?.children as
       | HTMLCollectionOf<HTMLElement>
       | never[];
-    const slides = carouselTextRef.current?.children as
+    const slides = refCarouselText.current?.children as
       | HTMLCollectionOf<HTMLElement>
       | never[];
-    configObject.current = {
-      ...configObject.current,
+    refConfig.current = {
+      ...refConfig.current,
       slides,
       dots,
       step: -360 / (isTruthy(dots) ? dots.length : 0),
@@ -86,23 +86,23 @@ export const useCircleCarousel = (
     Array.from(dots).forEach((dot: HTMLElement, index: number) => {
       dot.style.transform = `rotate(${(360 / dots.length) * index}deg)`;
     });
-    if (isTruthy(pagination.current))
-      pagination.current.style.transitionDuration = `${speed}ms`;
-    if (isTruthy(autoplay) && isFalsy(configObject.current.autoplayId))
+    if (isTruthy(refPagination.current))
+      refPagination.current.style.transitionDuration = `${speed}ms`;
+    if (isTruthy(autoplay) && isFalsy(refConfig.current.autoplayId))
       startAutoplay();
   }, []);
 
   const startAutoplay = (): void => {
-    configObject.current.autoplayId = setInterval(() => {
+    refConfig.current.autoplayId = setInterval(() => {
       if (isTruthy(document) && !document.hidden) {
-        setSlide(configObject.current.activeSlide + 1);
+        setSlide(refConfig.current.activeSlide + 1);
       }
     }, autoplay);
   };
   const stopAutoplay = (): void => {
-    clearInterval(configObject.current.autoplayId);
+    clearInterval(refConfig.current.autoplayId);
   };
-  const getTransformAnimateObject = (type: string = "in"): AnimationObject => {
+  const getTransformAnimateObject = (type: string = "in"): IAnimationObject => {
     const animationObject = {
       duration: 0.3,
       opacity: type === "in" ? 1 : 0,
@@ -112,7 +112,7 @@ export const useCircleCarousel = (
     };
     return animationObject;
   };
-  const getTransformSvgObject = (type: string = "in"): AnimationObject => {
+  const getTransformSvgObject = (type: string = "in"): IAnimationObject => {
     const animationObject = {
       duration: 0.5,
       scale: type === "out" ? "1" : "1.5",
@@ -125,8 +125,8 @@ export const useCircleCarousel = (
   const getSlideIndex = (index: number): number => {
     let activeIndex = index;
     if (index < 0) {
-      activeIndex = configObject.current.slides.length - 1;
-    } else if (index >= configObject.current.slides.length) {
+      activeIndex = refConfig.current.slides.length - 1;
+    } else if (index >= refConfig.current.slides.length) {
       activeIndex = 0;
     }
     return activeIndex;
@@ -140,7 +140,7 @@ export const useCircleCarousel = (
       if (target.parentElement == null) break;
       target = target.parentElement;
     }
-    return Array.from(configObject.current.dots).findIndex(
+    return Array.from(refConfig.current.dots).findIndex(
       (item: HTMLElement) => item === target
     );
   };
@@ -149,16 +149,16 @@ export const useCircleCarousel = (
     index: number,
     classAction: "add" | "remove"
   ): void => {
-    const slide = configObject.current.slides[index];
-    const dots = configObject.current.dots[index];
+    const slide = refConfig.current.slides[index];
+    const dots = refConfig.current.dots[index];
     const svg = dots.querySelector("svg");
     const isEnterAnimation = classAction === "add";
-    slideTimeline.current.to(
+    refTimelineSlide.current.to(
       svg,
       getTransformSvgObject(isEnterAnimation ? "in" : "out"),
       "start"
     );
-    slideTimeline.current.to(
+    refTimelineSlide.current.to(
       slide.children,
       getTransformAnimateObject(isEnterAnimation ? "in" : "out")
     );
@@ -167,7 +167,7 @@ export const useCircleCarousel = (
   const setSlide = (
     event: ReactMouseEvent<HTMLDivElement, MouseEvent> | number
   ): void => {
-    const prev = configObject.current.activeSlide;
+    const prev = refConfig.current.activeSlide;
     const index =
       typeof event === "number" ? event : findClickedElementIndex(event);
     const active = getSlideIndex(index);
@@ -175,23 +175,23 @@ export const useCircleCarousel = (
     changeSlideAnimation(prev, "remove");
     changeSlideAnimation(active, "add");
 
-    configObject.current.prevSlide = prev;
-    configObject.current.activeSlide = active;
+    refConfig.current.prevSlide = prev;
+    refConfig.current.activeSlide = active;
 
-    if (pagination.current == null) return;
-    configObject.current.angle += getAngle(
-      configObject.current.dots.length,
+    if (refPagination.current == null) return;
+    refConfig.current.angle += getAngle(
+      refConfig.current.dots.length,
       active,
       prev,
-      configObject.current.step
+      refConfig.current.step
     );
-    pagination.current.style.transform = `translate(-50%, -50%) rotate(${configObject.current.angle}deg)`;
+    refPagination.current.style.transform = `translate(-50%, -50%) rotate(${refConfig.current.angle}deg)`;
   };
 
   return [
-    carouselRef,
-    pagination,
-    carouselTextRef,
+    refCarousel,
+    refPagination,
+    refCarouselText,
     startAutoplay,
     stopAutoplay,
     setSlide,

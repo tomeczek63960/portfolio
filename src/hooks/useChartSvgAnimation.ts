@@ -6,24 +6,24 @@ import type { IRootState } from "src/store";
 
 export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
   const { isActive } = useSelector((state: IRootState) => state.scrollTrigger);
-  const svgRef = useRef<SVGSVGElement>(null);
-  const tl = useRef<GSAPTimeline>();
+  const refSvg = useRef<SVGSVGElement>(null);
+  const refTimeline = useRef<GSAPTimeline>();
 
   useIsomorphicLayoutEffect(() => {
     if (!isActive) return;
-    tl.current = gsap.timeline({
+    refTimeline.current = gsap.timeline({
       scrollTrigger: {
-        trigger: svgRef.current,
+        trigger: refSvg.current,
         start: "top center",
         end: "center bottom",
       },
     });
 
-    tl.current.to(".chart-svg .path-background-line", {
+    refTimeline.current.to(".chart-svg .path-background-line", {
       duration: 1,
       strokeDashoffset: 0,
     });
-    tl.current.to(
+    refTimeline.current.to(
       ".chart-svg .path-floor",
       {
         duration: 1,
@@ -31,12 +31,12 @@ export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       },
       "-=1"
     );
-    tl.current.to(".chart-svg .path-table", {
+    refTimeline.current.to(".chart-svg .path-table", {
       duration: 2,
       fill: "#935b50",
       strokeDashoffset: 0,
     });
-    tl.current.to(
+    refTimeline.current.to(
       ".chart-svg .path-table-bottom",
       {
         duration: 1,
@@ -44,7 +44,7 @@ export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       },
       "-=0.4"
     );
-    tl.current.to(
+    refTimeline.current.to(
       ".chart-svg .path-table-bottom",
       {
         duration: 1,
@@ -52,38 +52,38 @@ export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       },
       "-=0.4"
     );
-    tl.current.to(".chart-svg .path-laptop", {
+    refTimeline.current.to(".chart-svg .path-laptop", {
       duration: 0.6,
       opacity: 1,
     });
-    tl.current.to(".chart-svg .path-elements", {
+    refTimeline.current.to(".chart-svg .path-elements", {
       duration: 1.5,
       opacity: 1,
     });
-    tl.current.to(".chart-svg .path-cup", {
+    refTimeline.current.to(".chart-svg .path-cup", {
       duration: 0.3,
       opacity: 1,
     });
-    tl.current.to(".chart-svg .path-pot", {
+    refTimeline.current.to(".chart-svg .path-pot", {
       duration: 0.5,
       opacity: 1,
       y: 0,
     });
-    tl.current.to(".chart-svg .path-pot-elements", {
+    refTimeline.current.to(".chart-svg .path-pot-elements", {
       duration: 0.6,
       scale: 1,
       stagger: 0.1,
     });
-    tl.current.to(".chart-svg .path-leaf", {
+    refTimeline.current.to(".chart-svg .path-leaf", {
       duration: 0.3,
       opacity: 1,
       stagger: 0.1,
     });
-    tl.current.to(".chart-svg .path-dumpster-background", {
+    refTimeline.current.to(".chart-svg .path-dumpster-background", {
       duration: 0.4,
       opacity: 1,
     });
-    tl.current.to(
+    refTimeline.current.to(
       ".chart-svg .path-dumpster-top",
       {
         duration: 1,
@@ -92,7 +92,7 @@ export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       },
       "dumpster"
     );
-    tl.current.to(
+    refTimeline.current.to(
       ".chart-svg .path-dumpster-dashes",
       {
         duration: 1.5,
@@ -100,7 +100,7 @@ export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       },
       "dumpster"
     );
-    tl.current.to(
+    refTimeline.current.to(
       ".chart-svg .path-chart-legs",
       {
         duration: 1,
@@ -108,7 +108,7 @@ export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       },
       "path-chart-legs"
     );
-    tl.current.to(
+    refTimeline.current.to(
       ".chart-svg .path-chart-legs",
       {
         duration: 1,
@@ -117,7 +117,7 @@ export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       },
       "path-chart-legs"
     );
-    tl.current.to(
+    refTimeline.current.to(
       ".chart-svg .path-chart-background",
       {
         duration: 1,
@@ -126,45 +126,45 @@ export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       },
       "path-chart-legs"
     );
-    tl.current.to(".chart-svg .path-chart-lines-first", {
+    refTimeline.current.to(".chart-svg .path-chart-lines-first", {
       duration: 1,
       strokeDashoffset: 0,
     });
-    tl.current.to(".chart-svg .path-chart-lines-second", {
+    refTimeline.current.to(".chart-svg .path-chart-lines-second", {
       duration: 2.5,
       strokeDashoffset: 0,
     });
-    tl.current.to(".chart-svg .path-chart-card", {
+    refTimeline.current.to(".chart-svg .path-chart-card", {
       duration: 1,
       opacity: 1,
     });
-    tl.current.to(".chart-svg .path-leaf-5", {
+    refTimeline.current.to(".chart-svg .path-leaf-5", {
       duration: 0.3,
       opacity: 1,
       stagger: 0.1,
     });
-    tl.current.to(".chart-svg .path-cup", {
+    refTimeline.current.to(".chart-svg .path-cup", {
       duration: 0.3,
       opacity: 1,
       stagger: 0.1,
     });
-    tl.current.to(".chart-svg .path-lamp-bottom", {
+    refTimeline.current.to(".chart-svg .path-lamp-bottom", {
       duration: 0.7,
       opacity: 1,
     });
-    tl.current.to(".chart-svg .path-lamp-middle", {
+    refTimeline.current.to(".chart-svg .path-lamp-middle", {
       duration: 0.7,
       strokeDashoffset: 0,
     });
-    tl.current.to(".chart-svg .path-lamp-top", {
+    refTimeline.current.to(".chart-svg .path-lamp-top", {
       duration: 0.7,
       opacity: 1,
     });
-    tl.current.to(".chart-svg .path-background", {
+    refTimeline.current.to(".chart-svg .path-background", {
       duration: 1,
       opacity: 1,
     });
-    tl.current.to(
+    refTimeline.current.to(
       ".chart-svg .path-leaf-1",
       {
         duration: 0.5,
@@ -172,7 +172,7 @@ export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       },
       "leaf"
     );
-    tl.current.to(
+    refTimeline.current.to(
       ".chart-svg .path-leaf-2",
       {
         duration: 0.5,
@@ -180,7 +180,7 @@ export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
       },
       "leaf"
     );
-    tl.current.to(
+    refTimeline.current.to(
       ".chart-svg .path-leaf-3",
       {
         duration: 0.5,
@@ -190,8 +190,8 @@ export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
     );
 
     return () => {
-      tl.current?.clear().kill();
+      refTimeline.current?.clear().kill();
     };
   }, [isActive]);
-  return [svgRef];
+  return [refSvg];
 };

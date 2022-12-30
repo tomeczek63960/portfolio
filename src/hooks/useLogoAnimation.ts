@@ -8,37 +8,37 @@ export const useLogoAnimation = (): [
   RefObject<SVGSVGElement>,
   RefObject<SVGSVGElement>
 ] => {
-  const tl = useRef<GSAPTimeline>();
+  const refTimeline = useRef<GSAPTimeline>();
   const { isActive } = useSelector((state: IRootState) => state.scrollTrigger);
-  const tLetter = useRef<SVGSVGElement>(null);
-  const kLetter = useRef<SVGSVGElement>(null);
+  const refTLetter = useRef<SVGSVGElement>(null);
+  const refKLetter = useRef<SVGSVGElement>(null);
   useIsomorphicLayoutEffect(() => {
     if (!isActive) return;
-    tl.current = gsap.timeline({ repeat: -1 });
-    const tPath = tLetter.current?.querySelector("path");
-    const kPath = kLetter.current?.querySelector("path");
-    tl.current.to([tPath, kPath], {
+    refTimeline.current = gsap.timeline({ repeat: -1 });
+    const tPath = refTLetter.current?.querySelector("path");
+    const kPath = refKLetter.current?.querySelector("path");
+    refTimeline.current.to([tPath, kPath], {
       duration: 3,
       strokeDashoffset: 0,
     });
-    tl.current.to([tPath, kPath], {
+    refTimeline.current.to([tPath, kPath], {
       duration: 3,
       fill: "#fff",
     });
-    tl.current.to([tPath, kPath], {
+    refTimeline.current.to([tPath, kPath], {
       delay: 6,
       duration: 3,
       fill: "transparent",
     });
-    tl.current.to([tPath, kPath], {
+    refTimeline.current.to([tPath, kPath], {
       duration: 3,
       strokeDashoffset: -200,
     });
 
     return () => {
-      tl.current?.clear().kill();
+      refTimeline.current?.clear().kill();
     };
   }, [isActive]);
 
-  return [tLetter, kLetter];
+  return [refTLetter, refKLetter];
 };
