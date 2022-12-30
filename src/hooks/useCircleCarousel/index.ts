@@ -25,7 +25,6 @@ const getAngle = (
   return step * inc;
 };
 
-// TODO: fix multiple slide click text animation delay
 export const useCircleCarousel = (
   speed: number = 800,
   autoplay: number = 4500
@@ -50,6 +49,7 @@ export const useCircleCarousel = (
     step: 0,
     autoplayId: undefined,
   });
+  const refIsChangeSlideActive = useRef(false);
 
   useIsomorphicLayoutEffect(() => {
     refTimelineSlide.current = gsap.timeline();
@@ -89,7 +89,9 @@ export const useCircleCarousel = (
   const stopAutoplay = (): void => {
     clearInterval(refConfig.current.autoplayId);
   };
-  const getTransformAnimateObject = (type: string = "in"): IAnimationObject => {
+  const getTransformAnimateObject = (
+    type: "in" | "out" = "in"
+  ): IAnimationObject => {
     const animationObject = {
       duration: 0.3,
       opacity: type === "in" ? 1 : 0,
@@ -154,6 +156,11 @@ export const useCircleCarousel = (
   const setSlide = (
     event: ReactMouseEvent<HTMLDivElement, MouseEvent> | number
   ): void => {
+    if (refIsChangeSlideActive.current) return;
+    refIsChangeSlideActive.current = true;
+    setTimeout(() => {
+      refIsChangeSlideActive.current = false;
+    }, 800);
     const prev = refConfig.current.activeSlide;
     const index =
       typeof event === "number" ? event : findClickedElementIndex(event);

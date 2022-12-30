@@ -118,7 +118,7 @@ export const StyledPaginationItemDot = styled.div`
     transform: translate(-50%, -50%);
     cursor: pointer;
     svg {
-      filter: grayscale(0%);
+      filter: grayscale(0%) !important;
     }
   }
 `;
