@@ -73,7 +73,7 @@ export const StyledCvCardHead = styled.div`
   align-items: center;
   flex-direction: column;
 `;
-export const StyledDownloadCvIcon = styled.a`
+export const StyledCvDownloadIcon = styled.a`
   opacity: 0;
   transform: translateY(-30%);
   display: block;
@@ -86,7 +86,7 @@ export const StyledDownloadCvIcon = styled.a`
     filter: brightness(110%);
   }
 `;
-export const StyledDownloadCvLink = styled.a`
+export const StyledCvDownloadLink = styled.a`
   margin-top: 20px;
   position: relative;
   overflow-x: hidden;
@@ -159,7 +159,7 @@ export const StyedCvCardContent = styled.ul.attrs(
     opacity: 0.8;
   }
 `;
-export const StyledCardListItem = styled.li`
+export const StyledCvCardListItem = styled.li`
   margin-bottom: 10px;
   position: relative;
   opacity: 0;

@@ -7,13 +7,13 @@ import {
   StyledWelcomeBoxHeadInfo,
   StyledWelcomeBoxImage,
 } from "../style";
-interface WelcomeBoxHeadProps {
-  image: string;
-  name: string;
-  position: string;
-}
+import { PropsWelcomeBoxHead } from "./types";
 
-const WelcomeBoxHead: FC<WelcomeBoxHeadProps> = ({ image, name, position }) => {
+const ComponentWelcomeBoxHead: FC<PropsWelcomeBoxHead> = ({
+  image,
+  name,
+  position,
+}) => {
   return (
     <StyledWelcomeBoxHead>
       <StyledWelcomeBoxImage>
@@ -29,4 +29,4 @@ const WelcomeBoxHead: FC<WelcomeBoxHeadProps> = ({ image, name, position }) => {
   );
 };
 
-export default WelcomeBoxHead;
+export default ComponentWelcomeBoxHead;

@@ -9,23 +9,13 @@ import {
   StyledPaginationItemDot,
 } from "./style";
 
+import { IItem, PropsSkills } from "./types";
 // TODO: dodać typ zgodny z tym co zwróci Strapi
-interface Item {
-  text: {
-    heading: string;
-    text: string;
-  };
-  icon: any;
-}
-interface SkillsProps {
-  items: Item[];
-}
-
-const Skills: FC<SkillsProps> = ({ items }) => {
+const ComponentSkillsCarousel: FC<PropsSkills> = ({ items }) => {
   const [
-    carouselRef,
-    carouselPaginationRef,
-    carouselTextRef,
+    refCarousel,
+    refCarouselPagination,
+    refCarouselText,
     startAutoplay,
     stopAutoplay,
     setSlide,
@@ -33,12 +23,12 @@ const Skills: FC<SkillsProps> = ({ items }) => {
 
   return (
     <StyledCarousel
-      ref={carouselRef}
+      ref={refCarousel}
       onMouseEnter={stopAutoplay}
       onMouseLeave={startAutoplay}
     >
-      <StyledCarouselText ref={carouselTextRef}>
-        {items.map((skill: Item) => {
+      <StyledCarouselText ref={refCarouselText}>
+        {items.map((skill: IItem) => {
           return (
             <StyledCarouselTextItem key={`text-${skill.text.heading}`}>
               <h5>{skill.text.heading}</h5>
@@ -47,8 +37,8 @@ const Skills: FC<SkillsProps> = ({ items }) => {
           );
         })}
       </StyledCarouselText>
-      <StyledPagination ref={carouselPaginationRef}>
-        {items.map((skill: Item) => {
+      <StyledPagination ref={refCarouselPagination}>
+        {items.map((skill: IItem) => {
           return (
             <StyledPaginationItem
               data-carousel-item="true"
@@ -66,4 +56,4 @@ const Skills: FC<SkillsProps> = ({ items }) => {
   );
 };
 
-export default Skills;
+export default ComponentSkillsCarousel;

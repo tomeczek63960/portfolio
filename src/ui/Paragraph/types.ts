@@ -1,8 +1,8 @@
-export interface ParagraphProps {
+export interface PropsParagraph {
   children?: React.ReactNode;
   color?: string;
 }
 
-export const paragraphDefaultProps: ParagraphProps = {
+export const propsParagraphDefault: PropsParagraph = {
   color: "#cacaca",
 };

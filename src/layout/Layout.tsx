@@ -1,19 +1,19 @@
 import React, { ReactNode, FC } from "react";
+import styled from "styled-components";
 import Head from "./Head";
 import Header from "src/ui/Header/HeaderDesktop";
 import HeaderMobile from "src/ui/Header/HeaderMobile";
 // import { FormattedMessage, useIntl } from "react-intl";
-import FooterComponent from "src/ui/Footer";
-import styled from "styled-components";
+import Footer from "src/ui/Footer";
 
-const ContentWrapper = styled.div`
+const StyledContentWrapper = styled.div`
   padding-top: 80px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 `;
 
-export interface LayoutProps {
+export interface PropsLayout {
   children: ReactNode;
   title: string;
   description: string;
@@ -22,10 +22,10 @@ export interface LayoutProps {
   imageAlt?: string;
   twitter?: string;
 }
-
-const Layout: FC<LayoutProps> = (props) => {
+// TODO: update container __left/right to styled components
+const Layout: FC<PropsLayout> = (props) => {
   return (
-    <ContentWrapper>
+    <StyledContentWrapper>
       <div>
         <Head {...props} />
         <HeaderMobile />
@@ -41,8 +41,8 @@ const Layout: FC<LayoutProps> = (props) => {
         </div>
       </div>
 
-      <FooterComponent />
-    </ContentWrapper>
+      <Footer />
+    </StyledContentWrapper>
   );
 };
 

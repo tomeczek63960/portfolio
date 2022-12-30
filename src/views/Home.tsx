@@ -5,7 +5,7 @@ import WelcomeBox from "src/ui/WelcomeBox";
 import StyledCvSection from "src/ui/Cv";
 import IntroductionComponent from "src/ui/Introduction";
 
-const Home: FC = () => {
+const ViewHome: FC = () => {
   return (
     // TODO:
     // Dodać do kazdego komponentu testy
@@ -48,4 +48,4 @@ const Home: FC = () => {
   );
 };
 
-export default Home;
+export default ViewHome;

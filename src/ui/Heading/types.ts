@@ -1,4 +1,4 @@
-export interface HeadingProps {
+export interface PropsHeading {
   tagName: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   children?: React.ReactNode;
   color?: string;
@@ -6,7 +6,7 @@ export interface HeadingProps {
   selectionColor?: string;
 }
 
-export const headingDefaultProps: HeadingProps = {
+export const propsHeadingDefault: PropsHeading = {
   tagName: "h1",
   color: "white",
 };

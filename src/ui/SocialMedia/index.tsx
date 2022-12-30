@@ -2,9 +2,9 @@ import React, { forwardRef } from "react";
 import Linkedin from "../../../public/svg/linkedin.svg";
 import Github from "../../../public/svg/github.svg";
 import { StyledSocialMeidaLinks } from "./style";
-import { SocialMediaProps } from "./types";
+import { PropsSocialMedia } from "./types";
 
-const SocialMedia = forwardRef<HTMLDivElement, SocialMediaProps>(
+const ComponentSocialMedia = forwardRef<HTMLDivElement, PropsSocialMedia>(
   ({ theme = "dark" }, ref) => (
     <StyledSocialMeidaLinks theme={theme} ref={ref}>
       <a
@@ -24,6 +24,6 @@ const SocialMedia = forwardRef<HTMLDivElement, SocialMediaProps>(
     </StyledSocialMeidaLinks>
   )
 );
-SocialMedia.displayName = "SocialMedia";
+ComponentSocialMedia.displayName = "SocialMedia";
 
-export default SocialMedia;
+export default ComponentSocialMedia;

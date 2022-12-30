@@ -11,22 +11,12 @@ import {
   StyledWelcomeBoxOptions,
   StyledWelcomeBoxOptionsList,
 } from "./style";
+import { IMessage, IMessageTogglers } from "./types";
 import { isTruthy } from "src/helpers/checkFalsyType";
 import WelcomeBoxMessageComponent from "./WelcomeBoxMessage";
 import WelcomeBoxHead from "./WelcomeBoxHead";
 import { useWelcomeBoxAnimation } from "src/hooks/useWelcomeBoxAnimation";
 
-interface IMessageTogglers {
-  id: number;
-  toggler: string;
-}
-interface IMessage {
-  id: number;
-  type: string;
-  image: string;
-  message: string;
-  toggler?: string;
-}
 const ComponentWelcomeBox: FC = () => {
   const [messages] = useState<IMessageTogglers[]>([
     {

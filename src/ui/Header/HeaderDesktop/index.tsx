@@ -12,16 +12,16 @@ import { getPaths } from "src/helpers/getPaths";
 import { isTruthy } from "src/helpers/checkFalsyType";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 
-const Header: FC = () => {
+const ComponentHeader: FC = () => {
   const { locale, locales = [] } = useRouter();
   const [shortLocale] = isTruthy(locale) ? locale.split("-") : ["en"];
   const localePaths = useMemo(() => getPaths(shortLocale), [locale]);
 
-  const [links] = useScrollTrigger(0.9, "children") as [
+  const [refLinks] = useScrollTrigger(0.9, "children") as [
     RefObject<HTMLDivElement>
   ];
   return (
-    <StyledDesktopNav ref={links}>
+    <StyledDesktopNav ref={refLinks}>
       <StyledDesktopNavSocialMeida>
         <a
           href="https://github.com/tomeczek63960"
@@ -59,4 +59,4 @@ const Header: FC = () => {
   );
 };
 
-export default Header;
+export default ComponentHeader;

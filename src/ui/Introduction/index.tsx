@@ -1,20 +1,20 @@
 import React, { FC } from "react";
-import HeadingComponent from "src/ui/Heading";
+import { StyledIntroductionSection } from "./style";
+import Heading from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
-import { StyledIntroductionSection } from "src/ui/Introduction/style";
-import ChartComponent from "src/ui/Introduction/Svg/Chart";
+import Chart from "src/ui/Introduction/Svg/Chart";
 
-const IntroductionComponent: FC = () => {
+const ComponentIntroduction: FC = () => {
   return (
     <StyledIntroductionSection>
-      <HeadingComponent tagName="h1" hoverColor="#6A82FB">
+      <Heading tagName="h1" hoverColor="#6A82FB">
         Hi 👋
         <br />
         I’m Tomek 😊
         <br />
         Nice to see You
-      </HeadingComponent>
-      <ChartComponent />
+      </Heading>
+      <Chart />
       <Paragraph>
         Jezeli jesteś gotowy wypłynąć na nieznane wody 🐟, zapraszam na okręt
         🚣🏻, Dziś będę twoim przewodnikiem
@@ -27,4 +27,4 @@ const IntroductionComponent: FC = () => {
   );
 };
 
-export default IntroductionComponent;
+export default ComponentIntroduction;

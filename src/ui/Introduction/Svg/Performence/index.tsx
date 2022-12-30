@@ -2,11 +2,11 @@ import React, { FC } from "react";
 import { usePerformenceSvgAnimation } from "src/hooks/usePerformenceSvgAnimation";
 import { Svg } from "./style";
 
-const PerformenceComponent: FC = () => {
-  const [svgRef] = usePerformenceSvgAnimation();
+const ComponentPerformence: FC = () => {
+  const [refSvg] = usePerformenceSvgAnimation();
   return (
     <Svg
-      ref={svgRef}
+      ref={refSvg}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 702.65 597"
       className="performence-svg"
@@ -322,4 +322,4 @@ const PerformenceComponent: FC = () => {
   );
 };
 
-export default PerformenceComponent;
+export default ComponentPerformence;

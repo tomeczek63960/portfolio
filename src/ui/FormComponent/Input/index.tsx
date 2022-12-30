@@ -9,45 +9,43 @@ import {
   StyledInputBorder,
   StyledInputBorderAfter,
 } from "./style";
-import { InputProps } from "./types";
+import { PropsInput } from "./types";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 import { useInputAnimation } from "src/hooks/useInputAnimation";
 import { useInputLabelAnimation } from "src/hooks/useInputLabelAnimation";
 
-const Input: FC<InputProps> = ({
+const ComponentInput: FC<PropsInput> = ({
   type,
   placeholder,
   validation,
   isFormDirty,
 }) => {
   const [inputValue, setInputValue] = useState<string>("");
-  const input = useRef<HTMLInputElement>(null);
-  const isInputDirty = useRef(false);
+  const refInput = useRef<HTMLInputElement>(null);
+  const refIsInputDirty = useRef(false);
 
   const [inputGroup] = useScrollTrigger(0.55) as [RefObject<HTMLDivElement>];
-  const [tlLabel, labelRef] = useInputLabelAnimation();
-  const [tl, inputBorder, inputBorderAfter] = useInputAnimation();
-  const [tlSuccess, inputSuccess, inputSuccessAfter] = useInputAnimation(
-    input,
-    "success"
-  );
-  const [tlError, inputError, inputErrorAfter] = useInputAnimation(
-    input,
+  const [timelineLabel, refLabel] = useInputLabelAnimation();
+  const [timeline, inputBorder, inputBorderAfter] = useInputAnimation();
+  const [timelineSuccess, refInputSuccess, refInputSuccessAfter] =
+    useInputAnimation(refInput, "success");
+  const [timelineError, refInputError, refInputErrorAfter] = useInputAnimation(
+    refInput,
     "error"
   );
 
   const focusRef = (): void => {
-    tlLabel.play();
-    if (isInputDirty.current) return;
-    tl.play();
+    timelineLabel.play();
+    if (refIsInputDirty.current) return;
+    timeline.play();
   };
   const blurRef = (e: any): void => {
     if (isFalsy(e.target.value)) {
-      tlLabel.reverse();
+      timelineLabel.reverse();
     }
-    if (isInputDirty.current) return;
-    tl.reverse();
+    if (refIsInputDirty.current) return;
+    timeline.reverse();
   };
   const onChange = (e?: FormEvent<HTMLInputElement>): void => {
     let value = inputValue;
@@ -57,15 +55,15 @@ const Input: FC<InputProps> = ({
     }
     const result = validation(value);
     if (isFalsy(result.valid)) {
-      tlSuccess
+      timelineSuccess
         .reverse()
         .then(() => {
-          tlError
+          timelineError
             .play()
             .then(() => {
-              if (!isInputDirty.current) {
-                isInputDirty.current = true;
-                tl.seek(0).pause().clear();
+              if (!refIsInputDirty.current) {
+                refIsInputDirty.current = true;
+                timeline.seek(0).pause().clear();
               }
             })
             .catch((err) => {
@@ -76,15 +74,15 @@ const Input: FC<InputProps> = ({
           console.log(err);
         });
     } else {
-      tlError
+      timelineError
         .reverse()
         .then(() => {
-          tlSuccess
+          timelineSuccess
             .play()
             .then(() => {
-              if (!isInputDirty.current) {
-                isInputDirty.current = true;
-                tl.seek(0).pause().clear();
+              if (!refIsInputDirty.current) {
+                refIsInputDirty.current = true;
+                timeline.seek(0).pause().clear();
               }
             })
             .catch((err) => {
@@ -98,12 +96,12 @@ const Input: FC<InputProps> = ({
   };
 
   useIsomorphicLayoutEffect(() => {
-    if (!isFormDirty) return;
+    if (isFalsy(isFormDirty)) return;
     onChange();
   }, [isFormDirty]);
   return (
     <StyledInputGroup ref={inputGroup}>
-      <StyledLabel htmlFor={placeholder} ref={labelRef}>
+      <StyledLabel htmlFor={placeholder} ref={refLabel}>
         {placeholder}
       </StyledLabel>
       <StyledInputGroupComponent>
@@ -112,7 +110,7 @@ const Input: FC<InputProps> = ({
           onInput={onChange}
           onFocus={focusRef}
           onBlur={blurRef}
-          ref={input}
+          ref={refInput}
           type={type}
           value={inputValue}
         />
@@ -120,15 +118,15 @@ const Input: FC<InputProps> = ({
         <StyledInputBorder background={colors.purple} ref={inputBorder}>
           <StyledInputBorderAfter ref={inputBorderAfter} />
         </StyledInputBorder>
-        <StyledInputBorder background={colors.error} ref={inputError}>
-          <StyledInputBorderAfter ref={inputErrorAfter} />
+        <StyledInputBorder background={colors.error} ref={refInputError}>
+          <StyledInputBorderAfter ref={refInputErrorAfter} />
         </StyledInputBorder>
-        <StyledInputBorder background={colors.success} ref={inputSuccess}>
-          <StyledInputBorderAfter ref={inputSuccessAfter} />
+        <StyledInputBorder background={colors.success} ref={refInputSuccess}>
+          <StyledInputBorderAfter ref={refInputSuccessAfter} />
         </StyledInputBorder>
       </StyledInputGroupComponent>
     </StyledInputGroup>
   );
 };
 
-export default Input;
+export default ComponentInput;

@@ -1,22 +1,15 @@
 import React, { useEffect, useRef, FC } from "react";
 import { gsap } from "gsap";
 import { StyledTimelineList } from "./style";
+import { IExperienceItem } from "./types";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import WorkExperienceListItem from "src/ui/WorkExperience/WorkExperienceListItem";
-import { WrokExperienceItem } from "src/ui/WorkExperience/WorkExperienceListItem/types";
+import { IWrokExperienceItem } from "src/ui/WorkExperience/WorkExperienceListItem/types";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
 
-interface IElementsObj {
-  line: HTMLDivElement;
-  content: HTMLDivElement;
-  dot: HTMLDivElement;
-  lineSvg: SVGElement;
-  id: number;
-}
-
-const WorkExperienceList: FC = () => {
-  const timelineList = useRef<any>();
-  const tl = useRef<any>();
+const ComponentWorkExperienceList: FC = () => {
+  const refTimelineList = useRef<HTMLDivElement>(null);
+  const refTimeline = useRef<GSAPTimeline>();
   const workExperienceItems = [
     {
       date: "2018 czerwiec",
@@ -39,67 +32,70 @@ const WorkExperienceList: FC = () => {
   ];
   useEffect(() => {
     let id = 0;
-    if (isFalsy(tl.current)) {
-      tl.current = gsap.timeline();
+    if (isFalsy(refTimeline.current)) {
+      refTimeline.current = gsap.timeline();
     }
     // TODO: przerobić timeline i zmienić klasy na styled components
-    ScrollTrigger.batch(timelineList.current.children, {
-      start: "top 70%",
-      onEnter: (batch: any) => {
-        const progress = batch.reduce((acc: any, cur: any) => {
-          id += 1;
-          const dot = cur.querySelector(".dot");
-          const line = cur.querySelector(".line");
-          const lineSvg = cur.querySelector(".line svg");
-          const itemContent = cur.querySelector(".list-item-content");
-          const obj = {
-            line,
-            content: itemContent,
-            dot,
-            lineSvg,
-            id,
-          };
+    ScrollTrigger.batch(
+      isTruthy(refTimelineList.current) ? refTimelineList.current.children : [],
+      {
+        start: "top 70%",
+        onEnter: (batch: any) => {
+          const progress = batch.reduce((acc: any, cur: any) => {
+            id += 1;
+            const dot = cur.querySelector(".dot");
+            const line = cur.querySelector(".line");
+            const lineSvg = cur.querySelector(".line svg");
+            const itemContent = cur.querySelector(".list-item-content");
+            const obj = {
+              line,
+              content: itemContent,
+              dot,
+              lineSvg,
+              id,
+            };
 
-          return acc.concat([obj]);
-        }, []);
-        progress.forEach((obj: IElementsObj) => {
-          if (
-            isFalsy(obj.dot) ||
-            isTruthy(obj.dot.classList.contains("finished"))
-          )
-            return;
-          obj.dot.classList.add("finished");
-          tl.current.to(obj.content, {
-            delay: 0.1,
-            duration: 0.5,
-            opacity: 1,
-            y: 0,
-          });
-          tl.current.to(
-            obj.dot,
-            {
+            return acc.concat([obj]);
+          }, []);
+          progress.forEach((obj: IExperienceItem) => {
+            if (
+              isFalsy(obj.dot) ||
+              isTruthy(obj.dot.classList.contains("finished"))
+            )
+              return;
+            obj.dot.classList.add("finished");
+            refTimeline.current?.to(obj.content, {
+              delay: 0.1,
               duration: 0.5,
               opacity: 1,
-            },
-            `start-${obj.id}`
-          );
-          isTruthy(obj.lineSvg) &&
-            tl.current.to(
-              obj.lineSvg,
+              y: 0,
+            });
+            refTimeline.current?.to(
+              obj.dot,
               {
                 duration: 0.5,
                 opacity: 1,
-                y: "-60%",
               },
-              `start-${obj.id}aa`
+              `start-${obj.id}`
             );
-        });
-      },
-    });
+            isTruthy(obj.lineSvg) &&
+              refTimeline.current?.to(
+                obj.lineSvg,
+                {
+                  duration: 0.5,
+                  opacity: 1,
+                  y: "-60%",
+                },
+                `start-${obj.id}aa`
+              );
+          });
+        },
+      }
+    );
   }, []);
   return (
-    <StyledTimelineList ref={timelineList}>
-      {workExperienceItems.map((item: WrokExperienceItem, index: number) => {
+    <StyledTimelineList ref={refTimelineList}>
+      {workExperienceItems.map((item: IWrokExperienceItem, index: number) => {
         let order = "";
         if (index === 0) {
           order = "first";
@@ -118,4 +114,4 @@ const WorkExperienceList: FC = () => {
   );
 };
 
-export default WorkExperienceList;
+export default ComponentWorkExperienceList;

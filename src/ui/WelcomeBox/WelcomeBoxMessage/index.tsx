@@ -6,18 +6,9 @@ import {
   StyledWelcomeBoxMessageText,
 } from "../style";
 import { isTruthy } from "src/helpers/checkFalsyType";
+import { PropsWelcomeBoxMessage } from "./types";
 
-interface WelcomeBoxMessage {
-  type: string;
-  toggler?: string;
-  message: string;
-  image: string;
-}
-interface WelcomeBoxMessageProps {
-  message: WelcomeBoxMessage;
-}
-
-const WelcomeBoxMessageComponent: FC<WelcomeBoxMessageProps> = ({
+const WelcomeBoxMessageComponent: FC<PropsWelcomeBoxMessage> = ({
   message,
 }) => {
   return (

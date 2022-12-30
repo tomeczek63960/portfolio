@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import FormComponent from "src/ui/FormComponent";
-import HeadingComponent from "src/ui/Heading";
+import Heading from "src/ui/Heading";
 import styled from "styled-components";
 import { variables } from "src/styled/mixins";
 import Paragraph from "src/ui/Paragraph";
-import PerformenceComponent from "src/ui/Introduction/Svg/Performence";
+import Performence from "src/ui/Introduction/Svg/Performence";
 
 const StyledIntroductionSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
@@ -12,14 +12,14 @@ const StyledIntroductionSection = styled.section`
 const StyledContactFormSection = styled.section`
   padding-block: ${variables.sectionVerticalPadding};
 `;
-const Contact: FC = () => {
+const ViewContact: FC = () => {
   return (
     <>
       <StyledIntroductionSection>
-        <HeadingComponent tagName="h2" color="#6A82FB">
+        <Heading tagName="h2" color="#6A82FB">
           Contact Me
-        </HeadingComponent>
-        <PerformenceComponent />
+        </Heading>
+        <Performence />
         <Paragraph>Zostaw po sobie jakąś wiadomość 📭</Paragraph>
         <Paragraph>
           Jeżeli twoje wyniki zależą od tego jakich ludzi masz na pokładzie, to
@@ -33,9 +33,9 @@ const Contact: FC = () => {
       </StyledIntroductionSection>
 
       <StyledContactFormSection>
-        <HeadingComponent tagName="h3" color="#7928ca" selectionColor="#6A82FB">
+        <Heading tagName="h3" color="#7928ca" selectionColor="#6A82FB">
           Użyj formularza żeby się ze mną skontaktować
-        </HeadingComponent>
+        </Heading>
         <Paragraph>
           Milczenie jest złotem 🤫 jednak nie w tym przypadku, daj znać co Ci
           chodzi po głowie 💡
@@ -46,4 +46,4 @@ const Contact: FC = () => {
   );
 };
 
-export default Contact;
+export default ViewContact;

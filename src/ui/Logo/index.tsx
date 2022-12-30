@@ -2,12 +2,12 @@ import React, { FC } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { StyledLogo } from "./style";
-import { LogoProps } from "./types";
+import { PropsLogo } from "./types";
 import { useLogoAnimation } from "src/hooks/useLogoAnimation";
 
-const Logo: FC<LogoProps> = (props) => {
+const ComponentLogo: FC<PropsLogo> = (props) => {
   const { locale } = useRouter();
-  const [tLetter, kLetter] = useLogoAnimation();
+  const [refTLetter, refKLetter] = useLogoAnimation();
 
   return (
     <Link href="/" locale={locale}>
@@ -15,7 +15,7 @@ const Logo: FC<LogoProps> = (props) => {
         <svg
           viewBox="0 0 61.3 71.4"
           xmlns="http://www.w3.org/2000/svg"
-          ref={tLetter}
+          ref={refTLetter}
         >
           <g
             strokeLinecap="round"
@@ -34,7 +34,7 @@ const Logo: FC<LogoProps> = (props) => {
         <svg
           viewBox="0 0 69.6 71.4"
           xmlns="http://www.w3.org/2000/svg"
-          ref={kLetter}
+          ref={refKLetter}
         >
           <g
             strokeLinecap="round"
@@ -54,6 +54,6 @@ const Logo: FC<LogoProps> = (props) => {
     </Link>
   );
 };
-Logo.displayName = "Logo";
+ComponentLogo.displayName = "Logo";
 
-export default Logo;
+export default ComponentLogo;

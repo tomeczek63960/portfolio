@@ -2,14 +2,14 @@ import React, { FC, RefObject } from "react";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 import { StyledFooter } from "./style";
 
-const FooterComponent: FC = () => {
-  const [links] = useScrollTrigger(0.9, "children") as [
+const ComponentFooter: FC = () => {
+  const [refLinks] = useScrollTrigger(0.9, "children") as [
     RefObject<HTMLDivElement>
   ];
   return (
     <StyledFooter>
       <div className="container">
-        <div className="container__left" ref={links}>
+        <div className="container__left" ref={refLinks}>
           <h3>Sources</h3>
           <p>
             <a
@@ -49,4 +49,4 @@ const FooterComponent: FC = () => {
   );
 };
 
-export default FooterComponent;
+export default ComponentFooter;

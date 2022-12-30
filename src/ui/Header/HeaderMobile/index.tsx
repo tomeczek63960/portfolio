@@ -15,42 +15,43 @@ import { useHeaderMobileAnimation } from "src/hooks/useHeaderMobileAnimation";
 import { preventScroll } from "src/helpers/preventScroll";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
 
-const Header: FC = () => {
+const ComponentHeaderMobile: FC = () => {
   const { pathname, locale = "en", locales = [] } = useRouter();
   const [shortLocale] = isTruthy(locale) ? locale.split("-") : ["en"];
   const [
-    tl,
-    firstDot,
-    lastDot,
-    mobileNav,
-    headerBar,
-    bars,
-    mobileNavContainer,
-    socialMediaRef,
+    refTimeline,
+    refFirstDot,
+    refLastDot,
+    refMobileNav,
+    refHeaderBar,
+    refBars,
+    refMobileNavContainer,
+    refSocialMedia,
   ] = useHeaderMobileAnimation(locale, pathname);
 
   const handleBars = (): void => {
-    if (isFalsy(tl) || isFalsy(tl.current)) return;
-    const shouldPlay = tl.current.reversed() || tl.current.time() === 0;
-    shouldPlay ? tl.current.play() : tl.current.reverse();
+    if (isFalsy(refTimeline) || isFalsy(refTimeline.current)) return;
+    const shouldPlay =
+      refTimeline.current.reversed() || refTimeline.current.time() === 0;
+    shouldPlay ? refTimeline.current.play() : refTimeline.current.reverse();
     preventScroll(shouldPlay);
   };
 
   const localePaths = useMemo(() => getPaths(shortLocale), [locale]);
   return (
     <>
-      <StyledHeaderBar ref={headerBar}>
+      <StyledHeaderBar ref={refHeaderBar}>
         <Logo />
-        <StyledBars ref={bars} onClick={handleBars}>
-          <span ref={firstDot}></span>
+        <StyledBars ref={refBars} onClick={handleBars}>
+          <span ref={refFirstDot}></span>
           <span></span>
-          <span ref={lastDot}></span>
+          <span ref={refLastDot}></span>
         </StyledBars>
       </StyledHeaderBar>
 
-      <StyledMobileNav ref={mobileNav}>
-        <StyledMobileNavContainer ref={mobileNavContainer}>
-          <SocialMedia theme="white" ref={socialMediaRef} />
+      <StyledMobileNav ref={refMobileNav}>
+        <StyledMobileNavContainer ref={refMobileNavContainer}>
+          <SocialMedia theme="white" ref={refSocialMedia} />
           <Link href={localePaths.home} locale={locale}>
             <StyledLink>Home</StyledLink>
           </Link>
@@ -63,7 +64,7 @@ const Header: FC = () => {
           <Link href={localePaths.showCase} locale={locale}>
             <StyledLink>Show case</StyledLink>
           </Link>
-          {locales.map((localeItem: any) => (
+          {locales.map((localeItem: string) => (
             <Link key={localeItem} href="/" locale={localeItem}>
               <StyledLink isDisabled={localeItem === locale}>
                 {locale}
@@ -76,4 +77,4 @@ const Header: FC = () => {
   );
 };
 
-export default Header;
+export default ComponentHeaderMobile;

@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import Image from "next/image";
 import { StyledImage } from "./style";
-import { ImageProps } from "./types";
+import { PropsImage } from "./types";
 
-const ImageComponent: FC<ImageProps> = ({ url, className }) => {
+const ComponentImage: FC<PropsImage> = ({ url, className }) => {
   return (
     <StyledImage>
       <Image
@@ -18,4 +18,4 @@ const ImageComponent: FC<ImageProps> = ({ url, className }) => {
   );
 };
 
-export default ImageComponent;
+export default ComponentImage;

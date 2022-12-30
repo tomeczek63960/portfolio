@@ -9,22 +9,22 @@ import {
 } from "src/helpers/validations";
 import { StyledForm } from "./style";
 
-const FormComponent: FC = () => {
-  const formRef = useRef<HTMLFormElement>(null);
+const ComponentForm: FC = () => {
+  const refForm = useRef<HTMLFormElement>(null);
   const [isFormDirty, setFormDirty] = useState(false);
   const onSubmit = (e: SyntheticEvent): void => {
     e.preventDefault();
     setFormDirty(true);
     setTimeout(
       () =>
-        formRef.current
+        refForm.current
           ?.querySelector<HTMLInputElement>("input.error")
           ?.focus(),
       500
     );
   };
   return (
-    <StyledForm ref={formRef} onSubmit={onSubmit}>
+    <StyledForm ref={refForm} onSubmit={onSubmit}>
       <Input
         isFormDirty={isFormDirty}
         type="text"
@@ -54,4 +54,4 @@ const FormComponent: FC = () => {
   );
 };
 
-export default FormComponent;
+export default ComponentForm;

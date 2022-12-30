@@ -2,11 +2,11 @@ import React, { FC } from "react";
 import { Svg } from "./style";
 import { useChartSvgAnimation } from "src/hooks/useChartSvgAnimation";
 
-const ChartComponent: FC = () => {
-  const [svgRef] = useChartSvgAnimation();
+const ComponentChart: FC = () => {
+  const [refSvg] = useChartSvgAnimation();
   return (
     <Svg
-      ref={svgRef}
+      ref={refSvg}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 488.835 334.446"
       className="chart-svg"
@@ -587,4 +587,4 @@ const ChartComponent: FC = () => {
   );
 };
 
-export default ChartComponent;
+export default ComponentChart;
