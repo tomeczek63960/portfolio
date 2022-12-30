@@ -5,12 +5,8 @@ import { simpleSplitText } from "src/helpers/simpleSplitText";
 import { useSelector } from "react-redux";
 import type { IRootState } from "src/store";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
+import { PropsTimeline } from "./types";
 
-interface PropsTimeline {
-  target: HTMLHeadingElement;
-  color?: string;
-  hoverColor?: string;
-}
 const createTimeline = ({
   target,
   color,

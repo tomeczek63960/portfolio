@@ -18,24 +18,15 @@ const ViewHome: FC = () => {
     // TODO: add tests
     // TODO: move everything to strapi
 
+    // TODO: scrollbar ma być taki jak na macu (globalnie ostylowany)
+
     // TODO: in all timeline .then .catch blocks add global error handling, np. popup with info something went wrong, try to refresh the page
-    // TODO: add removeEventListener everywhere is used addEventListener
-    // TODO: in skills add next carousel & add prismic.io, hygraph, ...
+    // related with strapi be
+    // TODO: in skills add next carousel & add prismic.io, hygraph, builder.io ...
     // Add seo values for pages in strapi
 
     // TODO:
     // create consistent names
-
-    // - styled components - Styled...
-    // - styled components section - Styled...Section
-    // - styled components section - Styled...Section
-    // - components - Component...
-    // - refs - ref...
-    // - types Iterface - I...
-    // - types Type - T...
-    // - types Props - Props...
-    //
-    // hooks insert into separate folders with types and index
     <>
       <IntroductionComponent />
       <WelcomeBox />

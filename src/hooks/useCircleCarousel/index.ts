@@ -7,6 +7,7 @@ import {
 import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
+import { ICarouselConfig, IAnimationObject } from "./types";
 
 const getAngle = (
   dots: number,
@@ -24,25 +25,6 @@ const getAngle = (
   return step * inc;
 };
 
-interface ICarouselConfig {
-  slides: HTMLCollectionOf<HTMLElement> | never[];
-  activeSlide: number;
-  dots: HTMLCollectionOf<HTMLElement> | never[];
-  angle: number;
-  prevSlide: number;
-  step: number;
-  autoplayId: NodeJS.Timer | undefined;
-}
-
-interface IAnimationObject {
-  duration: number;
-  opacity?: number;
-  y?: number | string;
-  pointerEvents?: string;
-  stagger?: number;
-  scale?: string;
-  filter?: string;
-}
 // TODO: fix multiple slide click text animation delay
 export const useCircleCarousel = (
   speed: number = 800,

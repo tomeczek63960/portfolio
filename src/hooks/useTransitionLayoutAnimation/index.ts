@@ -1,4 +1,4 @@
-import { useState, useRef, ReactNode, RefObject } from "react";
+import { useState, useRef, ReactNode } from "react";
 import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { useRouter } from "next/router";
@@ -6,18 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { IRootState } from "src/store";
 import { setActive } from "src/store/scrollTrigger";
 import { isTruthy } from "src/helpers/checkFalsyType";
-
-interface ITransitionLayoutReturn {
-  displayChildren: ReactNode;
-  refContent: RefObject<HTMLDivElement>;
-  refLeftTransition: RefObject<HTMLDivElement>;
-  refRightTransition: RefObject<HTMLDivElement>;
-  refCenterCircle: RefObject<HTMLDivElement>;
-  refLeftCircle: RefObject<HTMLSpanElement>;
-  refRightCircle: RefObject<HTMLSpanElement>;
-  refTransitionLeftText: RefObject<HTMLDivElement>;
-  refTransitionRightText: RefObject<HTMLDivElement>;
-}
+import { ITransitionLayoutReturn } from "./types";
 
 export const useTransitionLayoutAnimation = (
   children: ReactNode

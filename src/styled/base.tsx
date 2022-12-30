@@ -116,8 +116,6 @@ export const StyledBase = createGlobalStyle`
     font-weight: ${variables.fontWeightBold};
   }
 
-  // TODO: scrollbar ma być taki jak na macu (globalnie ostylowany)
-
   a {
     color: ${colors.purple};
     font-weight: ${variables.fontWeightBold};
