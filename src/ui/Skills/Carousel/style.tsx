@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { responsive, colors } from "src/styled/mixins";
+import { responsive, colors, variables } from "src/styled/mixins";
 
 export const StyledCarousel = styled.div`
   position: relative;
@@ -37,7 +37,7 @@ export const StyledCarouselTextItem = styled.div`
     color: ${colors.orange};
     font-size: 14px;
     line-height: 1;
-    font-weight: 700;
+    font-weight: ${variables.fontWeightBold};
     ${responsive.tabletP`
       font-size: 18px;
     `}

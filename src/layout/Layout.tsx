@@ -5,6 +5,11 @@ import Header from "src/ui/Header/HeaderDesktop";
 import HeaderMobile from "src/ui/Header/HeaderMobile";
 // import { FormattedMessage, useIntl } from "react-intl";
 import Footer from "src/ui/Footer";
+import {
+  StyledContainer,
+  StyledContainerLeft,
+  StyledContainerRight,
+} from "src/ui/Container/style";
 
 const StyledContentWrapper = styled.div`
   padding-top: 80px;
@@ -22,7 +27,7 @@ export interface PropsLayout {
   imageAlt?: string;
   twitter?: string;
 }
-// TODO: update container __left/right to styled components
+
 const Layout: FC<PropsLayout> = (props) => {
   return (
     <StyledContentWrapper>
@@ -30,15 +35,15 @@ const Layout: FC<PropsLayout> = (props) => {
         <Head {...props} />
         <HeaderMobile />
 
-        <div className="container">
-          <div className="container__left">
+        <StyledContainer>
+          <StyledContainerLeft>
             {/* <h1> <FormattedMessage id="page.home.description" /> </h1> */}
             <main>{props.children}</main>
-          </div>
-          <div className="container__right">
+          </StyledContainerLeft>
+          <StyledContainerRight>
             <Header />
-          </div>
-        </div>
+          </StyledContainerRight>
+        </StyledContainer>
       </div>
 
       <Footer />

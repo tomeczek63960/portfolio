@@ -1,17 +1,16 @@
 import { isTruthy } from "src/helpers/checkFalsyType";
-import { responsive, colors } from "src/styled/mixins";
+import { responsive, colors, variables } from "src/styled/mixins";
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 
 const headingStyles = (
   color: string,
   selectionColor?: string
 ): FlattenSimpleInterpolation | any => css`
-  font-family: "Poppins", sans-serif;
   line-height: 1;
   letter-spacing: 2px;
   color: ${color};
-  font-family: "Source Sans Pro", sans-serif;
-  font-weight: 900;
+  font-family: ${variables.fontFamilySourceSans};
+  font-weight: ${variables.fontWeightBlack};
   opacity: 0;
   .splitted-words {
     white-space: nowrap;

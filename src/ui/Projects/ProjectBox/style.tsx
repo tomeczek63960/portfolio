@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { responsive, colors } from "src/styled/mixins";
+import { responsive, colors, variables } from "src/styled/mixins";
 
 export const StyledProjectBox = styled.div`
   width: 100%;
@@ -67,16 +67,16 @@ export const StyledProjectBoxReference = styled.div`
   margin-top: 30px;
   h5 {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: ${variables.fontWeightSemiBold};
   }
   a {
     word-break: break-all;
     color: ${colors.blackTertiary};
-    font-weight: 600;
+    font-weight: ${variables.fontWeightSemiBold};
     font-size: 11px;
     ${responsive.tabletP`
       font-size: 13px;
-      font-weight: 700;
+      font-weight: ${variables.fontWeightBold.toString()};
     `}
   }
   svg {
@@ -104,7 +104,7 @@ export const StyledProjectBoxTechnologies = styled.div`
     background: ${colors.grayLight};
     color: black;
     margin: 5px;
-    font-weight: 700;
+    font-weight: ${variables.fontWeightBold};
     font-size: 12px;
   }
 `;
@@ -118,7 +118,7 @@ export const StyledProjectBoxCategories = styled.div`
     background: ${colors.grayLight};
     color: ${colors.black};
     margin: 5px;
-    font-weight: 700;
+    font-weight: ${variables.fontWeightBold};
     font-size: 12px;
 
     &.danger,

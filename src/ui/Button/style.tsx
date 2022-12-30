@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "src/styled/mixins";
+import { colors, variables } from "src/styled/mixins";
 
 export const StyledButton = styled.button.attrs(
   (props: { ref: HTMLButtonElement }) => props
@@ -9,7 +9,7 @@ export const StyledButton = styled.button.attrs(
   color: ${colors.gray};
   height: 40px;
   font: 16px/30px "Lato", Arial, sans-serif;
-  font-weight: 700;
+  font-weight: ${variables.fontWeightBold};
   letter-spacing: 1px;
   outline: none !important;
   width: 100%;

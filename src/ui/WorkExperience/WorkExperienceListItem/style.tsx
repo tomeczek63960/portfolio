@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { responsive, colors } from "src/styled/mixins";
+import { responsive, colors, variables } from "src/styled/mixins";
 
 export const StyledListItem = styled.div`
   position: relative;
@@ -26,9 +26,9 @@ export const StyledListItemContent = styled.div`
     padding: 30px;
   `}
   h4 {
-    font-family: Open Sans;
+    font-family: ${variables.fontFamilyOpenSans};
     font-style: normal;
-    font-weight: bold;
+    font-weight: ${variables.fontWeightBold};
     font-size: 14px;
     line-height: 1;
     margin-bottom: 10px;
@@ -49,9 +49,9 @@ export const StyledListItemContent = styled.div`
     `}
   }
   p {
-    font-family: Open Sans;
+    font-family: ${variables.fontFamilyOpenSans};
     font-style: normal;
-    font-weight: normal;
+    font-weight: ${variables.fontWeightNormal};
     font-size: 12px;
     line-height: 18px;
     color: #2b2862;

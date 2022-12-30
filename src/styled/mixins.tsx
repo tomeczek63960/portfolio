@@ -70,4 +70,17 @@ export const colors = {
 
 export const variables = {
   sectionVerticalPadding: "30px",
+  fontFamilyRoboto: "Roboto",
+  fontFamilyTimes: "Times",
+  fontFamilyInter: "Inter, sans-serif",
+  fontFamilyPrimary: "Arial, sans-serif",
+  fontFamilySecondary: "Noto Serif Oriya",
+  fontFamilyPoppins: "Poppins, sans-serif",
+  fontFamilySourceSans: "Source Sans Pro, sans-serif",
+  fontFamilyOpenSans: "Open Sans",
+  fontWeightNormal: 400,
+  fontWeightMedium: 500,
+  fontWeightSemiBold: 600,
+  fontWeightBold: 700,
+  fontWeightBlack: 900,
 };

@@ -54,17 +54,17 @@ export const StyledWorkExperienceHeadContent = styled.div`
     transform: translateY(-20%);
   }
   h3 {
-    font-family: Open Sans;
+    font-family: ${variables.fontFamilyOpenSans};
     font-style: normal;
-    font-weight: bold;
+    font-weight: ${variables.fontWeightBold};
     font-size: 22px;
     line-height: 30px;
   }
   label {
     margin-top: 10px;
-    font-family: Open Sans;
+    font-family: ${variables.fontFamilyOpenSans};
     font-style: normal;
-    font-weight: normal;
+    font-weight: ${variables.fontWeightNormal};
     font-size: 14px;
     line-height: 18px;
     display: block;
@@ -91,9 +91,8 @@ export const StyledButtonSecondary = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: bold;
+  font-family: ${variables.fontFamilyOpenSans};
+  font-weight: ${variables.fontWeightBold};
   font-size: 14px;
   line-height: 19px;
   transition: background-color 0.3s;

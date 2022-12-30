@@ -1,6 +1,7 @@
 import React, { FC, RefObject } from "react";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
-import { StyledFooter } from "./style";
+import { StyledFooter, StyledContainerLeftFooter } from "./style";
+import { StyledContainer } from "src/ui/Container/style";
 
 const ComponentFooter: FC = () => {
   const [refLinks] = useScrollTrigger(0.9, "children") as [
@@ -8,8 +9,8 @@ const ComponentFooter: FC = () => {
   ];
   return (
     <StyledFooter>
-      <div className="container">
-        <div className="container__left" ref={refLinks}>
+      <StyledContainer>
+        <StyledContainerLeftFooter ref={refLinks}>
           <h3>Sources</h3>
           <p>
             <a
@@ -43,8 +44,8 @@ const ComponentFooter: FC = () => {
             <span> on </span>
             <a href="https://iconscout.com">IconScout</a>
           </p>
-        </div>
-      </div>
+        </StyledContainerLeftFooter>
+      </StyledContainer>
     </StyledFooter>
   );
 };

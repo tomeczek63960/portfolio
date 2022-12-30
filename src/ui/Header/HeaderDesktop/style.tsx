@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { responsive, colors } from "src/styled/mixins";
+import { responsive, colors, variables } from "src/styled/mixins";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
 export const StyledLink = styled.a.attrs(
@@ -7,11 +7,11 @@ export const StyledLink = styled.a.attrs(
 )`
   margin: 5px 0;
   color: ${colors.black};
-  font-family: "Noto Serif Oriya", serif;
+  font-family: ${variables.fontFamilySecondary};
   font-size: 22px;
   line-height: 30px;
   display: ${(props) => (isTruthy(props.isDisabled) ? "none" : "block")};
-  font-weight: 700;
+  font-weight: ${variables.fontWeightBold};
   transition: color 0.3s;
   text-decoration: none;
   opacity: 0;

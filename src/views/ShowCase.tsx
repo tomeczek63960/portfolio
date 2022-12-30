@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled, { keyframes } from "styled-components";
-import { responsive } from "src/styled/mixins";
+import { responsive, variables } from "src/styled/mixins";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
 const StyledH2 = styled.h2.attrs((props: { color?: string }) => props)`
@@ -13,8 +13,8 @@ const StyledH2 = styled.h2.attrs((props: { color?: string }) => props)`
   position: relative;
   width: fit-content;
   text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
+  font-family: ${variables.fontFamilyPoppins};
+  font-weight: ${variables.fontWeightBold};
   white-space: nowrap;
   ${responsive.tabletP`
     font-size: 32px;

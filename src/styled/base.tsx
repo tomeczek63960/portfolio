@@ -1,6 +1,5 @@
-import { createGlobalStyle, css } from "styled-components";
-import { responsive } from "src/styled/mixins";
-
+import { createGlobalStyle } from "styled-components";
+import { colors, variables } from "src/styled/mixins";
 export const StyledBase = createGlobalStyle`
   :root {
     --contact-rotation: 0;
@@ -19,32 +18,13 @@ export const StyledBase = createGlobalStyle`
       overflow: hidden !important;
       height: 100vh;
       &.body-padding {
+        /* seek using classes .no-scroll.body-padding to find section dependent on this pattern */
         @media screen and (hover) {
           padding-right: 17px;
-        }
-        .page-animation-background {
-          @media screen and (hover) {
-            width: calc(50% + (17px / 2));
-          }
-        }
-        .container__right {
-          @media screen and (hover) {
-            width: calc(50% + (17px / 2));
-          }
         }
         &-thin {
           @media screen and (hover) {
             padding-right: 15px;
-          }
-          .page-animation-background {
-            @media screen and (hover) {
-              width: calc(50% + (15px / 2));
-            }
-          }
-          .container__right {
-            @media screen and (hover) {
-              width: calc(50% + (15px / 2));
-            }
           }
         }
       }
@@ -60,9 +40,8 @@ export const StyledBase = createGlobalStyle`
   body {
     margin: 0;
     text-size-adjust: 100%; // iOS on orientation change
-    color: ${(props) => props.black};
-    font-family: ${(props) => props.fontFamilyPrimary};
-    font-weight: ${(props) => props.fontWeightMedium};
+    color: ${colors.black};
+    font-weight: ${variables.fontWeightMedium};
     font-size: 1.6rem;
     line-height: 2.3rem;
     -webkit-font-smoothing: antialiased;
@@ -73,12 +52,12 @@ export const StyledBase = createGlobalStyle`
     letter-spacing: normal;
     backface-visibility: hidden;
     overflow-x: hidden;
-    color: ${(props) => props.white};
+    color: ${colors.white};
     position: relative;
     min-height: 100vh;
     overflow: hidden;
-    background: black;
-    font-family: "Inter", sans-serif;
+    background: ${colors.black};
+    font-family: ${variables.fontFamilyInter};
   }
 
   h1,
@@ -87,7 +66,7 @@ export const StyledBase = createGlobalStyle`
   h4,
   h5,
   h6 {
-    font-family: "Noto Serif Oriya", serif;
+    font-family: ${variables.fontFamilySecondary};
     line-height: 1.2;
   }
 
@@ -98,7 +77,7 @@ export const StyledBase = createGlobalStyle`
   }
 
   button {
-    font-family: ${(props) => props.fontFamilyPrimary};
+    font-family: ${variables.fontFamilyPrimary};
   }
 
   img,
@@ -120,32 +99,32 @@ export const StyledBase = createGlobalStyle`
   textarea,
   select {
     &::-webkit-input-placeholder {
-      color: ${(props) => props.black};
+      color: ${colors.black};
     }
 
     &::-moz-placeholder {
       opacity: 1;
-      color: ${(props) => props.black};
+      color: ${colors.black};
     }
 
     &:-ms-input-placeholder {
-      color: ${(props) => props.black};
+      color: ${colors.black};
     }
   }
 
   strong {
-    font-weight: ${(props) => props.fontWeightBold};
+    font-weight: ${variables.fontWeightBold};
   }
 
-  // scrollbar ma być taki jak na macu (globalnie ostylowany)
+  // TODO: scrollbar ma być taki jak na macu (globalnie ostylowany)
 
   a {
-    color: #7928ca;
-    font-weight: 700;
+    color: ${colors.purple};
+    font-weight: ${variables.fontWeightBold};
     text-decoration: underline;
     transition: opacity 0.3s;
     &::selection {
-      background-color: #6a82fb;
+      background-color: ${colors.blue};
     }
     &:hover {
       opacity: 0.8;
@@ -153,75 +132,11 @@ export const StyledBase = createGlobalStyle`
   }
 
   *::selection {
-    background-color: ${(props) => props.violet};
-    -webkit-text-fill-color: ${(props) => props.white};
+    background-color: ${colors.purple};
+    -webkit-text-fill-color: ${colors.white};
   }
 
   p {
-    color: ${(props) => props.white};
-  }
-
-  .container {
-    margin-right: auto;
-    margin-left: auto;
-    width: 100%;
-    max-width: 47.8rem;
-    height: 100%;
-    padding-left: ${(props) => props.gridSpacerMobile};
-    padding-right: ${(props) => props.gridSpacerMobile};
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    ${(props: any) => responsive.tabletP`
-      flex-direction: row;
-      max-width: 76.8rem;
-      ${css`
-        padding-left: ${props.gridSpacerTabletP};
-        padding-right: ${props.gridSpacerTabletP};
-      `}
-    `}
-
-    ${(props: any) => responsive.tabletL`
-      max-width: 102.4rem;
-      ${css`
-        padding-left: ${props.gridSpacerTabletL};
-        padding-right: ${props.gridSpacerTabletL};
-      `}
-    `}
-    ${responsive.desktop`
-      padding-left: 0;
-      padding-right: 0;
-      max-width: 99.8rem;
-    `}
-    ${responsive.desktopHd`
-      max-width: 139rem;
-    `}
-
-    &__left {
-      width: 100%;
-      ${responsive.tabletP`
-        padding-right: 30px;
-        width: 50%;
-      `}
-    }
-    &__right {
-      order: -1;
-      width: 100%;
-      ${responsive.tabletP`
-        order: 1;
-        width: 50%;
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100vh;
-      `}
-      padding-left: 30px;
-      ${responsive.tabletL`
-        padding-left: 60px;
-      `}
-      ${responsive.desktop`
-        padding-left: 80px;
-      `}
-    }
+    color: ${colors.white};
   }
 `;

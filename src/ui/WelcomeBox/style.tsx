@@ -37,7 +37,7 @@ export const StyledWelcomeBoxHeadParagraph = styled.p`
 `;
 export const StyledWelcomeBoxHeadInfo = styled.div`
   color: ${colors.white};
-  font-family: Arial;
+  font-family: ${variables.fontFamilyPrimary};
 `;
 export const StyledWelcomeBoxImage = styled.div`
   width: 40px !important;
@@ -161,7 +161,7 @@ export const StyledWelcomeBoxOptions = styled.div`
   padding: 20px 10px;
   h4 {
     color: ${colors.black};
-    font-family: Arial;
+    font-family: ${variables.fontFamilyPrimary};
   }
   button {
     text-align: left;
@@ -172,7 +172,7 @@ export const StyledWelcomeBoxOptions = styled.div`
     width: fit-content;
     padding: 8px 11px;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: ${variables.fontWeightSemiBold};
     transition: 0.3s;
     border: 2px solid ${colors.black};
     ${responsive.tabletP`

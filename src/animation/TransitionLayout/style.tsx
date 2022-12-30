@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { colors, responsive } from "src/styled/mixins";
+import { colors, responsive, variables } from "src/styled/mixins";
 
 export const StyledTransition = styled.div.attrs(
   (props: { type: "left" | "right" }) => props
@@ -136,7 +136,7 @@ export const StyledTransitionText = styled.h4.attrs(
 )`
   font-size: 22px;
   line-height: 1;
-  font-family: Roboto;
+  font-family: ${variables.fontFamilyRoboto};
   background-color: transparent;
   mix-blend-mode: darken;
   color: ${colors.black};

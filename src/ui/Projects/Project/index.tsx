@@ -6,7 +6,7 @@ import { useProjectScrollAnimation } from "src/hooks/useProjectScrollAnimation";
 
 const ComponentProject: FC<PropsProject> = ({ project, onClickFunction }) => {
   const [refProjectHover, refProjectHoverLine] = useProjectScrollAnimation();
-
+  // TODO: on hover show label (year of creation, type = new|legacy, main technology react|angular|vue)
   return (
     <StyledProject onClick={() => onClickFunction(project)}>
       <CustomImage url={project.Image.url} />

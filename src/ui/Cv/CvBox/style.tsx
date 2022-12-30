@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { responsive, colors } from "src/styled/mixins";
+import { responsive, colors, variables } from "src/styled/mixins";
 
 const widthAnimation = keyframes`
   0% {
@@ -175,6 +175,6 @@ export const StyledCvCardListItem = styled.li`
   &:last-child {
     margin-bottom: 0;
     color: ${colors.blue};
-    font-weight: 700;
+    font-weight: ${variables.fontWeightBold};
   }
 `;

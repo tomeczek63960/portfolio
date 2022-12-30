@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, responsive } from "src/styled/mixins";
+import { colors, responsive, variables } from "src/styled/mixins";
 
 export const StyledPageAnimation = styled.div`
   position: fixed;
@@ -11,7 +11,7 @@ export const StyledPageAnimation = styled.div`
   z-index: -1;
   background: ${colors.white};
   overflow: hidden;
-  font-family: Times;
+  font-family: ${variables.fontFamilyTimes};
 `;
 export const StyledPageAnimationBall = styled.span`
   width: 50px;
@@ -39,7 +39,7 @@ export const StyledPageAnimationText = styled.span`
   opacity: 0;
   color: ${colors.white};
   font-size: 25px;
-  font-weight: 700;
+  font-weight: ${variables.fontWeightBold};
   svg {
     height: 50px;
     width: auto;
@@ -69,7 +69,17 @@ export const StyledPageAnimationBackground = styled.div`
     opacity: 1;
     pointer-events: all;
     visibility: visible;
-  `}
+  `} /*  */
+  .no-scroll.body-padding & {
+    @media screen and (hover) {
+      width: calc(50% + (17px / 2));
+    }
+  }
+  .no-scroll.body-padding-thin & {
+    @media screen and (hover) {
+      width: calc(50% + (15px / 2));
+    }
+  }
 `;
 export const StyledPageContent = styled.div`
   opacity: 0;
