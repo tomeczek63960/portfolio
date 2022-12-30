@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import type { IRootState } from "src/store";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
 
-interface TimelineProps {
+interface PropsTimeline {
   target: HTMLHeadingElement;
   color?: string;
   hoverColor?: string;
@@ -15,7 +15,7 @@ const createTimeline = ({
   target,
   color,
   hoverColor,
-}: TimelineProps): GSAPTimeline => {
+}: PropsTimeline): GSAPTimeline => {
   const tl = gsap.timeline({ paused: true });
   tl.add(
     gsap.to(target, {

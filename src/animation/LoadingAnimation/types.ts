@@ -1,3 +1,3 @@
-export interface LoadingAnimationProps {
+export interface PropsLoadingAnimation {
   children: React.ReactNode;
 }

@@ -11,11 +11,11 @@ interface IMessage {
 }
 interface ReturnTypes {
   activeMessages: IMessage[];
-  writeAnimationWelcomeBox: RefObject<HTMLDivElement>;
-  writeAnimationWelcomeBoxImage: RefObject<HTMLDivElement>;
-  writeAnimationElement: RefObject<HTMLDivElement>;
-  welcomeBoxConversation: RefObject<HTMLDivElement>;
-  welcomeBoxOptions: RefObject<HTMLDivElement>;
+  refWriteAnimationWelcomeBox: RefObject<HTMLDivElement>;
+  refWriteAnimationWelcomeBoxImage: RefObject<HTMLDivElement>;
+  refWriteAnimationElement: RefObject<HTMLDivElement>;
+  refWelcomeBoxConversation: RefObject<HTMLDivElement>;
+  refWelcomeBoxOptions: RefObject<HTMLDivElement>;
   writeMessage: Function;
 }
 
@@ -38,42 +38,42 @@ export const useWelcomeBoxAnimation = (
   ]);
 
   const [messagesQueue, setMessagesQueue] = useState<any>([]);
-  const writeAnimationWelcomeBox = useRef<HTMLDivElement>(null);
-  const writeAnimationWelcomeBoxImage = useRef<HTMLDivElement>(null);
-  const writeAnimationElement = useRef<HTMLDivElement>(null);
-  const welcomeBoxConversation = useRef<HTMLDivElement>(null);
-  const welcomeBoxOptions = useRef<HTMLDivElement>(null);
+  const refWriteAnimationWelcomeBox = useRef<HTMLDivElement>(null);
+  const refWriteAnimationWelcomeBoxImage = useRef<HTMLDivElement>(null);
+  const refWriteAnimationElement = useRef<HTMLDivElement>(null);
+  const refWelcomeBoxConversation = useRef<HTMLDivElement>(null);
+  const refWelcomeBoxOptions = useRef<HTMLDivElement>(null);
+  const refTimeline = useRef<GSAPTimeline>();
 
-  const timeline = useRef<GSAPTimeline>();
   useIsomorphicLayoutEffect(() => {
-    timeline.current = gsap.timeline({ paused: true });
-    timeline.current.add(
-      gsap.to(writeAnimationElement.current, {
+    refTimeline.current = gsap.timeline({ paused: true });
+    refTimeline.current.add(
+      gsap.to(refWriteAnimationElement.current, {
         duration: 0,
         scale: 1,
       })
     );
-    timeline.current.add(
-      gsap.to(writeAnimationElement.current, {
+    refTimeline.current.add(
+      gsap.to(refWriteAnimationElement.current, {
         duration: 0.3,
         opacity: 1,
       })
     );
-    timeline.current.add(
-      gsap.to(writeAnimationElement.current, {
+    refTimeline.current.add(
+      gsap.to(refWriteAnimationElement.current, {
         duration: 0.3,
         opacity: 0,
         delay: 2.5,
       })
     );
-    timeline.current.add(
-      gsap.to(writeAnimationElement.current, {
+    refTimeline.current.add(
+      gsap.to(refWriteAnimationElement.current, {
         duration: 0,
         scale: 0,
       })
     );
     return () => {
-      timeline.current?.clear().kill();
+      refTimeline.current?.clear().kill();
     };
   }, []);
 
@@ -81,47 +81,47 @@ export const useWelcomeBoxAnimation = (
     event: MouseEvent<HTMLElement>,
     message: IMessage
   ): void => {
-    if (isFalsy(welcomeBoxConversation.current)) return;
+    if (isFalsy(refWelcomeBoxConversation.current)) return;
     const togglerMessages = newMessages.filter(
       (msg: IMessage) => msg.toggler === message.toggler
     );
     const selector = `[data-scroll-to="${
       isTruthy(message?.toggler) ? message.toggler : ""
     }"]`;
-    const isInConversation = welcomeBoxConversation.current.querySelector(
+    const isInConversation = refWelcomeBoxConversation.current.querySelector(
       selector
     ) as HTMLDivElement;
     if (isFalsy(isInConversation)) {
       setMessagesQueue((prev: any) => [...prev, ...togglerMessages]);
     } else {
-      welcomeBoxConversation.current.scrollTo(
+      refWelcomeBoxConversation.current.scrollTo(
         0,
-        isInConversation.offsetTop - welcomeBoxConversation.current.offsetTop
+        isInConversation.offsetTop - refWelcomeBoxConversation.current.offsetTop
       );
     }
   };
   useIsomorphicLayoutEffect(() => {
     // TODO: add transition fro appear new message
-    gsap.set(welcomeBoxOptions.current, {
+    gsap.set(refWelcomeBoxOptions.current, {
       pointerEvents: isTruthy(messagesQueue.length) ? "none" : "all",
     });
     if (isTruthy(messagesQueue.length)) {
       const isAdmin = messagesQueue[0].type === "admin";
-      gsap.set(writeAnimationWelcomeBox.current, {
+      gsap.set(refWriteAnimationWelcomeBox.current, {
         justifyContent: isAdmin ? "flex-start" : "flex-end",
       });
-      gsap.set(writeAnimationElement.current, {
+      gsap.set(refWriteAnimationElement.current, {
         borderTopLeftRadius: isAdmin ? 0 : "4px",
         borderTopRightRadius: isAdmin ? "4px" : 0,
       });
-      gsap.set(writeAnimationWelcomeBoxImage.current, {
+      gsap.set(refWriteAnimationWelcomeBoxImage.current, {
         order: isAdmin ? -1 : 1,
       });
 
-      timeline.current
+      refTimeline.current
         ?.play()
         .then(() => {
-          timeline.current?.seek(0).pause();
+          refTimeline.current?.seek(0).pause();
           const firstEll = messagesQueue.shift();
           setActiveMessages((prev: any) => [...prev, firstEll]);
         })
@@ -131,20 +131,20 @@ export const useWelcomeBoxAnimation = (
     }
   }, [messagesQueue, activeMessages]);
   useIsomorphicLayoutEffect(() => {
-    if (welcomeBoxConversation.current == null) return;
-    welcomeBoxConversation.current.scrollTo(
+    if (refWelcomeBoxConversation.current == null) return;
+    refWelcomeBoxConversation.current.scrollTo(
       0,
-      welcomeBoxConversation.current.scrollHeight
+      refWelcomeBoxConversation.current.scrollHeight
     );
   }, [activeMessages]);
 
   return {
     activeMessages,
-    writeAnimationWelcomeBox,
-    writeAnimationWelcomeBoxImage,
-    writeAnimationElement,
-    welcomeBoxConversation,
-    welcomeBoxOptions,
+    refWriteAnimationWelcomeBox,
+    refWriteAnimationWelcomeBoxImage,
+    refWriteAnimationElement,
+    refWelcomeBoxConversation,
+    refWelcomeBoxOptions,
     writeMessage,
   };
 };

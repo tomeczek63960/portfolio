@@ -27,7 +27,7 @@ interface IMessage {
   message: string;
   toggler?: string;
 }
-const WelcomeBoxComponent: FC = () => {
+const ComponentWelcomeBox: FC = () => {
   const [messages] = useState<IMessageTogglers[]>([
     {
       id: 222,
@@ -173,11 +173,11 @@ const WelcomeBoxComponent: FC = () => {
 
   const {
     activeMessages,
-    writeAnimationWelcomeBox,
-    writeAnimationWelcomeBoxImage,
-    writeAnimationElement,
-    welcomeBoxConversation,
-    welcomeBoxOptions,
+    refWriteAnimationWelcomeBox,
+    refWriteAnimationWelcomeBoxImage,
+    refWriteAnimationElement,
+    refWelcomeBoxConversation,
+    refWelcomeBoxOptions,
     writeMessage,
   } = useWelcomeBoxAnimation(newMessages);
 
@@ -190,7 +190,7 @@ const WelcomeBoxComponent: FC = () => {
       <StyledWelcomeBox>
         <WelcomeBoxHead {...headInfo} />
 
-        <StyledWelcomeBoxConversation ref={welcomeBoxConversation}>
+        <StyledWelcomeBoxConversation ref={refWelcomeBoxConversation}>
           {activeMessages.map((message: any) => (
             <WelcomeBoxMessageComponent
               message={message}
@@ -198,13 +198,13 @@ const WelcomeBoxComponent: FC = () => {
             />
           ))}
 
-          <StyledWelcomeBoxMessage ref={writeAnimationWelcomeBox}>
+          <StyledWelcomeBoxMessage ref={refWriteAnimationWelcomeBox}>
             <StyledWelcomeBoxMessageImage
-              ref={writeAnimationWelcomeBoxImage}
+              ref={refWriteAnimationWelcomeBoxImage}
             ></StyledWelcomeBoxMessageImage>
             <div>
               <StyledWelcomeBoxMessageText
-                ref={writeAnimationElement}
+                ref={refWriteAnimationElement}
                 writingAnimation={true}
                 visible={true}
               >
@@ -218,7 +218,7 @@ const WelcomeBoxComponent: FC = () => {
         {isTruthy(messages.length) && (
           <StyledWelcomeBoxOptions>
             <h4>Wybierz co Ciebie interesuje</h4>
-            <StyledWelcomeBoxOptionsList ref={welcomeBoxOptions}>
+            <StyledWelcomeBoxOptionsList ref={refWelcomeBoxOptions}>
               {messages.map((message: any) => (
                 <button
                   key={message.toggler}
@@ -235,4 +235,4 @@ const WelcomeBoxComponent: FC = () => {
   );
 };
 
-export default WelcomeBoxComponent;
+export default ComponentWelcomeBox;

@@ -18,19 +18,21 @@ export const useHeaderMobileAnimation = (
   RefObject<HTMLDivElement>,
   RefObject<HTMLDivElement>
 ] => {
-  const bars = useRef<HTMLButtonElement>(null);
-  const firstDot = useRef<HTMLSpanElement>(null);
-  const lastDot = useRef<HTMLSpanElement>(null);
-  const mobileNav = useRef<HTMLDivElement>(null);
-  const headerBar = useRef<HTMLDivElement>(null);
-  const mobileNavContainer = useRef<HTMLDivElement>(null);
-  const socialMediaRef = useRef<HTMLDivElement>(null);
-  const prevScrollPosition = useRef(0);
-  const currentScrollPos = useRef(0);
-  const animateDots = useRef(true);
-  const timeline = useRef<GSAPTimeline>();
-  const runDotsAnimation = (): void => {
-    const barsChildren = isTruthy(bars.current) ? bars.current.children : [];
+  const refBars = useRef<HTMLButtonElement>(null);
+  const refFirstDot = useRef<HTMLSpanElement>(null);
+  const refLastDot = useRef<HTMLSpanElement>(null);
+  const refMobileNav = useRef<HTMLDivElement>(null);
+  const refHeaderBar = useRef<HTMLDivElement>(null);
+  const refMobileNavContainer = useRef<HTMLDivElement>(null);
+  const refSocialMedia = useRef<HTMLDivElement>(null);
+  const refPrevScrollPosition = useRef(0);
+  const refCurrentScrollPos = useRef(0);
+  const refAnimateDots = useRef(true);
+  const refTimeline = useRef<GSAPTimeline>();
+  const callDotsAnimation = (): void => {
+    const barsChildren = isTruthy(refBars.current)
+      ? refBars.current.children
+      : [];
     gsap.to(barsChildren, {
       duration: 0.3,
       scale: 2,
@@ -46,40 +48,40 @@ export const useHeaderMobileAnimation = (
   };
 
   const handleScroll = (): void => {
-    currentScrollPos.current = window.pageYOffset;
+    refCurrentScrollPos.current = window.pageYOffset;
     const headerHeight = `-${
-      isTruthy(headerBar.current) ? headerBar.current.offsetHeight : ""
+      isTruthy(refHeaderBar.current) ? refHeaderBar.current.offsetHeight : ""
     }px`;
-    const isTop = currentScrollPos.current === 0;
+    const isTop = refCurrentScrollPos.current === 0;
 
-    const moreThan80 = currentScrollPos.current >= 80;
+    const moreThan80 = refCurrentScrollPos.current >= 80;
     const isPrevPositionLarger =
-      prevScrollPosition.current >= currentScrollPos.current;
+      refPrevScrollPosition.current >= refCurrentScrollPos.current;
 
-    if (isTop) runDotsAnimation();
-    gsap.to(headerBar.current, {
+    if (isTop) callDotsAnimation();
+    gsap.to(refHeaderBar.current, {
       duration: 0.3,
       boxShadow: `0 0.7rem 2rem ${isTop ? "transparent" : colors.darken}`,
     });
 
-    if (moreThan80 && isPrevPositionLarger && animateDots.current) {
-      runDotsAnimation();
+    if (moreThan80 && isPrevPositionLarger && refAnimateDots.current) {
+      callDotsAnimation();
     }
-    animateDots.current = !isPrevPositionLarger;
+    refAnimateDots.current = !isPrevPositionLarger;
 
-    gsap.to(headerBar.current, {
+    gsap.to(refHeaderBar.current, {
       duration: 0.4,
       y: moreThan80 && !isPrevPositionLarger ? headerHeight : 0,
     });
 
-    prevScrollPosition.current = currentScrollPos.current;
+    refPrevScrollPosition.current = refCurrentScrollPos.current;
   };
   useIsomorphicLayoutEffect(() => {
-    timeline.current = gsap.timeline({ paused: true });
-    prevScrollPosition.current = window.pageYOffset;
-    isTruthy(bars.current) &&
-      timeline.current.to(
-        bars.current.children,
+    refTimeline.current = gsap.timeline({ paused: true });
+    refPrevScrollPosition.current = window.pageYOffset;
+    isTruthy(refBars.current) &&
+      refTimeline.current.to(
+        refBars.current.children,
         {
           duration: 0.3,
           scale: 2,
@@ -87,9 +89,9 @@ export const useHeaderMobileAnimation = (
         },
         "load-dot"
       );
-    isTruthy(bars.current) &&
-      timeline.current.to(
-        bars.current.children,
+    isTruthy(refBars.current) &&
+      refTimeline.current.to(
+        refBars.current.children,
         {
           duration: 0.3,
           scale: 1,
@@ -98,8 +100,8 @@ export const useHeaderMobileAnimation = (
         },
         "load-dot"
       );
-    timeline.current.to(
-      firstDot.current,
+    refTimeline.current.to(
+      refFirstDot.current,
       {
         duration: 0.3,
         rotate: "-45deg",
@@ -107,8 +109,8 @@ export const useHeaderMobileAnimation = (
       },
       "join-dots"
     );
-    timeline.current.to(
-      lastDot.current,
+    refTimeline.current.to(
+      refLastDot.current,
       {
         duration: 0.3,
         rotate: "45deg",
@@ -116,24 +118,24 @@ export const useHeaderMobileAnimation = (
       },
       "join-dots"
     );
-    timeline.current.to(
-      firstDot.current,
+    refTimeline.current.to(
+      refFirstDot.current,
       {
         duration: 0.5,
         height: "30px",
       },
       "rotate-dots"
     );
-    timeline.current.to(
-      lastDot.current,
+    refTimeline.current.to(
+      refLastDot.current,
       {
         duration: 0.5,
         height: "30px",
       },
       "rotate-dots"
     );
-    timeline.current.to(
-      mobileNav.current,
+    refTimeline.current.to(
+      refMobileNav.current,
       {
         duration: 0.5,
         height: "calc(100vh - 80px)",
@@ -141,14 +143,14 @@ export const useHeaderMobileAnimation = (
       },
       "rotate-dots"
     );
-    timeline.current.to(
+    refTimeline.current.to(
       [
         ...Array.from(
-          socialMediaRef.current != null ? socialMediaRef.current.children : []
+          refSocialMedia.current != null ? refSocialMedia.current.children : []
         ),
         ...Array.from(
-          mobileNavContainer.current != null
-            ? mobileNavContainer.current.children
+          refMobileNavContainer.current != null
+            ? refMobileNavContainer.current.children
             : []
         ),
       ],
@@ -165,7 +167,7 @@ export const useHeaderMobileAnimation = (
     handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => {
-      timeline.current?.clear().kill();
+      refTimeline.current?.clear().kill();
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -173,20 +175,20 @@ export const useHeaderMobileAnimation = (
   useIsomorphicLayoutEffect(() => {
     return () => {
       setTimeout(() => {
-        timeline.current?.pause().seek(0);
+        refTimeline.current?.pause().seek(0);
         preventScroll();
       }, 1000);
     };
   }, [locale, pathname]);
 
   return [
-    timeline,
-    firstDot,
-    lastDot,
-    mobileNav,
-    headerBar,
-    bars,
-    mobileNavContainer,
-    socialMediaRef,
+    refTimeline,
+    refFirstDot,
+    refLastDot,
+    refMobileNav,
+    refHeaderBar,
+    refBars,
+    refMobileNavContainer,
+    refSocialMedia,
   ];
 };

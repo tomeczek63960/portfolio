@@ -37,6 +37,7 @@ const Home: FC = () => {
     // - types Type - T...
     // - types Props - Props...
     //
+    // hooks insert into separate folders with types and index
     <>
       <IntroductionComponent />
       <WelcomeBox />

@@ -10,38 +10,38 @@ export const useProjectScrollAnimation = (): [
   RefObject<HTMLSpanElement>
 ] => {
   const { isActive } = useSelector((state: IRootState) => state.scrollTrigger);
-  const projectHoverLine = useRef<HTMLSpanElement>(null);
-  const projectHover = useRef<HTMLDivElement>(null);
-  const timeline = useRef<GSAPTimeline>();
+  const refProjectHoverLine = useRef<HTMLSpanElement>(null);
+  const refProjectHover = useRef<HTMLDivElement>(null);
+  const refTimeline = useRef<GSAPTimeline>();
   useIsomorphicLayoutEffect(() => {
     if (!isActive) return;
-    timeline.current = gsap.timeline({
+    refTimeline.current = gsap.timeline({
       scrollTrigger: {
-        trigger: projectHover.current,
+        trigger: refProjectHover.current,
         start: () => `top ${window.innerHeight * 0.85}`,
         end: () => `top ${window.innerHeight * 0.8}`,
       },
     });
-    timeline.current.to(projectHover.current, {
+    refTimeline.current.to(refProjectHover.current, {
       duration: 0.5,
       y: 0,
     });
-    isTruthy(projectHover.current) &&
-      timeline.current.to(projectHover.current.children, {
+    isTruthy(refProjectHover.current) &&
+      refTimeline.current.to(refProjectHover.current.children, {
         duration: 0.5,
         y: 0,
         x: 0,
         opacity: 1,
         stagger: 0.2,
       });
-    timeline.current.to(projectHoverLine.current, {
+    refTimeline.current.to(refProjectHoverLine.current, {
       duration: 0.5,
       scaleX: 1,
     });
     return () => {
-      timeline.current?.clear().kill();
+      refTimeline.current?.clear().kill();
     };
   }, [isActive]);
 
-  return [projectHover, projectHoverLine];
+  return [refProjectHover, refProjectHoverLine];
 };
