@@ -22,7 +22,7 @@ const ComponentCvBox: FC = () => {
     <StyledCvCardWrapper position="left">
       <StyedCvCard position="left">
         <StyledCvCardHead ref={refBox}>
-          <StyledCvDownloadIcon href="/cv.pdf">
+          <StyledCvDownloadIcon href="/cv.pdf" download>
             <Pdf />
           </StyledCvDownloadIcon>
           <StyledCvDownloadLink href="/cv.pdf" download>

@@ -10,10 +10,7 @@ const ViewHome: FC = () => {
     // TODO:
     // TODO: change px to rem unit
     // TODO: in all timeline .then .catch blocks add global error handling, np. popup with info something went wrong, try to refresh the page
-    // TODO: in folders with files use relative imports for (./types, ./style) for rest use absolute imports
-    // TODO: add welcome box scroll animation
     // dodać na resize refresh komponentów / timeline / gsapa
-    // TODO: add page where all of my projects will be presentent
 
     // related with strapi be
     // TODO: move everything to strapi

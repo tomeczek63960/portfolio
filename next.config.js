@@ -24,6 +24,11 @@ const nextConfig = {
         destination: "/pl/show-case",
         locale: false,
       },
+      {
+        source: "/pl/doswiadczenie",
+        destination: "/pl/experience",
+        locale: false,
+      },
     ];
   },
   images: {

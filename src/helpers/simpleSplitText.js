@@ -16,7 +16,11 @@ export const simpleSplitText = (el, type) => {
         const isCharacter =
           letter.toLowerCase() !== letter.toUpperCase() ||
           letter === "’" ||
-          letter === ",";
+          letter === "," ||
+          letter === "‐" ||
+          letter === "-" ||
+          letter === "." ||
+          parseInt(letter);
         const a = isCharacter
           ? createHtml(letter, "splitted-text splitted-text-animate")
           : letter;

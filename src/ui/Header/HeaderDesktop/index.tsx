@@ -49,6 +49,9 @@ const ComponentHeader: FC = () => {
       <Link href={localePaths.showCase} locale={locale}>
         <StyledLink>Show case</StyledLink>
       </Link>
+      <Link href={localePaths.experience} locale={locale}>
+        <StyledLink>Experience</StyledLink>
+      </Link>
       {locales.map((localeItem: string) => (
         <Link key={localeItem} href="/" locale={localeItem}>
           <StyledLink isDisabled={localeItem === locale}>{locale}</StyledLink>

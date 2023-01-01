@@ -3,6 +3,7 @@ interface IPaths {
   contact: string;
   caseStudies: string;
   showCase: string;
+  experience: string;
 }
 export const getPaths = (locale: string): IPaths => {
   switch (locale) {
@@ -12,6 +13,7 @@ export const getPaths = (locale: string): IPaths => {
         contact: "/kontakt",
         caseStudies: "/case-studies",
         showCase: "/show",
+        experience: "pl/doswiadczenie",
       };
     case "en":
       return {
@@ -19,6 +21,7 @@ export const getPaths = (locale: string): IPaths => {
         contact: "/contact",
         caseStudies: "/case-studies",
         showCase: "/show-case",
+        experience: "/experience",
       };
     default:
       return {
@@ -26,6 +29,7 @@ export const getPaths = (locale: string): IPaths => {
         contact: "/contact",
         caseStudies: "/case-studies",
         showCase: "/show-case",
+        experience: "/experience",
       };
   }
 };
