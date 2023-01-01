@@ -1,5 +1,5 @@
 import React, { FC, RefObject } from "react";
-import Pdf from "../../../../public/svg/pdf.svg";
+import { Pdf } from "src/Svg";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 import {
   StyledCvCardWrapper,

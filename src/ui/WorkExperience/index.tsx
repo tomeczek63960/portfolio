@@ -10,7 +10,7 @@ import {
   StyledWorkExperienceContent,
   StyledButtonSecondary,
 } from "./style";
-import SectionWave from "../../../public/svg/section-wave.svg";
+import { SectionWave } from "src/Svg";
 import WorkExperienceList from "./WorkExperienceList";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 

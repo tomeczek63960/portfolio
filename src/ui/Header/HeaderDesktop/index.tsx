@@ -1,8 +1,7 @@
 import React, { useMemo, FC, RefObject } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Linkedin from "../../../../public/svg/linkedin.svg";
-import Github from "../../../../public/svg/github.svg";
+import { Github, Linkedin } from "src/Svg";
 import {
   StyledLink,
   StyledDesktopNav,

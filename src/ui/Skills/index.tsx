@@ -1,29 +1,32 @@
 import React, { FC } from "react";
-import Angular from "../../../public/svg/angular.svg";
-import Adobexd from "../../../public/svg/adobexd.svg";
-import Contentful from "../../../public/svg/contentful.svg";
-import Css from "../../../public/svg/css.svg";
-import Figma from "../../../public/svg/figma.svg";
-import Gatsby from "../../../public/svg/gatsby.svg";
-import Gsap from "../../../public/svg/gsap.svg";
-import Html from "../../../public/svg/html.svg";
-import Javascript from "../../../public/svg/javascript.svg";
-import NextJs from "../../../public/svg/next.svg";
-import Nuxt from "../../../public/svg/nuxt.svg";
-import ReactJs from "../../../public/svg/react.svg";
-import Redux from "../../../public/svg/redux.svg";
-import Sass from "../../../public/svg/sass.svg";
-import Strapi from "../../../public/svg/strapi.svg";
-import Typescript from "../../../public/svg/typescript.svg";
-import Vue from "../../../public/svg/vue.svg";
-import StyledComponents from "../../../public/svg/styled-components.svg";
-import Php from "../../../public/svg/php.svg";
-import Pimcore from "../../../public/svg/pimcore.svg";
-import Shopware from "../../../public/svg/shopware.svg";
 import Heading from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
 import { StyledSkillsSection } from "./style";
 import Carousel from "src/ui/Skills/Carousel";
+
+import {
+  Angular,
+  Adobexd,
+  Contentful,
+  Css,
+  Figma,
+  Gatsby,
+  Gsap,
+  Html,
+  Javascript,
+  NextJs,
+  Nuxt,
+  ReactJs,
+  Redux,
+  Sass,
+  Strapi,
+  Typescript,
+  Vue,
+  StyledComponents,
+  Php,
+  Pimcore,
+  Shopware,
+} from "src/Svg";
 
 const ComponentSkills: FC = () => {
   const jsSkills = [

@@ -1,6 +1,5 @@
 import React, { forwardRef } from "react";
-import Linkedin from "../../../public/svg/linkedin.svg";
-import Github from "../../../public/svg/github.svg";
+import { Linkedin, Github } from "src/Svg";
 import { StyledSocialMeidaLinks } from "./style";
 import { PropsSocialMedia } from "./types";
 

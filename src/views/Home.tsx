@@ -9,7 +9,6 @@ const ViewHome: FC = () => {
   return (
     // TODO:
     // TODO: change px to rem unit
-    // TODO: absolute import for svg icons instead of relative imports
     // TODO: in all timeline .then .catch blocks add global error handling, np. popup with info something went wrong, try to refresh the page
     // TODO: in folders with files use relative imports for (./types, ./style) for rest use absolute imports
     // TODO: add welcome box scroll animation

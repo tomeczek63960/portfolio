@@ -1,7 +1,6 @@
 import React, { FC } from "react";
-import ArrowLeft from "../../../../public/svg/arrow-left.svg";
-import World from "../../../../public/svg/world.svg";
-import Github from "../../../../public/svg/github.svg";
+import { Github, World, ArrowLeft } from "src/Svg";
+
 import CustomImage from "src/ui/Image";
 import {
   StyledProjectBox,

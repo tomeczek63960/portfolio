@@ -5,7 +5,7 @@ import {
   StyledListItemLine,
   StyledListItemLineDot,
 } from "./style";
-import ArrowDown from "../../../../public/svg/arrow-down.svg";
+import { ArrowDown } from "src/Svg";
 import { PropsWrokExperience } from "./types";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 
