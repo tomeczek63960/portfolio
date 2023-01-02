@@ -12,7 +12,6 @@ export interface ReturnTypes {
   refWriteAnimationWelcomeBox: RefObject<HTMLDivElement>;
   refWriteAnimationWelcomeBoxImage: RefObject<HTMLDivElement>;
   refWriteAnimationElement: RefObject<HTMLDivElement>;
-  refWelcomeBoxConversation: RefObject<HTMLDivElement>;
   refWelcomeBoxOptions: RefObject<HTMLDivElement>;
   writeMessage: Function;
 }

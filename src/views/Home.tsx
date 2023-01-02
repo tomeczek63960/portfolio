@@ -17,7 +17,6 @@ const ViewHome: FC = () => {
     // TODO: in skills add next carousel & add prismic.io, hygraph, builder.io ...
     // Add seo values for pages in strapi
 
-    // TODO: fix gsap.target not found after change page - probably fixed already - just check
     // TODO: scrollbar ma być taki jak na macu (globalnie ostylowany)
     // TODO: add tests to all components
     <>

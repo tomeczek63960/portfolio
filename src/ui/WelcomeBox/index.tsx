@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, RefObject } from "react";
 import HeadingComponent from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
 import {
@@ -16,7 +16,7 @@ import { isTruthy } from "src/helpers/checkFalsyType";
 import WelcomeBoxMessageComponent from "./WelcomeBoxMessage";
 import WelcomeBoxHead from "./WelcomeBoxHead";
 import { useWelcomeBoxAnimation } from "src/hooks/useWelcomeBoxAnimation";
-
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 const ComponentWelcomeBox: FC = () => {
   const [messages] = useState<IMessageTogglers[]>([
     {
@@ -34,7 +34,7 @@ const ComponentWelcomeBox: FC = () => {
   ]);
   const [newMessages] = useState<IMessage[]>([
     {
-      id: 2,
+      id: 3,
       toggler: "Doświadczenie",
       type: "user",
       image: "/user.png",
@@ -42,14 +42,14 @@ const ComponentWelcomeBox: FC = () => {
         "Cześć <br/> Mógłbyś powiedzieć coś o swoim doświadczeniu jako programista?",
     },
     {
-      id: 3,
+      id: 4,
       toggler: "Doświadczenie",
       type: "admin",
       image: "/tk.jpeg",
       message: "Jasne",
     },
     {
-      id: 4,
+      id: 44,
       toggler: "Doświadczenie",
       type: "admin",
       image: "",
@@ -154,7 +154,10 @@ const ComponentWelcomeBox: FC = () => {
         "Najbardziej zainteresowany jestem technologiami React/Gatsby/Next jednak rozważę też propozycje w vue/Nuxt",
     },
   ]);
-
+  const [refWelcomeBoxConversation] = useAutoAnimate() as [
+    RefObject<HTMLDivElement>,
+    (enabled: boolean) => void
+  ];
   const headInfo = {
     image: "/tk.jpeg",
     name: "Tomasz Kardel",
@@ -166,10 +169,9 @@ const ComponentWelcomeBox: FC = () => {
     refWriteAnimationWelcomeBox,
     refWriteAnimationWelcomeBoxImage,
     refWriteAnimationElement,
-    refWelcomeBoxConversation,
     refWelcomeBoxOptions,
     writeMessage,
-  } = useWelcomeBoxAnimation(newMessages);
+  } = useWelcomeBoxAnimation(newMessages, refWelcomeBoxConversation);
 
   return (
     <StyledWelcomeBoxSection>

@@ -13,7 +13,6 @@ const WelcomeBoxMessageComponent: FC<PropsWelcomeBoxMessage> = ({
 }) => {
   return (
     <StyledWelcomeBoxMessage
-      key={Math.random() * 100000}
       position={message.type === "user" ? "right" : "left"}
       data-scroll-to={message.toggler}
     >

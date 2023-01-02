@@ -1,11 +1,12 @@
 import { gsap } from "gsap";
-import { useRef, useState, MouseEvent } from "react";
+import { useRef, useState, MouseEvent, RefObject } from "react";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { IMessage, ReturnTypes } from "./types";
 
 export const useWelcomeBoxAnimation = (
-  newMessages: IMessage[]
+  newMessages: IMessage[],
+  refWelcomeBoxConversation: RefObject<HTMLDivElement>
 ): ReturnTypes => {
   const [activeMessages, setActiveMessages] = useState<IMessage[]>([
     {
@@ -15,7 +16,7 @@ export const useWelcomeBoxAnimation = (
       message: "Cześć <br/> Miło jest Ciebie tu widzieć",
     },
     {
-      id: 1,
+      id: 2,
       type: "admin",
       image: "",
       message: "Co chciałbyś się o mnie dowiedzieć?",
@@ -26,7 +27,6 @@ export const useWelcomeBoxAnimation = (
   const refWriteAnimationWelcomeBox = useRef<HTMLDivElement>(null);
   const refWriteAnimationWelcomeBoxImage = useRef<HTMLDivElement>(null);
   const refWriteAnimationElement = useRef<HTMLDivElement>(null);
-  const refWelcomeBoxConversation = useRef<HTMLDivElement>(null);
   const refWelcomeBoxOptions = useRef<HTMLDivElement>(null);
   const refTimeline = useRef<GSAPTimeline>();
 
@@ -77,16 +77,12 @@ export const useWelcomeBoxAnimation = (
       selector
     ) as HTMLDivElement;
     if (isFalsy(isInConversation)) {
-      setMessagesQueue((prev: any) => [...prev, ...togglerMessages]);
+      setMessagesQueue((prev: IMessage[]) => [...prev, ...togglerMessages]);
     } else {
-      refWelcomeBoxConversation.current.scrollTo(
-        0,
-        isInConversation.offsetTop - refWelcomeBoxConversation.current.offsetTop
-      );
+      refWelcomeBoxConversation.current.scrollTo(0, isInConversation.offsetTop);
     }
   };
   useIsomorphicLayoutEffect(() => {
-    // TODO: add transition fro appear new message
     gsap.set(refWelcomeBoxOptions.current, {
       pointerEvents: isTruthy(messagesQueue.length) ? "none" : "all",
     });
@@ -116,7 +112,7 @@ export const useWelcomeBoxAnimation = (
     }
   }, [messagesQueue, activeMessages]);
   useIsomorphicLayoutEffect(() => {
-    if (refWelcomeBoxConversation.current == null) return;
+    if (isFalsy(refWelcomeBoxConversation.current)) return;
     refWelcomeBoxConversation.current.scrollTo(
       0,
       refWelcomeBoxConversation.current.scrollHeight
@@ -128,7 +124,6 @@ export const useWelcomeBoxAnimation = (
     refWriteAnimationWelcomeBox,
     refWriteAnimationWelcomeBoxImage,
     refWriteAnimationElement,
-    refWelcomeBoxConversation,
     refWelcomeBoxOptions,
     writeMessage,
   };
