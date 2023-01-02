@@ -5,7 +5,7 @@ import { simpleSplitText } from "src/helpers/simpleSplitText";
 import { useSelector } from "react-redux";
 import type { IRootState } from "src/store";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
-import { PropsTimeline } from "./types";
+import { PropsTimeline, ITimelineObject } from "./types";
 
 const createTimeline = ({
   target,
@@ -82,14 +82,11 @@ const createTimeline = ({
   return tl;
 };
 
-// TODO: do refactoru
 export const useAnimatedChars = (
   props: any
 ): [RefObject<HTMLHeadingElement>, MouseEventHandler<HTMLHeadingElement>] => {
   const heading = useRef<HTMLHeadingElement>(null);
-  const tlEvents = useRef<Array<{ tl: GSAPTimeline; animationIndex: string }>>(
-    []
-  );
+  const tlEvents = useRef<ITimelineObject[]>([]);
   const { isActive } = useSelector((state: IRootState) => state.scrollTrigger);
   const handleAnimation = (
     target: HTMLHeadingElement,
@@ -102,18 +99,16 @@ export const useAnimatedChars = (
     tlObject?.tl
       .play()
       .then(() => {
-        target.classList.add("splitted-text-animate");
+        target.setAttribute("animate", "true");
         tlObject.tl.seek(0).pause();
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  const animateChars = (event: MouseEvent<HTMLHeadingElement>): void => {
-    const target = event.target as HTMLHeadingElement;
-    if (!target.classList.contains("splitted-text-animate")) return;
-    target.classList.remove("splitted-text-animate");
+  const getAnimationIndex = (target: HTMLHeadingElement): string => {
     let animationIndex = target.dataset.animationIndex;
+
     if (isFalsy(animationIndex)) {
       animationIndex = (Math.random() * 10000000).toString();
       target.setAttribute("data-animation-index", animationIndex);
@@ -127,8 +122,25 @@ export const useAnimatedChars = (
         tl,
       });
     }
+    return animationIndex;
+  };
+  const animateChars = (event: MouseEvent<HTMLHeadingElement>): void => {
+    const target = event.target as HTMLHeadingElement;
+    if (isFalsy(target.dataset.animate)) return;
+    target.removeAttribute("animate");
+    const animationIndex = getAnimationIndex(target);
     handleAnimation(target, animationIndex);
   };
+  useIsomorphicLayoutEffect(() => {
+    if (heading.current == null) return;
+    simpleSplitText(heading.current);
+    return () => {
+      tlEvents.current.forEach((tlObject) => {
+        tlObject.tl?.kill();
+        tlObject.tl?.clear();
+      });
+    };
+  }, [heading.current]);
   useIsomorphicLayoutEffect(() => {
     setTimeout(() => {
       if (!isActive || heading.current == null) return;
@@ -150,16 +162,6 @@ export const useAnimatedChars = (
       });
     }, 0);
   }, [isActive]);
-  useIsomorphicLayoutEffect(() => {
-    if (heading.current == null) return;
-    simpleSplitText(heading.current);
-    return () => {
-      tlEvents.current.forEach((tlObject) => {
-        tlObject.tl?.kill();
-        tlObject.tl?.clear();
-      });
-    };
-  }, [heading.current]);
 
   return [heading, animateChars];
 };

@@ -1,4 +1,5 @@
-const createHtml = (text, classes) => `<span class="${classes}">${text}</span>`;
+const createHtml = (text, classes) =>
+  `<span class="${classes}" data-animate="true">${text}</span>`;
 
 export const simpleSplitText = (el, type) => {
   const text = el.innerText.replaceAll(/\r?\n|\r|\n/g, " <br/> ");
@@ -21,9 +22,7 @@ export const simpleSplitText = (el, type) => {
           letter === "-" ||
           letter === "." ||
           parseInt(letter);
-        const a = isCharacter
-          ? createHtml(letter, "splitted-text splitted-text-animate")
-          : letter;
+        const a = isCharacter ? createHtml(letter, "splitted-text") : letter;
         wordHtml = wordHtml + a;
       });
     }

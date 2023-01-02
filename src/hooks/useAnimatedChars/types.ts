@@ -3,3 +3,8 @@ export interface PropsTimeline {
   color?: string;
   hoverColor?: string;
 }
+
+export interface ITimelineObject {
+  tl: GSAPTimeline;
+  animationIndex: string;
+}
