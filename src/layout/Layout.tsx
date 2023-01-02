@@ -10,6 +10,7 @@ import {
   StyledContainerLeft,
   StyledContainerRight,
 } from "src/ui/Container/style";
+import ComponentErrors from "src/ui/Errors";
 
 const StyledContentWrapper = styled.div`
   padding-top: 8rem;
@@ -34,6 +35,7 @@ const Layout: FC<PropsLayout> = (props) => {
       <div>
         <Head {...props} />
         <HeaderMobile />
+        <ComponentErrors />
 
         <StyledContainer>
           <StyledContainerLeft>

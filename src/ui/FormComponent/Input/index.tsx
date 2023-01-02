@@ -14,6 +14,7 @@ import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 import { useInputAnimation } from "src/hooks/useInputAnimation";
 import { useInputLabelAnimation } from "src/hooks/useInputLabelAnimation";
+import { useErrorHandler } from "src/hooks/useErrorHandler";
 
 const ComponentInput: FC<PropsInput> = ({
   type,
@@ -34,7 +35,7 @@ const ComponentInput: FC<PropsInput> = ({
     refInput,
     "error"
   );
-
+  const [setError] = useErrorHandler();
   const focusRef = (): void => {
     timelineLabel.play();
     if (refIsInputDirty.current) return;
@@ -66,12 +67,12 @@ const ComponentInput: FC<PropsInput> = ({
                 timeline.seek(0).pause().clear();
               }
             })
-            .catch((err) => {
-              console.log(err);
+            .catch(() => {
+              setError();
             });
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          setError();
         });
     } else {
       timelineError
@@ -85,12 +86,12 @@ const ComponentInput: FC<PropsInput> = ({
                 timeline.seek(0).pause().clear();
               }
             })
-            .catch((err) => {
-              console.log(err);
+            .catch(() => {
+              setError();
             });
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          setError();
         });
     }
   };

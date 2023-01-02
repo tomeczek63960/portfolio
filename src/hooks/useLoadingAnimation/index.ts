@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setIsInitAnimation } from "src/store/transition";
 import { setActive } from "src/store/scrollTrigger";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
+import { useErrorHandler } from "../useErrorHandler";
 
 export const useLoadingAnimation = (
   children: ReactNode
@@ -25,7 +26,7 @@ export const useLoadingAnimation = (
   const refPageAnimationBall = useRef<HTMLSpanElement>(null);
   const refPageAnimationText = useRef<HTMLSpanElement>(null);
   const refPageAnimationBackground = useRef<HTMLDivElement>(null);
-
+  const [setError] = useErrorHandler();
   useIsomorphicLayoutEffect(() => {
     refTimeline.current = gsap.timeline({ paused: true });
     refTimelineEnter.current = gsap.timeline({ paused: true });
@@ -196,12 +197,12 @@ export const useLoadingAnimation = (
             .then(() => {
               dispatch(setActive(true));
             })
-            .catch((err) => {
-              console.log(err);
+            .catch(() => {
+              setError();
             });
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          setError();
         });
     }
   }, [refTimeline.current, locale, pathname]);

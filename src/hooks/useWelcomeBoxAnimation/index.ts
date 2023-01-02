@@ -3,6 +3,7 @@ import { useRef, useState, MouseEvent, RefObject } from "react";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { IMessage, ReturnTypes } from "./types";
+import { useErrorHandler } from "../useErrorHandler";
 
 export const useWelcomeBoxAnimation = (
   newMessages: IMessage[],
@@ -29,7 +30,7 @@ export const useWelcomeBoxAnimation = (
   const refWriteAnimationElement = useRef<HTMLDivElement>(null);
   const refWelcomeBoxOptions = useRef<HTMLDivElement>(null);
   const refTimeline = useRef<GSAPTimeline>();
-
+  const [setError] = useErrorHandler();
   useIsomorphicLayoutEffect(() => {
     refTimeline.current = gsap.timeline({ paused: true });
     refTimeline.current.add(
@@ -106,8 +107,8 @@ export const useWelcomeBoxAnimation = (
           const firstEll = messagesQueue.shift();
           setActiveMessages((prev: any) => [...prev, firstEll]);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          setError();
         });
     }
   }, [messagesQueue, activeMessages]);

@@ -7,6 +7,7 @@ import type { IRootState } from "src/store";
 import { setActive } from "src/store/scrollTrigger";
 import { isTruthy } from "src/helpers/checkFalsyType";
 import { ITransitionLayoutReturn } from "./types";
+import { useErrorHandler } from "../useErrorHandler";
 
 export const useTransitionLayoutAnimation = (
   children: ReactNode
@@ -29,7 +30,7 @@ export const useTransitionLayoutAnimation = (
   const refTransitionLeftText = useRef<HTMLDivElement>(null);
   const refTransitionRightText = useRef<HTMLDivElement>(null);
   const refFlag = useRef<boolean>(false);
-
+  const [setError] = useErrorHandler();
   useIsomorphicLayoutEffect(() => {
     if (isInitAnimation) return;
     if (!shouldAnimate) {
@@ -74,8 +75,8 @@ export const useTransitionLayoutAnimation = (
         refFlag.current = true;
         pageTransition();
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setError();
       });
   }, [pathname, locale, children]);
   const pageTransition = (): void => {

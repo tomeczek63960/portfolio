@@ -2,6 +2,7 @@ import { useRef, RefObject } from "react";
 import { gsap } from "gsap";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { isFalsy } from "src/helpers/checkFalsyType";
+import { useErrorHandler } from "../useErrorHandler";
 
 export const useProjectBoxAnimation = (
   isActiveProjectBox: boolean
@@ -9,7 +10,7 @@ export const useProjectBoxAnimation = (
   const refProjectBox = useRef<HTMLDivElement>(null);
   const refProjectBoxShadow = useRef<HTMLDivElement>(null);
   const refTimeline = useRef<GSAPTimeline>();
-
+  const [setError] = useErrorHandler();
   useIsomorphicLayoutEffect(() => {
     refTimeline.current = gsap.timeline({ paused: true });
     refTimeline.current.add(
@@ -44,8 +45,8 @@ export const useProjectBoxAnimation = (
             delay: 0.2,
           });
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          setError();
         });
     } else {
       html?.classList.remove("no-scroll");
@@ -58,8 +59,8 @@ export const useProjectBoxAnimation = (
             filter: "blur(2px)",
           });
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          setError();
         });
     }
   }, [isActiveProjectBox]);

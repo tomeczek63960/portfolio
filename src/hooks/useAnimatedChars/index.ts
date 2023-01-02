@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import type { IRootState } from "src/store";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
 import { PropsTimeline, ITimelineObject } from "./types";
+import { useErrorHandler } from "../useErrorHandler";
 
 const createTimeline = ({
   target,
@@ -88,6 +89,8 @@ export const useAnimatedChars = (
   const heading = useRef<HTMLHeadingElement>(null);
   const tlEvents = useRef<ITimelineObject[]>([]);
   const { isActive } = useSelector((state: IRootState) => state.scrollTrigger);
+  const [setError] = useErrorHandler();
+
   const handleAnimation = (
     target: HTMLHeadingElement,
     animationIndex?: string
@@ -102,8 +105,8 @@ export const useAnimatedChars = (
         target.setAttribute("animate", "true");
         tlObject.tl.seek(0).pause();
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setError();
       });
   };
   const getAnimationIndex = (target: HTMLHeadingElement): string => {
