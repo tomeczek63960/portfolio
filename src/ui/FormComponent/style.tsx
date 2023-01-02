@@ -4,14 +4,14 @@ import { responsive } from "src/styled/mixins";
 export const StyledForm = styled.form.attrs(
   (props: { rotation: string; ref: HTMLFormElement }) => props
 )`
-  margin-top: 100px;
+  margin-top: 10rem;
   position: relative;
-  border: 1px solid transparent;
+  border: 0.1rem solid transparent;
   ${responsive.tabletP`
-    padding-right: 80px;
+    padding-right: 8rem;
   `}
 
   h1 {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
 `;

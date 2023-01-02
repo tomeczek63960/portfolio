@@ -4,12 +4,11 @@ import { responsive, variables } from "src/styled/mixins";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
 const StyledH2 = styled.h2.attrs((props: { color?: string }) => props)`
-  margin-top: 30px;
+  margin-top: 3rem;
   color: transparent;
-  /* font-size: 45px; */
-  font-size: 25px;
-  letter-spacing: 2px;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+  font-size: 2.5rem;
+  letter-spacing: 0.2rem;
+  -webkit-text-stroke: 0.1rem rgba(255, 255, 255, 0.5);
   position: relative;
   width: fit-content;
   text-transform: uppercase;
@@ -17,13 +16,13 @@ const StyledH2 = styled.h2.attrs((props: { color?: string }) => props)`
   font-weight: ${variables.fontWeightBold};
   white-space: nowrap;
   ${responsive.tabletP`
-    font-size: 32px;
+    font-size: 3.2rem;
   `}
   ${responsive.tabletL`
-    font-size: 40px;
+    font-size: 4rem;
   `}
   ${responsive.desktopHd`
-    font-size: 45px;
+    font-size: 4.5rem;
   `}
   &::selection {
     background-color: transparent;
@@ -40,16 +39,16 @@ const StyledH2 = styled.h2.attrs((props: { color?: string }) => props)`
     width: 0%;
     overflow: hidden;
     transition: 1s;
-    border-right: 8px solid
+    border-right: 0.8rem solid
       ${({ color }) => (isTruthy(color) ? color : "white")};
-    -webkit-text-stroke: 1px
+    -webkit-text-stroke: 0.1rem
       ${({ color }) => (isTruthy(color) ? color : "white")};
     white-space: nowrap;
   }
   &:hover::before {
     width: 100%;
     filter: drop-shadow(
-      0 0 25px ${({ color }) => (isTruthy(color) ? color : "white")}
+      0 0 2.5rem ${({ color }) => (isTruthy(color) ? color : "white")}
     );
     /* -webkit-text-stroke: 1px ${({ color }) =>
       isTruthy(color) ? color : "white"};; */
@@ -75,19 +74,19 @@ const StyledHexagonContainer = styled.div`
     width: 50%;
   `}
   .row {
-    margin-top: -32px;
-    margin-left: -50px;
+    margin-top: -3.2rem;
+    margin-left: -5rem;
     display: inline-flex;
     &:nth-child(even) {
-      margin-left: 1px;
+      margin-left: 0.1rem;
     }
   }
 `;
 const StyledHexagon = styled.div`
-  margin: 1px;
+  margin: 0.1rem;
   position: relative;
-  width: 100px;
-  height: 110px;
+  width: 10rem;
+  height: 11rem;
   /* background: #fff; */
   background: #111;
   /* clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%); */

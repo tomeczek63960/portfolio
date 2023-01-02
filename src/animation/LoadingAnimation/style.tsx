@@ -14,10 +14,10 @@ export const StyledPageAnimation = styled.div`
   font-family: ${variables.fontFamilyTimes};
 `;
 export const StyledPageAnimationBall = styled.span`
-  width: 50px;
-  height: 50px;
+  width: 5rem;
+  height: 5rem;
   position: absolute;
-  top: 200px;
+  top: 20rem;
   left: 50%;
   transform: translateX(-50%);
   background: ${colors.black};
@@ -25,26 +25,26 @@ export const StyledPageAnimationBall = styled.span`
   display: block;
 `;
 export const StyledPageAnimationText = styled.span`
-  width: 70px;
-  height: 50px;
+  width: 7rem;
+  height: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
-  top: 200px;
+  top: 20rem;
   left: 50%;
   border-radius: 50%;
   transform: translateX(-50%);
   z-index: 1;
   opacity: 0;
   color: ${colors.white};
-  font-size: 25px;
+  font-size: 2.5rem;
   font-weight: ${variables.fontWeightBold};
   svg {
-    height: 50px;
+    height: 5rem;
     width: auto;
     & + svg {
-      margin-left: 5px;
+      margin-left: 0.5rem;
     }
     path {
       stroke-dasharray: 250;
@@ -63,21 +63,20 @@ export const StyledPageAnimationBackground = styled.div`
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
-
   ${responsive.tabletP`
     width: 50%;
     opacity: 1;
     pointer-events: all;
     visibility: visible;
-  `} /*  */
+  `}
   .no-scroll.body-padding & {
     @media screen and (hover) {
-      width: calc(50% + (17px / 2));
+      width: calc(50% + (1.7rem / 2));
     }
   }
   .no-scroll.body-padding-thin & {
     @media screen and (hover) {
-      width: calc(50% + (15px / 2));
+      width: calc(50% + (1.5rem / 2));
     }
   }
 `;

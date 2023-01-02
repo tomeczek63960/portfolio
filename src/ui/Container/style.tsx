@@ -41,14 +41,14 @@ export const StyledContainer = styled.div`
 export const StyledContainerLeft = styled.div`
   width: 100%;
   ${responsive.tabletP`
-    padding-right: 30px;
+    padding-right: 3rem;
     width: 50%;
   `}
 `;
 export const StyledContainerRight = styled.div`
   order: -1;
   width: 100%;
-  padding-left: 30px;
+  padding-left: 3rem;
   ${responsive.tabletP`
     order: 1;
     width: 50%;
@@ -58,20 +58,20 @@ export const StyledContainerRight = styled.div`
     height: 100vh;
   `}
   ${responsive.tabletL`
-    padding-left: 60px;
+    padding-left: 6rem;
   `}
   ${responsive.desktop`
-    padding-left: 80px;
+    padding-left: 8rem;
   `}
 
   .no-scroll.body-padding & {
     @media screen and (hover) {
-      width: calc(50% + (17px / 2));
+      width: calc(50% + (1.7rem / 2));
     }
   }
   .no-scroll.body-padding-thin & {
     @media screen and (hover) {
-      width: calc(50% + (15px / 2));
+      width: calc(50% + (1.5rem / 2));
     }
   }
 `;

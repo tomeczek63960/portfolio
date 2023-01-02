@@ -5,11 +5,11 @@ export const StyledProject = styled.div`
   cursor: pointer;
   width: 100%;
   max-width: 100%;
-  max-height: 300px;
+  max-height: 30rem;
   position: relative;
   flex-shrink: 0;
-  border: 1px solid transparent;
-  border-radius: 5px;
+  border: 0.1rem solid transparent;
+  border-radius: 0.5rem;
   overflow: hidden;
   transition: 0.3s;
   &:hover {
@@ -17,7 +17,7 @@ export const StyledProject = styled.div`
   }
 `;
 export const StyledProjectHover = styled.div`
-  padding: 20px 15px;
+  padding: 2rem 1.5rem;
   width: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.78) 70%);
   position: absolute;
@@ -36,14 +36,14 @@ export const StyledProjectHover = styled.div`
   }
   h4 {
     position: relative;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
     line-height: 1;
-    font-size: 20px;
+    font-size: 2rem;
     width: fit-content;
     span {
       width: 100%;
-      height: 2px;
+      height: 0.2rem;
       background: ${colors.blue};
       position: absolute;
       bottom: 0;
@@ -53,7 +53,7 @@ export const StyledProjectHover = styled.div`
     }
   }
   p {
-    font-size: 12px;
+    font-size: 1.2rem;
     color: ${colors.whitePrimary};
   }
 `;

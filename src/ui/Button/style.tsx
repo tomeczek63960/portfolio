@@ -4,13 +4,13 @@ import { colors, variables } from "src/styled/mixins";
 export const StyledButton = styled.button.attrs(
   (props: { ref: HTMLButtonElement }) => props
 )`
-  margin-top: 40px;
+  margin-top: 4rem;
   background: transparent;
   color: ${colors.gray};
-  height: 40px;
-  font: 16px/30px "Lato", Arial, sans-serif;
+  height: 4rem;
+  font: 1.6rem/3rem "Lato", Arial, sans-serif;
   font-weight: ${variables.fontWeightBold};
-  letter-spacing: 1px;
+  letter-spacing: 0.1rem;
   outline: none !important;
   width: 100%;
   border: none;
@@ -29,7 +29,7 @@ export const StyledButton = styled.button.attrs(
   }
   &::after {
     content: "";
-    height: 2px;
+    height: 0.2rem;
     width: 100%;
     background: ${colors.blackSecondary};
     position: absolute;
@@ -43,7 +43,7 @@ export const StyledButtonBorder = styled.span`
   bottom: 0;
   left: 0;
   z-index: 10;
-  height: 2px;
+  height: 0.2rem;
   width: 0%;
   background: ${colors.purple};
 `;
@@ -53,7 +53,7 @@ export const StyledButtonBorderAfter = styled.span`
   bottom: 0;
   left: 0;
   z-index: 15;
-  height: 2px;
+  height: 0.2rem;
   width: 0%;
   background: ${colors.blackSecondary};
 `;

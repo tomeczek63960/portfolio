@@ -31,8 +31,8 @@ export const StyledTransition = styled.div.attrs(
 export const StyledTransitionCircle = styled.div.attrs(
   (props: { ref: HTMLButtonElement }) => props
 )`
-  width: 100px;
-  height: 100px;
+  width: 10rem;
+  height: 10rem;
   background: ${colors.black};
   position: fixed;
   left: 50%;
@@ -81,7 +81,7 @@ export const StyledTransitionCirclePart = styled.span.attrs(
       ? css`
           color: ${colors.white};
           background: ${colors.black};
-          padding-right: 8px;
+          padding-right: 0.8rem;
           transform-origin: bottom;
           justify-content: right;
         `
@@ -90,10 +90,10 @@ export const StyledTransitionCirclePart = styled.span.attrs(
           background: ${colors.white};
           justify-content: left;
           transform-origin: top;
-          padding-left: 8px;
+          padding-left: 0.8rem;
         `}
   svg {
-    height: 28px;
+    height: 2.8rem;
     width: auto;
     path {
       stroke-dasharray: 250;
@@ -134,17 +134,19 @@ export const StyledTransitionTextWrapper = styled.div.attrs(
 export const StyledTransitionText = styled.h4.attrs(
   (props: { theme: string }) => props
 )`
-  font-size: 22px;
+  font-size: 2.2rem;
   line-height: 1;
   font-family: ${variables.fontFamilyRoboto};
   background-color: transparent;
   mix-blend-mode: darken;
   color: ${colors.black};
-  @media screen and (min-width: 768px) {
-    mix-blend-mode: ${({ theme }) => (theme === "light" ? "darken" : "screen")};
-    color: ${({ theme }) => (theme === "light" ? "black" : "white")};
-  }
   transition: none;
+  ${(props) => responsive.tabletP`
+    ${css`
+      mix-blend-mode: ${props.theme === "light" ? "darken" : "screen"};
+      color: ${props.theme === "light" ? "black" : "white"};
+    `}
+  `}
   & + h4 {
     transform: translateY(-100%);
   }

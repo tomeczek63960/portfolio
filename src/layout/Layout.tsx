@@ -12,7 +12,7 @@ import {
 } from "src/ui/Container/style";
 
 const StyledContentWrapper = styled.div`
-  padding-top: 80px;
+  padding-top: 8rem;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

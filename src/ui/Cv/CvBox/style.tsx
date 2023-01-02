@@ -21,17 +21,17 @@ const widthAnimation = keyframes`
 export const StyledCvCardWrapper = styled.section.attrs(
   (props: { position: string }) => props
 )`
-  padding-left: 15px;
+  padding-left: 1.5rem;
   transform: ${({ position }) =>
     position === "left" ? "skewY(-5deg)" : "skewY(5deg)"};
 `;
 export const StyedCvCard = styled.div.attrs(
   (props: { position: string }) => props
 )`
-  margin: 40px 0;
+  margin: 4rem 0;
   position: relative;
-  max-width: 300px;
-  min-height: 400px;
+  max-width: 30rem;
+  min-height: 40rem;
   background: ${colors.white};
   transition: 0.5s;
   &::before,
@@ -42,20 +42,20 @@ export const StyedCvCard = styled.div.attrs(
     transition: 0.5s;
   }
   &:before {
-    top: -15px;
+    top: -1.5rem;
     left: 0;
     width: 100%;
-    height: 15px;
+    height: 1.5rem;
     filter: brightness(90%);
     transform-origin: bottom;
     transform: ${({ position }) =>
       position === "left" ? "skewX(45deg)" : "skewX(-45deg)"};
   }
   &:after {
-    top: ${({ position }) => (position === "left" ? "-15px" : "0")};
-    left: ${({ position }) => (position === "left" ? "-15px" : "unset")};
-    right: ${({ position }) => (position === "left" ? "unset" : "-15px")};
-    width: 15px;
+    top: ${({ position }) => (position === "left" ? "-1.5rem" : "0")};
+    left: ${({ position }) => (position === "left" ? "-1.5rem" : "unset")};
+    right: ${({ position }) => (position === "left" ? "unset" : "-1.5rem")};
+    width: 1.5rem;
     height: 100%;
     filter: brightness(80%);
     transform-origin: left;
@@ -65,8 +65,8 @@ export const StyedCvCard = styled.div.attrs(
 `;
 export const StyledCvCardHead = styled.div`
   position: relative;
-  max-width: 300px;
-  height: 200px;
+  max-width: 30rem;
+  height: 20rem;
   background: ${colors.blue};
   display: flex;
   justify-content: center;
@@ -79,28 +79,28 @@ export const StyledCvDownloadIcon = styled.a`
   display: block;
   transition: filter 0.3s;
   svg {
-    width: 100px;
-    height: 100px;
+    width: 10rem;
+    height: 10rem;
   }
   &:hover {
     filter: brightness(110%);
   }
 `;
 export const StyledCvDownloadLink = styled.a`
-  margin-top: 20px;
+  margin-top: 2rem;
   position: relative;
   overflow-x: hidden;
   transform: translateY(-30%);
   opacity: 0;
-  font-size: 22px;
-  line-height: 30px;
+  font-size: 2.2rem;
+  line-height: 3rem;
   text-decoration: none;
   transition: filter 0.3s;
   &::before,
   &::after {
     content: "";
     width: 100%;
-    height: 2px;
+    height: 0.2rem;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -119,16 +119,16 @@ export const StyedCvCardContent = styled.ul.attrs(
 )`
   position: relative;
   width: 100%;
-  min-height: 200px;
-  padding: 25px 25px;
+  min-height: 20rem;
+  padding: 2.5rem 2.5rem;
   background: ${colors.white};
   text-align: center;
   &::before {
     content: "";
     position: absolute;
-    top: -15px;
-    left: -15px;
-    width: 15px;
+    top: -1.5rem;
+    left: -1.5rem;
+    width: 1.5rem;
     height: 100%;
     background: ${colors.white};
     filter: brightness(80%);
@@ -143,7 +143,7 @@ export const StyedCvCardContent = styled.ul.attrs(
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 400px;
+    height: 40rem;
     background: linear-gradient(
       transparent,
       transparent,
@@ -155,22 +155,22 @@ export const StyedCvCardContent = styled.ul.attrs(
     transition: 0.5s;
     pointer-events: none;
     z-index: -1;
-    filter: blur(2px);
+    filter: blur(0.2rem);
     opacity: 0.8;
   }
 `;
 export const StyledCvCardListItem = styled.li`
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   position: relative;
   opacity: 0;
   transform: translateY(-40%);
   color: #999;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 1.3rem;
+  line-height: 2rem;
   ${responsive.tabletP`
-    font-size: 16px;
-    line-height: 24px;
-    margin-bottom: 15px;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    margin-bottom: 1.5rem;
   `}
   &:last-child {
     margin-bottom: 0;

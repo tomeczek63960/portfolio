@@ -9,12 +9,12 @@ const StyledIntroductionSection = styled.section`
 `;
 
 const StyledExperienceList = styled.div`
-  padding-bottom: 60px;
+  padding-bottom: 6rem;
 `;
 const StyledExperienceItem = styled.div`
-  margin-top: 30px;
+  margin-top: 3rem;
   p {
-    margin-top: 10px;
+    margin-top: 1rem;
   }
 `;
 const StyledExperienceItemSpan = styled.span`
@@ -91,7 +91,7 @@ const ViewExperience: FC = () => {
       <StyledExperienceList>
         {projects.map((project: any, index: number) => (
           <StyledExperienceItem key={project.name}>
-            <Heading tagName="h3" color="#7928ca">
+            <Heading tagName="h3" color="#7928ca" selectionColor="#6A82FB">
               {index + 1}. {project.name}
             </Heading>
 

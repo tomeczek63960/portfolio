@@ -7,7 +7,7 @@ const headingStyles = (
   selectionColor?: string
 ): FlattenSimpleInterpolation | any => css`
   line-height: 1;
-  letter-spacing: 2px;
+  letter-spacing: 0.2rem;
   color: ${color};
   font-family: ${variables.fontFamilySourceSans};
   font-weight: ${variables.fontWeightBlack};
@@ -35,62 +35,62 @@ export const H1 = styled.h1.attrs(
   (props: { color: string; hoverColor?: string; selectionColor?: string }) =>
     props
 )`
-  margin: 30px 0;
-  font-size: 35px;
+  margin: 3rem 0;
+  font-size: 3.5rem;
   ${({ color, selectionColor }) => headingStyles(color, selectionColor)}
   ${responsive.tabletP`
-    font-size: 40px;
+    font-size: 4rem;
   `}
   ${responsive.tabletL`
-    font-size: 55px;
+    font-size: 5.5rem;
   `}
   ${responsive.desktopHd`
-    font-size: 75px;
+    font-size: 7.5rem;
   `}
 `;
 export const H2 = styled.h2.attrs(
   (props: { color: string; hoverColor?: string; selectionColor?: string }) =>
     props
 )`
-  font-size: 30px;
-  margin: 20px 0;
+  font-size: 3rem;
+  margin: 2rem 0;
   ${({ color, selectionColor }) => headingStyles(color, selectionColor)}
   ${responsive.tabletP`
-    font-size: 35px;
+    font-size: 3.5rem;
   `}
   ${responsive.tabletL`
-    font-size: 45px;
+    font-size: 4.5rem;
   `}
   ${responsive.desktopHd`
-    font-size: 55px;
+    font-size: 5.5rem;
   `}
 `;
 export const H3 = styled.h3.attrs(
   (props: { color: string; hoverColor?: string; selectionColor?: string }) =>
     props
 )`
-  font-size: 20px;
-  margin: 20px 0;
+  font-size: 2rem;
+  margin: 2rem 0;
   ${({ color, selectionColor }) => headingStyles(color, selectionColor)}
   ${responsive.tabletP`
-    font-size: 25px;
+    font-size: 2.5rem;
   `}
   ${responsive.tabletL`
-    font-size: 30px;
+    font-size: 3rem;
   `}
 `;
 export const H4 = styled.h4.attrs(
   (props: { color: string; hoverColor?: string; selectionColor?: string }) =>
     props
 )`
-  font-size: 25px;
+  font-size: 2.5rem;
   ${({ color, selectionColor }) => headingStyles(color, selectionColor)}
 `;
 export const H5 = styled.h5.attrs(
   (props: { color: string; hoverColor?: string; selectionColor?: string }) =>
     props
 )`
-  font-size: 15px;
+  font-size: 1.5rem;
   ${({ color, selectionColor }) => headingStyles(color, selectionColor)}
 `;
 export const H6 = styled.h6.attrs(

@@ -3,7 +3,7 @@ import { colors } from "src/styled/mixins";
 
 export const StyledLogo = styled.a`
   color: ${colors.white};
-  font-size: 25px;
+  font-size: 2.5rem;
   line-height: 1;
   position: relative;
   z-index: 10;
@@ -12,9 +12,9 @@ export const StyledLogo = styled.a`
   display: flex;
   align-items: center;
   svg {
-    height: 25px;
+    height: 2.5rem;
     & + svg {
-      margin-left: 5px;
+      margin-left: 0.5rem;
     }
     path {
       stroke-dasharray: 200;

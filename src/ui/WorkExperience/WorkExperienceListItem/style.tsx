@@ -3,75 +3,75 @@ import { responsive, colors, variables } from "src/styled/mixins";
 
 export const StyledListItem = styled.div`
   position: relative;
-  padding: 0 0 15px 20px;
+  padding: 0 0 1.5rem 2rem;
   ${responsive.tabletP`
-    padding: 0 0 15px 20px;
+    padding: 0 0 1.5rem 2rem;
   `}
   ${responsive.tabletL`
-    padding: 0 0 20px 20px;
+    padding: 0 0 2rem 2rem;
   `}
 `;
 export const StyledListItemContent = styled.div`
-  padding: 15px;
+  padding: 1.5rem;
   background: ${colors.white};
-  border-radius: 10px;
-  box-shadow: 0px 16px 15px -10px ${colors.shadowColor};
+  border-radius: 1rem;
+  box-shadow: 0 1.6rem 1.5rem -1rem ${colors.shadowColor};
   position: relative;
   transform: translateY(-40%);
   opacity: 0;
   ${responsive.tabletP`
-    padding: 20px;
+    padding: 2rem;
   `}
   ${responsive.desktopHd`
-    padding: 30px;
+    padding: 3rem;
   `}
   h4 {
     font-family: ${variables.fontFamilyOpenSans};
     font-style: normal;
     font-weight: ${variables.fontWeightBold};
-    font-size: 14px;
+    font-size: 1.4rem;
     line-height: 1;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
     color: ${colors.purple};
     &::selection {
       background-color: ${colors.blue};
     }
     ${responsive.tabletP`
-      margin-bottom: 10px;
-      font-size: 16px;
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
     `}
     ${responsive.tabletL`
-      margin-bottom: 15px;
-      font-size: 18px;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
     `}
     ${responsive.desktopHd`
-      margin-bottom: 20px;
+      margin-bottom: 2rem;
     `}
   }
   p {
     font-family: ${variables.fontFamilyOpenSans};
     font-style: normal;
     font-weight: ${variables.fontWeightNormal};
-    font-size: 12px;
-    line-height: 18px;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
     color: #2b2862;
     ${responsive.tabletP`
-      font-size: 14px;
-      line-height: 20px;
+      font-size: 1.4rem;
+      line-height: 2rem;
     `}
     ${responsive.tabletL`
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
     `}
   }
 `;
 export const StyledListItemLine = styled.div.attrs(
   (props: { order?: string }) => props
 )`
-  width: 3px;
-  height: ${({ order }) => (order === "first" ? "calc(100% - 30px)" : "100%")};
+  width: 0.3rem;
+  height: ${({ order }) => (order === "first" ? "calc(100% - 3rem)" : "100%")};
   position: absolute;
-  top: ${({ order }) => (order === "first" ? "30px" : "0")};
+  top: ${({ order }) => (order === "first" ? "3rem" : "0")};
   left: 0;
   background: ${colors.blue};
 
@@ -81,18 +81,18 @@ export const StyledListItemLine = styled.div.attrs(
     left: 50%;
     transform: translate(-50%, -70%);
     width: auto;
-    height: 25px;
+    height: 2.5rem;
   }
 `;
 export const StyledListItemLineDot = styled.div.attrs(
   (props: { order?: string }) => props
 )`
-  width: 14px;
-  height: 14px;
+  width: 1.4rem;
+  height: 1.4rem;
   background: ${colors.blue};
-  border-radius: 7px;
+  border-radius: 0.7rem;
   position: absolute;
-  top: ${({ order }) => (order === "first" ? "calc(50% - 20px)" : "50%")};
+  top: ${({ order }) => (order === "first" ? "calc(50% - 2rem)" : "50%")};
   left: 50%;
   transform: translate(-50%, -50%);
 `;

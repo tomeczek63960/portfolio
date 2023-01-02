@@ -3,7 +3,7 @@ import { responsive, colors, variables } from "src/styled/mixins";
 
 export const StyledProjectBox = styled.div`
   width: 100%;
-  max-width: 600px;
+  max-width: 60rem;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -13,7 +13,7 @@ export const StyledProjectBox = styled.div`
   overflow-y: scroll;
   transform: translateX(100%);
   .blured {
-    filter: blur(2px);
+    filter: blur(0.2rem);
   }
 `;
 export const StyledProjectBoxShadow = styled.div`
@@ -29,14 +29,14 @@ export const StyledProjectBoxShadow = styled.div`
   cursor: pointer;
 `;
 export const StyledProjectBoxClose = styled.div`
-  padding: 20px;
-  border-bottom: 1px solid ${colors.whiteSecondary};
+  padding: 2rem;
+  border-bottom: 0.1rem solid ${colors.whiteSecondary};
   display: flex;
   justify-content: space-between;
   align-items: center;
   svg {
-    width: 30px;
-    height: 30px;
+    width: 3rem;
+    height: 3rem;
     cursor: pointer;
   }
   h4 {
@@ -44,82 +44,82 @@ export const StyledProjectBoxClose = styled.div`
   }
 `;
 export const StyledProjectBoxContent = styled.div`
-  padding: 20px;
+  padding: 2rem;
   color: ${colors.black};
   p {
     color: ${colors.grayDark};
-    font-size: 14px;
+    font-size: 1.4rem;
   }
   h3 {
-    font-size: 20px;
+    font-size: 2rem;
   }
   h4 {
-    font-size: 16px;
+    font-size: 1.6rem;
   }
   img {
-    margin: 10px 0 40px;
+    margin: 1rem 0 4rem;
   }
 `;
 export const StyledProjectBoxText = styled.div`
-  margin-top: 30px;
+  margin-top: 3rem;
 `;
 export const StyledProjectBoxReference = styled.div`
-  margin-top: 30px;
+  margin-top: 3rem;
   h5 {
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: ${variables.fontWeightSemiBold};
   }
   a {
     word-break: break-all;
     color: ${colors.blackTertiary};
     font-weight: ${variables.fontWeightSemiBold};
-    font-size: 11px;
+    font-size: 1.1rem;
     ${responsive.tabletP`
-      font-size: 13px;
+      font-size: 1.3rem;
       font-weight: ${variables.fontWeightBold.toString()};
     `}
   }
   svg {
-    width: 15px;
-    height: 15px;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 `;
 export const StyledProjectBoxLink = styled.a`
   margin-top: auto;
   display: block;
   width: 100%;
-  padding: 25px;
+  padding: 2.5rem;
   text-align: center;
   background-color: ${colors.black};
   color: ${colors.white};
-  font-size: 20px;
+  font-size: 2rem;
 `;
 export const StyledProjectBoxTechnologies = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -5px;
+  margin: 0 -0.5rem;
   span {
     display: block;
-    padding: 5px 10px;
+    padding: 0.5rem 1rem;
     background: ${colors.grayLight};
     color: black;
-    margin: 5px;
+    margin: 0.5rem;
     font-weight: ${variables.fontWeightBold};
-    font-size: 12px;
+    font-size: 1.2rem;
   }
 `;
 export const StyledProjectBoxCategories = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: 30px -5px 0;
+  margin: 3rem -0.5rem 0;
   span {
     display: block;
-    padding: 5px 10px;
+    padding: 0.5rem 1rem;
     background: ${colors.grayLight};
     color: ${colors.black};
-    margin: 5px;
+    margin: 0.5rem;
     font-weight: ${variables.fontWeightBold};
-    font-size: 12px;
+    font-size: 1.2rem;
 
     &.danger,
     &.success,

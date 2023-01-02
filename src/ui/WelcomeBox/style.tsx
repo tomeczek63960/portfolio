@@ -4,7 +4,7 @@ import { isTruthy } from "src/helpers/checkFalsyType";
 const writingAnimationKeyframes = keyframes`
   50% {
     opacity: 0;
-    transform: scale(0.7) translateY(1px);      
+    transform: scale(0.7) translateY(0.1rem);      
   }
 `;
 
@@ -13,7 +13,7 @@ export const StyledWelcomeBoxSection = styled.section`
 `;
 export const StyledWelcomeBox = styled.div`
   background: ${colors.white};
-  border-radius: 5px;
+  border-radius: 0.5rem;
   overflow: hidden;
 `;
 export const StyledWelcomeBoxHead = styled.div`
@@ -23,16 +23,16 @@ export const StyledWelcomeBoxHead = styled.div`
     ${colors.blue} 100%
   );
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   align-items: center;
-  padding: 10px;
+  padding: 1rem;
 `;
 export const StyledWelcomeBoxHeadHeading = styled.h4`
-  font-size: 16px;
+  font-size: 1.6rem;
   line-height: 1.3;
 `;
 export const StyledWelcomeBoxHeadParagraph = styled.p`
-  font-size: 11px;
+  font-size: 1.1rem;
   line-height: 1;
 `;
 export const StyledWelcomeBoxHeadInfo = styled.div`
@@ -40,8 +40,8 @@ export const StyledWelcomeBoxHeadInfo = styled.div`
   font-family: ${variables.fontFamilyPrimary};
 `;
 export const StyledWelcomeBoxImage = styled.div`
-  width: 40px !important;
-  height: 40px !important;
+  width: 4rem !important;
+  height: 4rem !important;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
@@ -52,49 +52,49 @@ export const StyledWelcomeBoxImage = styled.div`
   }
 `;
 export const StyledWelcomeBoxConversation = styled.div`
-  padding: 20px 10px;
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
-  height: 250px;
+  height: 25rem;
   overflow-y: scroll;
   scroll-behavior: smooth;
   ${responsive.tabletL`
-    height: 350px;
+    height: 35rem;
   `}
 `;
 export const StyledWelcomeBoxMessage = styled.div.attrs(
   (props: { position?: string; writingAnimation?: boolean }) => props
 )`
-  font-size: 11px;
+  font-size: 1.1rem;
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   ${responsive.tabletP`
-    font-size: 12px;
+    font-size: 1.2rem;
   `}
   ${({ position }) =>
     position === "right" &&
     css`
       justify-content: flex-end;
-      padding-left: 15px;
+      padding-left: 1.5rem;
       ${responsive.tabletP`
-        padding-left: 60px;
+        padding-left: 6rem;
       `}
     `}
   ${({ position }) =>
     position === "left" &&
     css`
-      padding-right: 15px;
+      padding-right: 1.5rem;
       ${responsive.tabletP`
-        padding-right: 60px;
+        padding-right: 6rem;
       `}
     `}
 `;
 export const StyledWelcomeBoxMessageImage = styled.div.attrs(
   (props: { type: string }) => props
 )`
-  margin-top: 15px;
-  width: 30px;
-  height: 30px;
+  margin-top: 1.5rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
@@ -114,21 +114,21 @@ export const StyledWelcomeBoxMessageText = styled.div.attrs(
     visible?: boolean;
   }) => props
 )`
-  margin-top: 10px;
-  padding: 8px 11px;
+  margin-top: 1rem;
+  padding: 0.8rem 1.1rem;
   background: ${colors.whiteTertiary};
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 0.4rem;
+  border-bottom-left-radius: 0.4rem;
   color: ${colors.black};
   line-height: 1.4;
   width: fit-content;
   ${responsive.tabletP`
-    padding: 10px 13px;
+    padding: 1rem 1.3rem;
   `}
   ${({ position }) =>
     position === "right"
-      ? "border-top-left-radius: 4px;"
-      : "border-top-right-radius: 4px;"};
+      ? "border-top-left-radius: 0.4rem;"
+      : "border-top-right-radius: 0.4rem;"};
 
   ${({ writingAnimation }) =>
     isTruthy(writingAnimation) &&
@@ -136,8 +136,8 @@ export const StyledWelcomeBoxMessageText = styled.div.attrs(
       transform: scale(0);
       opacity: 0;
       span {
-        width: 6px;
-        height: 6px;
+        width: 0.6rem;
+        height: 0.6rem;
         background: ${colors.black};
         border-radius: 50%;
         display: inline-block;
@@ -151,14 +151,14 @@ export const StyledWelcomeBoxMessageText = styled.div.attrs(
           animation: 2s ${writingAnimationKeyframes} 0.8s infinite ease-in-out;
         }
         & + span {
-          margin-left: 5px;
+          margin-left: 0.5rem;
         }
       }
     `}
 `;
 export const StyledWelcomeBoxOptions = styled.div`
-  margin-top: 0px;
-  padding: 20px 10px;
+  margin-top: 0rem;
+  padding: 2rem 1rem;
   h4 {
     color: ${colors.black};
     font-family: ${variables.fontFamilyPrimary};
@@ -170,14 +170,14 @@ export const StyledWelcomeBoxOptions = styled.div`
     color: ${colors.white};
     line-height: 1.4;
     width: fit-content;
-    padding: 8px 11px;
-    font-size: 11px;
+    padding: 0.8rem 1.1rem;
+    font-size: 1.1rem;
     font-weight: ${variables.fontWeightSemiBold};
     transition: 0.3s;
-    border: 2px solid ${colors.black};
+    border: 0.2rem solid ${colors.black};
     ${responsive.tabletP`
-      padding: 10px 13px;
-      font-size: 12px;
+      padding: 1rem 1.3rem;
+      font-size: 1.2rem;
     `}
     &[disabled] {
       pointer-events: none;
@@ -192,8 +192,8 @@ export const StyledWelcomeBoxOptions = styled.div`
   }
 `;
 export const StyledWelcomeBoxOptionsList = styled.div`
-  margin-top: 10px;
+  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 1rem;
 `;

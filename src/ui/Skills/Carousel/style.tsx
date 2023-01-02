@@ -13,7 +13,7 @@ export const StyledCarouselText = styled.div`
   height: 100%;
 `;
 export const StyledCarouselTextItem = styled.div`
-  padding: 40px 45px;
+  padding: 4rem 4.5rem;
   width: 100%;
   height: 100%;
   display: flex;
@@ -26,7 +26,7 @@ export const StyledCarouselTextItem = styled.div`
   z-index: 0;
   text-align: center;
   ${responsive.desktopHd`
-    padding: 180px 90px 80px;
+    padding: 18rem 9rem 8rem;
   `}
   h5, p {
     transform: translateY(-40%);
@@ -35,33 +35,33 @@ export const StyledCarouselTextItem = styled.div`
   }
   h5 {
     color: ${colors.orange};
-    font-size: 14px;
+    font-size: 1.4rem;
     line-height: 1;
     font-weight: ${variables.fontWeightBold};
     ${responsive.tabletP`
-      font-size: 18px;
+      font-size: 1.8rem;
     `}
     ${responsive.tabletL`
-      font-size: 24px;
+      font-size: 2.4rem;
     `}
   }
   p {
-    margin-top: 10px;
-    min-height: 60px;
-    max-width: 230px;
+    margin-top: 1rem;
+    min-height: 6rem;
+    max-width: 23rem;
     color: ${colors.grayLightSecondary};
-    font-size: 12px;
-    line-height: 15px;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
     ${responsive.tabletP`
-      min-height: 80px;
-      font-size: 14px;
-      line-height: 19px;
+      min-height: 8rem;
+      font-size: 1.4rem;
+      line-height: 1.9rem;
     `}
     ${responsive.tabletL`
-      margin-top: 30px;
-      max-width: 270px;
-      font-size: 16px;
-      line-height: 20px;
+      margin-top: 3rem;
+      max-width: 27rem;
+      font-size: 1.6rem;
+      line-height: 2rem;
     `}
   }
 `;
@@ -88,8 +88,8 @@ export const StyledPaginationItem = styled.div`
   border-radius: 50%;
 `;
 export const StyledPaginationItemDot = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 5rem;
+  height: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,17 +101,17 @@ export const StyledPaginationItemDot = styled.div`
   pointer-events: auto;
   transition: 0.3s;
   svg {
-    width: 30px;
+    width: 3rem;
     transition: 0.5s ease-in-out;
     filter: grayscale(100%);
     ${responsive.tabletP`
-      width: 35px;
+      width: 3.5rem;
     `}
     ${responsive.tabletL`
-      width: 45px;
+      width: 4.5rem;
     `}
     ${responsive.desktopHd`
-      width: 80px;
+      width: 8rem;
     `}
   }
   &:hover {

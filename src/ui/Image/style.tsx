@@ -6,8 +6,8 @@ export const StyledImage = styled.div`
     position: unset !important;
   }
   img {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
     transition: 0.3s ease-in-out;
     object-fit: cover;
     object-position: left top;

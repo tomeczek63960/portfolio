@@ -6,7 +6,7 @@ export const StyledWorkExperienceSection = styled.section`
 `;
 export const StyledWorkExperience = styled.div`
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 1rem;
 `;
 export const StyledWorkExperienceHead = styled.div`
   position: relative;
@@ -28,7 +28,7 @@ export const StyledWorkExperienceHeadBackground = styled.div`
   &::before {
     content: "";
     z-index: 1;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(1.5rem);
   }
   svg {
     height: auto;
@@ -36,17 +36,17 @@ export const StyledWorkExperienceHeadBackground = styled.div`
   }
 `;
 export const StyledWorkExperienceHeadContent = styled.div`
-  padding: 20px 10px 50px 40px;
+  padding: 2rem 1rem 5rem 4rem;
   position: relative;
   z-index: 1;
   ${responsive.tabletP`
-    padding: 20px 10px 50px 40px;
+    padding: 2rem 1rem 5rem 4rem;
   `}
   ${responsive.tabletL`
-    padding: 50px 66px 60px 66px;
+    padding: 5rem 6.6rem 6rem 6.6rem;
   `}
   ${responsive.desktopHd`
-    padding: 60px 66px 80px 66px;
+    padding: 6rem 6.6rem 8rem 6.6rem;
   `}
   h3, label {
     position: relative;
@@ -57,35 +57,35 @@ export const StyledWorkExperienceHeadContent = styled.div`
     font-family: ${variables.fontFamilyOpenSans};
     font-style: normal;
     font-weight: ${variables.fontWeightBold};
-    font-size: 22px;
-    line-height: 30px;
+    font-size: 2.2rem;
+    line-height: 3rem;
   }
   label {
-    margin-top: 10px;
+    margin-top: 1rem;
     font-family: ${variables.fontFamilyOpenSans};
     font-style: normal;
     font-weight: ${variables.fontWeightNormal};
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
     display: block;
     ${responsive.tabletP`
-      margin-top: 20px;
-      font-size: 16px;
-      line-height: 18px;
+      margin-top: 2rem;
+      font-size: 1.6rem;
+      line-height: 1.8rem;
     `}
   }
 `;
 export const StyledWorkExperienceContent = styled.div`
-  padding: 20px 10px 10px;
+  padding: 2rem 1rem 1rem;
   width: 100%;
   background: ${colors.whiteBackground};
   ${responsive.tabletL`
-    padding: 20px 30px 30px;
+    padding: 2rem 3rem 3rem;
   `}
 `;
 export const StyledButtonSecondary = styled.button`
   width: 100%;
-  height: 62px;
+  height: 6.2rem;
   mix-blend-mode: normal;
   cursor: pointer;
   display: flex;
@@ -93,15 +93,15 @@ export const StyledButtonSecondary = styled.button`
   justify-content: center;
   font-family: ${variables.fontFamilyOpenSans};
   font-weight: ${variables.fontWeightBold};
-  font-size: 14px;
-  line-height: 19px;
+  font-size: 1.4rem;
+  line-height: 1.9rem;
   transition: background-color 0.3s;
   color: ${colors.white};
   background: ${colors.blue};
   opacity: 0;
   transform: translateY(-20%);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
   &:hover {
     background: ${colors.purple};
   }

@@ -92,8 +92,8 @@ export const useWelcomeBoxAnimation = (
         justifyContent: isAdmin ? "flex-start" : "flex-end",
       });
       gsap.set(refWriteAnimationElement.current, {
-        borderTopLeftRadius: isAdmin ? 0 : "4px",
-        borderTopRightRadius: isAdmin ? "4px" : 0,
+        borderTopLeftRadius: isAdmin ? 0 : "0.4rem",
+        borderTopRightRadius: isAdmin ? "0.4rem" : 0,
       });
       gsap.set(refWriteAnimationWelcomeBoxImage.current, {
         order: isAdmin ? -1 : 1,

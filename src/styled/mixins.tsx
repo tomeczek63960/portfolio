@@ -6,6 +6,7 @@ function getProps(
   return args;
 }
 
+// TODO: move width to variables
 export const responsive = {
   tabletP: (
     ...props: Array<TemplateStringsArray | string | FlattenSimpleInterpolation>
@@ -69,7 +70,7 @@ export const colors = {
 };
 
 export const variables = {
-  sectionVerticalPadding: "30px",
+  sectionVerticalPadding: "3rem",
   fontFamilyRoboto: "Roboto",
   fontFamilyTimes: "Times",
   fontFamilyInter: "Inter, sans-serif",

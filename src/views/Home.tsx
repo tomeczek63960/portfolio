@@ -8,7 +8,6 @@ import IntroductionComponent from "src/ui/Introduction";
 const ViewHome: FC = () => {
   return (
     // TODO:
-    // TODO: change px to rem unit
     // TODO: in all timeline .then .catch blocks add global error handling, np. popup with info something went wrong, try to refresh the page
     // dodać na resize refresh komponentów / timeline / gsapa
 

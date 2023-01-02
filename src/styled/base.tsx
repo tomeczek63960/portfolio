@@ -20,11 +20,11 @@ export const StyledBase = createGlobalStyle`
       &.body-padding {
         /* seek using classes .no-scroll.body-padding to find section dependent on this pattern */
         @media screen and (hover) {
-          padding-right: 17px;
+          padding-right: 1.7rem;
         }
         &-thin {
           @media screen and (hover) {
-            padding-right: 15px;
+            padding-right: 1.5rem;
           }
         }
       }

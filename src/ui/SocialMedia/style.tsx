@@ -4,19 +4,19 @@ import { colors } from "src/styled/mixins";
 export const StyledSocialMeidaLinks = styled.div.attrs(
   (props: { theme: string }) => props
 )`
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   display: flex;
   a {
     display: block;
-    margin-right: 20px;
+    margin-right: 2rem;
     ${({ theme }) =>
       theme !== "dark" && "opacity: 0;transform: translateX(-40%);"};
     &:last-child {
       margin-right: 0;
     }
     svg {
-      width: 30px;
-      height: 30px;
+      width: 3rem;
+      height: 3rem;
       path {
         transition: 0.3s;
         fill: ${(props) =>

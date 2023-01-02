@@ -8,8 +8,8 @@ export const StyledFooter = styled.footer`
 `;
 
 export const StyledContainerLeftFooter = styled(StyledContainerLeft)`
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   &::before {
     content: "";
     width: 100%;
@@ -29,9 +29,9 @@ export const StyledContainerLeftFooter = styled(StyledContainerLeft)`
     transform: translateY(-30%);
   }
   p {
-    margin-top: 15px;
+    margin-top: 1.5rem;
     color: ${colors.grayFooterText};
-    font-size: 12px;
+    font-size: 1.2rem;
   }
   a {
     color: ${colors.grayFooterText};

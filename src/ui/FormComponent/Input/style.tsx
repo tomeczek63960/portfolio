@@ -4,7 +4,7 @@ import { isTruthy } from "src/helpers/checkFalsyType";
 
 export const StyledInputGroup = styled.div`
   position: relative;
-  margin-top: 30px;
+  margin-top: 3rem;
   opacity: 0;
   transform: translateY(-30%);
   &:first-child {
@@ -13,7 +13,7 @@ export const StyledInputGroup = styled.div`
   &:after {
     content: "";
     width: 0;
-    height: 2px;
+    height: 0.2rem;
     background: ${colors.blackPrimary};
     position: absolute;
     bottom: 0;
@@ -34,23 +34,23 @@ export const StyledLabel = styled.label`
   position: absolute;
   bottom: 35%;
   left: 0;
-  font-size: 18px;
+  font-size: 1.8rem;
   line-height: 1;
   color: ${colors.blackSecondary};
-  transform-origin: 0px 0px;
+  transform-origin: 0 0;
   cursor: pointer;
 `;
 export const StyledInput = styled.input`
   background: transparent;
   color: ${colors.pink};
-  height: 35px;
-  font: 15px/24px "Lato", Arial, sans-serif;
-  letter-spacing: 1px;
+  height: 3.5rem;
+  font: 1.5rem/2.4rem "Lato", Arial, sans-serif;
+  letter-spacing: 0.1rem;
   outline: none !important;
   width: 100%;
   transition: 0.3s ease-in-out;
   border: none;
-  border-bottom: 2px solid ${colors.blackSecondary}; ;
+  border-bottom: 0.2rem solid ${colors.blackSecondary}; ;
 `;
 export const StyledInputBorder = styled.span.attrs(
   (props: { background: string }) => props
@@ -60,7 +60,7 @@ export const StyledInputBorder = styled.span.attrs(
   bottom: 0;
   left: 0;
   z-index: 10;
-  height: 2px;
+  height: 0.2rem;
   width: 0%;
   background: ${({ background }) =>
     isTruthy(background) ? background : colors.purple};
@@ -71,7 +71,7 @@ export const StyledInputBorderAfter = styled.span`
   bottom: 0;
   left: 0;
   z-index: 15;
-  height: 2px;
+  height: 0.2rem;
   width: 0%;
   background: ${colors.blackSecondary};
 `;

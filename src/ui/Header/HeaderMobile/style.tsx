@@ -5,14 +5,14 @@ import { isTruthy } from "src/helpers/checkFalsyType";
 export const StyledLink = styled.a.attrs(
   (props: { isDisabled: Boolean }) => props
 )`
-  margin-top: 20px;
+  margin-top: 2rem;
   color: ${colors.white};
-  font-size: 18px;
+  font-size: 1.8rem;
   line-height: 1;
   display: block;
   width: fit-content;
   font-family: ${variables.fontFamilyPrimary};
-  transform: translateX(-50px);
+  transform: translateX(-5rem);
   opacity: 0;
   display: ${(props) => (isTruthy(props.isDisabled) ? "none" : "block")};
   text-decoration: none;
@@ -30,29 +30,29 @@ export const StyledMobileNav = styled.div`
   background: ${colors.black};
   width: 100%;
   position: fixed;
-  top: 80px;
+  top: 8rem;
   left: 0;
   z-index: 2;
   height: 0;
   overflow: hidden;
 `;
 export const StyledMobileNavContainer = styled.div`
-  padding: 50px 25px;
+  padding: 5rem 2.5rem;
   display: flex;
   flex-direction: column;
 `;
 export const StyledBars = styled.button`
-  width: 40px;
-  height: 40px;
+  width: 4rem;
+  height: 4rem;
   position: relative;
   z-index: 110;
   display: block;
-  border-radius: 10px;
+  border-radius: 1rem;
 
   span {
-    width: 4px;
-    height: 4px;
-    border-radius: 2px;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 0.2rem;
     background: ${colors.white};
     display: block;
     position: absolute;
@@ -62,18 +62,18 @@ export const StyledBars = styled.button`
   }
   span:first-child {
     transform-origin: center center;
-    left: calc(50% - 12px);
+    left: calc(50% - 1.2rem);
   }
   span:last-child {
     transform-origin: center center;
-    left: calc(50% + 12px);
+    left: calc(50% + 1.2rem);
   }
 `;
 export const StyledHeaderBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 25px;
+  padding: 2rem 2.5rem;
   position: fixed;
   left: 0;
   top: 0;

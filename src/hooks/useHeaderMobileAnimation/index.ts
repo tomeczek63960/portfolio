@@ -122,7 +122,7 @@ export const useHeaderMobileAnimation = (
       refFirstDot.current,
       {
         duration: 0.5,
-        height: "30px",
+        height: "3rem",
       },
       "rotate-dots"
     );
@@ -130,7 +130,7 @@ export const useHeaderMobileAnimation = (
       refLastDot.current,
       {
         duration: 0.5,
-        height: "30px",
+        height: "3rem",
       },
       "rotate-dots"
     );
@@ -138,7 +138,7 @@ export const useHeaderMobileAnimation = (
       refMobileNav.current,
       {
         duration: 0.5,
-        height: "calc(100vh - 80px)",
+        height: "calc(100vh - 8rem)",
         ease: "power2.out",
       },
       "rotate-dots"
