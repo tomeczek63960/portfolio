@@ -1,4 +1,4 @@
 export interface PropsImage {
-  url: string;
+  url?: string;
   className?: string;
 }

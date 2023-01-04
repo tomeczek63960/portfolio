@@ -1,24 +1,14 @@
 import React, { useState, FC } from "react";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import Project from "src/ui/Projects/Project";
 import ProjectBox from "src/ui/Projects/ProjectBox";
+import { IStrapiProject } from "../Project/types";
 import { StyledProjectsGrid } from "./style";
+import { PropsProjects } from "./types";
 
-const fetchProjects = async (): Promise<any> => {
-  // const res = await axios.get('https://app-portfolio-tk.herokuapp.com/projects?_locale=en');
-  const res = await axios.get("http://localhost:1337/projects?_locale=en");
-  return res;
-};
-
-// TODO: add activeProject types
-// TODO: fetch projects using static props (for ssg)
-const ComponentProjects: FC = () => {
-  // const { data, status } = useQuery(["projects"], fetchProjects);
-  const { data } = useQuery(["projects"], fetchProjects);
-  const [activeProject, setActiveProject] = useState<any>({});
+const ComponentProjects: FC<PropsProjects> = ({ projects }) => {
+  const [activeProject, setActiveProject] = useState<IStrapiProject>();
   const [isActiveProjectBox, setActiveProjectBox] = useState(false);
-  const openProjectDetails = (project: object): void => {
+  const openProjectDetails = (project: IStrapiProject): void => {
     setActiveProject(project);
     setActiveProjectBox(true);
   };
@@ -26,7 +16,7 @@ const ComponentProjects: FC = () => {
   return (
     <>
       <StyledProjectsGrid>
-        {data?.data.map((project: any) => (
+        {projects?.map((project: any) => (
           <Project
             key={project.id}
             onClickFunction={openProjectDetails}

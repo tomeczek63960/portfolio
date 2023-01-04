@@ -1,5 +1,7 @@
+import { IStrapiProject } from "../Project/types";
+
 export interface PropsProjectBox {
-  activeProject: any; // tutaj dodać kolejny interface na Project i z niego mozna wtedy skorzystać;
+  activeProject?: IStrapiProject;
   onCloseFunction: Function;
   isActiveProjectBox: boolean;
 }
