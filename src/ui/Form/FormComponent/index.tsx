@@ -1,5 +1,5 @@
 import React, { useRef, useState, FC, SyntheticEvent } from "react";
-import Input from "src/ui/FormComponent/Input";
+import Input from "src/ui/Form/FormComponent/Input";
 import ButtonComponent from "src/ui/Button";
 import {
   nameValidation,
@@ -9,7 +9,7 @@ import {
 } from "src/helpers/validations";
 import { StyledForm } from "./style";
 
-const ComponentForm: FC = () => {
+const ContactFormComponent: FC = () => {
   const refForm = useRef<HTMLFormElement>(null);
   const [isFormDirty, setFormDirty] = useState(false);
   const onSubmit = (e: SyntheticEvent): void => {
@@ -54,4 +54,4 @@ const ComponentForm: FC = () => {
   );
 };
 
-export default ComponentForm;
+export default ContactFormComponent;
