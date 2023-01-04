@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import Skills from "src/ui/Skills";
+// import Skills from "src/ui/Skills";
 import WorkExperience from "src/ui/WorkExperience";
 // import WelcomeBox from "src/ui/WelcomeBox";
 import StyledCvSection from "src/ui/Cv";
@@ -20,7 +20,7 @@ const ViewHome: FC = () => {
     <>
       {/* <IntroductionComponent /> */}
       {/* <WelcomeBox /> */}
-      <Skills />
+      {/* <Skills /> */}
       <WorkExperience />
       <StyledCvSection />
     </>
