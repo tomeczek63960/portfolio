@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import ComponentCv from "./Cv";
-import FormComponent from "./Form";
+import ComponentExperienceList from "./ExperienceList";
+import ComponentForm from "./Form";
 import ComponentIntroduction from "./Introduction";
 import ComponentSkills from "./Skills";
 import ComponentWelcomeBox from "./WelcomeBox";
@@ -13,7 +14,9 @@ interface IComponents {
       | "selection.welcomebox"
       | "selection.work-experience"
       | "selection.skills"
-      | "selection.cv";
+      | "selection.cv"
+      | "selection.contact-form"
+      | "selection.projects-experience";
   };
 }
 
@@ -25,7 +28,8 @@ const ComponentContent: FC<IComponents> = ({ content }) => {
     "selection.work-experience": ComponentWorkExperience,
     "selection.skills": ComponentSkills,
     "selection.cv": ComponentCv,
-    "selection.contact-form": FormComponent,
+    "selection.contact-form": ComponentForm,
+    "selection.projects-experience": ComponentExperienceList,
   };
 
   const TagName: FC<{ content: any }> = components[content.__component];
