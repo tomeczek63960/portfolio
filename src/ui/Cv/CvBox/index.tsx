@@ -10,8 +10,11 @@ import {
   StyedCvCardContent,
   StyledCvCardListItem,
 } from "./style";
+import { IStrapiParagraphText } from "src/ui/Paragraph/types";
+import { PropsCvBox } from "../types";
 
-const ComponentCvBox: FC = () => {
+// TODO: move api link to env
+const ComponentCvBox: FC<PropsCvBox> = ({ content }) => {
   const [refUl] = useScrollTrigger(0.6, "children") as [
     RefObject<HTMLUListElement>
   ];
@@ -22,26 +25,25 @@ const ComponentCvBox: FC = () => {
     <StyledCvCardWrapper position="left">
       <StyedCvCard position="left">
         <StyledCvCardHead ref={refBox}>
-          <StyledCvDownloadIcon href="/cv.pdf" download>
+          <StyledCvDownloadIcon
+            href={`http://localhost:1337${content.Cv.url}`}
+            download
+          >
             <Pdf />
           </StyledCvDownloadIcon>
-          <StyledCvDownloadLink href="/cv.pdf" download>
-            Download CV
+          <StyledCvDownloadLink
+            href={`http://localhost:1337${content.Cv.url}`}
+            download
+          >
+            {content.LinkText}
           </StyledCvDownloadLink>
         </StyledCvCardHead>
         <StyedCvCardContent position="left" ref={refUl}>
-          <StyledCvCardListItem>
-            Spodobały Ci się moje projekty
-          </StyledCvCardListItem>
-          <StyledCvCardListItem>
-            Mój stack technologiczny pasuje do twojej firmy/ogłoszenia
-          </StyledCvCardListItem>
-          <StyledCvCardListItem>
-            Oraz moje doświadczenie jest tym czego szukasz?
-          </StyledCvCardListItem>
-          <StyledCvCardListItem>
-            kliknij w link powyżej żeby pobrać moje Cv 😊.
-          </StyledCvCardListItem>
+          {content.ListItems.map((item: IStrapiParagraphText) => (
+            <StyledCvCardListItem key={item.id}>
+              {item.Text}
+            </StyledCvCardListItem>
+          ))}
         </StyedCvCardContent>
       </StyedCvCard>
     </StyledCvCardWrapper>

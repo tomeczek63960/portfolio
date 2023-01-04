@@ -1,22 +1,20 @@
 import React, { FC } from "react";
-// import Heading from "src/ui/Heading";
+import Heading from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
 import { StyledCvSection } from "./style";
 import CvBox from "./CvBox";
+import { IStrapiParagraphText } from "src/ui/Paragraph/types";
+import { PropsCvBox } from "./types";
 
-const ComponentCv: FC = () => {
+const ComponentCv: FC<PropsCvBox> = ({ content }) => {
   return (
-    <StyledCvSection>
-      {/* <Heading tagName="h2" color="#6A82FB">
-        Moje CV
-      </Heading> */}
-      <Paragraph>
-        Doświadczenie zawodowe, moje aktualne umiejętności, opis komercyjnych
-        projektów w których miałem okazję uczestniczyć oraz opis prywatnych
-        projektów wraz z linkami do live demo i kodu źródłowego, to wszystko
-        zawarte jest w moim cv.
-      </Paragraph>
-      <CvBox />
+    <StyledCvSection id="Cv">
+      <Heading heading={content.Heading} />
+      {content.Paragraphs.map((paragraph: IStrapiParagraphText) => (
+        <Paragraph key={paragraph.id}>{paragraph.Text}</Paragraph>
+      ))}
+
+      <CvBox content={content} />
     </StyledCvSection>
   );
 };
