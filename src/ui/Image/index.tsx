@@ -3,7 +3,7 @@ import Image from "next/image";
 import { StyledImage } from "./style";
 import { PropsImage } from "./types";
 
-const ComponentImage: FC<PropsImage> = ({ url, className }) => {
+const ComponentImage: FC<PropsImage> = ({ url = "", className }) => {
   return (
     <StyledImage>
       <Image

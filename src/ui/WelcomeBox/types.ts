@@ -1,5 +1,6 @@
 import { IStrapiHeading } from "src/ui/Heading/types";
 import { IStrapiParagraphText } from "src/ui/Paragraph/types";
+import { IStrapiLocalizations } from "src/ui/Projects/Project/types";
 
 export interface IStrapiWelcomeboxMessage {
   id: string;
@@ -9,13 +10,12 @@ export interface IStrapiWelcomeboxMessage {
   Toggler?: string;
   createdAt: string;
   locale: string;
-  localizations: any[];
+  localizations: IStrapiLocalizations[];
   published_at: string;
   updatedAt: string;
   __v: number;
   _id: string;
 }
-
 export interface IStrapiWelcomeboxMessageImage {
   alternativeText: string;
   caption: string;
@@ -36,7 +36,6 @@ export interface IStrapiWelcomeboxMessageImage {
   _id: string;
   formats: object;
 }
-
 export interface IStrapiWelcomeboxToggler {
   Name: string;
   Toggler: string;
@@ -44,7 +43,6 @@ export interface IStrapiWelcomeboxToggler {
   __v: number;
   _id: string;
 }
-
 export interface PropsWelcomeBox {
   content: {
     id: string;

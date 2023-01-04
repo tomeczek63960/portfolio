@@ -1,8 +1,56 @@
-export interface IProject {
-  title?: any;
-}
+import { IStrapiImage } from "src/ui/Skills/types";
 
+export interface IStrapiLocalizations {
+  id: string;
+  locale: string;
+  published_at: string;
+  _id: string;
+}
+export interface IStrapiProjectCategory {
+  Theme: string;
+  Title: string;
+  createdAt: string;
+  id: string;
+  locale: string;
+  localizations: IStrapiLocalizations[];
+  projects: string[];
+  published_at: string;
+  updatedAt: string;
+  __v: number;
+  _id: string;
+}
+export interface IStrapiProjectTechnology {
+  Title: string;
+  createdAt: string;
+  id: string;
+  locale: string;
+  localizations: IStrapiLocalizations[];
+  projects: string[];
+  published_at: string;
+  updatedAt: string;
+  __v: number;
+  _id: string;
+}
+export interface IStrapiProject {
+  Description: string;
+  GithubUrl: string;
+  Image: IStrapiImage;
+  ShortDescription: string;
+  Slug: string;
+  Title: string;
+  WebsiteUrl: string;
+  createdAt: string;
+  id: string;
+  locale: string;
+  localizations: IStrapiLocalizations[];
+  project_categories: IStrapiProjectCategory[];
+  project_technologies: IStrapiProjectTechnology[];
+  published_at: string;
+  updatedAt: string;
+  __v: number;
+  _id: string;
+}
 export interface PropsProject {
-  project: any;
+  project: IStrapiProject;
   onClickFunction: Function;
 }
