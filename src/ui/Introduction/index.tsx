@@ -3,26 +3,25 @@ import { StyledIntroductionSection } from "./style";
 import Heading from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
 import Chart from "src/ui/Introduction/Svg/Chart";
+import Performence from "src/ui/Introduction/Svg/Performence";
+import { isTruthy } from "src/helpers/checkFalsyType";
+import { IStrapiParagraphText } from "src/ui/Paragraph/types";
+import { IStrapiContent } from "./types";
 
-const ComponentIntroduction: FC = () => {
+const ComponentIntroduction: FC<IStrapiContent> = ({ content }) => {
+  const SvgTag = {
+    None: null,
+    Chart,
+    Performence,
+  };
+  const SvgTagName = SvgTag[content.Svg];
   return (
     <StyledIntroductionSection>
-      <Heading tagName="h1" hoverColor="#6A82FB">
-        Hi 👋
-        <br />
-        I’m Tomek 😊
-        <br />
-        Nice to see You
-      </Heading>
-      <Chart />
-      <Paragraph>
-        Jezeli jesteś gotowy wypłynąć na nieznane wody 🐟, zapraszam na okręt
-        🚣🏻, Dziś będę twoim przewodnikiem
-      </Paragraph>
-      <Paragraph>
-        Zapraszam do zapoznania się z moją pracą w która została stworzona z
-        pasją 💜
-      </Paragraph>
+      <Heading heading={content.Heading} />
+      {isTruthy(SvgTagName) && <SvgTagName />}
+      {content.Paragraphs.map((paragraph: IStrapiParagraphText) => (
+        <Paragraph key={paragraph.id}>{paragraph.Text}</Paragraph>
+      ))}
     </StyledIntroductionSection>
   );
 };

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import Heading from "src/ui/Heading";
+// import Heading from "src/ui/Heading";
 import styled from "styled-components";
 import { variables } from "src/styled/mixins";
 import Paragraph from "src/ui/Paragraph";
@@ -80,9 +80,9 @@ const ViewExperience: FC = () => {
   return (
     <>
       <StyledIntroductionSection>
-        <Heading tagName="h2" color="#6A82FB">
+        {/* <Heading tagName="h2" color="#6A82FB">
           Opis projektów w których miałem okazję uczestniczyć
-        </Heading>
+        </Heading> */}
         <Paragraph>
           Lista komercyjnych projektów w których uczestniczyłem na przestrzeni
           ostatnich 2 lat.
@@ -91,9 +91,9 @@ const ViewExperience: FC = () => {
       <StyledExperienceList>
         {projects.map((project: any, index: number) => (
           <StyledExperienceItem key={project.name}>
-            <Heading tagName="h3" color="#7928ca" selectionColor="#6A82FB">
+            {/* <Heading tagName="h3" color="#7928ca" selectionColor="#6A82FB">
               {index + 1}. {project.name}
-            </Heading>
+            </Heading> */}
 
             <Paragraph>
               <StyledExperienceItemSpan>Role: </StyledExperienceItemSpan>

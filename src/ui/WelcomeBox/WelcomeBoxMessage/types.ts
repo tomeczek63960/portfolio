@@ -1,9 +1,5 @@
-export interface IWelcomeBoxMessage {
-  type: string;
-  toggler?: string;
-  message: string;
-  image: string;
-}
+import { IStrapiWelcomeboxMessage } from "../types";
+
 export interface PropsWelcomeBoxMessage {
-  message: IWelcomeBoxMessage;
+  message: IStrapiWelcomeboxMessage;
 }

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "src/ui/Image";
 import React, { FC } from "react";
 import {
   StyledWelcomeBoxHead,
@@ -17,7 +17,7 @@ const ComponentWelcomeBoxHead: FC<PropsWelcomeBoxHead> = ({
   return (
     <StyledWelcomeBoxHead>
       <StyledWelcomeBoxImage>
-        <Image src={image} width="100%" height="100%" />
+        <Image url={image} />
       </StyledWelcomeBoxImage>
       <StyledWelcomeBoxHeadInfo>
         <StyledWelcomeBoxHeadHeading>{name}</StyledWelcomeBoxHeadHeading>

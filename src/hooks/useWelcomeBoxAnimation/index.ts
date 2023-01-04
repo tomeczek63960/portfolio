@@ -2,28 +2,19 @@ import { gsap } from "gsap";
 import { useRef, useState, MouseEvent, RefObject } from "react";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
-import { IMessage, ReturnTypes } from "./types";
+import { ReturnTypes } from "./types";
+import {
+  IStrapiWelcomeboxMessage,
+  IStrapiWelcomeboxToggler,
+} from "src/ui/WelcomeBox/types";
 import { useErrorHandler } from "../useErrorHandler";
 
 export const useWelcomeBoxAnimation = (
-  newMessages: IMessage[],
-  refWelcomeBoxConversation: RefObject<HTMLDivElement>
+  newMessages: IStrapiWelcomeboxMessage[],
+  refWelcomeBoxConversation: RefObject<HTMLDivElement>,
+  activeMessages: IStrapiWelcomeboxMessage[],
+  setActiveMessages: Function
 ): ReturnTypes => {
-  const [activeMessages, setActiveMessages] = useState<IMessage[]>([
-    {
-      id: 1,
-      type: "admin",
-      image: "/tk.jpeg",
-      message: "Cześć <br/> Miło jest Ciebie tu widzieć",
-    },
-    {
-      id: 2,
-      type: "admin",
-      image: "",
-      message: "Co chciałbyś się o mnie dowiedzieć?",
-    },
-  ]);
-
   const [messagesQueue, setMessagesQueue] = useState<any>([]);
   const refWriteAnimationWelcomeBox = useRef<HTMLDivElement>(null);
   const refWriteAnimationWelcomeBoxImage = useRef<HTMLDivElement>(null);
@@ -65,20 +56,23 @@ export const useWelcomeBoxAnimation = (
 
   const writeMessage = (
     event: MouseEvent<HTMLElement>,
-    message: IMessage
+    message: IStrapiWelcomeboxToggler
   ): void => {
     if (isFalsy(refWelcomeBoxConversation.current)) return;
     const togglerMessages = newMessages.filter(
-      (msg: IMessage) => msg.toggler === message.toggler
+      (msg: IStrapiWelcomeboxMessage) => msg.Toggler === message.Toggler
     );
     const selector = `[data-scroll-to="${
-      isTruthy(message?.toggler) ? message.toggler : ""
+      isTruthy(message.Toggler) ? message.Toggler : ""
     }"]`;
     const isInConversation = refWelcomeBoxConversation.current.querySelector(
       selector
     ) as HTMLDivElement;
     if (isFalsy(isInConversation)) {
-      setMessagesQueue((prev: IMessage[]) => [...prev, ...togglerMessages]);
+      setMessagesQueue((prev: IStrapiWelcomeboxMessage[]) => [
+        ...prev,
+        ...togglerMessages,
+      ]);
     } else {
       refWelcomeBoxConversation.current.scrollTo(0, isInConversation.offsetTop);
     }
@@ -88,7 +82,7 @@ export const useWelcomeBoxAnimation = (
       pointerEvents: isTruthy(messagesQueue.length) ? "none" : "all",
     });
     if (isTruthy(messagesQueue.length)) {
-      const isAdmin = messagesQueue[0].type === "admin";
+      const isAdmin = messagesQueue[0].Type === "admin";
       gsap.set(refWriteAnimationWelcomeBox.current, {
         justifyContent: isAdmin ? "flex-start" : "flex-end",
       });
@@ -121,7 +115,6 @@ export const useWelcomeBoxAnimation = (
   }, [activeMessages]);
 
   return {
-    activeMessages,
     refWriteAnimationWelcomeBox,
     refWriteAnimationWelcomeBoxImage,
     refWriteAnimationElement,
