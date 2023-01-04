@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import ComponentCv from "./Cv";
+import FormComponent from "./Form";
 import ComponentIntroduction from "./Introduction";
 import ComponentSkills from "./Skills";
 import ComponentWelcomeBox from "./WelcomeBox";
@@ -24,6 +25,7 @@ const ComponentContent: FC<IComponents> = ({ content }) => {
     "selection.work-experience": ComponentWorkExperience,
     "selection.skills": ComponentSkills,
     "selection.cv": ComponentCv,
+    "selection.contact-form": FormComponent,
   };
 
   const TagName: FC<{ content: any }> = components[content.__component];
