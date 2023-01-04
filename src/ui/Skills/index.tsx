@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import Heading from "src/ui/Heading";
+// import Heading from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
 import { StyledSkillsSection } from "./style";
 import Carousel from "src/ui/Skills/Carousel";
@@ -185,9 +185,9 @@ const ComponentSkills: FC = () => {
 
   return (
     <StyledSkillsSection>
-      <Heading tagName="h2" color="#6A82FB">
+      {/* <Heading tagName="h2" color="#6A82FB">
         Stack technologiczny
-      </Heading>
+      </Heading> */}
       <Paragraph>
         Poniżej przedstawiam swój stack technologiczny, jednak warto też mieć na
         uwadze że nic co posiada dokumentację nie jest mi straszne 😱
@@ -196,14 +196,14 @@ const ComponentSkills: FC = () => {
         Szybko się uczę oraz jestem otwarty na nowe doświadczenia 🐣
       </Paragraph>
 
-      <Heading tagName="h3" color="#7928ca" selectionColor="#6A82FB">
+      {/* <Heading tagName="h3" color="#7928ca" selectionColor="#6A82FB">
         Umiejętności czysto jsowe
-      </Heading>
+      </Heading> */}
       <Carousel items={jsSkills} />
 
-      <Heading tagName="h3" color="#7928ca" selectionColor="#6A82FB">
+      {/* <Heading tagName="h3" color="#7928ca" selectionColor="#6A82FB">
         Narzędzia, Cmsy, Headless cmsy oraz wiedzą ogólna
-      </Heading>
+      </Heading> */}
       <Carousel items={skills} />
     </StyledSkillsSection>
   );

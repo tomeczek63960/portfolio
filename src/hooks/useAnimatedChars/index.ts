@@ -84,7 +84,8 @@ const createTimeline = ({
 };
 
 export const useAnimatedChars = (
-  props: any
+  color: string,
+  hoverColor: string
 ): [RefObject<HTMLHeadingElement>, MouseEventHandler<HTMLHeadingElement>] => {
   const heading = useRef<HTMLHeadingElement>(null);
   const tlEvents = useRef<ITimelineObject[]>([]);
@@ -117,8 +118,8 @@ export const useAnimatedChars = (
       target.setAttribute("data-animation-index", animationIndex);
       const tl = createTimeline({
         target,
-        color: props.color,
-        hoverColor: props.hoverColor,
+        color,
+        hoverColor,
       });
       tlEvents.current.push({
         animationIndex,

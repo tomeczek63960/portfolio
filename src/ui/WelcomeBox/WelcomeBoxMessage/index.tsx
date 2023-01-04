@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "src/ui/Image";
 import React, { FC } from "react";
 import {
   StyledWelcomeBoxMessage,
@@ -13,19 +13,17 @@ const WelcomeBoxMessageComponent: FC<PropsWelcomeBoxMessage> = ({
 }) => {
   return (
     <StyledWelcomeBoxMessage
-      position={message.type === "user" ? "right" : "left"}
-      data-scroll-to={message.toggler}
+      position={message.Type === "user" ? "right" : "left"}
+      data-scroll-to={message.Toggler}
     >
       <div>
         <StyledWelcomeBoxMessageText
-          position={message.type === "user" ? "right" : "left"}
-          dangerouslySetInnerHTML={{ __html: message.message }}
+          position={message.Type === "user" ? "right" : "left"}
+          dangerouslySetInnerHTML={{ __html: message.Message }}
         ></StyledWelcomeBoxMessageText>
       </div>
-      <StyledWelcomeBoxMessageImage type={message.type}>
-        {isTruthy(message.image) && (
-          <Image src={message.image} width="100%" height="100%" />
-        )}
+      <StyledWelcomeBoxMessageImage type={message.Type}>
+        {isTruthy(message.Image) && <Image url={message.Image.url} />}
       </StyledWelcomeBoxMessageImage>
     </StyledWelcomeBoxMessage>
   );

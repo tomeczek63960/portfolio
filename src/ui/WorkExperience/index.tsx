@@ -1,5 +1,5 @@
 import React, { FC, RefObject } from "react";
-import Heading from "src/ui/Heading";
+// import Heading from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
 import {
   StyledWorkExperienceSection,
@@ -24,9 +24,9 @@ const ComponentWorkExperience: FC = () => {
 
   return (
     <StyledWorkExperienceSection>
-      <Heading tagName="h2" color="#6A82FB">
+      {/* <Heading tagName="h2" color="#6A82FB">
         Doświadczenie zawodowe
-      </Heading>
+      </Heading> */}
       <Paragraph>Coś o mnie i moim doświadczeniu zawodowym.</Paragraph>
 
       <StyledWorkExperience>

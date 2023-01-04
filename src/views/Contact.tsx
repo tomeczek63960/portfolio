@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import FormComponent from "src/ui/FormComponent";
-import Heading from "src/ui/Heading";
+// import Heading from "src/ui/Heading";
 import styled from "styled-components";
 import { variables } from "src/styled/mixins";
 import Paragraph from "src/ui/Paragraph";
@@ -16,9 +16,9 @@ const ViewContact: FC = () => {
   return (
     <>
       <StyledIntroductionSection>
-        <Heading tagName="h2" color="#6A82FB">
+        {/* <Heading tagName="h2" color="#6A82FB">
           Contact Me
-        </Heading>
+        </Heading> */}
         <Performence />
         <Paragraph>Zostaw po sobie jakąś wiadomość 📭</Paragraph>
         <Paragraph>
@@ -33,9 +33,9 @@ const ViewContact: FC = () => {
       </StyledIntroductionSection>
 
       <StyledContactFormSection>
-        <Heading tagName="h3" color="#7928ca" selectionColor="#6A82FB">
+        {/* <Heading tagName="h3" color="#7928ca" selectionColor="#6A82FB">
           Użyj formularza żeby się ze mną skontaktować
-        </Heading>
+        </Heading> */}
         <Paragraph>
           Milczenie jest złotem 🤫 jednak nie w tym przypadku, daj znać co Ci
           chodzi po głowie 💡

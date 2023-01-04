@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Projects from "src/ui/Projects/Projects";
-import HeadingComponent from "src/ui/Heading";
+// import Heading from "src/ui/Heading";
 import { variables } from "src/styled/mixins";
 import styled from "styled-components";
 import Paragraph from "src/ui/Paragraph";
@@ -12,9 +12,9 @@ const StyledCaseStudiesSection = styled.section`
 const ViewCaseStudies: FC = () => {
   return (
     <StyledCaseStudiesSection>
-      <HeadingComponent tagName="h2" color="#6A82FB">
+      {/* <Heading tagName="h2" color="#6A82FB">
         Portfolio projects
-      </HeadingComponent>
+      </Heading> */}
       <Paragraph>Zapraszam do zapoznania się z moimi projektami.</Paragraph>
       <Paragraph>
         Warto zauważyć że są to projekty tylko i wyłącznie prywatne czyli tylko
