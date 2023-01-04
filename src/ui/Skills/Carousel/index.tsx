@@ -9,9 +9,34 @@ import {
   StyledPaginationItemDot,
 } from "./style";
 
-import { IItem, PropsSkills } from "./types";
-// TODO: dodać typ zgodny z tym co zwróci Strapi
-const ComponentSkillsCarousel: FC<PropsSkills> = ({ items }) => {
+import { PropsSkillsCarousel } from "./types";
+import { IStrapiSkill } from "../types";
+
+import {
+  Angular,
+  Adobexd,
+  Contentful,
+  Css,
+  Figma,
+  Gatsby,
+  Gsap,
+  Html,
+  Javascript,
+  NextJs,
+  Nuxt,
+  ReactJs,
+  Redux,
+  Sass,
+  Strapi,
+  Typescript,
+  Vue,
+  StyledComponents,
+  Php,
+  Pimcore,
+  Shopware,
+} from "src/Svg";
+
+const ComponentSkillsCarousel: FC<PropsSkillsCarousel> = ({ carousel }) => {
   const [
     refCarousel,
     refCarouselPagination,
@@ -20,7 +45,29 @@ const ComponentSkillsCarousel: FC<PropsSkills> = ({ items }) => {
     stopAutoplay,
     setSlide,
   ] = useCircleCarousel();
-
+  const icons = {
+    Angular,
+    Adobexd,
+    Contentful,
+    Css,
+    Figma,
+    Gatsby,
+    Gsap,
+    Html,
+    Javascript,
+    NextJs,
+    Nuxt,
+    ReactJs,
+    Redux,
+    Sass,
+    Strapi,
+    Typescript,
+    Vue,
+    StyledComponents,
+    Php,
+    Pimcore,
+    Shopware,
+  };
   return (
     <StyledCarousel
       ref={refCarousel}
@@ -28,25 +75,24 @@ const ComponentSkillsCarousel: FC<PropsSkills> = ({ items }) => {
       onMouseLeave={startAutoplay}
     >
       <StyledCarouselText ref={refCarouselText}>
-        {items.map((skill: IItem) => {
-          return (
-            <StyledCarouselTextItem key={`text-${skill.text.heading}`}>
-              <h5>{skill.text.heading}</h5>
-              <p>{skill.text.text}</p>
-            </StyledCarouselTextItem>
-          );
-        })}
+        {carousel.Skill.map((skill: IStrapiSkill) => (
+          <StyledCarouselTextItem key={`text-${skill.id}`}>
+            <h5>{skill.Title}</h5>
+            <p>{skill.Text}</p>
+          </StyledCarouselTextItem>
+        ))}
       </StyledCarouselText>
       <StyledPagination ref={refCarouselPagination}>
-        {items.map((skill: IItem) => {
+        {carousel.Skill.map((skill: IStrapiSkill) => {
+          const Icon = icons[skill.Icon];
           return (
             <StyledPaginationItem
               data-carousel-item="true"
-              key={`icon-${skill.text.heading}`}
+              key={`icon-${skill.id}`}
               onClick={setSlide}
             >
               <StyledPaginationItemDot>
-                <skill.icon />
+                <Icon />
               </StyledPaginationItemDot>
             </StyledPaginationItem>
           );
