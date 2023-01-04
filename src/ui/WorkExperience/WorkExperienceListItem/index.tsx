@@ -23,8 +23,8 @@ const ComponentWorkExperienceListItem: FC<PropsWrokExperience> = ({
         {order === "last" ? <ArrowDown /> : ""}
       </StyledListItemLine>
       <StyledListItemContent ref={refExperienceListItem}>
-        <h4>{item.date}</h4>
-        <p>{item.content}</p>
+        <h4>{item.Date}</h4>
+        <p>{item.Text}</p>
       </StyledListItemContent>
     </StyledListItem>
   );

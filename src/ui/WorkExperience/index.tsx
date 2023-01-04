@@ -1,5 +1,5 @@
 import React, { FC, RefObject } from "react";
-// import Heading from "src/ui/Heading";
+import Heading from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
 import {
   StyledWorkExperienceSection,
@@ -13,8 +13,10 @@ import {
 import { SectionWave } from "src/Svg";
 import WorkExperienceList from "./WorkExperienceList";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
+import { IStrapiParagraphText } from "src/ui/Paragraph/types";
+import { PropsWorkExperience } from "./types";
 
-const ComponentWorkExperience: FC = () => {
+const ComponentWorkExperience: FC<PropsWorkExperience> = ({ content }) => {
   const [refWorkExperienceHeadContent] = useScrollTrigger(0.6, "children") as [
     RefObject<HTMLDivElement>
   ];
@@ -24,10 +26,10 @@ const ComponentWorkExperience: FC = () => {
 
   return (
     <StyledWorkExperienceSection>
-      {/* <Heading tagName="h2" color="#6A82FB">
-        Doświadczenie zawodowe
-      </Heading> */}
-      <Paragraph>Coś o mnie i moim doświadczeniu zawodowym.</Paragraph>
+      <Heading heading={content.Heading} />
+      {content.Paragraphs.map((paragraph: IStrapiParagraphText) => (
+        <Paragraph key={paragraph.id}>{paragraph.Text}</Paragraph>
+      ))}
 
       <StyledWorkExperience>
         <StyledWorkExperienceHead>
@@ -35,17 +37,18 @@ const ComponentWorkExperience: FC = () => {
             <SectionWave />
           </StyledWorkExperienceHeadBackground>
           <StyledWorkExperienceHeadContent ref={refWorkExperienceHeadContent}>
-            <h3>My programing timeline</h3>
-            <label>
-              Moje ostatnie 4 lata które były przesiąknięte programowaniem
-            </label>
+            <h3>{content.HeadTitle}</h3>
+            <label>{content.HeadText}</label>
           </StyledWorkExperienceHeadContent>
         </StyledWorkExperienceHead>
 
         <StyledWorkExperienceContent>
-          <WorkExperienceList />
-          <StyledButtonSecondary ref={refWorkExperienceCta}>
-            Go to Cv
+          <WorkExperienceList items={content.WorkExperienceItem} />
+          <StyledButtonSecondary
+            ref={refWorkExperienceCta}
+            data-scroll-to={content.BtnLinkTo}
+          >
+            {content.BtnText}
           </StyledButtonSecondary>
         </StyledWorkExperienceContent>
       </StyledWorkExperience>
