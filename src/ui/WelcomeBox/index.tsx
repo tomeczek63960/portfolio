@@ -53,7 +53,7 @@ const ComponentWelcomeBox: FC<PropsWelcomeBox> = ({ content }) => {
   );
 
   return (
-    <StyledWelcomeBoxSection>
+    <StyledWelcomeBoxSection id="WelcomeBox">
       <Heading heading={content.Heading} />
       {content.Paragraph.map((paragraph: IStrapiParagraphText) => (
         <Paragraph key={paragraph.id}>{paragraph.Text}</Paragraph>

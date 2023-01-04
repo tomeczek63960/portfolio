@@ -16,7 +16,7 @@ const ComponentIntroduction: FC<IStrapiContent> = ({ content }) => {
   };
   const SvgTagName = SvgTag[content.Svg];
   return (
-    <StyledIntroductionSection>
+    <StyledIntroductionSection id="Introduction">
       <Heading heading={content.Heading} />
       {isTruthy(SvgTagName) && <SvgTagName />}
       {content.Paragraphs.map((paragraph: IStrapiParagraphText) => (

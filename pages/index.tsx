@@ -6,7 +6,6 @@ import Layout from "src/layout/Layout";
 import ComponentContent from "src/ui/Content";
 
 interface IPage {
-  // page: any;
   page: {
     PageContent: any[];
     SeoTitle: string;

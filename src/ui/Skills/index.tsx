@@ -8,7 +8,7 @@ import { PropsSkillsComponent, IStrapiSkillCarousel } from "./types";
 
 const ComponentSkills: FC<PropsSkillsComponent> = ({ content }) => {
   return (
-    <StyledSkillsSection>
+    <StyledSkillsSection id="Skills">
       <Heading heading={content.Heading} />
       {content.Paragraphs.map((paragraph: IStrapiParagraphText) => (
         <Paragraph key={paragraph.id}>{paragraph.Text}</Paragraph>
