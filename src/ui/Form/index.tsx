@@ -6,7 +6,7 @@ import { IStrapiParagraphText } from "src/ui/Paragraph/types";
 import { StyledContactFormSection } from "./style";
 import { PropsForm } from "./types";
 
-const FormComponent: FC<PropsForm> = ({ content }) => {
+const ComponentForm: FC<PropsForm> = ({ content }) => {
   return (
     <StyledContactFormSection>
       <Heading heading={content.Heading} />
@@ -18,4 +18,4 @@ const FormComponent: FC<PropsForm> = ({ content }) => {
   );
 };
 
-export default FormComponent;
+export default ComponentForm;
