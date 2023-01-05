@@ -79,27 +79,33 @@ export const useHeaderMobileAnimation = (
   useIsomorphicLayoutEffect(() => {
     refTimeline.current = gsap.timeline({ paused: true });
     refPrevScrollPosition.current = window.pageYOffset;
-    isTruthy(refBars.current) &&
-      refTimeline.current.to(
-        refBars.current.children,
-        {
-          duration: 0.3,
-          scale: 2,
-          stagger: 0.1,
-        },
-        "load-dot"
-      );
-    isTruthy(refBars.current) &&
-      refTimeline.current.to(
-        refBars.current.children,
-        {
-          duration: 0.3,
-          scale: 1,
-          stagger: 0.1,
-          delay: 0.2,
-        },
-        "load-dot"
-      );
+
+    const barsChildren = isTruthy(refBars.current)
+      ? refBars.current.children
+      : [];
+    gsap.set(barsChildren, {
+      y: "-50%",
+    });
+
+    refTimeline.current.to(
+      barsChildren,
+      {
+        duration: 0.3,
+        scale: 2,
+        stagger: 0.1,
+      },
+      "load-dot"
+    );
+    refTimeline.current.to(
+      barsChildren,
+      {
+        duration: 0.3,
+        scale: 1,
+        stagger: 0.1,
+        delay: 0.2,
+      },
+      "load-dot"
+    );
     refTimeline.current.to(
       refFirstDot.current,
       {
