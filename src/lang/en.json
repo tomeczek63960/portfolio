@@ -1,6 +1,12 @@
 {
-  "page.home.head.title": "Home",
-  "page.home.head.meta.description": "Home",
-  "page.home.title": "Home",
-  "page.home.description": "Home"
+  "nav.home.text": "Home",
+  "nav.home.link": "/",
+  "nav.contact.text": "Contact",
+  "nav.contact.link": "/contact",
+  "nav.case-studies.text": "Case studies",
+  "nav.case-studies.link": "/case-studies",
+  "nav.experience.text": "Experience",
+  "nav.experience.link": "/experience",
+  "nav.show-case.text": "Show case",
+  "nav.show-case.link": "/show-case"
 }
