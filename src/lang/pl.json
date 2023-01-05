@@ -8,5 +8,6 @@
   "nav.experience.text": "Doświadczenie",
   "nav.experience.link": "/doswiadczenie",
   "nav.show-case.text": "Show case",
-  "nav.show-case.link": "/show"
+  "nav.show-case.link": "/show",
+  "page.error-404": "Strona której szukasz nie istnieje."
 }

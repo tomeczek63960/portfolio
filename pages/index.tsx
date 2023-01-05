@@ -4,7 +4,6 @@ import { isTruthy } from "src/helpers/checkFalsyType";
 import Layout from "src/layout/Layout";
 import ComponentContent from "src/ui/Content";
 import { getEnvVars } from "src/helpers/getEnvVars";
-// TODO: add 404 page;
 
 // TODO: in skills add next carousel & add prismic.io, hygraph, builder.io ...
 // Add seo values for pages in strapi
