@@ -11,6 +11,7 @@ export interface IStrapiHeading {
   SelectionColor: "white" | "blue" | "purple";
   id: string;
   Text: IStrapiHeadingText[];
+  Exceptions: string;
 }
 export interface PropsHeading {
   heading: IStrapiHeading;

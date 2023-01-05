@@ -30,6 +30,7 @@ const ComponentExperienceList: FC<PropsExperienceList> = ({ content }) => {
                   },
                 ],
                 id: "",
+                Exceptions: "",
               }}
             />
 

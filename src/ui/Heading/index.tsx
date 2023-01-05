@@ -16,10 +16,10 @@ const ComponentHeading: FC<PropsHeading> = ({ heading }) => {
   const Heading = mapStyle[heading.HeadingType];
   const [headingRef, animateChars] = useAnimatedChars(
     colors[heading.Color],
-    colors[heading.HoverColor]
+    colors[heading.HoverColor],
+    heading.Exceptions?.split(",")
   );
 
-  // TODO: w strapim dodać wyjątki na emotki (tablicę do której dodawać mozna będzie emotki które potem przy splitcie tekstu będą pakowane w spana i animowane razem z resztą znaków)
   return (
     <Heading
       ref={headingRef}

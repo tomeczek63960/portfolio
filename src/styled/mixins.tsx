@@ -6,33 +6,32 @@ function getProps(
   return args;
 }
 
-// TODO: move width to variables
 export const responsive = {
   tabletP: (
     ...props: Array<TemplateStringsArray | string | FlattenSimpleInterpolation>
   ) => css`
-    @media (min-width: 768px) {
+    @media (min-width: ${variables.tabletP}) {
       ${getProps(...props)};
     }
   `,
   tabletL: (
     ...props: Array<TemplateStringsArray | string | FlattenSimpleInterpolation>
   ) => css`
-    @media (min-width: 1024px) {
+    @media (min-width: ${variables.tabletL}) {
       ${getProps(...props)};
     }
   `,
   desktop: (
     ...props: Array<TemplateStringsArray | string | FlattenSimpleInterpolation>
   ) => css`
-    @media (min-width: 1366px) {
+    @media (min-width: ${variables.desktop}) {
       ${getProps(...props)};
     }
   `,
   desktopHd: (
     ...props: Array<TemplateStringsArray | string | FlattenSimpleInterpolation>
   ) => css`
-    @media (min-width: 1920px) {
+    @media (min-width: ${variables.desktopHd}) {
       ${getProps(...props)};
     }
   `,
@@ -84,4 +83,8 @@ export const variables = {
   fontWeightSemiBold: 600,
   fontWeightBold: 700,
   fontWeightBlack: 900,
+  tabletP: "768px",
+  tabletL: "1024px",
+  desktop: "1336px",
+  desktopHd: "1920px",
 };
