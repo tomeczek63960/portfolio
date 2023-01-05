@@ -4,7 +4,7 @@ import Layout from "src/layout/Layout";
 import ComponentContent from "src/ui/Content";
 import axios from "axios";
 import { isTruthy } from "src/helpers/checkFalsyType";
-
+import { getEnvVars } from "src/helpers/getEnvVars";
 interface IPage {
   page: {
     PageContent: any[];
@@ -36,9 +36,11 @@ export async function getStaticProps({
   locale: string;
 }): Promise<any> {
   const page = await axios.get(
-    `http://localhost:1337/static-pages?_locale=${locale}&Slug=/case-studies`
+    `${getEnvVars().apiUrl}/static-pages?_locale=${locale}&Slug=/case-studies`
   );
-  const projects = await axios.get("http://localhost:1337/projects?_locale=en");
+  const projects = await axios.get(
+    `${getEnvVars().apiUrl}/projects?_locale=en`
+  );
 
   return {
     props: {

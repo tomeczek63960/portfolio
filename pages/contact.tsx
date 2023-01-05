@@ -4,6 +4,7 @@ import Layout from "src/layout/Layout";
 // import type { NextPage } from "next";
 import { isTruthy } from "src/helpers/checkFalsyType";
 import ComponentContent from "src/ui/Content";
+import { getEnvVars } from "src/helpers/getEnvVars";
 
 interface IPage {
   page: {
@@ -32,7 +33,7 @@ export async function getStaticProps({
   locale: string;
 }): Promise<any> {
   const res = await fetch(
-    `http://localhost:1337/static-pages?_locale=${locale}&Slug=/contact`
+    `${getEnvVars().apiUrl}/static-pages?_locale=${locale}&Slug=/contact`
   );
   const page = await res.json();
 

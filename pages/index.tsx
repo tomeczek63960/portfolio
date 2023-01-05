@@ -3,7 +3,7 @@ import { isTruthy } from "src/helpers/checkFalsyType";
 // import type { NextPage } from "next";
 import Layout from "src/layout/Layout";
 import ComponentContent from "src/ui/Content";
-
+import { getEnvVars } from "src/helpers/getEnvVars";
 // TODO: add 404 page;
 
 // TODO: in skills add next carousel & add prismic.io, hygraph, builder.io ...
@@ -42,7 +42,7 @@ export async function getStaticProps({
   locale: string;
 }): Promise<any> {
   const res = await fetch(
-    `http://localhost:1337/static-pages?_locale=${locale}&Slug=Home`
+    `${getEnvVars().apiUrl}/static-pages?_locale=${locale}&Slug=Home`
   );
   const page = await res.json();
 
