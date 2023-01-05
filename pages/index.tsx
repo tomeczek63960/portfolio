@@ -2,8 +2,17 @@ import React, { FC } from "react";
 import { isTruthy } from "src/helpers/checkFalsyType";
 // import type { NextPage } from "next";
 import Layout from "src/layout/Layout";
-// import Home from "src/views/Home";
 import ComponentContent from "src/ui/Content";
+
+// TODO: add 404 page;
+
+// TODO: in skills add next carousel & add prismic.io, hygraph, builder.io ...
+// Add seo values for pages in strapi
+
+// TODO: add tests to all components
+// _________
+// TODO: scrollbar ma być taki jak na macu (globalnie ostylowany)
+// TODO: fix gps on loading animation
 
 interface IPage {
   page: {
