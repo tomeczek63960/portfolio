@@ -12,8 +12,8 @@ import {
 } from "./style";
 import { IStrapiParagraphText } from "src/ui/Paragraph/types";
 import { PropsCvBox } from "../types";
+import { getEnvVars } from "src/helpers/getEnvVars";
 
-// TODO: move api link to env
 const ComponentCvBox: FC<PropsCvBox> = ({ content }) => {
   const [refUl] = useScrollTrigger(0.6, "children") as [
     RefObject<HTMLUListElement>
@@ -26,13 +26,13 @@ const ComponentCvBox: FC<PropsCvBox> = ({ content }) => {
       <StyedCvCard position="left">
         <StyledCvCardHead ref={refBox}>
           <StyledCvDownloadIcon
-            href={`http://localhost:1337${content.Cv.url}`}
+            href={`${getEnvVars().apiUrl}${content.Cv.url}`}
             download
           >
             <Pdf />
           </StyledCvDownloadIcon>
           <StyledCvDownloadLink
-            href={`http://localhost:1337${content.Cv.url}`}
+            href={`${getEnvVars().apiUrl}${content.Cv.url}`}
             download
           >
             {content.LinkText}
