@@ -21,6 +21,10 @@ const headingStyles = (
     cursor: pointer;
     transform: scale(0);
   }
+  .splitted-emoji {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
   ${isTruthy(selectionColor) &&
   css`
     &::selection,

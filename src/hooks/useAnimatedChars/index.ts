@@ -85,7 +85,8 @@ const createTimeline = ({
 
 export const useAnimatedChars = (
   color: string,
-  hoverColor: string
+  hoverColor: string,
+  exceptions: string[] = []
 ): [RefObject<HTMLHeadingElement>, MouseEventHandler<HTMLHeadingElement>] => {
   const heading = useRef<HTMLHeadingElement>(null);
   const tlEvents = useRef<ITimelineObject[]>([]);
@@ -137,7 +138,7 @@ export const useAnimatedChars = (
   };
   useIsomorphicLayoutEffect(() => {
     if (heading.current == null) return;
-    simpleSplitText(heading.current);
+    simpleSplitText(heading.current, exceptions);
     return () => {
       tlEvents.current.forEach((tlObject) => {
         tlObject.tl?.kill();
@@ -148,7 +149,9 @@ export const useAnimatedChars = (
   useIsomorphicLayoutEffect(() => {
     setTimeout(() => {
       if (!isActive || heading.current == null) return;
-      const letters = heading.current.querySelectorAll(".splitted-text");
+      const letters = heading.current.querySelectorAll(
+        ".splitted-text, .splitted-emoji"
+      );
       gsap.to(heading.current, {
         duration: 0.3,
         opacity: 1,
@@ -160,6 +163,7 @@ export const useAnimatedChars = (
         duration: 0.1,
         stagger: 0.05,
         scale: 1,
+        opacity: 1,
         scrollTrigger: {
           trigger: heading.current,
         },
