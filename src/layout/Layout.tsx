@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Head from "./Head";
 import Header from "src/ui/Header/HeaderDesktop";
 import HeaderMobile from "src/ui/Header/HeaderMobile";
-// import { FormattedMessage, useIntl } from "react-intl";
 import Footer from "src/ui/Footer";
 import {
   StyledContainer,
@@ -39,7 +38,6 @@ const Layout: FC<PropsLayout> = (props) => {
 
         <StyledContainer>
           <StyledContainerLeft>
-            {/* <h1> <FormattedMessage id="page.home.description" /> </h1> */}
             <main>{props.children}</main>
           </StyledContainerLeft>
           <StyledContainerRight>

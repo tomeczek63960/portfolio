@@ -19,7 +19,7 @@ const ContactPage: FC<IPage> = ({ page }) => {
     //   <Contact />
     // </Layout>
     <Layout title="Title" description="Description" url="here">
-      {page.PageContent.map((content: any) => (
+      {page?.PageContent.map((content: any) => (
         <ComponentContent content={content} key={content.id} />
       ))}
     </Layout>

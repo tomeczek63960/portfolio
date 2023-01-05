@@ -11,6 +11,7 @@ export const StyledLink = styled.a.attrs(
   font-size: 2.2rem;
   line-height: 3rem;
   display: ${(props) => (isTruthy(props.isDisabled) ? "none" : "block")};
+  width: fit-content;
   font-weight: ${variables.fontWeightBold};
   transition: color 0.3s;
   text-decoration: none;

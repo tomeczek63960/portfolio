@@ -1,4 +1,4 @@
-import React, { useMemo, FC, RefObject } from "react";
+import React, { FC, RefObject } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Github, Linkedin } from "src/Svg";
@@ -7,14 +7,12 @@ import {
   StyledDesktopNav,
   StyledDesktopNavSocialMeida,
 } from "./style";
-import { getPaths } from "src/helpers/getPaths";
-import { isTruthy } from "src/helpers/checkFalsyType";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const ComponentHeader: FC = () => {
   const { locale, locales = [] } = useRouter();
-  const [shortLocale] = isTruthy(locale) ? locale.split("-") : ["en"];
-  const localePaths = useMemo(() => getPaths(shortLocale), [locale]);
+  const intl = useIntl();
 
   const [refLinks] = useScrollTrigger(0.9, "children") as [
     RefObject<HTMLDivElement>
@@ -37,24 +35,45 @@ const ComponentHeader: FC = () => {
           <Github />
         </a>
       </StyledDesktopNavSocialMeida>
-      <Link href={localePaths.home} locale={locale}>
-        <StyledLink>Home</StyledLink>
+      <Link href={intl.messages["nav.home.link"].toString()} locale={locale}>
+        <StyledLink>
+          <FormattedMessage id="nav.home.text" />
+        </StyledLink>
       </Link>
-      <Link href={localePaths.contact} locale={locale}>
-        <StyledLink>Kontakt</StyledLink>
+      <Link href={intl.messages["nav.contact.link"].toString()} locale={locale}>
+        <StyledLink>
+          <FormattedMessage id="nav.contact.text" />
+        </StyledLink>
       </Link>
-      <Link href={localePaths.caseStudies} locale={locale}>
-        <StyledLink>Case studies</StyledLink>
+      <Link
+        href={intl.messages["nav.case-studies.link"].toString()}
+        locale={locale}
+      >
+        <StyledLink>
+          <FormattedMessage id="nav.case-studies.text" />
+        </StyledLink>
       </Link>
-      <Link href={localePaths.showCase} locale={locale}>
-        <StyledLink>Show case</StyledLink>
+      <Link
+        href={intl.messages["nav.experience.link"].toString()}
+        locale={locale}
+      >
+        <StyledLink>
+          <FormattedMessage id="nav.experience.text" />
+        </StyledLink>
       </Link>
-      <Link href={localePaths.experience} locale={locale}>
-        <StyledLink>Experience</StyledLink>
+      <Link
+        href={intl.messages["nav.show-case.link"].toString()}
+        locale={locale}
+      >
+        <StyledLink>
+          <FormattedMessage id="nav.show-case.text" />
+        </StyledLink>
       </Link>
       {locales.map((localeItem: string) => (
-        <Link key={localeItem} href="/" locale={localeItem}>
-          <StyledLink isDisabled={localeItem === locale}>{locale}</StyledLink>
+        <Link href="/" locale={localeItem} key={localeItem}>
+          <StyledLink isDisabled={localeItem === locale}>
+            {localeItem}
+          </StyledLink>
         </Link>
       ))}
     </StyledDesktopNav>

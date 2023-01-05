@@ -49,6 +49,7 @@ export const StyledContainerRight = styled.div`
   order: -1;
   width: 100%;
   padding-left: 3rem;
+  z-index: 2;
   ${responsive.tabletP`
     order: 1;
     width: 50%;

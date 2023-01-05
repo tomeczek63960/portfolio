@@ -1,4 +1,4 @@
-import React, { useMemo, FC } from "react";
+import React, { FC } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Logo from "src/ui/Logo";
@@ -10,14 +10,14 @@ import {
   StyledBars,
   StyledHeaderBar,
 } from "./style";
-import { getPaths } from "src/helpers/getPaths";
 import { useHeaderMobileAnimation } from "src/hooks/useHeaderMobileAnimation";
 import { preventScroll } from "src/helpers/preventScroll";
-import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
+import { isFalsy } from "src/helpers/checkFalsyType";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const ComponentHeaderMobile: FC = () => {
   const { pathname, locale = "en", locales = [] } = useRouter();
-  const [shortLocale] = isTruthy(locale) ? locale.split("-") : ["en"];
+  const intl = useIntl();
   const [
     refTimeline,
     refFirstDot,
@@ -37,7 +37,6 @@ const ComponentHeaderMobile: FC = () => {
     preventScroll(shouldPlay);
   };
 
-  const localePaths = useMemo(() => getPaths(shortLocale), [locale]);
   return (
     <>
       <StyledHeaderBar ref={refHeaderBar}>
@@ -52,25 +51,50 @@ const ComponentHeaderMobile: FC = () => {
       <StyledMobileNav ref={refMobileNav}>
         <StyledMobileNavContainer ref={refMobileNavContainer}>
           <SocialMedia theme="white" ref={refSocialMedia} />
-          <Link href={localePaths.home} locale={locale}>
-            <StyledLink>Home</StyledLink>
+          <Link
+            href={intl.messages["nav.home.link"].toString()}
+            locale={locale}
+          >
+            <StyledLink>
+              <FormattedMessage id="nav.home.text" />
+            </StyledLink>
           </Link>
-          <Link href={localePaths.contact} locale={locale}>
-            <StyledLink>Kontakt</StyledLink>
+          <Link
+            href={intl.messages["nav.contact.link"].toString()}
+            locale={locale}
+          >
+            <StyledLink>
+              <FormattedMessage id="nav.contact.text" />
+            </StyledLink>
           </Link>
-          <Link href={localePaths.caseStudies} locale={locale}>
-            <StyledLink>Case studies</StyledLink>
+          <Link
+            href={intl.messages["nav.case-studies.link"].toString()}
+            locale={locale}
+          >
+            <StyledLink>
+              <FormattedMessage id="nav.case-studies.text" />
+            </StyledLink>
           </Link>
-          <Link href={localePaths.showCase} locale={locale}>
-            <StyledLink>Show case</StyledLink>
+          <Link
+            href={intl.messages["nav.experience.link"].toString()}
+            locale={locale}
+          >
+            <StyledLink>
+              <FormattedMessage id="nav.experience.text" />
+            </StyledLink>
           </Link>
-          <Link href={localePaths.experience} locale={locale}>
-            <StyledLink>Experience</StyledLink>
+          <Link
+            href={intl.messages["nav.show-case.link"].toString()}
+            locale={locale}
+          >
+            <StyledLink>
+              <FormattedMessage id="nav.show-case.text" />
+            </StyledLink>
           </Link>
           {locales.map((localeItem: string) => (
             <Link key={localeItem} href="/" locale={localeItem}>
               <StyledLink isDisabled={localeItem === locale}>
-                {locale}
+                {localeItem}
               </StyledLink>
             </Link>
           ))}
