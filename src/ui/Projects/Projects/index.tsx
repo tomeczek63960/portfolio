@@ -16,7 +16,7 @@ const ComponentProjects: FC<PropsProjects> = ({ projects }) => {
   return (
     <>
       <StyledProjectsGrid>
-        {projects?.map((project: any) => (
+        {projects?.map((project: IStrapiProject) => (
           <Project
             key={project.id}
             onClickFunction={openProjectDetails}

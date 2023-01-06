@@ -1,11 +1,5 @@
-import { IStrapiImage } from "src/ui/Skills/types";
+import { IStrapiImage, IStrapiLocalizations } from "src/types";
 
-export interface IStrapiLocalizations {
-  id: string;
-  locale: string;
-  published_at: string;
-  _id: string;
-}
 export interface IStrapiProjectCategory {
   Theme: string;
   Title: string;

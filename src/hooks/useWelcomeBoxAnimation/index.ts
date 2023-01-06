@@ -99,7 +99,10 @@ export const useWelcomeBoxAnimation = (
         .then(() => {
           refTimeline.current?.seek(0).pause();
           const firstEll = messagesQueue.shift();
-          setActiveMessages((prev: any) => [...prev, firstEll]);
+          setActiveMessages((prev: IStrapiWelcomeboxMessage[]) => [
+            ...prev,
+            firstEll,
+          ]);
         })
         .catch(() => {
           setError();

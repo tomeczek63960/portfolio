@@ -17,7 +17,7 @@ export const useLoadingAnimation = (
   refPageAnimationText: RefObject<HTMLSpanElement>;
   refPageAnimationBackground: RefObject<HTMLDivElement>;
 } => {
-  const { pathname, locale } = useRouter();
+  const { pathname, locale, query } = useRouter();
   const dispatch = useDispatch();
   const [displayChildren, setDisplayChildren] = useState<ReactNode>();
   const refTimeline = useRef<GSAPTimeline>();
@@ -205,7 +205,7 @@ export const useLoadingAnimation = (
           setError();
         });
     }
-  }, [refTimeline.current, locale, pathname]);
+  }, [refTimeline.current, locale, pathname, query]);
   return {
     displayChildren,
     refPageContent,

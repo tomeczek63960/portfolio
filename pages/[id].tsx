@@ -3,17 +3,16 @@ import { isTruthy } from "src/helpers/checkFalsyType";
 import Layout from "src/layout/Layout";
 import ComponentContent from "src/ui/Content";
 import { getEnvVars } from "src/helpers/getEnvVars";
-import { IPage, TPageContent, IPropsPage, IStaticPath } from "src/types";
+import {
+  IPage,
+  IPropsPage,
+  IStaticPath,
+  TPageContent,
+  IStrapiPage,
+  IGetStaticPathsReturn,
+} from "src/types";
 
-// TODO: in skills add next carousel & add prismic.io, hygraph, builder.io, cypres, react-testing-library, jest...
-// Add seo values for pages in strapi
-
-// TODO: add tests to all components
-// _________
-// TODO: scrollbar ma być taki jak na macu (globalnie ostylowany)
-// TODO: fix gps on loading animation
-
-const HomePage: FC<IPage> = ({ page }) => {
+const Pages: FC<IPage> = ({ page }) => {
   return (
     <Layout title="Title" description="Description" url="here">
       {page?.PageContent.map((content: TPageContent) => (
@@ -22,11 +21,33 @@ const HomePage: FC<IPage> = ({ page }) => {
     </Layout>
   );
 };
+
+export async function getStaticPaths(): Promise<IGetStaticPathsReturn> {
+  const res = await fetch(
+    `${getEnvVars().apiUrl}/static-pages?_locale=pl&_locale=en`
+  );
+
+  const pages = await res.json();
+  const paths: IStaticPath[] = [];
+  pages?.forEach((page: IStrapiPage) => {
+    paths.push({
+      params: { id: page.Slug },
+      locale: page.locale,
+    });
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
 export async function getStaticProps({
   locale,
+  params,
 }: IStaticPath): Promise<IPropsPage> {
   const res = await fetch(
-    `${getEnvVars().apiUrl}/static-pages?_locale=${locale}&Slug=Home`
+    `${getEnvVars().apiUrl}/static-pages?_locale=${locale}&Slug=${params.id}`
   );
   const page = await res.json();
 
@@ -37,4 +58,4 @@ export async function getStaticProps({
   };
 }
 
-export default HomePage;
+export default Pages;

@@ -1,26 +1,8 @@
 import { IStrapiHeading } from "src/ui/Heading/types";
 import { IStrapiParagraphText } from "src/ui/Paragraph/types";
+import { IStrapiImage } from "src/types";
+import { IStrapiProject } from "src/ui/Projects/Project/types";
 
-export interface IStrapiImage {
-  alternativeText: string;
-  caption: string;
-  createdAt: string;
-  ext: string;
-  hash: string;
-  height: number;
-  id: string;
-  mime: string;
-  name: string;
-  provider: string;
-  related: string[];
-  size: number;
-  updatedAt: string;
-  url: string;
-  width: number;
-  __v: number;
-  _id: string;
-  formats: object;
-}
 export interface IStrapiSkill {
   Icon:
     | "Angular"
@@ -58,14 +40,17 @@ export interface IStrapiSkillCarousel {
   __v: number;
   _id: string;
 }
+export interface IStrapiSkillsSection {
+  Heading: IStrapiHeading;
+  Paragraphs: IStrapiParagraphText[];
+  SkillsCarousel: IStrapiSkillCarousel[];
+  id: string;
+  // __component: string;
+  __component: "selection.skills";
+  __v: number;
+  _id: string;
+}
 export interface PropsSkillsComponent {
-  content: {
-    Heading: IStrapiHeading;
-    Paragraphs: IStrapiParagraphText[];
-    SkillsCarousel: IStrapiSkillCarousel[];
-    id: string;
-    __component: string;
-    __v: number;
-    _id: string;
-  };
+  content: IStrapiSkillsSection;
+  projects?: IStrapiProject[];
 }

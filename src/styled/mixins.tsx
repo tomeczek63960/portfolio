@@ -87,4 +87,5 @@ export const variables = {
   tabletL: "1024px",
   desktop: "1336px",
   desktopHd: "1920px",
+  containerPadding: "2.5rem",
 };
