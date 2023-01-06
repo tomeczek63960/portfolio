@@ -1,4 +1,4 @@
-import React, { ReactNode, FC } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import Head from "./Head";
 import Header from "src/ui/Header/HeaderDesktop";
@@ -10,6 +10,7 @@ import {
   StyledContainerRight,
 } from "src/ui/Container/style";
 import ComponentErrors from "src/ui/Errors";
+import { PropsLayout } from "./types";
 
 const StyledContentWrapper = styled.div`
   padding-top: 8rem;
@@ -17,16 +18,6 @@ const StyledContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-export interface PropsLayout {
-  children: ReactNode;
-  title: string;
-  description: string;
-  url: string;
-  imageUrl?: string;
-  imageAlt?: string;
-  twitter?: string;
-}
 
 const Layout: FC<PropsLayout> = (props) => {
   return (

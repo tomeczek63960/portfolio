@@ -76,6 +76,14 @@ export const useHeaderMobileAnimation = (
 
     refPrevScrollPosition.current = refCurrentScrollPos.current;
   };
+  const handleResize = (): void => {
+    const barsChildren = isTruthy(refBars.current)
+      ? refBars.current.children
+      : [];
+    gsap.set(barsChildren, {
+      y: "-50%",
+    });
+  };
   useIsomorphicLayoutEffect(() => {
     refTimeline.current = gsap.timeline({ paused: true });
     refPrevScrollPosition.current = window.pageYOffset;
@@ -83,9 +91,6 @@ export const useHeaderMobileAnimation = (
     const barsChildren = isTruthy(refBars.current)
       ? refBars.current.children
       : [];
-    gsap.set(barsChildren, {
-      y: "-50%",
-    });
 
     refTimeline.current.to(
       barsChildren,
@@ -172,9 +177,11 @@ export const useHeaderMobileAnimation = (
     );
     handleScroll();
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
     return () => {
       refTimeline.current?.clear().kill();
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

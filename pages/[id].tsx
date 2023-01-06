@@ -14,7 +14,13 @@ import {
 
 const Pages: FC<IPage> = ({ page }) => {
   return (
-    <Layout title="Title" description="Description" url="here">
+    <Layout
+      title={page?.SeoTitle}
+      description={page?.SeoDescription}
+      url={`${getEnvVars().apiUrl}${page.locale === "pl" ? "/pl" : ""}/${
+        page?.Slug
+      }`}
+    >
       {page?.PageContent.map((content: TPageContent) => (
         <ComponentContent content={content} key={content.id} />
       ))}
