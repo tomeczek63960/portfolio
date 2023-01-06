@@ -105,25 +105,27 @@ export const StyledTransitionTextWrapper = styled.div.attrs(
   (props: { position: string }) => props
 )`
   position: fixed;
-  top: 40%;
+  top: calc(50% - 7rem);
   transform: translateY(-50%);
   z-index: 1000000000;
   width: 50%;
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
+  display: none;
+  ${responsive.tabletP`
+    display: flex;
+  `}
   ${({ position }) =>
     position === "left"
       ? css`
           left: 0;
-          display: flex;
           justify-content: flex-end;
           h4 {
             transform: translateX(50%);
           }
         `
       : css`
-          display: flex;
           justify-content: flex-start;
           left: 50%;
           h4 {

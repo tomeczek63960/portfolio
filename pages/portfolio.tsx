@@ -8,7 +8,13 @@ import { IPage, TPageContent, IPropsPage, IStaticPath } from "src/types";
 
 const CaseStudiesPage: FC<IPage> = ({ page, projects }) => {
   return (
-    <Layout title="Title" description="Description" url="here">
+    <Layout
+      title={page?.SeoTitle}
+      description={page?.SeoDescription}
+      url={`${getEnvVars().apiUrl}${page?.locale === "pl" ? "/pl" : ""}/${
+        page?.Slug
+      }`}
+    >
       {page?.PageContent.map((content: TPageContent) => (
         <ComponentContent
           content={content}
@@ -24,7 +30,7 @@ export async function getStaticProps({
   locale,
 }: IStaticPath): Promise<IPropsPage> {
   const page = await axios.get(
-    `${getEnvVars().apiUrl}/static-pages?_locale=${locale}&Slug=/case-studies`
+    `${getEnvVars().apiUrl}/static-pages?_locale=${locale}&Slug=case-studies`
   );
   const projects = await axios.get(
     `${getEnvVars().apiUrl}/projects?_locale=${locale}`

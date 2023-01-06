@@ -5,7 +5,7 @@ import ShowCase from "src/views/ShowCase";
 
 const ShowCasePage: NextPage = () => {
   return (
-    <Layout title="Home page" description="Home page" url="here">
+    <Layout title="Show case" description="Show case" url="here">
       <ShowCase />
     </Layout>
   );
