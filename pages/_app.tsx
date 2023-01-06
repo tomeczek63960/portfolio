@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import React, { useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
 import { useRouter } from "next/router";
 import { IntlProvider } from "react-intl";
 import { TextPlugin } from "gsap/dist/TextPlugin";
@@ -18,7 +18,7 @@ import { Provider } from "react-redux";
 import store from "src/store/index";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
-const App = ({ Component, pageProps }: AppProps): any => {
+const App = ({ Component, pageProps }: AppProps): ReactNode => {
   const { locale } = useRouter();
   const [shortLocale] = isTruthy(locale) ? locale.split("-") : ["en"];
   const queryClient = new QueryClient();
@@ -45,7 +45,7 @@ const App = ({ Component, pageProps }: AppProps): any => {
       gsap.registerPlugin(ScrollTrigger);
       gsap.registerPlugin(TextPlugin);
     }
-  });
+  }, []);
   return (
     <>
       <Provider store={store}>

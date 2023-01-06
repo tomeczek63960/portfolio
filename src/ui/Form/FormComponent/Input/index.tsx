@@ -1,4 +1,11 @@
-import React, { useRef, useState, FC, FormEvent, RefObject } from "react";
+import React, {
+  useRef,
+  useState,
+  FC,
+  FormEvent,
+  RefObject,
+  FocusEvent,
+} from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { colors } from "src/styled/mixins";
 import {
@@ -41,7 +48,7 @@ const ComponentInput: FC<PropsInput> = ({
     if (refIsInputDirty.current) return;
     timeline.play();
   };
-  const blurRef = (e: any): void => {
+  const blurRef = (e: FocusEvent<HTMLInputElement>): void => {
     if (isFalsy(e.target.value)) {
       timelineLabel.reverse();
     }

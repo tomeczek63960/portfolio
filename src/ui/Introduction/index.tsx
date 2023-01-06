@@ -6,9 +6,9 @@ import Chart from "src/ui/Introduction/Svg/Chart";
 import Performence from "src/ui/Introduction/Svg/Performence";
 import { isTruthy } from "src/helpers/checkFalsyType";
 import { IStrapiParagraphText } from "src/ui/Paragraph/types";
-import { IStrapiContent } from "./types";
+import { PropsIntroduction } from "./types";
 
-const ComponentIntroduction: FC<IStrapiContent> = ({ content }) => {
+const ComponentIntroduction: FC<PropsIntroduction> = ({ content }) => {
   const SvgTag = {
     None: null,
     Chart,

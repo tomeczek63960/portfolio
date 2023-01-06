@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { StyledBase } from "./base";
 import { StyledReset } from "./reset";
 
-export const Style = (): any => {
+export const Style = (): ReactElement => {
   return (
     <>
       <StyledReset />

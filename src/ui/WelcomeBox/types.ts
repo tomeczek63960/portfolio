@@ -1,6 +1,7 @@
 import { IStrapiHeading } from "src/ui/Heading/types";
 import { IStrapiParagraphText } from "src/ui/Paragraph/types";
-import { IStrapiLocalizations } from "src/ui/Projects/Project/types";
+import { IStrapiLocalizations } from "src/types";
+import { IStrapiProject } from "src/ui/Projects/Project/types";
 
 export interface IStrapiWelcomeboxMessage {
   id: string;
@@ -43,20 +44,25 @@ export interface IStrapiWelcomeboxToggler {
   __v: number;
   _id: string;
 }
+
+export interface IStrapiWelcomeboxSection {
+  id: string;
+  _id: string;
+  __v: number;
+  // __component: string;
+  __component: "selection.welcomebox";
+  BottomText: string;
+  HeadName: string;
+  HeadPosition: string;
+  Heading: IStrapiHeading;
+  Image: IStrapiWelcomeboxMessageImage;
+  Paragraph: IStrapiParagraphText[];
+  WelcomeBoxMessageToggler: IStrapiWelcomeboxToggler[];
+  active_messages: IStrapiWelcomeboxMessage[];
+  new_messages: IStrapiWelcomeboxMessage[];
+}
+
 export interface PropsWelcomeBox {
-  content: {
-    id: string;
-    _id: string;
-    __v: number;
-    __component: string;
-    BottomText: string;
-    HeadName: string;
-    HeadPosition: string;
-    Heading: IStrapiHeading;
-    Image: IStrapiWelcomeboxMessageImage;
-    Paragraph: IStrapiParagraphText[];
-    WelcomeBoxMessageToggler: IStrapiWelcomeboxToggler[];
-    active_messages: IStrapiWelcomeboxMessage[];
-    new_messages: IStrapiWelcomeboxMessage[];
-  };
+  content: IStrapiWelcomeboxSection;
+  projects?: IStrapiProject[];
 }

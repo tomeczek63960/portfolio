@@ -12,25 +12,25 @@ const nextConfig = {
     defaultLocale: "en",
     localeDetection: false,
   },
-  async rewrites() {
-    return [
-      {
-        source: "/pl/kontakt",
-        destination: "/pl/contact",
-        locale: false, // Use `locale: false` so that the prefix matches the desired locale correctly
-      },
-      {
-        source: "/pl/show",
-        destination: "/pl/show-case",
-        locale: false,
-      },
-      {
-        source: "/pl/doswiadczenie",
-        destination: "/pl/experience",
-        locale: false,
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: "/pl/kontakt",
+  //       destination: "/pl/contact",
+  //       locale: false, // Use `locale: false` so that the prefix matches the desired locale correctly
+  //     },
+  //     {
+  //       source: "/pl/show",
+  //       destination: "/pl/show-case",
+  //       locale: false,
+  //     },
+  //     {
+  //       source: "/pl/doswiadczenie",
+  //       destination: "/pl/experience",
+  //       locale: false,
+  //     },
+  //   ];
+  // },
   images: {
     domains: ["localhost"],
     // remotePatterns: [

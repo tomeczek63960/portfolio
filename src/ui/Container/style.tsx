@@ -1,6 +1,5 @@
-import styled, { css } from "styled-components";
-import { responsive } from "src/styled/mixins";
-const gridSpacerMobile = "2.5rem";
+import styled from "styled-components";
+import { responsive, variables } from "src/styled/mixins";
 
 export const StyledContainer = styled.div`
   margin-right: auto;
@@ -8,26 +7,18 @@ export const StyledContainer = styled.div`
   width: 100%;
   max-width: 47.8rem;
   height: 100%;
-  padding-left: ${gridSpacerMobile};
-  padding-right: ${gridSpacerMobile};
+  padding-left: ${variables.containerPadding};
+  padding-right: ${variables.containerPadding};
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  ${(props: any) => responsive.tabletP`
+  ${responsive.tabletP`
     flex-direction: row;
     max-width: 76.8rem;
-    ${css`
-      padding-left: ${props.gridSpacerTabletP};
-      padding-right: ${props.gridSpacerTabletP};
-    `}
   `}
 
-  ${(props: any) => responsive.tabletL`
+  ${responsive.tabletL`
     max-width: 102.4rem;
-    ${css`
-      padding-left: ${props.gridSpacerTabletL};
-      padding-right: ${props.gridSpacerTabletL};
-    `}
   `}
   ${responsive.desktop`
     padding-left: 0;
@@ -50,6 +41,7 @@ export const StyledContainerRight = styled.div`
   width: 100%;
   padding-left: 3rem;
   z-index: 2;
+  background-color: white;
   ${responsive.tabletP`
     order: 1;
     width: 50%;

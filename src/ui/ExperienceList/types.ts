@@ -1,12 +1,5 @@
-export interface PropsExperienceList {
-  content: {
-    ProjectsExperienceItem: IStrapiExperienceListItem[];
-    id: string;
-    __component: string;
-    __v: number;
-    _id: string;
-  };
-}
+import { IStrapiProject } from "src/ui/Projects/Project/types";
+
 export interface IStrapiExperienceListItem {
   Accomplishments: string;
   Description: string;
@@ -17,4 +10,15 @@ export interface IStrapiExperienceListItem {
   id: string;
   __v: number;
   _id: string;
+}
+export interface IStrapiExperienceListSection {
+  ProjectsExperienceItem: IStrapiExperienceListItem[];
+  id: string;
+  __component: "selection.projects-experience";
+  __v: number;
+  _id: string;
+}
+export interface PropsExperienceList {
+  content: IStrapiExperienceListSection;
+  projects?: IStrapiProject[];
 }
