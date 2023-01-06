@@ -4,11 +4,9 @@ import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { colors } from "src/styled/mixins";
 import { preventScroll } from "src/helpers/preventScroll";
 import { isTruthy } from "src/helpers/checkFalsyType";
+import { useRouter } from "next/router";
 
-export const useHeaderMobileAnimation = (
-  locale: string,
-  pathname: string
-): [
+export const useHeaderMobileAnimation = (): [
   RefObject<GSAPTimeline | undefined>,
   RefObject<HTMLSpanElement>,
   RefObject<HTMLSpanElement>,
@@ -18,6 +16,7 @@ export const useHeaderMobileAnimation = (
   RefObject<HTMLDivElement>,
   RefObject<HTMLDivElement>
 ] => {
+  const { pathname, locale, query } = useRouter();
   const refBars = useRef<HTMLButtonElement>(null);
   const refFirstDot = useRef<HTMLSpanElement>(null);
   const refLastDot = useRef<HTMLSpanElement>(null);
@@ -192,7 +191,7 @@ export const useHeaderMobileAnimation = (
         preventScroll();
       }, 1000);
     };
-  }, [locale, pathname]);
+  }, [locale, pathname, query]);
 
   return [
     refTimeline,

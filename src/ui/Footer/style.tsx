@@ -33,14 +33,16 @@ export const StyledContainerLeftFooter = styled(StyledContainerLeft)`
     color: ${colors.grayFooterText};
     font-size: 1.2rem;
   }
-  a {
-    color: ${colors.grayFooterText};
-    transition: 0.3s;
-    &::selection {
-      background-color: ${colors.purple};
-    }
-    &:hover {
-      opacity: 0.7;
-    }
+`;
+export const StyledFooterLink = styled.a.attrs(
+  (props: { light: boolean }) => props
+)`
+  color: ${({ light }) => (light ? colors.blue : colors.grayFooterText)};
+  transition: 0.3s;
+  &::selection {
+    background-color: ${colors.purple};
+  }
+  &:hover {
+    opacity: 0.7;
   }
 `;

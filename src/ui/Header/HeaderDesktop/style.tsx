@@ -18,6 +18,10 @@ export const StyledLink = styled.a.attrs(
   opacity: 0;
   transform: translateY(-30%);
   pointer-events: none;
+  &.active {
+    color: ${colors.purpleSecondary};
+    pointer-events: none !important;
+  }
   &::selection {
     background-color: ${colors.purple};
   }

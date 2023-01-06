@@ -16,10 +16,16 @@ export const StyledLink = styled.a.attrs(
   opacity: 0;
   display: ${(props) => (isTruthy(props.isDisabled) ? "none" : "block")};
   text-decoration: none;
+  transition: color 0.3s;
+  &.active {
+    color: ${colors.purpleSecondary};
+    pointer-events: none !important;
+  }
   &::selection {
     background-color: ${colors.purple};
   }
   &:hover {
+    color: ${colors.purpleSecondary};
     opacity: 1;
   }
   &:first-child {

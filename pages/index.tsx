@@ -6,7 +6,6 @@ import { getEnvVars } from "src/helpers/getEnvVars";
 import { IPage, TPageContent, IPropsPage, IStaticPath } from "src/types";
 
 // TODO: in skills add next carousel & add prismic.io, hygraph, builder.io, cypres, react-testing-library, jest...
-// Add seo values for pages in strapi
 
 // TODO: add tests to all components
 // _________
