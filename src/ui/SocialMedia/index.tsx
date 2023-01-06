@@ -7,7 +7,7 @@ const ComponentSocialMedia = forwardRef<HTMLDivElement, PropsSocialMedia>(
   ({ theme = "dark" }, ref) => (
     <StyledSocialMeidaLinks theme={theme} ref={ref}>
       <a
-        href="https://github.com/tomeczek63960"
+        href="https://www.linkedin.com/in/tomek-kardel-3b98671a5/"
         rel="noreferrer"
         target="_blank"
       >

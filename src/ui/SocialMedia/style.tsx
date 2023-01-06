@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { colors } from "src/styled/mixins";
 
 export const StyledSocialMeidaLinks = styled.div.attrs(
@@ -6,11 +6,22 @@ export const StyledSocialMeidaLinks = styled.div.attrs(
 )`
   margin-bottom: 2rem;
   display: flex;
+  ${({ theme }) =>
+    theme === "dark" &&
+    css`
+      opacity: 0;
+      transform: translateY(-40%);
+      pointer-events: none;
+    `};
   a {
     display: block;
     margin-right: 2rem;
     ${({ theme }) =>
-      theme !== "dark" && "opacity: 0;transform: translateX(-40%);"};
+      theme !== "dark" &&
+      css`
+        opacity: 0;
+        transform: translateX(-40%);
+      `};
     &:last-child {
       margin-right: 0;
     }

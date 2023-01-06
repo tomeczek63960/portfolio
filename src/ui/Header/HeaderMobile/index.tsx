@@ -16,7 +16,7 @@ import { isFalsy } from "src/helpers/checkFalsyType";
 import { FormattedMessage, useIntl } from "react-intl";
 
 const ComponentHeaderMobile: FC = () => {
-  const { pathname, locale = "en", locales = [] } = useRouter();
+  const { locale, locales = [], asPath } = useRouter();
   const intl = useIntl();
   const [
     refTimeline,
@@ -27,7 +27,7 @@ const ComponentHeaderMobile: FC = () => {
     refBars,
     refMobileNavContainer,
     refSocialMedia,
-  ] = useHeaderMobileAnimation(locale, pathname);
+  ] = useHeaderMobileAnimation();
 
   const handleBars = (): void => {
     if (isFalsy(refTimeline) || isFalsy(refTimeline.current)) return;
@@ -55,7 +55,13 @@ const ComponentHeaderMobile: FC = () => {
             href={intl.messages["nav.home.link"].toString()}
             locale={locale}
           >
-            <StyledLink>
+            <StyledLink
+              className={
+                asPath === intl.messages["nav.home.link"].toString()
+                  ? "active"
+                  : ""
+              }
+            >
               <FormattedMessage id="nav.home.text" />
             </StyledLink>
           </Link>
@@ -63,7 +69,13 @@ const ComponentHeaderMobile: FC = () => {
             href={intl.messages["nav.contact.link"].toString()}
             locale={locale}
           >
-            <StyledLink>
+            <StyledLink
+              className={
+                asPath === intl.messages["nav.contact.link"].toString()
+                  ? "active"
+                  : ""
+              }
+            >
               <FormattedMessage id="nav.contact.text" />
             </StyledLink>
           </Link>
@@ -71,7 +83,13 @@ const ComponentHeaderMobile: FC = () => {
             href={intl.messages["nav.case-studies.link"].toString()}
             locale={locale}
           >
-            <StyledLink>
+            <StyledLink
+              className={
+                asPath === intl.messages["nav.case-studies.link"].toString()
+                  ? "active"
+                  : ""
+              }
+            >
               <FormattedMessage id="nav.case-studies.text" />
             </StyledLink>
           </Link>
@@ -79,7 +97,13 @@ const ComponentHeaderMobile: FC = () => {
             href={intl.messages["nav.experience.link"].toString()}
             locale={locale}
           >
-            <StyledLink>
+            <StyledLink
+              className={
+                asPath === intl.messages["nav.experience.link"].toString()
+                  ? "active"
+                  : ""
+              }
+            >
               <FormattedMessage id="nav.experience.text" />
             </StyledLink>
           </Link>
@@ -87,7 +111,13 @@ const ComponentHeaderMobile: FC = () => {
             href={intl.messages["nav.show-case.link"].toString()}
             locale={locale}
           >
-            <StyledLink>
+            <StyledLink
+              className={
+                asPath === intl.messages["nav.show-case.link"].toString()
+                  ? "active"
+                  : ""
+              }
+            >
               <FormattedMessage id="nav.show-case.text" />
             </StyledLink>
           </Link>
