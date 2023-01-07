@@ -34,6 +34,9 @@ import {
   Php,
   Pimcore,
   Shopware,
+  BuilderIo,
+  Hygraph,
+  PrismicIo,
 } from "src/Svg";
 
 const ComponentSkillsCarousel: FC<PropsSkillsCarousel> = ({ carousel }) => {
@@ -67,6 +70,9 @@ const ComponentSkillsCarousel: FC<PropsSkillsCarousel> = ({ carousel }) => {
     Php,
     Pimcore,
     Shopware,
+    BuilderIo,
+    Hygraph,
+    PrismicIo,
   };
   return (
     <StyledCarousel

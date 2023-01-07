@@ -25,6 +25,9 @@ export interface IStrapiSkill {
     | "StyledComponents"
     | "Php"
     | "Pimcore"
+    | "BuilderIo"
+    | "Hygraph"
+    | "PrismicIo"
     | "Shopware";
   Text: string;
   Title: string;

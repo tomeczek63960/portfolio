@@ -26,6 +26,9 @@ import ArrowLeft from "../public/svg/arrow-left.svg";
 import World from "../public/svg/world.svg";
 import SectionWave from "../public/svg/section-wave.svg";
 import ArrowDown from "../public/svg/arrow-down.svg";
+import BuilderIo from "../public/svg/builderio.svg";
+import Hygraph from "../public/svg/hygraph.svg";
+import PrismicIo from "../public/svg/prismic.svg";
 
 export {
   Angular,
@@ -56,4 +59,7 @@ export {
   World,
   SectionWave,
   ArrowDown,
+  BuilderIo,
+  Hygraph,
+  PrismicIo,
 };
