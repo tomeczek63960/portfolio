@@ -1,11 +1,4 @@
-import React, {
-  useRef,
-  useState,
-  FC,
-  FormEvent,
-  RefObject,
-  FocusEvent,
-} from "react";
+import React, { useRef, FC, FormEvent, RefObject, FocusEvent } from "react";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { colors } from "src/styled/mixins";
 import {
@@ -15,6 +8,7 @@ import {
   StyledInput,
   StyledInputBorder,
   StyledInputBorderAfter,
+  StyledInputTextarea,
 } from "./style";
 import { PropsInput } from "./types";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
@@ -28,9 +22,13 @@ const ComponentInput: FC<PropsInput> = ({
   placeholder,
   validation,
   isFormDirty,
+  name,
+  value,
+  onChange,
+  onClear,
+  inputType,
 }) => {
-  const [inputValue, setInputValue] = useState<string>("");
-  const refInput = useRef<HTMLInputElement>(null);
+  const refInput = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   const refIsInputDirty = useRef(false);
 
   const [inputGroup] = useScrollTrigger(0.55) as [RefObject<HTMLDivElement>];
@@ -48,20 +46,26 @@ const ComponentInput: FC<PropsInput> = ({
     if (refIsInputDirty.current) return;
     timeline.play();
   };
-  const blurRef = (e: FocusEvent<HTMLInputElement>): void => {
-    if (isFalsy(e.target.value)) {
+  const blurRef = (
+    e?: FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
+    const isEmpty = isFalsy(e) ? isFalsy(value) : isFalsy(e.target.value);
+    if (isEmpty) {
       timelineLabel.reverse();
     }
     if (refIsInputDirty.current) return;
     timeline.reverse();
   };
-  const onChange = (e?: FormEvent<HTMLInputElement>): void => {
-    let value = inputValue;
+  const handleChange = (
+    e?: FormEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
+    let result;
     if (isTruthy(e)) {
-      setInputValue(e.currentTarget.value);
-      value = e.currentTarget.value;
+      result = validation(e.currentTarget.value);
+      onChange(e, result);
+    } else {
+      result = validation(value);
     }
-    const result = validation(value);
     if (isFalsy(result.valid)) {
       timelineSuccess
         .reverse()
@@ -71,7 +75,7 @@ const ComponentInput: FC<PropsInput> = ({
             .then(() => {
               if (!refIsInputDirty.current) {
                 refIsInputDirty.current = true;
-                timeline.seek(0).pause().clear();
+                timeline.seek(0).pause();
               }
             })
             .catch(() => {
@@ -90,7 +94,7 @@ const ComponentInput: FC<PropsInput> = ({
             .then(() => {
               if (!refIsInputDirty.current) {
                 refIsInputDirty.current = true;
-                timeline.seek(0).pause().clear();
+                timeline.seek(0).pause();
               }
             })
             .catch(() => {
@@ -105,24 +109,43 @@ const ComponentInput: FC<PropsInput> = ({
 
   useIsomorphicLayoutEffect(() => {
     if (isFalsy(isFormDirty)) return;
-    onChange();
+    handleChange();
   }, [isFormDirty]);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!onClear) return;
+    refIsInputDirty.current = false;
+    blurRef();
+    timelineSuccess.reverse();
+  }, [onClear]);
   return (
     <StyledInputGroup ref={inputGroup}>
       <StyledLabel htmlFor={placeholder} ref={refLabel}>
         {placeholder}
       </StyledLabel>
-      <StyledInputGroupComponent>
-        <StyledInput
-          id={placeholder}
-          onInput={onChange}
-          onFocus={focusRef}
-          onBlur={blurRef}
-          ref={refInput}
-          type={type}
-          value={inputValue}
-        />
-
+      <StyledInputGroupComponent inputType={inputType}>
+        {inputType === "textarea" ? (
+          <StyledInputTextarea
+            name={name}
+            id={placeholder}
+            onInput={handleChange}
+            onFocus={focusRef}
+            onBlur={blurRef}
+            ref={refInput as RefObject<HTMLTextAreaElement>}
+            value={value}
+          />
+        ) : (
+          <StyledInput
+            name={name}
+            id={placeholder}
+            onInput={handleChange}
+            onFocus={focusRef}
+            onBlur={blurRef}
+            ref={refInput as RefObject<HTMLInputElement>}
+            type={type}
+            value={value}
+          />
+        )}
         <StyledInputBorder background={colors.purple} ref={inputBorder}>
           <StyledInputBorderAfter ref={inputBorderAfter} />
         </StyledInputBorder>
