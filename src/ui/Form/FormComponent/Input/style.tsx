@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { colors } from "src/styled/mixins";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
@@ -26,19 +26,39 @@ export const StyledInputGroup = styled.div`
     width: 100%;
   }
 `;
-export const StyledInputGroupComponent = styled.div`
+export const StyledInputGroupComponent = styled.div.attrs(
+  (props: { inputType?: string }) => props
+)`
   overflow: hidden;
   position: relative;
+  ${({ inputType }) =>
+    inputType === "textarea" &&
+    css`
+      height: 7.5rem;
+    `}
 `;
 export const StyledLabel = styled.label`
   position: absolute;
-  bottom: 35%;
+  bottom: 1rem;
   left: 0;
   font-size: 1.8rem;
   line-height: 1;
   color: ${colors.blackSecondary};
   transform-origin: 0 0;
   cursor: pointer;
+`;
+export const StyledInputTextarea = styled.textarea`
+  background: transparent;
+  color: ${colors.pink};
+  height: 7.5rem;
+  font: 1.5rem/2.4rem "Lato", Arial, sans-serif;
+  letter-spacing: 0.1rem;
+  outline: none !important;
+  width: 100%;
+  transition: 0.3s ease-in-out;
+  border: none;
+  border-bottom: 0.2rem solid ${colors.blackSecondary};
+  resize: none;
 `;
 export const StyledInput = styled.input`
   background: transparent;

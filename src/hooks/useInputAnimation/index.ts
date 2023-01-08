@@ -4,7 +4,7 @@ import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { isFalsy } from "src/helpers/checkFalsyType";
 
 export const useInputAnimation = (
-  input?: RefObject<HTMLInputElement>,
+  input?: RefObject<HTMLInputElement | HTMLTextAreaElement>,
   type?: "success" | "error"
 ): [GSAPTimeline, RefObject<HTMLSpanElement>, RefObject<HTMLSpanElement>] => {
   const refTimeline = useRef<GSAPTimeline>(gsap.timeline({ paused: true }));

@@ -33,13 +33,10 @@ export const surnameValidation = (surname) => {
     ? { valid: true }
     : { valid: false, msg: "Niedozwolone znaki specjalne" };
 };
-export const phoneValidation = (number) => {
-  if (number.length === 0) return { valid: false, msg: "Wymagene pole" };
-
-  const regex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/;
-  const validate = regex.test(number);
-
-  return validate
-    ? { valid: true }
-    : { valid: false, msg: "Niedozwolone znaki specjalne" };
+export const messageValidation = (message) => {
+  if (!message.length) {
+    return { valid: false, msg: "Wymagene pole" };
+  } else {
+    return { valid: true };
+  }
 };
