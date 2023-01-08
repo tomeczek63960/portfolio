@@ -9,5 +9,14 @@
   "nav.experience.link": "/doswiadczenie",
   "nav.show-case.text": "Show case",
   "nav.show-case.link": "/show",
-  "page.error-404": "Strona której szukasz nie istnieje."
+  "page.error-404": "Strona której szukasz nie istnieje.",
+
+  "form.submit": "Wyślij wiadomość",
+  "form.submit.pending": "Wysyłanie wiadomości",
+  "form.submit.success": "Wiadomość została wysłana pomyślnie",
+  "form.submit.error": "Wystąpił błąd podczas wysyłania wiadomości, spróbuj ponownie później",
+  "form.placeholder.firstName": "Imię",
+  "form.placeholder.lastName": "Nazwisko",
+  "form.placeholder.email": "E-mail",
+  "form.placeholder.message": "Wiadomość"
 }

@@ -19,7 +19,7 @@ export const StyledForm = styled.form.attrs(
   }
 `;
 export const StyledSuccessMessage = styled.p.attrs(
-  (props: { type: "success" | "error" }) => props
+  (props: { type: "success" | "error" | "pending" }) => props
 )`
   color: ${({ type }) => colors[type]};
 `;

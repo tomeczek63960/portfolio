@@ -10,7 +10,7 @@ import {
   StyledInputBorderAfter,
   StyledInputTextarea,
 } from "./style";
-import { PropsInput } from "./types";
+import { IValidationResult, PropsInput, TFormInputTextarea } from "./types";
 import { isFalsy, isTruthy } from "src/helpers/checkFalsyType";
 import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 import { useInputAnimation } from "src/hooks/useInputAnimation";
@@ -25,10 +25,9 @@ const ComponentInput: FC<PropsInput> = ({
   name,
   value,
   onChange,
-  onClear,
   inputType,
 }) => {
-  const refInput = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+  const refInput = useRef<TFormInputTextarea>(null);
   const refIsInputDirty = useRef(false);
 
   const [inputGroup] = useScrollTrigger(0.55) as [RefObject<HTMLDivElement>];
@@ -46,9 +45,7 @@ const ComponentInput: FC<PropsInput> = ({
     if (refIsInputDirty.current) return;
     timeline.play();
   };
-  const blurRef = (
-    e?: FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void => {
+  const blurRef = (e?: FocusEvent<TFormInputTextarea>): void => {
     const isEmpty = isFalsy(e) ? isFalsy(value) : isFalsy(e.target.value);
     if (isEmpty) {
       timelineLabel.reverse();
@@ -56,17 +53,15 @@ const ComponentInput: FC<PropsInput> = ({
     if (refIsInputDirty.current) return;
     timeline.reverse();
   };
-  const handleChange = (
-    e?: FormEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void => {
-    let result;
+  const handleChange = (e?: FormEvent<TFormInputTextarea>): void => {
+    let result: IValidationResult;
     if (isTruthy(e)) {
       result = validation(e.currentTarget.value);
       onChange(e, result);
     } else {
       result = validation(value);
     }
-    if (isFalsy(result.valid)) {
+    if (!result.valid) {
       timelineSuccess
         .reverse()
         .then(() => {
@@ -108,16 +103,15 @@ const ComponentInput: FC<PropsInput> = ({
   };
 
   useIsomorphicLayoutEffect(() => {
-    if (isFalsy(isFormDirty)) return;
-    handleChange();
+    if (isFalsy(isFormDirty)) {
+      refIsInputDirty.current = false;
+      blurRef();
+      timelineSuccess.reverse();
+    } else {
+      handleChange();
+    }
   }, [isFormDirty]);
 
-  useIsomorphicLayoutEffect(() => {
-    if (!onClear) return;
-    refIsInputDirty.current = false;
-    blurRef();
-    timelineSuccess.reverse();
-  }, [onClear]);
   return (
     <StyledInputGroup ref={inputGroup}>
       <StyledLabel htmlFor={placeholder} ref={refLabel}>

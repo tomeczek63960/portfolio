@@ -9,5 +9,14 @@
   "nav.experience.link": "/experience",
   "nav.show-case.text": "Show case",
   "nav.show-case.link": "/show-case",
-  "page.error-404": "The page you are looking for does not exist."
+  "page.error-404": "The page you are looking for does not exist.",
+
+  "form.submit": "Submit form",
+  "form.submit.pending": "Sending message",
+  "form.submit.success": "Message was sent successfully",
+  "form.submit.error": "An error occurred while sending the message, try again later",
+  "form.placeholder.firstName": "First name",
+  "form.placeholder.lastName": "Last name",
+  "form.placeholder.email": "E-mail",
+  "form.placeholder.message": "Message"
 }
