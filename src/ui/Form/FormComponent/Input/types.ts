@@ -6,6 +6,12 @@ export interface PropsInput {
   isFormDirty: boolean;
   value: string;
   onChange: Function;
-  onClear: boolean;
   inputType?: string;
+}
+
+export type TFormInputTextarea = HTMLInputElement | HTMLTextAreaElement;
+
+export interface IValidationResult {
+  valid: boolean;
+  msg?: string;
 }

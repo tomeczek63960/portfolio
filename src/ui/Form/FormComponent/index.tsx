@@ -15,6 +15,9 @@ import {
 } from "./style";
 import axios from "axios";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { TFormInputTextarea, IValidationResult } from "./Input/types";
+import { IFormMessage, FormEventHandler } from "./types";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const initFormData = {
   firstName: {
@@ -34,22 +37,28 @@ const initFormData = {
     valid: false,
   },
 };
-
+// TODO: add translations labels placeholders messages itp
 const ContactFormComponent: FC = () => {
   const refForm = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState(initFormData);
   const [isFormDirty, setFormDirty] = useState(false);
-  const [onClear, setOnClear] = useState(false);
-  const [messages, setMessages] = useState<any>([]);
+  const [messages, setMessages] = useState<IFormMessage[]>([]);
   const [refFormMessages] = useAutoAnimate() as [
     RefObject<HTMLDivElement>,
     (enabled: boolean) => void
   ];
-  const updateFormData = (e: any, type: string, validation: any): void => {
+  const intl = useIntl();
+
+  const updateFormData = (
+    e: FormEventHandler,
+    type: string,
+    validation: IValidationResult
+  ): void => {
+    const target = e.target as TFormInputTextarea;
     setFormData((prevValue) => ({
       ...prevValue,
       [type]: {
-        value: e.target.value,
+        value: target.value,
         valid: validation?.valid,
       },
     }));
@@ -60,21 +69,16 @@ const ContactFormComponent: FC = () => {
       setMessages([
         {
           type: "success",
-          message: "Wiadomość została wysłana pomyślnie",
+          message: intl.messages["form.submit.success"].toString(),
         },
       ]);
       setFormData(initFormData);
-      setOnClear(true);
       setFormDirty(false);
-      setTimeout(() => {
-        setOnClear(false);
-      }, 10);
     } else {
       setMessages([
         {
           type: "error",
-          message:
-            "Wystąpił błąd podczas wysyłania wiadomości, spróbuj ponownie później",
+          message: intl.messages["form.submit.error"].toString(),
         },
       ]);
     }
@@ -100,6 +104,12 @@ const ContactFormComponent: FC = () => {
 
       return;
     }
+    setMessages([
+      {
+        type: "pending",
+        message: intl.messages["form.submit.pending"].toString(),
+      },
+    ]);
 
     const res = await axios.post<{ success: boolean; errors: string[] }>(
       "/api/form",
@@ -116,58 +126,60 @@ const ContactFormComponent: FC = () => {
     <StyledFormWrapper>
       <StyledForm ref={refForm} onSubmit={onSubmit}>
         <Input
-          onClear={onClear}
           name="firstName"
           isFormDirty={isFormDirty}
           type="text"
-          placeholder="Imię"
+          placeholder={intl.messages["form.placeholder.firstName"].toString()}
           validation={nameValidation}
           value={formData.firstName.value}
-          onChange={(e: any, validationResult: any) =>
-            updateFormData(e, "firstName", validationResult)
-          }
+          onChange={(
+            e: FormEventHandler,
+            validationResult: IValidationResult
+          ) => updateFormData(e, "firstName", validationResult)}
         />
         <Input
-          onClear={onClear}
           name="lastName"
           isFormDirty={isFormDirty}
           type="text"
-          placeholder="Nazwisko"
+          placeholder={intl.messages["form.placeholder.lastName"].toString()}
           validation={surnameValidation}
           value={formData.lastName.value}
-          onChange={(e: any, validationResult: any) =>
-            updateFormData(e, "lastName", validationResult)
-          }
+          onChange={(
+            e: FormEventHandler,
+            validationResult: IValidationResult
+          ) => updateFormData(e, "lastName", validationResult)}
         />
         <Input
-          onClear={onClear}
           name="from"
           isFormDirty={isFormDirty}
           type="text"
-          placeholder="E-mail"
+          placeholder={intl.messages["form.placeholder.email"].toString()}
           validation={emailValidation}
           value={formData.email.value}
-          onChange={(e: any, validationResult: any) =>
-            updateFormData(e, "email", validationResult)
-          }
+          onChange={(
+            e: FormEventHandler,
+            validationResult: IValidationResult
+          ) => updateFormData(e, "email", validationResult)}
         />
         <Input
           inputType="textarea"
-          onClear={onClear}
           name="message"
           isFormDirty={isFormDirty}
           type="text"
-          placeholder="Wiadomość"
+          placeholder={intl.messages["form.placeholder.message"].toString()}
           validation={messageValidation}
           value={formData.message.value}
-          onChange={(e: any, validationResult: any) =>
-            updateFormData(e, "message", validationResult)
-          }
+          onChange={(
+            e: FormEventHandler,
+            validationResult: IValidationResult
+          ) => updateFormData(e, "message", validationResult)}
         />
-        <ButtonComponent>Submit form</ButtonComponent>
+        <ButtonComponent>
+          <FormattedMessage id="form.submit" />
+        </ButtonComponent>
       </StyledForm>
       <StyledSuccessMessages ref={refFormMessages}>
-        {messages.map((msg: { message: string; type: "success" | "error" }) => (
+        {messages.map((msg: IFormMessage) => (
           <StyledSuccessMessage key={msg.message} type={msg.type}>
             {msg.message}
           </StyledSuccessMessage>

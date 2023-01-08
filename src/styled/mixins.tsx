@@ -58,6 +58,7 @@ export const colors = {
   grayLightSecondary: "#cacaca",
   error: "#dd1818",
   success: "#15ee11",
+  pending: "#999",
   green: "#28b434",
   warning: "#f37335",
   orange: "#ffa500",
