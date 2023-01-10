@@ -11,7 +11,7 @@ import { PropsLoadingAnimation } from "./types";
 
 const ComponentLoadingAnimation: FC<PropsLoadingAnimation> = ({ children }) => {
   const {
-    displayChildren,
+    // displayChildren,
     refPageContent,
     refPageAnimationBall,
     refPageAnimationText,
@@ -71,7 +71,8 @@ const ComponentLoadingAnimation: FC<PropsLoadingAnimation> = ({ children }) => {
       </StyledPageAnimation>
 
       <StyledPageContent ref={refPageContent}>
-        {displayChildren}
+        {/* {displayChildren} */}
+        {children}
       </StyledPageContent>
     </>
   );

@@ -37,7 +37,7 @@ const initFormData = {
     valid: false,
   },
 };
-// TODO: add translations labels placeholders messages itp
+
 const ContactFormComponent: FC = () => {
   const refForm = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState(initFormData);
