@@ -93,7 +93,11 @@ const ComponentProjectBox: FC<PropsProjectBox> = ({
             </a>
           </StyledProjectBoxReference>
         </StyledProjectBoxContent>
-        <StyledProjectBoxLink href={activeProject?.WebsiteUrl} target="_blank">
+        <StyledProjectBoxLink
+          href={activeProject?.WebsiteUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
           Open Project
         </StyledProjectBoxLink>
       </StyledProjectBox>
