@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import LoadingAnimation from "src/animation/LoadingAnimation";
 import useIsomorphicLayoutEffect from "src/animation/useIsomorphicLayoutEffect";
 import { gsap } from "gsap";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Style } from "src/styled/index";
 
 import pl from "src/lang/pl.json";
@@ -21,7 +20,6 @@ import { isTruthy } from "src/helpers/checkFalsyType";
 const App = ({ Component, pageProps }: AppProps): ReactNode => {
   const { locale } = useRouter();
   const [shortLocale] = isTruthy(locale) ? locale.split("-") : ["en"];
-  const queryClient = new QueryClient();
 
   const curentMessage = useMemo(() => {
     switch (shortLocale) {
@@ -50,14 +48,12 @@ const App = ({ Component, pageProps }: AppProps): ReactNode => {
     <>
       <Provider store={store}>
         <IntlProvider locale={shortLocale} messages={curentMessage}>
-          <QueryClientProvider client={queryClient}>
-            <Style />
-            <LoadingAnimation>
-              <TransitionLayout>
-                <Component {...pageProps} />
-              </TransitionLayout>
-            </LoadingAnimation>
-          </QueryClientProvider>
+          <Style />
+          <LoadingAnimation>
+            <TransitionLayout>
+              <Component {...pageProps} />
+            </TransitionLayout>
+          </LoadingAnimation>
         </IntlProvider>
       </Provider>
     </>
