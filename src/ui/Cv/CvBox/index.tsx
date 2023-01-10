@@ -26,14 +26,18 @@ const ComponentCvBox: FC<PropsCvBox> = ({ content }) => {
       <StyedCvCard position="left">
         <StyledCvCardHead ref={refBox}>
           <StyledCvDownloadIcon
-            href={`${getEnvVars().apiUrl}${content.Cv.url}`}
-            download
+            href={`${getEnvVars().apiUrl}${content.Cv?.url}`}
+            download={true}
+            target="_blank"
+            rel="noreferrer"
           >
             <Pdf />
           </StyledCvDownloadIcon>
           <StyledCvDownloadLink
-            href={`${getEnvVars().apiUrl}${content.Cv.url}`}
-            download
+            href={`${getEnvVars().apiUrl}${content.Cv?.url}`}
+            download={true}
+            target="_blank"
+            rel="noreferrer"
           >
             {content.LinkText}
           </StyledCvDownloadLink>

@@ -32,7 +32,10 @@ const nextConfig = {
   //   ];
   // },
   images: {
-    domains: ["localhost"],
+    // domains: ["localhost"],
+    // domains: ["localhost", "portfoliobe-production.up.railway.app"],
+    domains: ["localhost", "portfoliobe-production.up.railway.app"],
+    // domains: ["https://portfoliobe-production.up.railway.app/"],
     // remotePatterns: [
     //   {
     //     protocol: 'http',
