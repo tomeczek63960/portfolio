@@ -1,9 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import Head from "./Head";
-import Header from "src/ui/Header/HeaderDesktop";
-import HeaderMobile from "src/ui/Header/HeaderMobile";
-import Footer from "src/ui/Footer";
 import {
   StyledContainer,
   StyledContainerLeft,
@@ -11,6 +8,7 @@ import {
 } from "src/ui/Container/style";
 import ComponentErrors from "src/ui/Errors";
 import { PropsLayout } from "./types";
+import dynamic from "next/dynamic";
 
 const StyledContentWrapper = styled.div`
   padding-top: 8rem;
@@ -18,6 +16,12 @@ const StyledContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const Footer = dynamic(async () => await import("src/ui/Footer"));
+const Header = dynamic(async () => await import("src/ui/Header/HeaderDesktop"));
+const HeaderMobile = dynamic(
+  async () => await import("src/ui/Header/HeaderMobile")
+);
 
 const Layout: FC<PropsLayout> = (props) => {
   return (

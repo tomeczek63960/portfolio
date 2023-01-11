@@ -52,6 +52,7 @@ const ComponentHeaderMobile: FC = () => {
         <StyledMobileNavContainer ref={refMobileNavContainer}>
           <SocialMedia theme="white" ref={refSocialMedia} />
           <Link
+            prefetch={false}
             href={intl.messages["nav.home.link"].toString()}
             locale={locale}
           >
@@ -66,6 +67,7 @@ const ComponentHeaderMobile: FC = () => {
             </StyledLink>
           </Link>
           <Link
+            prefetch={false}
             href={intl.messages["nav.contact.link"].toString()}
             locale={locale}
           >
@@ -80,6 +82,7 @@ const ComponentHeaderMobile: FC = () => {
             </StyledLink>
           </Link>
           <Link
+            prefetch={false}
             href={intl.messages["nav.case-studies.link"].toString()}
             locale={locale}
           >
@@ -94,6 +97,7 @@ const ComponentHeaderMobile: FC = () => {
             </StyledLink>
           </Link>
           <Link
+            prefetch={false}
             href={intl.messages["nav.experience.link"].toString()}
             locale={locale}
           >
@@ -108,6 +112,7 @@ const ComponentHeaderMobile: FC = () => {
             </StyledLink>
           </Link>
           <Link
+            prefetch={false}
             href={intl.messages["nav.show-case.link"].toString()}
             locale={locale}
           >
@@ -122,7 +127,12 @@ const ComponentHeaderMobile: FC = () => {
             </StyledLink>
           </Link>
           {locales.map((localeItem: string) => (
-            <Link key={localeItem} href="/" locale={localeItem}>
+            <Link
+              prefetch={false}
+              key={localeItem}
+              href="/"
+              locale={localeItem}
+            >
               <StyledLink isDisabled={localeItem === locale}>
                 {localeItem}
               </StyledLink>

@@ -16,7 +16,11 @@ const ComponentHeader: FC = () => {
   return (
     <StyledDesktopNav ref={refLinks}>
       <SocialMedia />
-      <Link href={intl.messages["nav.home.link"].toString()} locale={locale}>
+      <Link
+        prefetch={false}
+        href={intl.messages["nav.home.link"].toString()}
+        locale={locale}
+      >
         <StyledLink
           className={
             asPath === intl.messages["nav.home.link"].toString() ? "active" : ""
@@ -25,7 +29,11 @@ const ComponentHeader: FC = () => {
           <FormattedMessage id="nav.home.text" />
         </StyledLink>
       </Link>
-      <Link href={intl.messages["nav.contact.link"].toString()} locale={locale}>
+      <Link
+        prefetch={false}
+        href={intl.messages["nav.contact.link"].toString()}
+        locale={locale}
+      >
         <StyledLink
           className={
             asPath === intl.messages["nav.contact.link"].toString()
@@ -37,6 +45,7 @@ const ComponentHeader: FC = () => {
         </StyledLink>
       </Link>
       <Link
+        prefetch={false}
         href={intl.messages["nav.case-studies.link"].toString()}
         locale={locale}
       >
@@ -51,6 +60,7 @@ const ComponentHeader: FC = () => {
         </StyledLink>
       </Link>
       <Link
+        prefetch={false}
         href={intl.messages["nav.experience.link"].toString()}
         locale={locale}
       >
@@ -65,6 +75,7 @@ const ComponentHeader: FC = () => {
         </StyledLink>
       </Link>
       <Link
+        prefetch={false}
         href={intl.messages["nav.show-case.link"].toString()}
         locale={locale}
       >
@@ -79,7 +90,7 @@ const ComponentHeader: FC = () => {
         </StyledLink>
       </Link>
       {locales.map((localeItem: string) => (
-        <Link href="/" locale={localeItem} key={localeItem}>
+        <Link prefetch={false} href="/" locale={localeItem} key={localeItem}>
           <StyledLink isDisabled={localeItem === locale}>
             {localeItem}
           </StyledLink>
