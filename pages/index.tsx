@@ -9,6 +9,8 @@ import { IPage, TPageContent, IPropsPage, IStaticPath } from "src/types";
 // TODO: scrollbar ma być taki jak na macu (globalnie ostylowany)
 // TODO: fix gps on loading animation
 // add contact form handler
+// TODO: add lazy loading for components & execute lazy loading on isActive scrolltrigger property
+// TODO: add correct margins
 
 const HomePage: FC<IPage> = ({ page }) => {
   return (

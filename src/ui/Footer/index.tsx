@@ -51,7 +51,7 @@ const ComponentFooter: FC = () => {
             </StyledFooterLink>
           </p>
           <p>
-            Created with ❤️ by{" "}
+            Created with 💜 by{" "}
             <StyledFooterLink
               href="https://www.linkedin.com/in/tomek-kardel-3b98671a5/"
               target="_blank"
