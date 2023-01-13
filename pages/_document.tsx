@@ -1,13 +1,19 @@
-import React, { ReactElement } from "react";
-import { Html, Head, Main, NextScript } from "next/document";
+import React, { ReactNode } from "react";
+import Document, {
+  DocumentContext,
+  Head,
+  Html,
+  Main,
+  NextScript,
+} from "next/document";
+import { ServerStyleSheet } from "styled-components";
 
-const Document = (): ReactElement => {
+export default function PageDocument(): ReactNode {
   return (
     <Html>
       <Head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Serif+Oriya:wght@400;500;600;700&
-family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@400;700;900&family=Poppins:wght@400;700;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Noto+Serif+Oriya:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@400;700;900&family=Poppins:wght@400;700;900&display=swap"
           rel="stylesheet"
         ></link>
         <link
@@ -21,5 +27,25 @@ family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@400;700;900&fa
       </body>
     </Html>
   );
+}
+
+PageDocument.getInitialProps = async (ctx: DocumentContext) => {
+  const styledComponentsSheet = new ServerStyleSheet();
+  const originalRenderPage = ctx.renderPage;
+  try {
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: (App) => (props) => {
+          return styledComponentsSheet.collectStyles(<App {...props} />);
+        },
+      });
+    const initialProps = await Document.getInitialProps(ctx);
+    initialProps.styles = [
+      initialProps.styles,
+      styledComponentsSheet.getStyleElement(),
+    ];
+    return initialProps;
+  } finally {
+    styledComponentsSheet.seal();
+  }
 };
-export default Document;

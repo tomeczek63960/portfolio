@@ -124,7 +124,7 @@ export const useLoadingAnimation = (
     );
     refTimeline.current.add(
       gsap.to(refPageAnimationText.current, {
-        duration: 0.7,
+        duration: 0.5,
         opacity: 1,
       })
     );
