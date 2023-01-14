@@ -1,9 +1,14 @@
-import styled from "styled-components";
-import { variables } from "src/styled/mixins";
+import styled, { css } from "styled-components";
+import { variables, responsive } from "src/styled/mixins";
 
 export const StyledProjectsGrid = styled.section`
-  padding-block: ${variables.sectionVerticalPadding};
+  margin-block: ${variables.sectionVerticalPadding};
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  ${responsive.desktop`
+    ${css`
+      margin-block: ${variables.sectionVerticalPaddingDesktop};
+    `}
+  `}
 `;

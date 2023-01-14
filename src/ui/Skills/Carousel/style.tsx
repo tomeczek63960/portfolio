@@ -1,9 +1,15 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { responsive, colors, variables } from "src/styled/mixins";
 
 export const StyledCarousel = styled.div`
+  margin-top: ${variables.sectionContentPadding};
   position: relative;
   padding-top: 100%;
+  ${responsive.desktop`
+   ${css`
+     margin-top: calc(${variables.sectionContentPaddingDesktop} * 1.5);
+   `}
+  `}
 `;
 export const StyledCarouselText = styled.div`
   position: absolute;

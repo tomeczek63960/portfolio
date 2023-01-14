@@ -9,12 +9,23 @@ const writingAnimationKeyframes = keyframes`
 `;
 
 export const StyledWelcomeBoxSection = styled.section`
-  padding-block: ${variables.sectionVerticalPadding};
+  margin-block: ${variables.sectionVerticalPadding};
+  ${responsive.desktop`
+    ${css`
+      margin-block: ${variables.sectionVerticalPaddingDesktop};
+    `}
+  `}
 `;
 export const StyledWelcomeBox = styled.div`
+  margin-top: ${variables.sectionContentPadding};
   background: ${colors.white};
   border-radius: 0.5rem;
   overflow: hidden;
+  ${responsive.desktop`
+    ${css`
+      margin-top: ${variables.sectionContentPaddingDesktop};
+    `}
+  `}
 `;
 export const StyledWelcomeBoxHead = styled.div`
   background: linear-gradient(

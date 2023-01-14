@@ -1,12 +1,21 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { responsive, colors, variables } from "src/styled/mixins";
 
 export const StyledWorkExperienceSection = styled.section`
-  padding-block: ${variables.sectionVerticalPadding};
+  margin-block: ${variables.sectionVerticalPadding};
+  ${responsive.desktop`
+    margin-block: ${variables.sectionVerticalPaddingDesktop}
+  `}
 `;
 export const StyledWorkExperience = styled.div`
+  margin-top: ${variables.sectionContentPadding};
   overflow: hidden;
   border-radius: 1rem;
+  ${responsive.desktop`
+    ${css`
+      margin-top: ${variables.sectionContentPaddingDesktop};
+    `}
+  `}
 `;
 export const StyledWorkExperienceHead = styled.div`
   position: relative;

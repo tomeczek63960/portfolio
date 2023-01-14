@@ -17,6 +17,14 @@ import { Provider } from "react-redux";
 import store from "src/store/index";
 import { isTruthy } from "src/helpers/checkFalsyType";
 
+const addSystemPadding = (): void => {
+  const html = document.querySelector("html");
+  if (!navigator.userAgent.includes("Mac OS X")) {
+    html?.classList.add("body-padding");
+  } else {
+    html?.classList.add("body-padding-thin");
+  }
+};
 const App = ({ Component, pageProps }: AppProps): ReactNode => {
   const { locale } = useRouter();
   const [shortLocale] = isTruthy(locale) ? locale.split("-") : ["en"];
@@ -33,16 +41,15 @@ const App = ({ Component, pageProps }: AppProps): ReactNode => {
   }, [locale]);
 
   useIsomorphicLayoutEffect(() => {
-    const html = document.querySelector("html");
-    if (!navigator.userAgent.includes("Mac OS X")) {
-      html?.classList.add("body-padding");
-    } else {
-      html?.classList.add("body-padding-thin");
-    }
     if (typeof window !== "undefined") {
       gsap.registerPlugin(ScrollTrigger);
       gsap.registerPlugin(TextPlugin);
     }
+    addSystemPadding();
+    document.addEventListener("resize", addSystemPadding);
+    return () => {
+      document.removeEventListener("resize", addSystemPadding);
+    };
   }, []);
   return (
     <>

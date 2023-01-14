@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { responsive, colors, variables } from "src/styled/mixins";
 
 export const StyledProjectBox = styled.div`
@@ -75,8 +75,10 @@ export const StyledProjectBoxReference = styled.div`
     font-weight: ${variables.fontWeightSemiBold};
     font-size: 1.1rem;
     ${responsive.tabletP`
-      font-size: 1.3rem;
-      font-weight: ${variables.fontWeightBold.toString()};
+      ${css`
+        font-size: 1.3rem;
+        font-weight: ${variables.fontWeightBold.toString()};
+      `}
     `}
   }
   svg {

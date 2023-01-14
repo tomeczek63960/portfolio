@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { responsive, colors, variables } from "src/styled/mixins";
 
 const widthAnimation = keyframes`
@@ -18,12 +18,18 @@ const widthAnimation = keyframes`
     transform: translateX(100%);
   }
 `;
-export const StyledCvCardWrapper = styled.section.attrs(
+export const StyledCvCardWrapper = styled.div.attrs(
   (props: { position: string }) => props
 )`
+  margin-top: calc(${variables.sectionContentPadding} * 1.5);
   padding-left: 1.5rem;
   transform: ${({ position }) =>
     position === "left" ? "skewY(-5deg)" : "skewY(5deg)"};
+  ${responsive.desktop`
+    ${css`
+      margin-top: calc(${variables.sectionContentPaddingDesktop} * 1.5);
+    `}
+  `}
 `;
 export const StyedCvCard = styled.div.attrs(
   (props: { position: string }) => props

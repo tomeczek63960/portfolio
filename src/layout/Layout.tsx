@@ -9,12 +9,16 @@ import {
 import ComponentErrors from "src/ui/Errors";
 import { PropsLayout } from "./types";
 import dynamic from "next/dynamic";
+import { responsive } from "src/styled/mixins";
 
 const StyledContentWrapper = styled.div`
-  padding-top: 8rem;
+  padding-top: 6rem;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  ${responsive.tabletL`
+    padding-top: 4rem;
+  `}
 `;
 
 const Footer = dynamic(async () => await import("src/ui/Footer"));

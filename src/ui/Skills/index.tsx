@@ -1,8 +1,8 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import Heading from "src/ui/Heading";
 import Paragraph from "src/ui/Paragraph";
 import Carousel from "src/ui/Skills/Carousel";
-import { StyledSkillsSection } from "./style";
+import { StyledSkillsSection, StyledSillCarouselWrapper } from "./style";
 import { IStrapiParagraphText } from "src/ui/Paragraph/types";
 import { PropsSkillsComponent, IStrapiSkillCarousel } from "./types";
 
@@ -15,10 +15,10 @@ const ComponentSkills: FC<PropsSkillsComponent> = ({ content }) => {
       ))}
 
       {content.SkillsCarousel.map((skillCarousel: IStrapiSkillCarousel) => (
-        <Fragment key={skillCarousel.id}>
+        <StyledSillCarouselWrapper key={skillCarousel.id}>
           <Heading heading={skillCarousel.Heading} />
           <Carousel carousel={skillCarousel} />
-        </Fragment>
+        </StyledSillCarouselWrapper>
       ))}
     </StyledSkillsSection>
   );

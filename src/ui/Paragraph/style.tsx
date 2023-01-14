@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const StyledParagraph = styled.p.attrs(
   (props: { color?: string }) => props
 )`
-  margin: 1.5rem 0;
+  margin: 2rem 0;
   font-size: 1.6rem;
   line-height: 2.3rem;
   color: ${({ color }) => color};

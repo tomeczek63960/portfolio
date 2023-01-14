@@ -1,16 +1,22 @@
-import styled from "styled-components";
-import { colors, responsive } from "src/styled/mixins";
+import styled, { css } from "styled-components";
+import { colors, responsive, variables } from "src/styled/mixins";
 
-export const StyledFormWrapper = styled.div``;
+export const StyledFormWrapper = styled.div`
+  margin-top: calc(${variables.sectionContentPadding} * 1.6);
+  ${responsive.desktop`
+    ${css`
+      margin-top: calc(${variables.sectionContentPaddingDesktop} * 1.6);
+    `}
+  `}
+`;
 
 export const StyledForm = styled.form.attrs(
   (props: { rotation: string; ref: HTMLFormElement }) => props
 )`
-  margin-top: 10rem;
   position: relative;
   border: 0.1rem solid transparent;
   padding-bottom: 5rem;
-  ${responsive.tabletP`
+  ${responsive.desktopHd`
     padding-right: 8rem;
   `}
 

@@ -36,8 +36,6 @@ export const responsive = {
     }
   `,
 };
-// ustawić tutaj jakieś globlane fonty sizy i line height i się tego trzymać na przestrzeni całego projektu
-// to samo dla font family
 export const colors = {
   white: "#fff",
   whiteBackground: "#fbfcfd", // zmienić nazwę / ogarnąć mniej kolorów
@@ -70,7 +68,10 @@ export const colors = {
 };
 
 export const variables = {
-  sectionVerticalPadding: "3rem",
+  sectionVerticalPadding: "5rem",
+  sectionVerticalPaddingDesktop: "9rem",
+  sectionContentPadding: "4rem",
+  sectionContentPaddingDesktop: "5rem",
   fontFamilyRoboto: "Roboto",
   fontFamilyTimes: "Times",
   fontFamilyInter: "Inter, sans-serif",

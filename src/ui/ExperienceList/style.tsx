@@ -1,15 +1,26 @@
-import styled from "styled-components";
+import { variables, responsive, colors } from "src/styled/mixins";
+import styled, { css } from "styled-components";
 
 export const StyledExperienceListSection = styled.section`
-  padding-bottom: 6rem;
+  margin-block: ${variables.sectionVerticalPadding};
+  ${responsive.desktop`
+    ${css`
+      margin-block: ${variables.sectionVerticalPaddingDesktop};
+    `}
+  `}
 `;
 export const StyledExperienceItem = styled.div`
-  margin-top: 3rem;
+  margin-block: calc(${variables.sectionContentPadding} * 1.5);
+  ${responsive.desktop`
+    ${css`
+      margin-block: calc(${variables.sectionContentPaddingDesktop} * 1.5);
+    `}
+  `}
   p {
     margin-top: 1rem;
   }
 `;
 export const StyledExperienceItemSpan = styled.span`
-  color: #6a82fb;
+  color: ${colors.blue};
   font-weight: 700;
 `;

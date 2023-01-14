@@ -1,6 +1,11 @@
-import styled from "styled-components";
-import { variables } from "src/styled/mixins";
+import styled, { css } from "styled-components";
+import { responsive, variables } from "src/styled/mixins";
 
 export const StyledContactFormSection = styled.section`
-  padding-block: ${variables.sectionVerticalPadding};
+  margin-block: ${variables.sectionVerticalPadding};
+  ${responsive.desktop`
+    ${css`
+      margin-block: ${variables.sectionVerticalPaddingDesktop};
+    `}
+  `}
 `;

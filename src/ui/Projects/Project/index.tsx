@@ -7,6 +7,7 @@ import { useProjectScrollAnimation } from "src/hooks/useProjectScrollAnimation";
 const ComponentProject: FC<PropsProject> = ({ project, onClickFunction }) => {
   const [refProjectHover, refProjectHoverLine] = useProjectScrollAnimation();
   // TODO: on hover show label (year of creation, type = new|legacy, main technology react|angular|vue)
+  // TODO: add in strapi separate field for card image (to reduce FCP)
   return (
     <StyledProject onClick={() => onClickFunction(project)}>
       <CustomImage
