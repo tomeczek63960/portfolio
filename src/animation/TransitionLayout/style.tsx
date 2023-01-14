@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { colors, responsive, variables } from "src/styled/mixins";
+import { colors, responsive } from "src/styled/mixins";
 
 export const StyledTransition = styled.div.attrs(
   (props: { type: "left" | "right" }) => props
@@ -99,57 +99,5 @@ export const StyledTransitionCirclePart = styled.span.attrs(
       stroke-dasharray: 250;
       stroke-dashoffset: 250;
     }
-  }
-`;
-export const StyledTransitionTextWrapper = styled.div.attrs(
-  (props: { position: string }) => props
-)`
-  position: fixed;
-  top: calc(50% - 7rem);
-  transform: translateY(-50%);
-  z-index: 1000000000;
-  width: 50%;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
-  display: none;
-  ${responsive.tabletP`
-    display: flex;
-  `}
-  ${({ position }) =>
-    position === "left"
-      ? css`
-          left: 0;
-          justify-content: flex-end;
-          h4 {
-            transform: translateX(50%);
-          }
-        `
-      : css`
-          justify-content: flex-start;
-          left: 50%;
-          h4 {
-            transform: translateX(-50%);
-          }
-        `}
-`;
-export const StyledTransitionText = styled.h4.attrs(
-  (props: { theme: string }) => props
-)`
-  font-size: 2.2rem;
-  line-height: 1;
-  font-family: ${variables.fontFamilyRoboto};
-  background-color: transparent;
-  mix-blend-mode: darken;
-  color: ${colors.black};
-  transition: none;
-  ${(props) => responsive.tabletP`
-    ${css`
-      mix-blend-mode: ${props.theme === "light" ? "darken" : "screen"};
-      color: ${props.theme === "light" ? "black" : "white"};
-    `}
-  `}
-  & + h4 {
-    transform: translateY(-100%);
   }
 `;

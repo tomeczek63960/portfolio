@@ -27,8 +27,6 @@ export const useTransitionLayoutAnimation = (
   const refCenterCircle = useRef<HTMLDivElement>(null);
   const refLeftCircle = useRef<HTMLSpanElement>(null);
   const refRightCircle = useRef<HTMLSpanElement>(null);
-  const refTransitionLeftText = useRef<HTMLDivElement>(null);
-  const refTransitionRightText = useRef<HTMLDivElement>(null);
   const refFlag = useRef<boolean>(false);
   const [setError] = useErrorHandler();
   useIsomorphicLayoutEffect(() => {
@@ -97,31 +95,10 @@ export const useTransitionLayoutAnimation = (
       pointerEvents: "none",
     });
 
-    refTimelineEnter.current.to(
-      refCenterCircle.current,
-      {
-        duration: 0.7,
-        opacity: 1,
-      },
-      "circle-show"
-    );
-    refTimelineEnter.current.to(
-      refTransitionLeftText.current,
-      {
-        duration: 0.7,
-        opacity: 1,
-      },
-      "circle-show"
-    );
-    refTimelineEnter.current.to(
-      refTransitionRightText.current,
-      {
-        duration: 0.7,
-        opacity: 1,
-      },
-      "circle-show"
-    );
-
+    refTimelineEnter.current.to(refCenterCircle.current, {
+      duration: 0.4,
+      opacity: 1,
+    });
     refTimelineEnter.current.to(
       refLeftCircle.current,
       {
@@ -138,6 +115,12 @@ export const useTransitionLayoutAnimation = (
       },
       "circle"
     );
+    const leftLetterG = isTruthy(refLeftCircle.current)
+      ? refLeftCircle.current.querySelector("svg g")
+      : null;
+    const rightLetterG = isTruthy(refRightCircle.current)
+      ? refRightCircle.current.querySelector("svg g")
+      : null;
     const leftLetter = isTruthy(refLeftCircle.current)
       ? refLeftCircle.current.querySelector("svg path")
       : null;
@@ -145,40 +128,28 @@ export const useTransitionLayoutAnimation = (
       ? refRightCircle.current.querySelector("svg path")
       : null;
 
-    refTimelineEnter.current.to(
-      leftLetter,
-      {
-        duration: 1.5,
-        strokeDashoffset: 0,
-      },
-      "circle-letter"
-    );
-    refTimelineEnter.current.to(
-      rightLetter,
-      {
-        duration: 1.5,
-        strokeDashoffset: 0,
-      },
-      "circle-letter"
-    );
+    refTimelineEnter.current.set(leftLetterG, {
+      stroke: "#fff",
+    });
+    refTimelineEnter.current.set(rightLetterG, {
+      stroke: "#000",
+    });
+    refTimelineEnter.current.to([leftLetter, rightLetter], {
+      duration: 1.5,
+      strokeDashoffset: 0,
+    });
 
-    refTimelineEnter.current.to(
-      leftLetter,
-      {
-        duration: 1.5,
-        delay: 1,
-        fill: "#fff",
-      },
-      "circle-letter"
-    );
+    refTimelineEnter.current.to(leftLetter, {
+      duration: 1.5,
+      fill: "#fff",
+    });
     refTimelineEnter.current.to(
       rightLetter,
       {
         duration: 1.5,
-        delay: 1.5,
         fill: "#000",
       },
-      "circle-letter"
+      "-=1"
     );
     refTimelineEnter.current.to(
       refLeftTransition.current,
@@ -196,30 +167,10 @@ export const useTransitionLayoutAnimation = (
       },
       "start"
     );
-    refTimelineEnter.current.to(
-      refTransitionLeftText.current,
-      {
-        duration: 0.3,
-        opacity: 0,
-      },
-      "animation-end"
-    );
-    refTimelineEnter.current.to(
-      refTransitionRightText.current,
-      {
-        duration: 0.3,
-        opacity: 0,
-      },
-      "animation-end"
-    );
-    refTimelineEnter.current.to(
-      refContent.current,
-      {
-        duration: 1,
-        opacity: 1,
-      },
-      "animation-end"
-    );
+    refTimelineEnter.current.to(refContent.current, {
+      duration: 1,
+      opacity: 1,
+    });
     refTimelineEnter.current.to(refCenterCircle.current, {
       duration: 0.3,
       opacity: 0,
@@ -268,7 +219,5 @@ export const useTransitionLayoutAnimation = (
     refCenterCircle,
     refLeftCircle,
     refRightCircle,
-    refTransitionLeftText,
-    refTransitionRightText,
   };
 };

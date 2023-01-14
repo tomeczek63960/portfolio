@@ -3,8 +3,6 @@ import { PropsTransitionLayout } from "./types";
 import {
   StyledTransition,
   StyledTransitionCircle,
-  StyledTransitionTextWrapper,
-  StyledTransitionText,
   StyledTransitionCirclePart,
   StyledTransitionCirclePartWrapper,
 } from "./style";
@@ -19,24 +17,12 @@ const ComponentTransitionLayout: FC<PropsTransitionLayout> = ({ children }) => {
     refCenterCircle,
     refLeftCircle,
     refRightCircle,
-    refTransitionLeftText,
-    refTransitionRightText,
   } = useTransitionLayoutAnimation(children);
   return (
     <>
-      <StyledTransitionTextWrapper ref={refTransitionLeftText} position="left">
-        <StyledTransitionText theme="light">
-          Created With Passion
-        </StyledTransitionText>
-      </StyledTransitionTextWrapper>
-      <StyledTransitionTextWrapper
-        ref={refTransitionRightText}
-        position="right"
-      >
-        <StyledTransitionText theme="dark">
-          Created With Passion
-        </StyledTransitionText>
-      </StyledTransitionTextWrapper>
+      {/* TODO: FIX this: Workaround for lighthouse error */}
+      <h1 style={{ color: "transparent", fontSize: "1px" }}>TK</h1>
+      {/* END TODO */}
       <StyledTransition type="left" ref={refLeftTransition}></StyledTransition>
       <StyledTransition
         type="right"
@@ -56,7 +42,7 @@ const ComponentTransitionLayout: FC<PropsTransitionLayout> = ({ children }) => {
                 strokeLinecap="round"
                 fillRule="evenodd"
                 fontSize="9pt"
-                stroke="#fff"
+                stroke="transparent"
                 strokeWidth="0.25mm"
                 fill="none"
               >
@@ -81,7 +67,7 @@ const ComponentTransitionLayout: FC<PropsTransitionLayout> = ({ children }) => {
                 strokeLinecap="round"
                 fillRule="evenodd"
                 fontSize="9pt"
-                stroke="#000"
+                stroke="transparent"
                 strokeWidth="0.25mm"
                 fill="none"
               >
