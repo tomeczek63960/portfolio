@@ -54,7 +54,11 @@ const ComponentProjectBox: FC<PropsProjectBox> = ({
           </StyledProjectBoxCategories>
 
           {isTruthy(activeProject?.Image) ? (
-            <CustomImage url={activeProject?.Image?.url} />
+            <CustomImage
+              url={activeProject?.Image?.url}
+              sizes="(max-width: 767px) 95vw,
+              580px"
+            />
           ) : (
             ""
           )}

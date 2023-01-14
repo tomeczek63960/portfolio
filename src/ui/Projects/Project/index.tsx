@@ -11,7 +11,7 @@ const ComponentProject: FC<PropsProject> = ({ project, onClickFunction }) => {
     <StyledProject onClick={() => onClickFunction(project)}>
       <CustomImage
         url={project.Image.url}
-        sizes="(max-width: 768px) 90vw,
+        sizes="(max-width: 767px) 90vw,
               (max-width: 1023px) 350px,
               (max-width: 1919px) 470px,
               680px"
