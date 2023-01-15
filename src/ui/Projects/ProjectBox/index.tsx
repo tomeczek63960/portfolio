@@ -12,6 +12,7 @@ import {
   StyledProjectBoxTechnologies,
   StyledProjectBoxCategories,
   StyledProjectBoxText,
+  StyledProjectLabel,
 } from "./style";
 import { PropsProjectBox } from "./types";
 import { isTruthy } from "src/helpers/checkFalsyType";
@@ -46,11 +47,17 @@ const ComponentProjectBox: FC<PropsProjectBox> = ({
           <StyledProjectBoxCategories>
             {activeProject?.project_categories?.map(
               (category: IStrapiProjectCategory) => (
-                <span key={category.id} className={category.Theme}>
+                <StyledProjectLabel
+                  key={category.id}
+                  className={category.Theme}
+                >
                   {category.Title}
-                </span>
+                </StyledProjectLabel>
               )
             )}
+            <StyledProjectLabel className="warning">
+              {activeProject?.CreationDate}
+            </StyledProjectLabel>
           </StyledProjectBoxCategories>
 
           {isTruthy(activeProject?.Image) ? (
@@ -71,7 +78,9 @@ const ComponentProjectBox: FC<PropsProjectBox> = ({
             <StyledProjectBoxTechnologies>
               {activeProject?.project_technologies?.map(
                 (technology: IStrapiProjectTechnology) => (
-                  <span key={technology.id}>{technology.Title}</span>
+                  <StyledProjectLabel key={technology.id}>
+                    {technology.Title}
+                  </StyledProjectLabel>
                 )
               )}
             </StyledProjectBoxTechnologies>

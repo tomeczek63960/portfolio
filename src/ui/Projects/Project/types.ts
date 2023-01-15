@@ -28,10 +28,13 @@ export interface IStrapiProjectTechnology {
 export interface IStrapiProject {
   Description: string;
   GithubUrl: string;
-  Image: IStrapiImage;
+  Image?: IStrapiImage;
+  ImageCard?: IStrapiImage;
   ShortDescription: string;
   Slug: string;
   Title: string;
+  CreationDate: string;
+  ShortCreationDate: string;
   WebsiteUrl: string;
   createdAt: string;
   id: string;

@@ -6,6 +6,7 @@ import { PropsLogo } from "./types";
 import { useLogoAnimation } from "src/hooks/useLogoAnimation";
 
 const ComponentLogo: FC<PropsLogo> = (props) => {
+  // TODO: prevent click logo on homepage
   const { locale } = useRouter();
   const [refTLetter, refKLetter] = useLogoAnimation();
 

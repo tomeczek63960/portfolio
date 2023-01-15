@@ -81,22 +81,19 @@ export const useTransitionLayoutAnimation = (
     if (!refFlag.current) return;
     refFlag.current = false;
     refTimelineEnter.current = gsap.timeline({ paused: false });
-    refTimelineEnter.current.set(refLeftTransition.current, {
-      y: "0%",
-    });
-    refTimelineEnter.current.set(refRightTransition.current, {
-      y: "0%",
-    });
-    refTimelineEnter.current.set(refCenterCircle.current, {
-      opacity: 0,
-    });
+    refTimelineEnter.current.set(
+      [refLeftTransition.current, refRightTransition.current],
+      {
+        y: "0%",
+      }
+    );
     refTimelineEnter.current.set(refContent.current, {
       opacity: 0,
       pointerEvents: "none",
     });
 
     refTimelineEnter.current.to(refCenterCircle.current, {
-      duration: 0.4,
+      duration: 0.6,
       opacity: 1,
     });
     refTimelineEnter.current.to(
@@ -172,20 +169,13 @@ export const useTransitionLayoutAnimation = (
       opacity: 1,
     });
     refTimelineEnter.current.to(refCenterCircle.current, {
-      duration: 0.3,
+      duration: 0.4,
       opacity: 0,
     });
 
-    refTimelineEnter.current.set(leftLetter, {
+    refTimelineEnter.current.set([leftLetter, rightLetter], {
       strokeDashoffset: 250,
       fill: "none",
-    });
-    refTimelineEnter.current.set(rightLetter, {
-      strokeDashoffset: 250,
-      fill: "none",
-    });
-    refTimelineEnter.current.set(refCenterCircle.current, {
-      opacity: 0,
     });
     refTimelineEnter.current.set(refContent.current, {
       pointerEvents: "all",
@@ -199,12 +189,12 @@ export const useTransitionLayoutAnimation = (
     refTimelineEnter.current.set(refCenterCircle.current, {
       opacity: 0,
     });
-    refTimelineEnter.current.set(refLeftCircle.current, {
-      scaleY: 0,
-    });
-    refTimelineEnter.current.set(refRightCircle.current, {
-      scaleY: 0,
-    });
+    refTimelineEnter.current.set(
+      [refLeftCircle.current, refRightCircle.current],
+      {
+        scaleY: 0,
+      }
+    );
     refTimelineEnter.current.call(() => {
       dispatch(setActive(true));
       refTimelineEnter.current?.clear().kill();

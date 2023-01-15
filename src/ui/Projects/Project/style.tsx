@@ -16,6 +16,14 @@ export const StyledProject = styled.div`
     opacity: 0.7;
   }
 `;
+export const StyledProjectLabels = styled.div`
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+`;
 export const StyledProjectHover = styled.div`
   padding: 2rem 1.5rem;
   width: 100%;

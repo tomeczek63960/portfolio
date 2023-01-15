@@ -5,9 +5,6 @@ import ComponentContent from "src/ui/Content";
 import { getEnvVars } from "src/helpers/getEnvVars";
 import { IPage, TPageContent, IPropsPage, IStaticPath } from "src/types";
 
-// _________
-// TODO: scrollbar ma być taki jak na macu (globalnie ostylowany)
-
 const HomePage: FC<IPage> = ({ page }) => {
   return (
     <Layout

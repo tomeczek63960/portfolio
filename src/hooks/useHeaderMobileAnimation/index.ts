@@ -75,7 +75,8 @@ export const useHeaderMobileAnimation = (): [
 
     refPrevScrollPosition.current = refCurrentScrollPos.current;
   };
-  const handleResize = (): void => {
+  const handleDotsTransform = (): void => {
+    if (window.innerWidth < 768) return;
     const barsChildren = isTruthy(refBars.current)
       ? refBars.current.children
       : [];
@@ -176,11 +177,10 @@ export const useHeaderMobileAnimation = (): [
     );
     handleScroll();
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
+    handleDotsTransform();
     return () => {
       refTimeline.current?.clear().kill();
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

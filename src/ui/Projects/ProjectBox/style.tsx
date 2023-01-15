@@ -100,42 +100,34 @@ export const StyledProjectBoxTechnologies = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 0 -0.5rem;
-  span {
-    display: block;
-    padding: 0.5rem 1rem;
-    background: ${colors.grayLight};
-    color: black;
-    margin: 0.5rem;
-    font-weight: ${variables.fontWeightBold};
-    font-size: 1.2rem;
-  }
 `;
 export const StyledProjectBoxCategories = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 3rem -0.5rem 0;
-  span {
-    display: block;
-    padding: 0.5rem 1rem;
-    background: ${colors.grayLight};
-    color: ${colors.black};
-    margin: 0.5rem;
-    font-weight: ${variables.fontWeightBold};
-    font-size: 1.2rem;
+`;
 
-    &.danger,
-    &.success,
-    &.warning {
-      color: ${colors.white};
-    }
-    &.danger {
-      background: ${colors.error};
-    }
-    &.success {
-      background: ${colors.success};
-    }
-    &.warning {
-      background: ${colors.warning};
-    }
+export const StyledProjectLabel = styled.span`
+  display: block;
+  padding: 0.5rem 1rem;
+  background: ${colors.grayLight};
+  color: ${colors.black};
+  margin: 0.5rem;
+  font-weight: ${variables.fontWeightBold};
+  font-size: 1.2rem;
+
+  &.danger,
+  &.success,
+  &.warning {
+    color: ${colors.white};
+  }
+  &.danger {
+    background: ${colors.error};
+  }
+  &.success {
+    background: ${colors.success};
+  }
+  &.warning {
+    background: ${colors.warning};
   }
 `;
