@@ -2,17 +2,21 @@ import React, { FC } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { StyledLogo } from "./style";
-import { PropsLogo } from "./types";
 import { useLogoAnimation } from "src/hooks/useLogoAnimation";
+import { useIntl } from "react-intl";
 
-const ComponentLogo: FC<PropsLogo> = (props) => {
-  // TODO: prevent click logo on homepage
-  const { locale } = useRouter();
+const ComponentLogo: FC = () => {
+  const { locale, asPath } = useRouter();
   const [refTLetter, refKLetter] = useLogoAnimation();
+  const intl = useIntl();
 
   return (
-    <Link href="/" locale={locale}>
-      <StyledLogo>
+    <Link href={intl.messages["nav.home.link"].toString()} locale={locale}>
+      <StyledLogo
+        className={
+          asPath === intl.messages["nav.home.link"].toString() ? "active" : ""
+        }
+      >
         <svg
           viewBox="0 0 61.3 71.4"
           xmlns="http://www.w3.org/2000/svg"
@@ -55,6 +59,5 @@ const ComponentLogo: FC<PropsLogo> = (props) => {
     </Link>
   );
 };
-ComponentLogo.displayName = "Logo";
 
 export default ComponentLogo;

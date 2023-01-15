@@ -21,4 +21,7 @@ export const StyledLogo = styled.a`
       stroke-dashoffset: 200;
     }
   }
+  &.active {
+    pointer-events: none;
+  }
 `;

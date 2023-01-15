@@ -18,5 +18,11 @@
   "form.placeholder.firstName": "First name",
   "form.placeholder.lastName": "Last name",
   "form.placeholder.email": "E-mail",
-  "form.placeholder.message": "Message"
+  "form.placeholder.message": "Message",
+
+  "project.aboutProject": "About project",
+  "project.technologies": "Technologies",
+  "project.websiteUrl": "Website",
+  "project.github": "Github",
+  "project.openProject": "Open Project"
 }

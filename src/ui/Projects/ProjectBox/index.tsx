@@ -21,6 +21,7 @@ import {
   IStrapiProjectCategory,
   IStrapiProjectTechnology,
 } from "../Project/types";
+import { FormattedMessage } from "react-intl";
 
 const ComponentProjectBox: FC<PropsProjectBox> = ({
   activeProject,
@@ -70,11 +71,15 @@ const ComponentProjectBox: FC<PropsProjectBox> = ({
             ""
           )}
           <StyledProjectBoxText>
-            <h4>About project</h4>
+            <h4>
+              <FormattedMessage id="project.aboutProject" />
+            </h4>
             <p>{activeProject?.Description}</p>
           </StyledProjectBoxText>
           <StyledProjectBoxText>
-            <h4>Technologies</h4>
+            <h4>
+              <FormattedMessage id="project.technologies" />
+            </h4>
             <StyledProjectBoxTechnologies>
               {activeProject?.project_technologies?.map(
                 (technology: IStrapiProjectTechnology) => (
@@ -87,7 +92,7 @@ const ComponentProjectBox: FC<PropsProjectBox> = ({
           </StyledProjectBoxText>
           <StyledProjectBoxReference>
             <h5>
-              <World /> Website
+              <World /> <FormattedMessage id="project.websiteUrl" />
             </h5>
             <a
               href={activeProject?.WebsiteUrl}
@@ -99,7 +104,7 @@ const ComponentProjectBox: FC<PropsProjectBox> = ({
           </StyledProjectBoxReference>
           <StyledProjectBoxReference>
             <h5>
-              <Github /> Github
+              <Github /> <FormattedMessage id="project.github" />
             </h5>
             <a href={activeProject?.GithubUrl} target="_blank" rel="noreferrer">
               {activeProject?.GithubUrl}
@@ -111,7 +116,7 @@ const ComponentProjectBox: FC<PropsProjectBox> = ({
           target="_blank"
           rel="noreferrer"
         >
-          Open Project
+          <FormattedMessage id="project.openProject" />
         </StyledProjectBoxLink>
       </StyledProjectBox>
     </>
