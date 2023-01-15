@@ -115,6 +115,7 @@ export const StyledProjectLabel = styled.span`
   margin: 0.5rem;
   font-weight: ${variables.fontWeightBold};
   font-size: 1.2rem;
+  line-height: 2;
 
   &.danger,
   &.success,
