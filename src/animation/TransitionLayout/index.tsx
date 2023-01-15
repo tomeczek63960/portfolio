@@ -21,7 +21,7 @@ const ComponentTransitionLayout: FC<PropsTransitionLayout> = ({ children }) => {
   return (
     <>
       {/* TODO: FIX this: Workaround for lighthouse error */}
-      <h1 style={{ color: "transparent", fontSize: "1px" }}>TK</h1>
+      <span style={{ color: "transparent", fontSize: "1px" }}>TK</span>
       {/* END TODO */}
       <StyledTransition type="left" ref={refLeftTransition}></StyledTransition>
       <StyledTransition

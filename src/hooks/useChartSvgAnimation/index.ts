@@ -14,7 +14,7 @@ export const useChartSvgAnimation = (): [RefObject<SVGSVGElement>] => {
     refTimeline.current = gsap.timeline({
       scrollTrigger: {
         trigger: refSvg.current,
-        start: "top center",
+        start: "top 80% center",
         end: "center bottom",
       },
     });
