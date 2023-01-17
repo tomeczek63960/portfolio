@@ -28,6 +28,11 @@ export const useLoadingAnimation = (
   const refPageAnimationBackground = useRef<HTMLDivElement>(null);
   const [setError] = useErrorHandler();
   useIsomorphicLayoutEffect(() => {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const v = windowWidth > windowHeight ? windowWidth : windowHeight;
+    const circleScale = v / 50;
+    const isMobileWidth = windowWidth < 768;
     refTimeline.current = gsap.timeline({ paused: true });
     refTimelineEnter.current = gsap.timeline({ paused: true });
     refTimeline.current.add(
@@ -147,7 +152,12 @@ export const useLoadingAnimation = (
       gsap.to(refPageAnimationBall.current, {
         duration: 2.45,
         delay: 0.5,
-        scale: 50,
+        scale: Math.ceil(circleScale * 1.8),
+      })
+    );
+    refTimeline.current.add(
+      gsap.set(refPageAnimationBall.current, {
+        scale: 1000,
       })
     );
     refTimeline.current.add(
@@ -160,8 +170,8 @@ export const useLoadingAnimation = (
 
     refTimelineEnter.current.add(
       gsap.to(refPageAnimationBackground.current, {
-        delay: 1,
-        duration: 1,
+        delay: isMobileWidth ? 0 : 1,
+        duration: isMobileWidth ? 0 : 1,
         height: "100%",
       })
     );
