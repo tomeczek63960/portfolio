@@ -18,12 +18,11 @@ export const StyledContainer = styled.div`
   `}
 
   ${responsive.tabletL`
-    max-width: 102.4rem;
+    max-width: 102.5rem;
   `}
   ${responsive.desktop`
     padding-left: 0;
     padding-right: 0;
-    max-width: 99.8rem;
   `}
   ${responsive.desktopHd`
     max-width: 139rem;
