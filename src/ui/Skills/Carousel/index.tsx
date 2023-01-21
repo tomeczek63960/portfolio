@@ -37,6 +37,7 @@ import {
   BuilderIo,
   Hygraph,
   PrismicIo,
+  GraphQl,
 } from "src/Svg";
 
 const ComponentSkillsCarousel: FC<PropsSkillsCarousel> = ({ carousel }) => {
@@ -73,6 +74,7 @@ const ComponentSkillsCarousel: FC<PropsSkillsCarousel> = ({ carousel }) => {
     BuilderIo,
     Hygraph,
     PrismicIo,
+    GraphQl,
   };
   return (
     <StyledCarousel

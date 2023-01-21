@@ -35,7 +35,7 @@ const ComponentProject: FC<PropsProject> = ({ project, onClickFunction }) => {
           {project.Title}
           <span ref={refProjectHoverLine}></span>
         </h4>
-        <p>{project.Description}</p>
+        <p>{project.ShortDescription}</p>
       </StyledProjectHover>
     </StyledProject>
   );

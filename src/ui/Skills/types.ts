@@ -28,7 +28,8 @@ export interface IStrapiSkill {
     | "BuilderIo"
     | "Hygraph"
     | "PrismicIo"
-    | "Shopware";
+    | "Shopware"
+    | "GraphQl";
   Text: string;
   Title: string;
   id: string;

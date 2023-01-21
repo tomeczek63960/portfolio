@@ -62,6 +62,7 @@ export const StyledProjectHover = styled.div`
   }
   p {
     font-size: 1.2rem;
+    line-height: 1.8rem;
     color: ${colors.whitePrimary};
   }
 `;
