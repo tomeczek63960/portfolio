@@ -30,6 +30,9 @@ import BuilderIo from "../public/svg/builderio.svg";
 import Hygraph from "../public/svg/hygraph.svg";
 import PrismicIo from "../public/svg/prismic.svg";
 import GraphQl from "../public/svg/graphql.svg";
+import Twig from "../public/svg/twig.svg";
+import NodeJs from "../public/svg/nodejs.svg";
+import Storyblok from "../public/svg/storyblok.svg";
 
 export {
   Angular,
@@ -64,4 +67,7 @@ export {
   Hygraph,
   PrismicIo,
   GraphQl,
+  Twig,
+  NodeJs,
+  Storyblok,
 };

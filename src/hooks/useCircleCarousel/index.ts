@@ -164,8 +164,9 @@ export const useCircleCarousel = (
     const prev = refConfig.current.activeSlide;
     const index =
       typeof event === "number" ? event : findClickedElementIndex(event);
-    const active = getSlideIndex(index);
 
+    if (refConfig.current.activeSlide === index) return;
+    const active = getSlideIndex(index);
     changeSlideAnimation(prev, "remove");
     changeSlideAnimation(active, "add");
 

@@ -38,6 +38,9 @@ import {
   Hygraph,
   PrismicIo,
   GraphQl,
+  Twig,
+  NodeJs,
+  Storyblok,
 } from "src/Svg";
 
 const ComponentSkillsCarousel: FC<PropsSkillsCarousel> = ({ carousel }) => {
@@ -75,6 +78,9 @@ const ComponentSkillsCarousel: FC<PropsSkillsCarousel> = ({ carousel }) => {
     Hygraph,
     PrismicIo,
     GraphQl,
+    Twig,
+    NodeJs,
+    Storyblok,
   };
   return (
     <StyledCarousel

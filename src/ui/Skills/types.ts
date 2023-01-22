@@ -29,7 +29,9 @@ export interface IStrapiSkill {
     | "Hygraph"
     | "PrismicIo"
     | "Shopware"
-    | "GraphQl";
+    | "GraphQl"
+    | "Twig"
+    | "NodeJs";
   Text: string;
   Title: string;
   id: string;
