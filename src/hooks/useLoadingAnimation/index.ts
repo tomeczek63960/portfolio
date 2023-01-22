@@ -198,13 +198,13 @@ export const useLoadingAnimation = (
         .play()
         .then(() => {
           refTimeline.current?.pause();
-          dispatch(setIsInitAnimation(false));
           // refTimeline.current.seek(0).pause().clear()
           setDisplayChildren(children);
 
           refTimelineEnter.current
             ?.play()
             .then(() => {
+              dispatch(setIsInitAnimation(false));
               dispatch(setActive(true));
             })
             .catch(() => {

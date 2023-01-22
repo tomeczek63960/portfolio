@@ -6,6 +6,7 @@ import { useScrollTrigger } from "src/hooks/useScrollTrigger";
 import { FormattedMessage, useIntl } from "react-intl";
 import SocialMedia from "src/ui/SocialMedia";
 
+// TODO: fix lack of navigation animation after locale change
 const ComponentHeader: FC = () => {
   const { locale, locales = [], asPath } = useRouter();
   const intl = useIntl();

@@ -9,14 +9,16 @@ export const useLogoAnimation = (): [
   RefObject<SVGSVGElement>
 ] => {
   const refTimeline = useRef<GSAPTimeline>();
-  const { isActive } = useSelector((state: IRootState) => state.scrollTrigger);
+  const { isInitAnimation } = useSelector(
+    (state: IRootState) => state.transition
+  );
   const refTLetter = useRef<SVGSVGElement>(null);
   const refKLetter = useRef<SVGSVGElement>(null);
   useIsomorphicLayoutEffect(() => {
-    if (!isActive) return;
-    refTimeline.current = gsap.timeline({ repeat: -1 });
+    if (isInitAnimation) return;
     const tPath = refTLetter.current?.querySelector("path");
     const kPath = refKLetter.current?.querySelector("path");
+    refTimeline.current = gsap.timeline({ repeat: -1 });
     refTimeline.current.to([tPath, kPath], {
       duration: 3,
       strokeDashoffset: 0,
@@ -38,7 +40,7 @@ export const useLogoAnimation = (): [
     return () => {
       refTimeline.current?.clear().kill();
     };
-  }, [isActive]);
+  }, [isInitAnimation]);
 
   return [refTLetter, refKLetter];
 };
