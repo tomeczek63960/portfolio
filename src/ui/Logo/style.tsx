@@ -11,6 +11,8 @@ export const StyledLogo = styled.a`
   text-decoration: none;
   display: flex;
   align-items: center;
+  width: auto;
+  margin-right: auto;
   svg {
     height: 2.5rem;
     & + svg {

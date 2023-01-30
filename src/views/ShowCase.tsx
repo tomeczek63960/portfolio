@@ -112,7 +112,7 @@ const ViewShowCase: FC = () => {
   const hexagonArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   return (
     <>
-      {/* <h1>Strona na której będą zaawansowane anikacje pokazującę zlepki ze wszystkich projektów (coś na zasadzie wideo tylko ze animowane przez js</h1> */}
+      {/* TODO: <h1>Strona na której będą zaawansowane anikacje pokazującę zlepki ze wszystkich projektów (coś na zasadzie wideo tylko ze animowane przez js</h1> */}
       <StyledHexagonContainer>
         <div className="row">
           {" "}

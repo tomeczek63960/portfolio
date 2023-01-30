@@ -72,6 +72,7 @@ export const StyledTransitionCirclePart = styled.span.attrs(
   (props: { type: "left" | "right" }) => props
 )`
   height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   z-index: 10000000;

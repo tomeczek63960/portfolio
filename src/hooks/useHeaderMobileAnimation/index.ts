@@ -69,7 +69,7 @@ export const useHeaderMobileAnimation = (): [
     refAnimateDots.current = !isPrevPositionLarger;
 
     gsap.to(refHeaderBar.current, {
-      duration: 0.4,
+      duration: 0.8,
       y: moreThan80 && !isPrevPositionLarger ? headerHeight : 0,
     });
 

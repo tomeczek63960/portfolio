@@ -11,7 +11,7 @@ const ComponentImage: FC<PropsImage> = ({ url = "", className, sizes }) => {
         className={className}
         src={`${getEnvVars().apiUrl}${url}`}
         sizes={isTruthy(sizes) ? sizes : "100vw"}
-        alt="Picture of the author"
+        alt="Image"
         blurDataURL="data:..."
         placeholder="blur"
         layout="fill"
