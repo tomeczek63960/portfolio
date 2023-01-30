@@ -31,12 +31,7 @@ const ComponentTransitionLayout: FC<PropsTransitionLayout> = ({ children }) => {
       <StyledTransitionCircle ref={refCenterCircle}>
         <StyledTransitionCirclePartWrapper type="left">
           <StyledTransitionCirclePart type="left" ref={refLeftCircle}>
-            <svg
-              // width="61.3"
-              // height="71.4"
-              viewBox="0 0 61.3 71.4"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg viewBox="0 0 61.3 71.4" xmlns="http://www.w3.org/2000/svg">
               <g
                 id="svgGroup"
                 strokeLinecap="round"
@@ -56,12 +51,7 @@ const ComponentTransitionLayout: FC<PropsTransitionLayout> = ({ children }) => {
         </StyledTransitionCirclePartWrapper>
         <StyledTransitionCirclePartWrapper type="right">
           <StyledTransitionCirclePart type="right" ref={refRightCircle}>
-            <svg
-              // width="69.6"
-              // height="71.4"
-              viewBox="0 0 69.6 71.4"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg viewBox="0 0 69.6 71.4" xmlns="http://www.w3.org/2000/svg">
               <g
                 id="svgGroup"
                 strokeLinecap="round"

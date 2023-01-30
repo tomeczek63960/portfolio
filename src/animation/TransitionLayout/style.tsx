@@ -73,6 +73,7 @@ export const StyledTransitionCirclePart = styled.span.attrs(
 )`
   height: 100%;
   width: 100%;
+  position: relative;
   display: flex;
   align-items: center;
   z-index: 10000000;
@@ -95,7 +96,15 @@ export const StyledTransitionCirclePart = styled.span.attrs(
         `}
   svg {
     height: 2.8rem;
-    width: auto;
+    width: 2.75rem;
+    ${(props) =>
+      props.type === "left"
+        ? css`
+            margin-left: auto;
+          `
+        : css`
+            margin-right: auto;
+          `};
     path {
       stroke-dasharray: 250;
       stroke-dashoffset: 250;
