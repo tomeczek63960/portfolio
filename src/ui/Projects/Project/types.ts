@@ -28,6 +28,7 @@ export interface IStrapiProjectTechnology {
 export interface IStrapiProject {
   Description: string;
   GithubUrl: string;
+  GithubBackendUrl?: string;
   Image?: IStrapiImage;
   ImageCard?: IStrapiImage;
   ShortDescription: string;

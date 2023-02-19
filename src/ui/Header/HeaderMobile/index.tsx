@@ -111,7 +111,8 @@ const ComponentHeaderMobile: FC = () => {
               <FormattedMessage id="nav.experience.text" />
             </StyledLink>
           </Link>
-          <Link
+          {/* TODO: prepare showcase page & uncomment link */}
+          {/* <Link
             prefetch={false}
             href={intl.messages["nav.show-case.link"].toString()}
             locale={locale}
@@ -125,7 +126,7 @@ const ComponentHeaderMobile: FC = () => {
             >
               <FormattedMessage id="nav.show-case.text" />
             </StyledLink>
-          </Link>
+          </Link> */}
           {locales.map((localeItem: string) => (
             <Link
               prefetch={false}

@@ -24,5 +24,12 @@
   "project.technologies": "Technologie",
   "project.websiteUrl": "Strona",
   "project.github": "Github",
-  "project.openProject": "Open Project"
+  "project.github-backend": "Github backend app",
+  "project.openProject": "Open Project",
+
+  "project-listing.role": "Rola",
+  "project-listing.technologies": "Technologie",
+  "project-listing.description": "Opis",
+  "project-listing.sector": "Sektor",
+  "project-listing.accomplishments": "Osiągnięcia"
 }

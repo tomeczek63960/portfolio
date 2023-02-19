@@ -25,6 +25,7 @@ export const simpleSplitText = (el, exceptions = []) => {
           letter === "," ||
           letter === "‐" ||
           letter === "-" ||
+          letter === "&" ||
           letter === "." ||
           parseInt(letter);
         const a = isCharacter ? createHtml(letter, "splitted-text") : letter;

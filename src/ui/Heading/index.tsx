@@ -3,8 +3,10 @@ import { H1, H2, H3, H4, H5, H6 } from "./style";
 import { useAnimatedChars } from "src/hooks/useAnimatedChars";
 import { colors } from "src/styled/mixins";
 import { IStrapiHeadingText, PropsHeading } from "./types";
+import { isFalsy } from "src/helpers/checkFalsyType";
 
 const ComponentHeading: FC<PropsHeading> = ({ heading }) => {
+  if (isFalsy(heading)) return <></>;
   const mapStyle = {
     h1: H1,
     h2: H2,

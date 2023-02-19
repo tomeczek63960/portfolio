@@ -5,6 +5,7 @@ import ComponentContent from "src/ui/Content";
 import { getEnvVars } from "src/helpers/getEnvVars";
 import { IPage, TPageContent, IPropsPage, IStaticPath } from "src/types";
 
+// TODO: add About-me page
 const HomePage: FC<IPage> = ({ page }) => {
   return (
     <Layout

@@ -7,9 +7,12 @@ import {
   StyledExperienceListSection,
 } from "./style";
 import { IStrapiExperienceListItem, PropsExperienceList } from "./types";
+import { isTruthy } from "src/helpers/checkFalsyType";
+import { FormattedMessage } from "react-intl";
 
 const ComponentExperienceList: FC<PropsExperienceList> = ({ content }) => {
   // TODO add personal projects
+  // TODO: add translations
   return (
     <StyledExperienceListSection>
       {content.ProjectsExperienceItem.map(
@@ -34,35 +37,47 @@ const ComponentExperienceList: FC<PropsExperienceList> = ({ content }) => {
               }}
             />
 
-            <Paragraph>
-              <StyledExperienceItemSpan>Role: </StyledExperienceItemSpan>
-              {project.Role}
-            </Paragraph>
+            {isTruthy(project.Role) && (
+              <Paragraph>
+                <StyledExperienceItemSpan>
+                  <FormattedMessage id="project-listing.role" />:{" "}
+                </StyledExperienceItemSpan>
+                {project.Role}
+              </Paragraph>
+            )}
+            {isTruthy(project.Technologies) && (
+              <Paragraph>
+                <StyledExperienceItemSpan>
+                  <FormattedMessage id="project-listing.technologies" />:{" "}
+                </StyledExperienceItemSpan>
+                {project.Technologies}
+              </Paragraph>
+            )}
+            {isTruthy(project.Sector) && (
+              <Paragraph>
+                <StyledExperienceItemSpan>
+                  <FormattedMessage id="project-listing.sector" />:{" "}
+                </StyledExperienceItemSpan>
+                {project.Sector}
+              </Paragraph>
+            )}
 
-            <Paragraph>
-              <StyledExperienceItemSpan>
-                Technologies:{" "}
-              </StyledExperienceItemSpan>
-              {project.Technologies}
-            </Paragraph>
-
-            <Paragraph>
-              <StyledExperienceItemSpan>
-                Sector/ Business Domain:{" "}
-              </StyledExperienceItemSpan>
-              {project.Sector}
-            </Paragraph>
-
-            <Paragraph>
-              <StyledExperienceItemSpan>Description: </StyledExperienceItemSpan>
-              {project.Description}
-            </Paragraph>
-            <Paragraph>
-              <StyledExperienceItemSpan>
-                Accomplishments:{" "}
-              </StyledExperienceItemSpan>
-              {project.Accomplishments}
-            </Paragraph>
+            {isTruthy(project.Description) && (
+              <Paragraph>
+                <StyledExperienceItemSpan>
+                  <FormattedMessage id="project-listing.description" />:{" "}
+                </StyledExperienceItemSpan>
+                {project.Description}
+              </Paragraph>
+            )}
+            {isTruthy(project.Accomplishments) && (
+              <Paragraph>
+                <StyledExperienceItemSpan>
+                  <FormattedMessage id="project-listing.accomplishments" />:{" "}
+                </StyledExperienceItemSpan>
+                {project.Accomplishments}
+              </Paragraph>
+            )}
           </StyledExperienceItem>
         )
       )}

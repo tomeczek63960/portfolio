@@ -62,7 +62,7 @@ const ComponentWelcomeBox: FC<PropsWelcomeBox> = ({ content }) => {
         <WelcomeBoxHead
           name={content.HeadName}
           position={content.HeadPosition}
-          image={content.Image.url}
+          image={content.Image?.url}
         />
 
         <StyledWelcomeBoxConversation ref={refWelcomeBoxConversation}>

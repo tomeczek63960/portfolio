@@ -33,7 +33,7 @@ export async function getStaticProps({
     `${getEnvVars().apiUrl}/static-pages?_locale=${locale}&Slug=case-studies`
   );
   const projects = await axios.get(
-    `${getEnvVars().apiUrl}/projects?_locale=${locale}`
+    `${getEnvVars().apiUrl}/projects?_locale=${locale}&_sort=order:ASC`
   );
 
   return {

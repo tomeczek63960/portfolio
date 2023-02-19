@@ -50,7 +50,7 @@ const ComponentProjectBox: FC<PropsProjectBox> = ({
               (category: IStrapiProjectCategory) => (
                 <StyledProjectLabel
                   key={category.id}
-                  className={category.Theme}
+                  className={category.Theme?.toLocaleLowerCase()}
                 >
                   {category.Title}
                 </StyledProjectLabel>
@@ -110,6 +110,20 @@ const ComponentProjectBox: FC<PropsProjectBox> = ({
               {activeProject?.GithubUrl}
             </a>
           </StyledProjectBoxReference>
+          {isTruthy(activeProject?.GithubBackendUrl) && (
+            <StyledProjectBoxReference>
+              <h5>
+                <Github /> <FormattedMessage id="project.github-backend" />
+              </h5>
+              <a
+                href={activeProject?.GithubBackendUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {activeProject?.GithubBackendUrl}
+              </a>
+            </StyledProjectBoxReference>
+          )}
         </StyledProjectBoxContent>
         <StyledProjectBoxLink
           href={activeProject?.WebsiteUrl}

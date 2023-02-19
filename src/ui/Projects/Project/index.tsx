@@ -24,7 +24,10 @@ const ComponentProject: FC<PropsProject> = ({ project, onClickFunction }) => {
           {project.ShortCreationDate}
         </StyledProjectLabel>
         {project.project_categories?.map((category: IStrapiProjectCategory) => (
-          <StyledProjectLabel key={category.id} className={category.Theme}>
+          <StyledProjectLabel
+            key={category.id}
+            className={category.Theme?.toLocaleLowerCase()}
+          >
             {category.Title}
           </StyledProjectLabel>
         ))}
