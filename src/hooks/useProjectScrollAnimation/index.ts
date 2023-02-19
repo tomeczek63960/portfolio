@@ -18,8 +18,8 @@ export const useProjectScrollAnimation = (): [
     refTimeline.current = gsap.timeline({
       scrollTrigger: {
         trigger: refProjectHover.current,
-        start: () => `top ${window.innerHeight * 0.85}`,
-        end: () => `top ${window.innerHeight * 0.8}`,
+        start: () => `top ${window.innerHeight * 0.9}`,
+        end: () => `top ${window.innerHeight * 0.9}`,
       },
     });
     refTimeline.current.to(refProjectHover.current, {

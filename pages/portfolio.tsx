@@ -14,6 +14,7 @@ const CaseStudiesPage: FC<IPage> = ({ page, projects }) => {
       url={`${getEnvVars().apiUrl}${page?.locale === "pl" ? "/pl" : ""}/${
         page?.Slug
       }`}
+      disableFooterAnimation={true}
     >
       {page?.PageContent.map((content: TPageContent) => (
         <ComponentContent

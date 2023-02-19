@@ -10,6 +10,7 @@ import ComponentErrors from "src/ui/Errors";
 import { PropsLayout } from "./types";
 import dynamic from "next/dynamic";
 import { responsive } from "src/styled/mixins";
+import { isTruthy } from "src/helpers/checkFalsyType";
 
 const StyledContentWrapper = styled.div`
   padding-top: 6rem;
@@ -45,7 +46,7 @@ const Layout: FC<PropsLayout> = (props) => {
         </StyledContainer>
       </div>
 
-      <Footer />
+      <Footer disableAnimation={isTruthy(props.disableFooterAnimation)} />
     </StyledContentWrapper>
   );
 };

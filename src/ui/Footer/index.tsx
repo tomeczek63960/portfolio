@@ -6,15 +6,20 @@ import {
   StyledFooterLink,
 } from "./style";
 import { StyledContainer } from "src/ui/Container/style";
+import { isTruthy } from "src/helpers/checkFalsyType";
+import { IFooterPorops } from "./types";
 
-const ComponentFooter: FC = () => {
+const ComponentFooter: FC<IFooterPorops> = ({ disableAnimation }) => {
   const [refLinks] = useScrollTrigger(0.9, "children") as [
     RefObject<HTMLDivElement>
   ];
   return (
     <StyledFooter>
       <StyledContainer>
-        <StyledContainerLeftFooter ref={refLinks}>
+        <StyledContainerLeftFooter
+          ref={refLinks}
+          disableAnimation={isTruthy(disableAnimation)}
+        >
           <h3>Sources</h3>
           <p>
             <StyledFooterLink

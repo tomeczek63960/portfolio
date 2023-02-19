@@ -7,4 +7,5 @@ export interface PropsLayout {
   url: string;
   imageUrl?: string;
   imageAlt?: string;
+  disableFooterAnimation?: boolean;
 }

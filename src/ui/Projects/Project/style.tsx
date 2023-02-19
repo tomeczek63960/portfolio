@@ -6,6 +6,7 @@ export const StyledProject = styled.div`
   width: 100%;
   max-width: 100%;
   max-height: 30rem;
+  min-height: 19rem;
   position: relative;
   flex-shrink: 0;
   border: 0.1rem solid transparent;

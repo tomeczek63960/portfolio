@@ -28,7 +28,7 @@ export const useScrollTrigger = (
         start: () =>
           `top ${
             window.innerHeight *
-            (isTruthy(scrollTriggerStart) ? scrollTriggerStart + 0.05 : 0.55)
+            (isTruthy(scrollTriggerStart) ? scrollTriggerStart : 0.5)
           }`,
         end: () =>
           `top ${

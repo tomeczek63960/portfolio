@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { responsive, colors } from "src/styled/mixins";
 import { StyledContainerLeft } from "src/ui/Container/style";
 export const StyledFooter = styled.footer`
@@ -7,7 +7,9 @@ export const StyledFooter = styled.footer`
   z-index: 1;
 `;
 
-export const StyledContainerLeftFooter = styled(StyledContainerLeft)`
+export const StyledContainerLeftFooter = styled(StyledContainerLeft).attrs(
+  (props: { disableAnimation: boolean }) => props
+)`
   padding-top: 4rem;
   padding-bottom: 4rem;
   &::before {
@@ -25,8 +27,12 @@ export const StyledContainerLeftFooter = styled(StyledContainerLeft)`
   }
   h3,
   p {
-    opacity: 0;
-    transform: translateY(-30%);
+    ${(props) =>
+      !props.disableAnimation &&
+      css`
+        opacity: 0;
+        transform: translateY(-30%);
+      `}
   }
   p {
     margin-top: 1.5rem;
