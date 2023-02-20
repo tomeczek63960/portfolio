@@ -25,7 +25,7 @@ export const StyledContainer = styled.div`
     padding-right: 0;
   `}
   ${responsive.desktopHd`
-    max-width: 139rem;
+    max-width: 120rem;
   `}
 `;
 export const StyledContainerLeft = styled.div`
