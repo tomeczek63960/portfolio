@@ -1,7 +1,6 @@
 # Portfolio
 <img width="1435" alt="portfolio" src="https://user-images.githubusercontent.com/55184773/220025612-afb98786-295c-42e9-a8b1-78c2caf5701d.png">
 
-# DEMO [https://portfolio-swart-seven-36.vercel.app/](https://portfolio-swart-seven-36.vercel.app/) 
 
 ## Technologies
 - React / Next.js
